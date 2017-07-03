@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../layouts/head %>
+</head>
+<body>
+    <header>
+        <% include ../layouts/navbar %>
+    </header>
+
+    <main class="container">
+        <div class="jumbotron">
+            <h1>This page is QQ <%= title  %></h1>
+            <p>Welcome to templating using EJS</p>
+            <table class="table table-hover">
+                <caption>已新增的建築</caption>
+                
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>名稱</th>
+                        <th>類別</th>
+                        <th>介紹</th>
+                        <th>圖片</th>
+                        <th>編輯</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                <% for(var i in buildings){ %>
+                    <tr>
+                        <td></td>
+                        <td><%= buildings[i].name %></td>
+                        <td><%= buildings[i].type %></td>
+                        <td>
+                            <button class="btn btn-warning btn-xs">瀏覽</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-warning btn-xs">編輯</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-warning btn-xs">編輯</button>
+                            <button class="btn btn-danger btn-xs">刪除</button>
+                        </td>
+                    </tr>
+                <% } %>
+                </tbody>
+
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <% include ../layouts/footer %>
+    </footer>
+        <% include js %>
+</body>
+</html>
+
