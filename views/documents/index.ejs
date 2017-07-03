@@ -2,17 +2,44 @@
 <html lang="en">
 <head>
     <% include ../layouts/head %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
-<body>
+<body style="background-image:url('背景.png'); background-position: center top; background-size: contain; background-repeat: no-repeat">
     <header>
         <% include ../layouts/navbar %>
     </header>
 
     <main class="container">
-        <div class="jumbotron">
-            <h1>This page is <%= title  %></h1>
-            <p>Welcome to templating using EJS</p>
+
+        <div class="container" style="height: 700px; min-width: 500px;">
+            <h1 style="font-family: Georgia, Garamond, serif; color:white;" class="text-center container">welcome to here</h1>
+            <div class="row container">
+                <div class="col-xs-4"><img style="display:inline-block;" class="img-responsive" alt="大一新生" src="大一新生.png" /></div>
+                <div class="col-xs-4"><img style="display:inline-block;" class="img-responsive" alt="碩一新生" src="碩一新生.png" /></div>
+                <div class="col-xs-4"><img style="display:inline-block;" class="img-responsive" alt="常用連結" src="常用連結.png" /></div>
+            </div>
         </div>
+
+        <section class="container">
+            <h1 class="text-center">大一新生</h1>
+            <ul class="nav nav-pills nav-justified">
+                <li role="presentation" class="text-center"><a href="#under-1">註冊報到</a></li>
+                <li role="presentation" class="text-center"><a href="#under-2">新生週活動</a></li>
+                <li role="presentation" class="text-center"><a href="#under-3">共同課程及門檻</a></li>
+            </ul>
+            <div class="row container">
+                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="新生註冊通知&日程表" src="新生註冊通知&日程表.png" /></div>
+                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="學籍登錄" src="學籍登錄.png" /></div>
+                <div class="col-xs-3"><img style="display:inline-block;" class="-responsive" alt="住宿注意事項" src="住宿注意事項.png" /></div>
+                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="兵役注意資料" src="兵役注意資料.png" /></div>
+                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="學雜費繳費&貸款" src="學雜費繳費&貸款.png" /></div>
+                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="入住交通管制圖&報到流程" src="入住交通管制圖&報到流程.png" /></div>
+                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="常用連結" src="常用連結.png" /></div>
+            </div>
+        </section>
+        <!-- <svg height="346.410161513775459" width="400">
+            <polygon points="100,0 0,173.205080756887729 100,346.410161513775459 300,346.410161513775459 400,173.205080756887729 300,0" style="fill:lime;stroke:purple;stroke-width:1" />
+        </svg> -->
     </main>
 
     <footer>
