@@ -7,17 +7,49 @@
     <header>
         <% include layouts/navbar %>
     </header>
-    
+
     <main class="container">
-        <div class="jumbotron">
-            <h1>This is great</h1>
-            <p>Welcome to templating using EJS</p>
+        <div class="">
+          <div class="jumbotron">
+              <h1>This is <%=title %></h1>
+              <p>Welcome to templating using EJS</p>
+          </div>
+          <form action="/new" method="post" accept-charset="utf-8">
+            <textarea name="content" rows="8" cols="80"></textarea>
+            <br>
+            <button type="submit" name="button" class="btn btn-primary">送出</button>
+          </form>
+          <hr>
+          <% todos.forEach( function ( todo ){ %>
+            <div>
+              <div>
+                <%= todo.content %>
+              </div>
+              <span>
+                <a href="/edit/<%= todo._id %>" title="Update this todo item">Edit</a>
+              </span>
+              <span>
+                <a href="/destroy/<%= todo._id %>" title="Delete this todo item">Delete</a>
+              </span>
+            </div>
+          <% }); %>
+          <hr>
         </div>
+
     </main>
 
     <footer>
         <% include layouts/footer %>
     </footer>
         <% include index/js %>
+        <script type="text/javascript">
+          UPLOADCARE_PUBLIC_KEY = "demopublickey";
+          CKEDITOR.replace('content',{
+            extraPlugins: 'uploadcare',
+            uploadcare: {
+                multiple: true
+            }
+        });
+        </script>
 </body>
 </html>
