@@ -14,6 +14,8 @@ var campus = require('./routes/campus');
 var groups = require('./routes/groups');
 var life = require('./routes/life');
 var smallgame = require('./routes/smallgame');
+var video = require('./routes/video');
+var personal = require('./routes/personal');
 
 
 var app = express();
@@ -45,6 +47,10 @@ app.use('/groups', groups);
 app.use('/life', life);
 // 小遊戲
 app.use('/smallgame', smallgame);
+// 影音專區
+app.use('/video', video);
+// 個人專區
+app.use('/personal', personal);
 
 
 // catch 404 and forward to error handler
