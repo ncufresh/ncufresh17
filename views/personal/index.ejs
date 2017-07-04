@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <% include ../layouts/head %>
+    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 </head>
 <body>
     <header>
@@ -9,9 +10,43 @@
     </header>
 
     <main class="container">
-        <div class="jumbotron">
-            <h1>This page is <%= title  %></h1>
-            <p>Welcome to templating using EJS</p>
+        <div class="jumbotron row" style="overflow:auto;">
+            <div class="col-md-6">
+                <h1>個人專區</h1>
+                <div id="profile" class="well" style="text-align:center;">
+                    <input accept="image/*" id="uploadImage" type="file">
+                    <img id="img" src="">
+                    <script>
+                        $("#uploadImage").change(function() {
+                            readImage( this );
+                        });
+                        function readImage(input) {
+                            if ( input.files && input.files[0] ) {
+                                var FR= new FileReader();
+                                FR.onload = function(e) {
+                                    //e.target.result = base64 format picture
+                                    $('#img').attr( "src", e.target.result );
+                                };       
+                                FR.readAsDataURL( input.files[0] );
+                            }
+                        }
+                    </script>
+                    <span style="vertical-align: middle;"><font size="6">大頭貼</font></span>
+                </div>
+                
+                <div id="game" class="well" style="text-align:center;">
+                    小遊戲
+                </div>
+            </div>
+            
+            <div id="Q-A" class="col-md-6" >
+                <h2><u>Q&A幫您解答</u></h2>
+
+                <div class="well" style="width: 100%; height:200px; text-align: center; float: left;">
+                    <p>34534</p>
+                </div>
+            </div>
+
         </div>
     </main>
 
