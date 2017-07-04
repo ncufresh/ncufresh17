@@ -12,6 +12,9 @@
         <div class="jumbotron">
             <h1>This page is QQ <%= title  %></h1>
             <p>Welcome to templating using EJS</p>
+            
+            <button class="new_building" data-toggle="modal" data-target="#add_build_model">新增建築物</button>
+            
             <table class="table table-hover">
                 <caption>已新增的建築</caption>
                 
@@ -28,7 +31,7 @@
 
                 <tbody>
                 <% for(var i in buildings){ %>
-                    <tr>
+                    <tr id = "<%='b'+ buildings[i].id %>" >
                         <td></td>
                         <td><%= buildings[i].name %></td>
                         <td><%= buildings[i].type %></td>
@@ -40,13 +43,31 @@
                         </td>
                         <td>
                             <button class="btn btn-warning btn-xs">編輯</button>
-                            <button class="btn btn-danger btn-xs">刪除</button>
+                            <button class="btn btn-danger btn-xs delete_build" value="<%= buildings[i].id%>">刪除</button>
                         </td>
                     </tr>
                 <% } %>
                 </tbody>
-
             </table>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="add_build_model" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Modal Header</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Some text in the modal.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            
+            </div>
         </div>
     </main>
 
@@ -57,3 +78,23 @@
 </body>
 </html>
 
+<script>
+    $(document).ready(function(){
+        $('.delete_build').click(function(){
+            if(confirm("確定要刪除?")){
+                var id = $(this).val();
+                $.ajax({
+                    url:    '/campus/delete/'+ id,
+                    type:   'GET',
+                    error: function(e){
+                        console.log("ERR");
+                    },
+                    success: function(data){
+                        $('#b'+ id).remove();
+                    }
+                })
+            }
+
+        })
+    })
+</script>

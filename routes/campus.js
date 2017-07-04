@@ -15,6 +15,17 @@ router.get('/help',function(req,res,next){
 });
 
 router.get('/newData',function(req,res,next){
+  building.find({}).sort({CreateDate:-1}).exec(function(err,buildings){
+    res.render('campus/newData',{title: '新增建族物', buildings: buildings});
+  });
+});
+
+router.get('/delete/:id',function(req,res,next){
+  building.findById(req.params.id).remove().exec();
+  res.redirect('/campus/newData');
+});
+
+router.get('/add',function(req,res,next){
   var b = new building({
     name:"工五",
     type:"系館",
@@ -23,10 +34,7 @@ router.get('/newData',function(req,res,next){
     content:"",
     updated_at:Date.now()
   }).save();
-  building.find({}).sort({CreateDate:-1}).exec(function(err,buildings){
-    res.render('campus/newData',{title: '新增建族物', buildings: buildings});
-  });
-  
+  res.redirect('/campus/newData');
 });
 
 module.exports = router;
