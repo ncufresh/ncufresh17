@@ -44,4 +44,15 @@ ejs中要用的語法是<%- content%>來去除雙引號
 
 而非<%= content%>
 
+### 如果東西沒有跑出來
 
+plugins沒有載入
+
+前往這裡：
+<https://github.com/uploadcare/uploadcare-ckeditor>
+
+將這專案裡的東西放在
+
+public/javascript/ckeditor/plugins/uploadcare/
+
+接著重新載入頁面 看ckeditor有沒有跑出來
