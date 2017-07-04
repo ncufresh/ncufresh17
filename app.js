@@ -20,6 +20,7 @@ var life = require('./routes/life');
 var smallgame = require('./routes/smallgame');
 var video = require('./routes/video');
 var personal = require('./routes/personal');
+var about = require('./routes/about');
 
 
 var app = express();
@@ -61,6 +62,8 @@ app.use('/smallgame', smallgame);
 app.use('/video', video);
 // 個人專區
 app.use('/personal', personal);
+// 關於我們
+app.use('/about', about);
 
 
 // ckeditor uploader
