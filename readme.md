@@ -19,20 +19,16 @@ on Windows
 `<script src="/javascript/ckeditor/ckeditor.js"></script>`
 
 `<script type="text/javascript">
-    UPLOADCARE_PUBLIC_KEY = "demopublickey";
-    CKEDITOR.replace('!這裡指定textarea的name!',{
-    extraPlugins: 'uploadcare',
-    uploadcare: {
-        multiple: true
-    }
-    });
-    //一些相關設定
-    CKEDITOR.editorConfig = function (config){
+  CKEDITOR.replace('content',{
+    filebrowserUploadUrl: '/uploader',
+  });
+  CKEDITOR.editorConfig = function (config){
       config.enterMode = CKEDITOR.ENTER_BR;
       config.autoParagraph = false;
-    };
+  };
 </script>
 `
+
 
 ### 注意事項
 
@@ -44,15 +40,25 @@ ejs中要用的語法是<%- content%>來去除雙引號
 
 而非<%= content%>
 
-### 如果東西沒有跑出來
+東西會上傳到/public/uploads底下
 
-plugins沒有載入
 
-前往這裡：
-<https://github.com/uploadcare/uploadcare-ckeditor>
+# 程式碼準則
+HTML:  
+屬性永遠使用雙引號，永遠別用單引號。  
+屬性應按照特定順序撰寫，確保程式碼的易讀性。
+- class
+- id, name
+- data-*
+- src, for, type, href
+- title, alt
+- aria-其他, role
+- Class 是為了重用的元素而生，應該排第一位。ID 具體得多，應盡量少用（可用場景像是頁內書籤），所以排第二位。  
 
-將這專案裡的東西放在
+NodeJS:  
+程式碼縮排是四個空格長
+Modal字首大寫、單數
+資料表字首小寫、複數
+Controller字首大寫  
+View的檔案名稱及資料夾名稱應全小寫 
 
-public/javascript/ckeditor/plugins/uploadcare/
-
-接著重新載入頁面 看ckeditor有沒有跑出來
