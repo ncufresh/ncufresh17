@@ -43,12 +43,9 @@
     </footer>
         <% include index/js %>
         <script type="text/javascript">
-          UPLOADCARE_PUBLIC_KEY = "demopublickey";
           CKEDITOR.replace('content',{
-            extraPlugins: 'uploadcare',
-            uploadcare: {
-                multiple: true
-            }
+            filebrowserUploadUrl: '/uploader',
+
           });
           CKEDITOR.editorConfig = function (config){
               config.enterMode = CKEDITOR.ENTER_BR;
