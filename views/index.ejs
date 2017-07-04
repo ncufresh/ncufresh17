@@ -23,7 +23,7 @@
           <% todos.forEach( function ( todo ){ %>
             <div>
               <div>
-                <%= todo.content %>
+                <%- todo.content %>
               </div>
               <span>
                 <a href="/edit/<%= todo._id %>" title="Update this todo item">Edit</a>

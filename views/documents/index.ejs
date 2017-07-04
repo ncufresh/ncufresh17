@@ -3,31 +3,122 @@
 <head>
     <% include ../layouts/head %>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $("#freshmen-source,#master-freshmen-source,#often-link-source").mouseover(function(){
+                $(this).animate({
+                    padding:'0px'
+                }, 200);
+        });
+        $("#freshmen-source,#master-freshmen-source,#often-link-source").mouseout(function(){
+                $(this).animate({
+                    padding:'2vw'
+                }, 200);
+        });
+        $("#freshmen-source").click(function(){
+            console.log("ha");
+            $('#freshmen-distaination').css({"display":"block"});
+            $('#master-freshmen-distaination').css({"display":"none"});
+            $('#often-link-distaination').css({"display":"none"});
+            $('html,body').animate({
+                scrollTop: $('#freshmen-distaination').offset().top
+            }, 1000);
+            return false;
+        });
+        $("#master-freshmen-source").click(function(){
+            console.log("ha");
+            $('#freshmen-distaination').css({"display":"none"});
+            $('#master-freshmen-distaination').css({"display":"block"});
+            $('#often-link-distaination').css({"display":"none"});
+            $('html,body').animate({
+                scrollTop: $('#master-freshmen-distaination').offset().top
+            }, 1000);
+            return false;
+        });
+        $("#often-link-source").click(function(){
+            console.log("ha");
+            $('#freshmen-distaination').css({"display":"none"});
+            $('#master-freshmen-distaination').css({"display":"none"});
+            $('#often-link-distaination').css({"display":"block"});
+            $('html,body').animate({
+                scrollTop: $('#often-link-distaination').offset().top
+            }, 1000);
+            return false;
+        });
+        $(".under-1-source").click(function(){
+            console.log("ha");
+            $('#under-1').css({"display":"block"});
+            $('#under-2').css({"display":"none"});
+            $('#under-3').css({"display":"none"});
+            $('#under-1').addClass("active");
+            $('#under-2').removeClass("active");
+            $('#under-3').removeClass("active");
+            return false;
+        });
+        $(".under-2-source").click(function(){
+            console.log("ha");
+            $('#under-1').css({"display":"none"});
+            $('#under-2').css({"display":"block"});
+            $('#under-3').css({"display":"none"});
+            $('#under-1').removeClass("active");
+            $('#under-2').addClass("active");
+            $('#under-3').removeClass("active");
+            return false;
+        });
+        $(".under-3-source").click(function(){
+            console.log("ha");
+            $('#under-1').css({"display":"none"});
+            $('#under-2').css({"display":"none"});
+            $('#under-3').css({"display":"block"});
+            $('#under-1').removeClass("active");
+            $('#under-2').removeClass("active");
+            $('#under-3').addClass("active");
+            return false;
+        });
+        $(".under-4-source").click(function(){
+            console.log("ha");
+            $('#under-4').css({"display":"block"});
+            $('#under-5').css({"display":"none"});
+            $('#under-4').addClass("active");
+            $('#under-5').removeClass("active");
+            return false;
+        });
+        $(".under-5-source").click(function(){
+            console.log("ha");
+            $('#under-4').css({"display":"none"});
+            $('#under-5').css({"display":"block"});
+            $('#under-4').removeClass("active");
+            $('#under-5').addClass("active");
+            return false;
+        });
+    })
+    </script>
 </head>
-<body style="background-image:url('背景.png'); background-position: center top; background-size: contain; background-repeat: no-repeat">
-    <header>
+<body>
+    <header style="min-width: 600px;">
         <% include ../layouts/navbar %>
     </header>
 
-    <main class="container">
+    <main  style="background-image:url('背景.png'); background-position: center top; background-size: contain; background-repeat: no-repeat; min-width: 500px;">
 
-        <div class="container" style="height: 700px; min-width: 500px;">
-            <h1 style="font-family: Georgia, Garamond, serif; color:white;" class="text-center container">welcome to here</h1>
+        <div class="container" style="margin-bottom: 600px;">
+            <h1 style="font-family: Georgia, Garamond, serif; color:white; padding-bottom: 50px" class="text-center container">welcome to here</h1>
             <div class="row container">
-                <div class="col-xs-4"><img style="display:inline-block;" class="img-responsive" alt="大一新生" src="大一新生.png" /></div>
-                <div class="col-xs-4"><img style="display:inline-block;" class="img-responsive" alt="碩一新生" src="碩一新生.png" /></div>
-                <div class="col-xs-4"><img style="display:inline-block;" class="img-responsive" alt="常用連結" src="常用連結.png" /></div>
+                <div class="col-xs-4"><img id="freshmen-source" style="display:inline-block; padding: 2vw;" class="img-responsive" alt="大一新生" src="大一新生.png" /></div>
+                <div class="col-xs-4"><img id="master-freshmen-source" style="display:inline-block; padding: 2vw;" class="img-responsive" alt="碩一新生" src="碩一新生.png" /></div>
+                <div class="col-xs-4"><img id="often-link-source" style="display:inline-block; padding: 2vw;" class="img-responsive" alt="常用連結" src="常用連結.png" /></div>
             </div>
         </div>
 
-        <section class="container">
+        <!--大一新生 start-->
+        <section class="container" id="freshmen-distaination">
             <h1 class="text-center">大一新生</h1>
-            <ul class="nav nav-pills nav-justified">
-                <li role="presentation" class="text-center"><a href="#under-1">註冊報到</a></li>
-                <li role="presentation" class="text-center"><a href="#under-2">新生週活動</a></li>
-                <li role="presentation" class="text-center"><a href="#under-3">共同課程及門檻</a></li>
+            <ul class="nav nav-pills nav-justified row" style="padding: 10px;">
+                <li role="presentation" class="text-center under-1-source"><a href="#under-1">註冊報到</a></li>
+                <li role="presentation" class="text-center under-2-source"><a href="#under-2">新生週活動</a></li>
+                <li role="presentation" class="text-center under-3-source"><a href="#under-3">共同課程及門檻</a></li>
             </ul>
-            <div class="row container">
+            <div class="row container" id="under-1">
                 <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="新生註冊通知&日程表" src="新生註冊通知&日程表.png" /></div>
                 <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="學籍登錄" src="學籍登錄.png" /></div>
                 <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="學籍登錄" src="學籍登錄.png" /></div>
@@ -36,7 +127,63 @@
                 <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="入住交通管制圖&報到流程" src="入住交通管制圖&報到流程.png" /></div>
                 <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="腳踏車通行證申請" src="腳踏車通行證申請.png" /></div>
             </div>
+            <div class="row container" id="under-2" style="display: none;">
+                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="新生註冊通知&日程表" src="新生註冊通知&日程表.png" /></div>
+                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="學籍登錄" src="學籍登錄.png" /></div>
+                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="學籍登錄" src="學籍登錄.png" /></div>
+                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="兵役注意資料" src="兵役注意資料.png" /></div>
+                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="學雜費繳費&貸款" src="學雜費繳費&貸款.png" /></div>
+            </div>
+            <div class="row container" id="under-3" style="display: none;">
+                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="學籍登錄" src="學籍登錄.png" /></div>
+                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="兵役注意資料" src="兵役注意資料.png" /></div>
+                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="學雜費繳費&貸款" src="學雜費繳費&貸款.png" /></div>
+                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="入住交通管制圖&報到流程" src="入住交通管制圖&報到流程.png" /></div>
+                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="腳踏車通行證申請" src="腳踏車通行證申請.png" /></div>
+            </div>
         </section>
+        <!--大一新生 end-->
+
+        <!--碩一新生 start-->
+        <section class="container" id="master-freshmen-distaination" style="display:none;">
+            <h1 class="text-center">碩一新生</h1>
+            <ul class="nav nav-pills nav-justified row" style="padding: 10px;">
+                <li role="presentation" class="text-center under-4-source"><a href="#under-4">註冊報到</a></li>
+                <li role="presentation" class="text-center under-5-source"><a href="#under-5">新生週活動</a></li>
+            </ul>
+            <div class="row container" id="under-4">
+                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="新生註冊通知&日程表" src="新生註冊通知&日程表.png" /></div>
+                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="學籍登錄" src="學籍登錄.png" /></div>
+                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="學籍登錄" src="學籍登錄.png" /></div>
+                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="兵役注意資料" src="兵役注意資料.png" /></div>
+                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="學雜費繳費&貸款" src="學雜費繳費&貸款.png" /></div>
+                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="入住交通管制圖&報到流程" src="入住交通管制圖&報到流程.png" /></div>
+                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="腳踏車通行證申請" src="腳踏車通行證申請.png" /></div>
+            </div>
+            <div class="row container" id="under-5" style="display: none;">
+                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="學籍登錄" src="學籍登錄.png" /></div>
+                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="兵役注意資料" src="兵役注意資料.png" /></div>
+            </div>
+        </section>
+        <!--碩一新生 end-->
+
+        <!--常用連結 start-->
+        <section class="container" id="often-link-distaination" style="display:none;">
+            <h1 class="text-center">常用連結</h1>
+            <div class="row container" id="under-4">
+                <div class="col-xs-2" style="margin:5px;"><img style="display:inline-block;" class="img-responsive" alt="常用連結" src="常用的連結.png" /></div>
+                <div class="col-xs-2" style="margin:5px;"><img style="display:inline-block;" class="img-responsive" alt="常用連結" src="常用的連結.png" /></div>
+                <div class="col-xs-2" style="margin:5px;"><img style="display:inline-block;" class="img-responsive" alt="常用連結" src="常用的連結.png" /></div>
+                <div class="col-xs-2" style="margin:5px;"><img style="display:inline-block;" class="img-responsive" alt="常用連結" src="常用的連結.png" /></div>
+                <div class="col-xs-2" style="margin:5px;"><img style="display:inline-block;" class="img-responsive" alt="常用連結" src="常用的連結.png" /></div>
+                <div class="col-xs-2" style="margin:5px;"><img style="display:inline-block;" class="img-responsive" alt="常用連結" src="常用的連結.png" /></div>
+                <div class="col-xs-2" style="margin:5px;"><img style="display:inline-block;" class="img-responsive" alt="常用連結" src="常用的連結.png" /></div>
+                <div class="col-xs-2" style="margin:5px;"><img style="display:inline-block;" class="img-responsive" alt="常用連結" src="常用的連結.png" /></div>
+                <div class="col-xs-2" style="margin:5px;"><img style="display:inline-block;" class="img-responsive" alt="常用連結" src="常用的連結.png" /></div>
+                <div class="col-xs-2" style="margin:5px;"><img style="display:inline-block;" class="img-responsive" alt="常用連結" src="常用的連結.png" /></div>
+            </div>
+        </section>
+        <!--常用連結 end-->
         <!-- <svg height="346.410161513775459" width="400">
             <polygon points="100,0 0,173.205080756887729 100,346.410161513775459 300,346.410161513775459 400,173.205080756887729 300,0" style="fill:lime;stroke:purple;stroke-width:1" />
         </svg> -->
