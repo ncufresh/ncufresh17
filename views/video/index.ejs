@@ -8,23 +8,24 @@
         <% include ../layouts/navbar %>
     </header>
 
-    <main class="container">
-        <div>
-            <h1 class="text-center"><strong>歡迎來到影音專區</strong></h1>
+    <main style="background-image:url('/video/背景1.png'); background-position: center top; background-size: contain; background-repeat: no-repeat; min-width: 500px; height: 600px;">
+        <div class="container">
+            <div>
+                <a href="/">首頁</a>
+                <h1 class="text-center"><strong>歡迎來到影音專區</strong></h1>
+            </div>
+            <div class="col-md-12"><img style="max-width: 1000px" src="/video/圖片3.png" class="img-responsive"/></div>
+            <div class="row">
+                <div class="col-md-1"><img style="max-width: 300px" src=""/></div>
+                <div class="col-md-5"><a href="/video/life"><img style="max-width: 330px" src="/video/圖片1.png" class="img-responsive" alt="生活BTN"/></a></div>
+                <div class="col-md-5"><a href="/video/interview"><img style="max-width: 330px" src="/video/圖片2.png" class="img-responsive" alt="採訪BTN"/></a></div>
+                <div class="col-md-1"><img style="max-width: 300px" src=""/></div>
+            </div>
         </div>
     </main>
-    <div class="row">
-        <div class="col-md-2"><img style="max-width: 300px" src=""/></div>
-        <div class="col-md-4"><a href="/video/life"><img style="max-width: 330px" src="圖片1.png" alt="生活BTN"/></a></div>
-        <div class="col-md-4"><img style="max-width: 330px" src="圖片2.png" alt="採訪BTN"/></div>
-        <div class="col-md-2"><img style="max-width: 300px" src=""/></div>
-    </div>
-    
-    
     <footer>
         <% include ../layouts/footer %>
     </footer>
         <% include js %>
-    
 </body>
 </html>
