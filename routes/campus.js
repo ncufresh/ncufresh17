@@ -25,13 +25,13 @@ router.get('/delete/:id',function(req,res,next){
   res.redirect('/campus/newData');
 });
 
-router.get('/add',function(req,res,next){
+router.post('/add',function(req,res,next){
   var b = new building({
-    name:"工五",
-    type:"系館",
-    sos:true,
-    AED:true,
-    content:"",
+    name:req.body.name,
+    type:req.body.type,
+    content:req.body.content,
+    SOS:req.body.SOS,
+    AED:req.body.AED,
     updated_at:Date.now()
   }).save();
   res.redirect('/campus/newData');

@@ -11,7 +11,7 @@ var building = mongoose.Schema({
     type        : String,
     content     : String,
     updated_at  : Date,
-    sos         : Boolean,
+    SOS         : Boolean,
     AED         : Boolean
 });
 
