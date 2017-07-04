@@ -8,7 +8,10 @@
         <% include ../layouts/navbar %>
     </header>
 
-    <main class="container">
+    <main>
+      <div class="container">
+
+
         <div class="jumbotron">
             <!-- Modal -->
             <div class="modal fade" id="add_build_model" role="dialog">
@@ -44,7 +47,7 @@
                                     <label for="content">建築物簡介</label>
                                     <textarea name="content" rows="8" cols="80"></textarea><br>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="SOS" class="control-label">附近是否有SOS</label>
                                     <select name="SOS" id="SOS" class="form-control">
@@ -52,7 +55,7 @@
                                         <option value="0">否</option>
                                     </select>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="AED" class="control-label">附近是否有AED</label>
                                     <select name="AED" id="AED" class="form-control">
@@ -68,7 +71,7 @@
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
-                
+
                 </div>
             </div>
             <!-- Modal -->
@@ -88,18 +91,18 @@
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             </div>
                         </div>
-                    
+
                     </div>
                 </div>
             <%}%>
             <h1>This page is <%= title  %></h1>
             <p>Welcome to templating using EJS</p>
-            
+
             <button class="new_building" data-toggle="modal" data-target="#add_build_model">新增建築物</button>
-            
+
             <table class="table table-hover">
                 <caption>已新增的建築</caption>
-                
+
                 <thead>
                     <tr>
                         <th></th>
@@ -132,7 +135,7 @@
                 </tbody>
             </table>
         </div>
-        
+        </div>
     </main>
 
     <footer>
@@ -141,5 +144,3 @@
         <% include js %>
 </body>
 </html>
-
-
