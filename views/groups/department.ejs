@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../layouts/head %>
+</head>
+<body>
+    <header>
+        <% include ../layouts/navbar %>
+    </header>
+
+    <main class="container">
+        <div class="jumbotron">
+            <h1>系所</h1>
+            <hr size="8px" align="center" width="100%">
+            <button type="button" style="position:relative;left:30px">文學院</button>
+            <button type="button" style="position:relative;left:80px">理學院</button>
+            <button type="button" style="position:relative;left:130px">工學院</button>
+            <button type="button" style="position:relative;left:180px">管理學院</button>
+            <button type="button" style="position:relative;left:230px">資訊電機學院
+            </button></br></br></br>
+            <button type="button" style="position:relative;left:130px">地球科學學院</button>
+            <button type="button" style="position:relative;left:180px">客家學院</button>
+            <button type="button" style="position:relative;left:230px">生醫理工學院</button>
+            <button type="button" style="position:relative;left:280px">太空及遙測學位中心</button>
+            <style>
+            button {
+                width: 150px;
+                height: 150px;
+                line-height: 150px;
+                border: 1px dashed red;
+                border-radius: 150px;   /* 高度 */
+                text-align:center;
+            }
+            </style>
+        </div>
+    </main>
+
+    <footer>
+        <% include ../layouts/footer %>
+    </footer>
+        <% include js %>
+</body>
+</html>
