@@ -23,7 +23,7 @@
           <% todos.forEach( function ( todo ){ %>
             <div>
               <div>
-                <%= todo.content %>
+                <%- todo.content %>
               </div>
               <span>
                 <a href="/edit/<%= todo._id %>" title="Update this todo item">Edit</a>
@@ -49,7 +49,11 @@
             uploadcare: {
                 multiple: true
             }
-        });
+          });
+          CKEDITOR.editorConfig = function (config){
+              config.enterMode = CKEDITOR.ENTER_BR;
+              config.autoParagraph = false;
+          };
         </script>
 </body>
 </html>

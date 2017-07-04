@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <% include layouts/head %>
+
 </head>
 <body>
     <header>
@@ -13,19 +14,25 @@
             <h1>This is <%=title %></h1>
             <p>Welcome to templating using EJS</p>
         </div>
-        <form action="/new" method="post" accept-charset="utf-8">
-          <input type="text" name="content" />
-        </form>
+
         <hr>
+
         <% todos.forEach( function ( todo ){ %>
           <p>
             <span>
               <% if( todo._id == current ){ %>
               <form action="/update/<%= todo._id %>" method="post" accept-charset="utf-8">
-                <input type="text" name="content" value="<%= todo.content %>" />
+                <textarea name="content" rows="8" cols="80"></textarea>
+                <br>
+                <button type="submit" name="button" class="btn btn-primary">送出</button>
               </form>
+              <script type="text/javascript">
+              </script>
               <% }else{ %>
-                <a href="/edit/<%= todo._id %>" title="Update this todo item"><%= todo.content %></a>
+                <div>
+                  <%- todo.content %>
+                </div>
+                <a href="/edit/<%= todo._id %>" title="Update this todo item">Edit</a>
               <% } %>
             </span>
             <span>
@@ -38,6 +45,37 @@
     <footer>
         <% include layouts/footer %>
     </footer>
-        <% include index/js %>
+    <% include index/js %>
+    <script type="text/javascript">
+
+      UPLOADCARE_PUBLIC_KEY = "demopublickey";
+      CKEDITOR.replace('content',{
+        extraPlugins: 'uploadcare',
+        uploadcare: {
+            multiple: true
+        }
+      });
+      CKEDITOR.editorConfig = function (config){
+          config.enterMode = CKEDITOR.ENTER_BR;
+          config.autoParagraph = false;
+      };
+
+
+    </script>
+    <% todos.forEach( function ( todo ){
+       if( todo._id == current ){ %>
+        <script type="text/javascript">
+        function unescape(str){
+            return str.replace(/&lt;/g, "<")
+                      .replace(/&gt;/g, ">")
+                      .replace(/&quot;/g, '"')
+                      .replace(/&amp;/g, "&");
+        }
+          var str = "<%=todo.content%>";
+          var decoded = $('<div/>').html(str).text();
+          CKEDITOR.instances['content'].setData(decoded);
+        </script>
+      <% }
+     }); %>
 </body>
 </html>
