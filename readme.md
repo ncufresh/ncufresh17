@@ -18,19 +18,16 @@ on Windows
 
 `<script src="/javascript/ckeditor/ckeditor.js"></script>`
 
-`<script type="text/javascript">
-    UPLOADCARE_PUBLIC_KEY = "demopublickey";
-    CKEDITOR.replace('!這裡指定textarea的name!',{
-    extraPlugins: 'uploadcare',
-    uploadcare: {
-        multiple: true
-    }
-    });
-    //一些相關設定
-    CKEDITOR.editorConfig = function (config){
+`
+<script type="text/javascript">
+  CKEDITOR.replace('content',{
+    filebrowserUploadUrl: '/uploader',
+
+  });
+  CKEDITOR.editorConfig = function (config){
       config.enterMode = CKEDITOR.ENTER_BR;
       config.autoParagraph = false;
-    };
+  };
 </script>
 `
 
@@ -44,15 +41,6 @@ ejs中要用的語法是<%- content%>來去除雙引號
 
 而非<%= content%>
 
-### 如果東西沒有跑出來
+東西會上傳到/public/uploads底下
 
-plugins沒有載入
 
-前往這裡：
-<https://github.com/uploadcare/uploadcare-ckeditor>
-
-將這專案裡的東西放在
-
-public/javascript/ckeditor/plugins/uploadcare/
-
-接著重新載入頁面 看ckeditor有沒有跑出來
