@@ -18,11 +18,9 @@ on Windows
 
 `<script src="/javascript/ckeditor/ckeditor.js"></script>`
 
-`
-<script type="text/javascript">
+`<script type="text/javascript">
   CKEDITOR.replace('content',{
     filebrowserUploadUrl: '/uploader',
-
   });
   CKEDITOR.editorConfig = function (config){
       config.enterMode = CKEDITOR.ENTER_BR;
@@ -30,6 +28,7 @@ on Windows
   };
 </script>
 `
+
 
 ### 注意事項
 
