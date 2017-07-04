@@ -12,20 +12,12 @@
     "debug": "~2.6.3",
     "ejs": "~2.5.6",
     "express": "~4.15.2",
-<<<<<<< HEAD
-    "mongoose": "latest",
-=======
     "mongoose": "^4.11.1",
->>>>>>> e415d0a165149dc621c53f480c262b8eb1739443
     "morgan": "~1.8.1",
     "mpath": "^0.3.0",
     "regexp-clone": "0.0.1",
     "serve-favicon": "~2.4.2",
-<<<<<<< HEAD
-    "shortid": "^2.2.8"
-=======
     "shortid": "^2.2.8",
     "sliced": "^1.0.1"
->>>>>>> e415d0a165149dc621c53f480c262b8eb1739443
   }
 }
