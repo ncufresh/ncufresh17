@@ -43,3 +43,22 @@ ejs中要用的語法是<%- content%>來去除雙引號
 東西會上傳到/public/uploads底下
 
 
+# 程式碼準則
+HTML:  
+屬性永遠使用雙引號，永遠別用單引號。  
+屬性應按照特定順序撰寫，確保程式碼的易讀性。
+- class
+- id, name
+- data-*
+- src, for, type, href
+- title, alt
+- aria-其他, role
+- Class 是為了重用的元素而生，應該排第一位。ID 具體得多，應盡量少用（可用場景像是頁內書籤），所以排第二位。  
+
+PHP:  
+程式碼縮排是四個空格長  
+Modal字首大寫、單數  
+資料表字首小寫、複數  
+Controller字首大寫  
+View的檔案名稱及資料夾名稱應全小寫  
+
