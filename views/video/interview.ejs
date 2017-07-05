@@ -2,42 +2,259 @@
 <html lang="en">
 <head>
     <% include ../layouts/head %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        // $("#freshmen-source,#master-freshmen-source,#often-link-source").mouseover(function(){
+        //         $(this).animate({
+        //             padding:'0px'
+        //         }, 200);
+        // });
+        // $("#freshmen-source,#master-freshmen-source,#often-link-source").mouseout(function(){
+        //         $(this).animate({
+        //             padding:'2vw'
+        //         }, 200);
+        // });
+        $(".under-1-source").click(function(){
+            console.log("ha");
+            $('#under-1').css({"display":"block"});
+            $('#under-2').css({"display":"none"});
+            $('#under-3').css({"display":"none"});
+            $('#under-4').css({"display":"none"});
+            $('#under-5').css({"display":"none"});
+            $('#under-6').css({"display":"none"});
+            $('#under-7').css({"display":"none"});
+            $('#under-8').css({"display":"none"});
+            $('#under-1').addClass("active");
+            $('#under-2').removeClass("active");
+            $('#under-3').removeClass("active");
+            $('#under-4').removeClass("active");
+            $('#under-5').removeClass("active");
+            $('#under-6').removeClass("active");
+            $('#under-7').removeClass("active");
+            $('#under-8').removeClass("active");
+            return false;
+        });
+        $(".under-2-source").click(function(){
+            console.log("ha");
+            $('#under-1').css({"display":"none"});
+            $('#under-2').css({"display":"block"});
+            $('#under-3').css({"display":"none"});
+            $('#under-4').css({"display":"none"});
+            $('#under-5').css({"display":"none"});
+            $('#under-6').css({"display":"none"});
+            $('#under-7').css({"display":"none"});
+            $('#under-8').css({"display":"none"});
+            $('#under-1').removeClass("active");
+            $('#under-2').addClass("active");
+            $('#under-3').removeClass("active");
+            $('#under-4').removeClass("active");
+            $('#under-5').removeClass("active");
+            $('#under-6').removeClass("active");
+            $('#under-7').removeClass("active");
+            $('#under-8').removeClass("active");
+            return false;
+        });
+        $(".under-3-source").click(function(){
+            console.log("ha");
+            $('#under-1').css({"display":"none"});
+            $('#under-2').css({"display":"none"});
+            $('#under-3').css({"display":"block"});
+            $('#under-4').css({"display":"none"});
+            $('#under-5').css({"display":"none"});
+            $('#under-6').css({"display":"none"});
+            $('#under-7').css({"display":"none"});
+            $('#under-8').css({"display":"none"});
+            $('#under-1').removeClass("active");
+            $('#under-2').removeClass("active");
+            $('#under-3').addClass("active");
+            $('#under-4').removeClass("active");
+            $('#under-5').removeClass("active");
+            $('#under-6').removeClass("active");
+            $('#under-7').removeClass("active");
+            $('#under-8').removeClass("active");
+            return false;
+        });
+        $(".under-4-source").click(function(){
+            console.log("ha");
+            $('#under-1').css({"display":"none"});
+            $('#under-2').css({"display":"none"});
+            $('#under-3').css({"display":"none"});
+            $('#under-4').css({"display":"block"});
+            $('#under-5').css({"display":"none"});
+            $('#under-6').css({"display":"none"});
+            $('#under-7').css({"display":"none"});
+            $('#under-8').css({"display":"none"});
+            $('#under-1').removeClass("active");
+            $('#under-2').removeClass("active");
+            $('#under-3').removeClass("active");
+            $('#under-4').addClass("active");
+            $('#under-5').removeClass("active");
+            $('#under-6').removeClass("active");
+            $('#under-7').removeClass("active");
+            $('#under-8').removeClass("active");
+            return false;
+        });
+        $(".under-5-source").click(function(){
+            console.log("ha");
+            $('#under-1').css({"display":"none"});
+            $('#under-2').css({"display":"none"});
+            $('#under-3').css({"display":"none"});
+            $('#under-4').css({"display":"none"});
+            $('#under-5').css({"display":"block"});
+            $('#under-6').css({"display":"none"});
+            $('#under-7').css({"display":"none"});
+            $('#under-8').css({"display":"none"});
+            $('#under-1').removeClass("active");
+            $('#under-2').removeClass("active");
+            $('#under-3').removeClass("active");
+            $('#under-4').removeClass("active");
+            $('#under-5').addClass("active");
+            $('#under-6').removeClass("active");
+            $('#under-7').removeClass("active");
+            $('#under-8').removeClass("active");
+            return false;
+        });
+        $(".under-6-source").click(function(){
+            console.log("ha");
+            $('#under-1').css({"display":"none"});
+            $('#under-2').css({"display":"none"});
+            $('#under-3').css({"display":"none"});
+            $('#under-4').css({"display":"none"});
+            $('#under-5').css({"display":"none"});
+            $('#under-6').css({"display":"block"});
+            $('#under-7').css({"display":"none"});
+            $('#under-8').css({"display":"none"});
+            $('#under-1').removeClass("active");
+            $('#under-2').removeClass("active");
+            $('#under-3').removeClass("active");
+            $('#under-4').removeClass("active");
+            $('#under-5').removeClass("active");
+            $('#under-6').addClass("active");
+            $('#under-7').removeClass("active");
+            $('#under-8').removeClass("active");
+            return false;
+        });
+        $(".under-7-source").click(function(){
+            console.log("ha");
+            $('#under-1').css({"display":"none"});
+            $('#under-2').css({"display":"none"});
+            $('#under-3').css({"display":"none"});
+            $('#under-4').css({"display":"none"});
+            $('#under-5').css({"display":"none"});
+            $('#under-6').css({"display":"none"});
+            $('#under-7').css({"display":"block"});
+            $('#under-8').css({"display":"none"});
+            $('#under-1').removeClass("active");
+            $('#under-2').removeClass("active");
+            $('#under-3').removeClass("active");
+            $('#under-4').removeClass("active");
+            $('#under-5').removeClass("active");
+            $('#under-6').removeClass("active");
+            $('#under-7').addClass("active");
+            $('#under-8').removeClass("active");
+            return false;
+        });
+        $(".under-8-source").click(function(){
+            console.log("ha");
+            $('#under-1').css({"display":"none"});
+            $('#under-2').css({"display":"none"});
+            $('#under-3').css({"display":"none"});
+            $('#under-4').css({"display":"none"});
+            $('#under-5').css({"display":"none"});
+            $('#under-6').css({"display":"none"});
+            $('#under-7').css({"display":"none"});
+            $('#under-8').css({"display":"block"});
+            $('#under-1').removeClass("active");
+            $('#under-2').removeClass("active");
+            $('#under-3').removeClass("active");
+            $('#under-4').removeClass("active");
+            $('#under-5').removeClass("active");
+            $('#under-6').removeClass("active");
+            $('#under-7').removeClass("active");
+            $('#under-8').addClass("active");
+            return false;
+        });
+    });
+    </script>
 </head>
 <body>
     <header>
         <% include ../layouts/navbar %>
     </header>
 
-    <main>
+    <main  style="background-image:url('/video/背景2.png'); background-position: center top; background-size: contain; background-repeat: no-repeat; min-width: 100vw; min-height:100vh; width:600px; height: 150px;">
       <div class="container">
-
-
-        <div>
-            <div class="text-right"><a href="/video">影音專區</a></div>
+        <div class="text-right"><a href="/video">影音專區</a></div>
+        <div class="row">
+            <div class="col-xs-2"><a href="/"><img src="/video/圖片10.png" alt="home"/></a></div>
+            <div class="col-xs-9"><h1><strong>歡迎進入採訪區</strong></h1></div>
         </div>
-            <div class="row">
-                <div class="col-md-5"><div class="text-left"><a href="/"><img style="max-width: 70px" src="/video/圖片10.png" alt="home"/></a></div></div>
-                <div class="col-md-7"><h1><strong>歡迎進入採訪區</strong></h1></div>
+        <div class="text-center"><img src="/video/圖片3.png" alt="tt"/></div>
+        <div class="row">
+            <div class="col-xs-3">
+                <section class="container">
+                    <!-- <h1 class="text-center">大一新生</h1> -->
+                    <ul class="nav nav-pills nav-justified row" style="padding: 10px;">
+                        <li role="presentation" class="text-left under-1-source"><a href="#under-1">文學院</a></li>
+                        <p> </p>
+                        <li role="presentation" class="text-center under-2-source"><a href="#under-2">理學院</a></li>
+                        <p> </p>
+                        <li role="presentation" class="text-center under-3-source"><a href="#under-3">工學院</a></li>
+                        <p> </p>
+                        <li role="presentation" class="text-center under-4-source"><a href="#under-4">管理學院</a></li>
+                        <p> </p>
+                        <li role="presentation" class="text-center under-5-source"><a href="#under-5">資訊電機學院</a></li>
+                        <p> </p>
+                        <li role="presentation" class="text-center under-6-source"><a href="#under-6">地科科學學院</a></li>
+                        <p> </p>
+                        <li role="presentation" class="text-center under-7-source"><a href="#under-7">客家學院</a></li>
+                        <p> </p>
+                        <li role="presentation" class="text-center under-8-source"><a href="#under-8">生醫理工學院</a></li>
+                    </ul>
+                    <div class="row container" id="under-1" style="display: none;">
+                        <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="國文" src="/video/國文.png" /></div>
+                        <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="英文" src="/video/英文.png" /></div>
+                        <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="法文" src="/video/法文.png" /></div>
+                    </div>
+                    <div class="row container" id="under-2" style="display: none;">
+                        <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="土木" src="/video/土木.png" /></div>
+                        <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="化材" src="/video/化材.png" /></div>
+                        <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="機械" src="/video/機械.png" /></div>
+                    </div>
+                    <div class="row container" id="under-3" style="display: none;">
+                        <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="化學" src="/video/化學.png" /></div>
+                        <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="數學" src="/video/數學.png" /></div>
+                        <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="光電" src="/video/光電.png" /></div>
+                        <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="理學院" src="/video/理學院.png" /></div>
+                        <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="物理" src="/video/物理.png" /></div>
+                    </div>
+                    <div class="row container" id="under-4" style="display: none;">
+                        <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="企管" src="/video/企管.png" /></div>
+                        <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="財金" src="/video/財金.png" /></div>
+                        <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="經濟" src="/video/經濟.png" /></div>
+                        <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="資管" src="/video/資管.png" /></div>
+                    </div>
+                    <div class="row container" id="under-5" style="display: none;">
+                        <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="通訊" src="/video/通訊.png" /></div>
+                        <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="資工" src="/video/資工.png" /></div>
+                        <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="電機" src="/video/電機.png" /></div>
+                    </div>
+                    <div class="row container" id="under-6" style="display: none;">
+                        <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="大氣" src="/video/大氣.png" /></div>
+                        <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="地科" src="/video/地科.png" /></div>
+                    </div>
+                    <div class="row container" id="under-7" style="display: none;">
+                        <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="客家" src="/video/客家.png" /></div>
+                    </div>
+                    <div class="row container" id="under-8" style="display: none;">
+                        <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="生科" src="/video/生科.png" /></div>
+                        <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="生醫" src="/video/生醫.png" /></div>
+                    </div>
+                </section>
             </div>
-            <div class="text-center"><img style="max-width: 1000px" src="/video/圖片3.png" alt="tt"/></div>
-        </div>
-        <p> </p>
-        <a href="/video">文學院</a>
-        <p> </p>
-        <a href="/video">理學院</a>
-        <p> </p>
-        <a href="/video">工學院</a>
-        <p> </p>
-        <a href="/video">管理學院</a>
-        <p> </p>
-        <a href="/video">資訊電機學院</a>
-        <p> </p>
-        <a href="/video">地科科學學院</a>
-        <p> </p>
-        <a href="/video">客家學院</a>
-        <p> </p>
-        <a href="/video">生醫理工學院</a>
-        </div>
+            <!-- <div class="col-xs-1"><img src=""/></div>
+            <div class="col-xs-9"><img src="/video/圖片11.png"/></div> -->
     </main>
 
 
@@ -48,3 +265,23 @@
 
 </body>
 </html>
+
+
+
+
+                    <!-- <p> </p>
+                    <a href="/video">文學院</a>
+                    <p> </p>
+                    <a href="/video">理學院</a>
+                    <p> </p>
+                    <a href="/video">工學院</a>
+                    <p> </p>
+                    <a href="/video">管理學院</a>
+                    <p> </p>
+                    <a href="/video">資訊電機學院</a>
+                    <p> </p>
+                    <a href="/video">地科科學學院</a>
+                    <p> </p>
+                    <a href="/video">客家學院</a>
+                    <p> </p>
+                    <a href="/video">生醫理工學院</a> -->
