@@ -12,13 +12,39 @@
                     url:    '/campus/delete/'+ id,
                     type:   'GET',
                     error: function(e){
-                        console.log("ERR");
+                        console.log("ERR  :"+e);
                     },
                     success: function(data){
                         $('#b'+ id).remove();
                     }
-                })
+                });
             }
+        })
+        $('.edit_build').click(function(){
+            var id = $(this).val();
+            $.ajax({
+                url:    "/campus/newData/"+id,
+                error: function(e){
+                    console.log("ERR  :"+e);
+                },
+                success: function(data){
+                    $("#bid").val(data._id);
+                    $("#name").val(data.name);
+                    $("#type").val(data.type);
+                    $("#SOS").val(data.sos?1:0);
+                    $("#AED").val(data.AED?1:0);
+                    CKEDITOR.instances['content'].setData(data.content);
+                    $("#btn_save").val("update");
+                    $("#add_build_modal").modal("show");
+                }
+
+            });
+        })
+
+        $('.edit_img').click(function(){
+            console.log($(this).val());
+            $("#imgid").val($(this).val());
+            $("#img_preview_modal").modal("show");
         })
     })
 </script>
@@ -26,16 +52,11 @@
 <script src="/javascript/ckeditor/ckeditor.js"></script>
 
 <script type="text/javascript">
-    UPLOADCARE_PUBLIC_KEY = "demopublickey";
-    CKEDITOR.replace('content',{
-    extraPlugins: 'uploadcare',
-    uploadcare: {
-        multiple: true
-    }
-    });
-    //一些相關設定
-    CKEDITOR.editorConfig = function (config){
+  CKEDITOR.replace('content',{
+    filebrowserUploadUrl: '/uploader',
+  });
+  CKEDITOR.editorConfig = function (config){
       config.enterMode = CKEDITOR.ENTER_BR;
       config.autoParagraph = false;
-    };
+  };
 </script>

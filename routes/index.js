@@ -25,6 +25,15 @@ router.get('/todo', function(req, res, next) {
     }
   );
 });
+// no async test
+// router.get('/todo', function(req, res, next) {
+//   Todo.find( function ( err, todos, count ){
+//     res.render( 'index', {
+//         title : 'Express Todo Example',
+//         todos : todos
+//       });
+//     });
+// });
 router.post('/new',function(req, res){
   new Todo({
     content    : req.body.content,

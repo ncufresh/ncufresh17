@@ -12,6 +12,24 @@ on macOS
 on Windows
 `set DEBUG=myapp:* & npm start`
 
+
+# 推上去說明
+
+### 先刪掉專案檔中的node_modules資料夾
+
+`git add .`
+
+`git commit -m "此次的更動"`
+
+新增並切換至新的branch
+
+`git checkout -b <YourBranchName>`
+
+`git push --set-upstream origin <YourBranchName>`
+
+
+
+
 # ckeditor編輯器用法
 
 ### 在自己的js.ejs寫入
