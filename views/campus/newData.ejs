@@ -7,14 +7,11 @@
     <header>
         <% include ../layouts/navbar %>
     </header>
-
     <main>
-      <div class="container">
-
-
-        <div class="jumbotron">
-            <!-- Modal -->
-            <div class="modal fade" id="add_build_model" role="dialog">
+    <div class="container">
+        <div class="jumbotron">            
+            <!--building add/edit Modal -->
+            <div class="modal fade" id="add_build_modal" role="dialog">
                 <div class="modal-dialog modal-lg">
                     <!-- Modal content-->
                     <div class="modal-content">
@@ -63,8 +60,8 @@
                                         <option value="0">否</option>
                                     </select>
                                 </div>
-
-                                <button type="submit" name="button" class="btn btn-primary">送出</button>
+                                <input type="hidden" id="bid" name="bid">
+                                <button type="submit" name="button" class="btn btn-primary" id="btn_save">送出</button>
                             </form>
                         </div>
                         <div class="modal-footer">
@@ -74,9 +71,9 @@
 
                 </div>
             </div>
-            <!-- Modal -->
+            <!--building preview Modal -->
             <% for (var i in buildings){%>
-                <div class="modal fade" id="<%='preview_model'+buildings[i].id%>" role="dialog">
+                <div class="modal fade" id="<%='preview_modal'+buildings[i].id%>" role="dialog">
                     <div class="modal-dialog modal-lg">
                         <!-- Modal content-->
                         <div class="modal-content">
@@ -95,10 +92,45 @@
                     </div>
                 </div>
             <%}%>
-            <h1>This page is <%= title  %></h1>
-            <p>Welcome to templating using EJS</p>
+            <!--img preview Modal -->
+            <div class="modal fade" id="img_preview_modal" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title"> 圖片 </h4>
+                        </div>
+                        <div class="modal-body">
 
-            <button class="new_building" data-toggle="modal" data-target="#add_build_model">新增建築物</button>
+                            <form method="post" enctype="multipart/form-data" action="/campus/imgUpload">
+                                <input type="hidden" id="imgid">
+                                <label for="uploadingImg" class="input-group">
+                                    <input type="text" class="form-control" id="img_path" name="img_path">
+                                    <div class="input-group-btn">
+                                        <span class="btn btn-default">
+                                            <i class="fa fa-file" aria-hidden="true"></i> 上傳
+                                        </span>
+                                    </div>
+                                </label>
+                                <input class="form-control" id="uploadingImg" type="file" name="uploadingImg" style="display: none;" accept="image/*" onchange="
+        this.form.img_path.value=this.value.substr(this.value.lastIndexOf('\\')+1);">
+                                <input type="submit">
+                            </form>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <h1><%= title  %></h1>
+
+            <button class="btn btn-success new_building" data-toggle="modal" data-target="#add_build_modal">新增建築物</button>
+            <a href="/campus"><button class="btn btn-success new_building">回前頁</button></a>
 
             <table class="table table-hover">
                 <caption>已新增的建築</caption>
@@ -121,20 +153,19 @@
                         <td><%= buildings[i].name %></td>
                         <td><%= buildings[i].type %></td>
                         <td>
-                            <button class="btn btn-default btn-xs" data-toggle="modal" data-target="<%='#preview_model'+buildings[i].id%>">瀏覽</button>
+                            <button class="btn btn-default btn-xs" data-toggle="modal" data-target="<%='#preview_modal'+buildings[i].id%>">瀏覽</button>
                         </td>
                         <td>
-                            <button class="btn btn-default btn-xs">編輯</button>
+                            <button class="btn btn-default btn-xs edit_img" value="<%= buildings[i].id%>">編輯</button>
                         </td>
                         <td>
-                            <button class="btn btn-default btn-xs">編輯</button>
-                            <button class="btn btn-danger btn-xs delete_build" value="<%= buildings[i].id%>">刪除</button>
+                            <button class="btn btn-default btn-xs edit_build" value="<%= buildings[i].id%>">編輯</button>
+                            <button class="btn btn-danger btn-xs delete_build" value="<%= buildings[i].id%>"><i class="fa fa-trash-o fa-lg"></i> 刪除</button>
                         </td>
                     </tr>
                 <% } %>
                 </tbody>
             </table>
-        </div>
         </div>
     </main>
 
