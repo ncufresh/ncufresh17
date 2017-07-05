@@ -2,114 +2,68 @@
 <html lang="en">
 <head>
     <% include ../layouts/head %>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function(){
-        $("#freshmen-source,#master-freshmen-source,#often-link-source").mouseover(function(){
-                $(this).animate({
-                    padding:'0px'
-                }, 200);
-        });
-        $("#freshmen-source,#master-freshmen-source,#often-link-source").mouseout(function(){
-                $(this).animate({
-                    padding:'2vw'
-                }, 200);
-        });
-        $("#freshmen-source").click(function(){
-            console.log("ha");
-            $('#freshmen-distaination').css({"display":"block"});
-            $('#master-freshmen-distaination').css({"display":"none"});
-            $('#often-link-distaination').css({"display":"none"});
-            $('html,body').animate({
-                scrollTop: $('#freshmen-distaination').offset().top
-            }, 1000);
-            return false;
-        });
-        $("#master-freshmen-source").click(function(){
-            console.log("ha");
-            $('#freshmen-distaination').css({"display":"none"});
-            $('#master-freshmen-distaination').css({"display":"block"});
-            $('#often-link-distaination').css({"display":"none"});
-            $('html,body').animate({
-                scrollTop: $('#master-freshmen-distaination').offset().top
-            }, 1000);
-            return false;
-        });
-        $("#often-link-source").click(function(){
-            console.log("ha");
-            $('#freshmen-distaination').css({"display":"none"});
-            $('#master-freshmen-distaination').css({"display":"none"});
-            $('#often-link-distaination').css({"display":"block"});
-            $('html,body').animate({
-                scrollTop: $('#often-link-distaination').offset().top
-            }, 1000);
-            return false;
-        });
-        $(".under-1-source").click(function(){
-            console.log("ha");
-            $('#under-1').css({"display":"block"});
-            $('#under-2').css({"display":"none"});
-            $('#under-3').css({"display":"none"});
-            $('#under-1').addClass("active");
-            $('#under-2').removeClass("active");
-            $('#under-3').removeClass("active");
-            return false;
-        });
-        $(".under-2-source").click(function(){
-            console.log("ha");
-            $('#under-1').css({"display":"none"});
-            $('#under-2').css({"display":"block"});
-            $('#under-3').css({"display":"none"});
-            $('#under-1').removeClass("active");
-            $('#under-2').addClass("active");
-            $('#under-3').removeClass("active");
-            return false;
-        });
-        $(".under-3-source").click(function(){
-            console.log("ha");
-            $('#under-1').css({"display":"none"});
-            $('#under-2').css({"display":"none"});
-            $('#under-3').css({"display":"block"});
-            $('#under-1').removeClass("active");
-            $('#under-2').removeClass("active");
-            $('#under-3').addClass("active");
-            return false;
-        });
-        $(".under-4-source").click(function(){
-            console.log("ha");
-            $('#under-4').css({"display":"block"});
-            $('#under-5').css({"display":"none"});
-            $('#under-4').addClass("active");
-            $('#under-5').removeClass("active");
-            return false;
-        });
-        $(".under-5-source").click(function(){
-            console.log("ha");
-            $('#under-4').css({"display":"none"});
-            $('#under-5').css({"display":"block"});
-            $('#under-4').removeClass("active");
-            $('#under-5').addClass("active");
-            return false;
-        });
-    })
-    </script>
 </head>
 <body>
     <header style="min-width: 600px;">
         <% include ../layouts/navbar %>
     </header>
 
-    <main  style="background-image:url('背景.png'); background-position: center top; background-size: contain; background-repeat: no-repeat; min-width: 500px;">
+    <main  style=" background-color: #00BFFF !important; min-width: 100vw; max-width:100vw">
 
-        <div class="container" style="margin-bottom: 600px;">
+        <div class="container" style="margin-bottom: 30vw;">
             <h1 style="font-family: Georgia, Garamond, serif; color:white; padding-bottom: 50px" class="text-center container">welcome to here</h1>
             <div class="row container">
-                <div class="col-xs-4"><img id="freshmen-source" style="display:inline-block; padding: 2vw;" class="img-responsive" alt="大一新生" src="大一新生.png" /></div>
-                <div class="col-xs-4"><img id="master-freshmen-source" style="display:inline-block; padding: 2vw;" class="img-responsive" alt="碩一新生" src="碩一新生.png" /></div>
+                <div class="col-xs-4"><img id="freshmen-source" style="display:inline-block; padding: 2vw;" class="img-responsive" alt="大一新生" src="大學生.png" /></div>
+                <div class="col-xs-4"><img id="master-freshmen-source" style="display:inline-block; padding: 2vw;" class="img-responsive" alt="研究生" src="研究生.png" /></div>
                 <div class="col-xs-4"><img id="often-link-source" style="display:inline-block; padding: 2vw;" class="img-responsive" alt="常用連結" src="常用連結.png" /></div>
             </div>
         </div>
 
+        <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#add_build_model">新增</button>
+        <div class="modal fade" id="add_build_model" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">新增</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/documents/add" method="post" accept-charset="utf-8">
+
+                            <div class="form-group">
+                                <label for="name" class="control-label">新增名稱</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="名稱">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="type" class="control-label">類別</label>
+                                <select name="type" id="type" class="form-control">
+                                    <option selected="not_commonly_used_link" value="大一新生—註冊報到">大一新生—註冊報到</option>
+                                    <option selected="not_commonly_used_link" value="大一新生—新生週活動">大一新生—新生週活動</option>
+                                    <option selected="not_commonly_used_link" value="大一新生—共同課程及門檻">大一新生—共同課程及門檻</option>
+                                    <option selected="not_commonly_used_link" value="碩一新生—註冊報到">碩一新生—註冊報到</option>
+                                    <option selected="not_commonly_used_link" value="碩一新生—新生週活動">碩一新生—新生週活動</option>
+                                    <option selected="commonly_used_link" value="常用連結">常用連結</option>
+                                </select>
+                            </div>
+
+                            <div class='form-group'>
+                                <label id="not_commonly_used_link_label" style="display:none;" for="content">內容</label>
+                                <label id="commonly_used_link_label" style="display:inline-block" for="content">在這裡輸入連結</label>
+                                <textarea name="content" rows="8" cols="80"></textarea><br>
+                            </div>
+
+                            <button type="submit" name="button" class="btn btn-primary">送出</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
         <!--大一新生 start-->
         <section class="container" id="freshmen-distaination">
             <h1 class="text-center">大一新生</h1>
@@ -119,27 +73,34 @@
                 <li role="presentation" class="text-center under-3-source"><a href="#under-3">共同課程及門檻</a></li>
             </ul>
             <div class="row container" id="under-1">
-                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="新生註冊通知&日程表" src="新生註冊通知&日程表.png" /></div>
-                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="學籍登錄" src="學籍登錄.png" /></div>
-                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="學籍登錄" src="學籍登錄.png" /></div>
-                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="兵役注意資料" src="兵役注意資料.png" /></div>
-                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="學雜費繳費&貸款" src="學雜費繳費&貸款.png" /></div>
-                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="入住交通管制圖&報到流程" src="入住交通管制圖&報到流程.png" /></div>
-                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="腳踏車通行證申請" src="腳踏車通行證申請.png" /></div>
+                <% for (var i in for_freshman){%>
+                    <% if ( for_freshman[i].type == "大一新生—註冊報到"){ %>
+                        <div class="thumbnail col-xs-3" style=" position:relative; border-width: 0px !important;">
+                            <img style="display:inline-block;  padding: 2vw !important;" class="img-responsive" id="<%- for_freshman[i].id%>" alt="<%- for_freshman[i].name %>" src="新生.png" />
+                            <p style="top:80px; left:70px; position: absolute;"><%- for_freshman[i].name %></p>
+                        </div>
+                    <%}%>
+                <%}%>
             </div>
             <div class="row container" id="under-2" style="display: none;">
-                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="新生註冊通知&日程表" src="新生註冊通知&日程表.png" /></div>
-                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="學籍登錄" src="學籍登錄.png" /></div>
-                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="學籍登錄" src="學籍登錄.png" /></div>
-                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="兵役注意資料" src="兵役注意資料.png" /></div>
-                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="學雜費繳費&貸款" src="學雜費繳費&貸款.png" /></div>
+                <% for (var i in for_freshman){%>
+                    <% if ( for_freshman[i].type == "大一新生—新生週活動"){ %>
+                        <div class="thumbnail col-xs-3" style=" position:relative; border-width: 0px !important;">
+                            <img style="display:inline-block; padding: 2vw !important;" class="img-responsive" id="<%- for_freshman[i].id%>" alt="<%- for_freshman[i].name %>" src="新生.png" />
+                            <p style="top:80px; left:70px; position: absolute;"><%- for_freshman[i].name %></p>
+                        </div>
+                    <%}%>
+                <%}%>
             </div>
             <div class="row container" id="under-3" style="display: none;">
-                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="學籍登錄" src="學籍登錄.png" /></div>
-                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="兵役注意資料" src="兵役注意資料.png" /></div>
-                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="學雜費繳費&貸款" src="學雜費繳費&貸款.png" /></div>
-                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="入住交通管制圖&報到流程" src="入住交通管制圖&報到流程.png" /></div>
-                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="腳踏車通行證申請" src="腳踏車通行證申請.png" /></div>
+                <% for (var i in for_freshman){%>
+                    <% if ( for_freshman[i].type == "大一新生—共同課程及門檻"){ %>
+                        <div class="thumbnail col-xs-3" style=" position:relative; border-width: 0px !important;">
+                            <img style="display:inline-block; padding: 2vw !important;" class="img-responsive" id="<%- for_freshman[i].id%>" alt="<%- for_freshman[i].name %>" src="新生.png" />
+                            <p style="top:80px; left:70px; position: absolute;"><%- for_freshman[i].name %></p>
+                        </div>
+                    <%}%>
+                <%}%>
             </div>
         </section>
         <!--大一新生 end-->
@@ -152,17 +113,24 @@
                 <li role="presentation" class="text-center under-5-source"><a href="#under-5">新生週活動</a></li>
             </ul>
             <div class="row container" id="under-4">
-                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="新生註冊通知&日程表" src="新生註冊通知&日程表.png" /></div>
-                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="學籍登錄" src="學籍登錄.png" /></div>
-                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="學籍登錄" src="學籍登錄.png" /></div>
-                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="兵役注意資料" src="兵役注意資料.png" /></div>
-                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="學雜費繳費&貸款" src="學雜費繳費&貸款.png" /></div>
-                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="入住交通管制圖&報到流程" src="入住交通管制圖&報到流程.png" /></div>
-                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="腳踏車通行證申請" src="腳踏車通行證申請.png" /></div>
+                <% for (var i in for_freshman){%>
+                    <% if ( for_freshman[i].type == "碩一新生—註冊報到"){ %>
+                        <div class="thumbnail col-xs-3" style=" position:relative; border-width: 0px !important;">
+                            <img style="display:inline-block; padding: 2vw !important;" class="img-responsive" id="<%- for_freshman[i].id%>" alt="<%- for_freshman[i].name %>" src="新生.png" />
+                            <p style="top:80px; left:70px; position: absolute;"><%- for_freshman[i].name %></p>
+                        </div>
+                    <%}%>
+                <%}%>
             </div>
             <div class="row container" id="under-5" style="display: none;">
-                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="學籍登錄" src="學籍登錄.png" /></div>
-                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="兵役注意資料" src="兵役注意資料.png" /></div>
+                <% for (var i in for_freshman){%>
+                    <% if ( for_freshman[i].type == "碩一新生—新生週活動"){ %>
+                        <div class="thumbnail col-xs-3" style=" position:relative; border-width: 0px !important;">
+                            <img style="display:inline-block; padding: 2vw !important;" class="img-responsive" id="<%- for_freshman[i].id%>" alt="<%- for_freshman[i].name %>" src="新生.png" />
+                            <p style="top:80px; left:70px; position: absolute;"><%- for_freshman[i].name %></p>
+                        </div>
+                    <%}%>
+                <%}%>
             </div>
         </section>
         <!--碩一新生 end-->
@@ -170,18 +138,15 @@
         <!--常用連結 start-->
         <section class="container" id="often-link-distaination" style="display:none;">
             <h1 class="text-center">常用連結</h1>
-            <div class="row container" id="under-4">
-                <div class="col-xs-2" style="margin:5px;"><img style="display:inline-block;" class="img-responsive" alt="常用連結" src="常用的連結.png" /></div>
-                <div class="col-xs-2" style="margin:5px;"><img style="display:inline-block;" class="img-responsive" alt="常用連結" src="常用的連結.png" /></div>
-                <div class="col-xs-2" style="margin:5px;"><img style="display:inline-block;" class="img-responsive" alt="常用連結" src="常用的連結.png" /></div>
-                <div class="col-xs-2" style="margin:5px;"><img style="display:inline-block;" class="img-responsive" alt="常用連結" src="常用的連結.png" /></div>
-                <div class="col-xs-2" style="margin:5px;"><img style="display:inline-block;" class="img-responsive" alt="常用連結" src="常用的連結.png" /></div>
-                <div class="col-xs-2" style="margin:5px;"><img style="display:inline-block;" class="img-responsive" alt="常用連結" src="常用的連結.png" /></div>
-                <div class="col-xs-2" style="margin:5px;"><img style="display:inline-block;" class="img-responsive" alt="常用連結" src="常用的連結.png" /></div>
-                <div class="col-xs-2" style="margin:5px;"><img style="display:inline-block;" class="img-responsive" alt="常用連結" src="常用的連結.png" /></div>
-                <div class="col-xs-2" style="margin:5px;"><img style="display:inline-block;" class="img-responsive" alt="常用連結" src="常用的連結.png" /></div>
-                <div class="col-xs-2" style="margin:5px;"><img style="display:inline-block;" class="img-responsive" alt="常用連結" src="常用的連結.png" /></div>
-            </div>
+            <div class="row container">
+                <% for (var i in for_freshman){%>
+                    <% if ( for_freshman[i].type == "常用連結"){ %>
+                        <div class="thumbnail col-xs-3" style=" position:relative; border-width: 0px !important;">
+                            <img style="display:inline-block; padding: 2vw !important;" class="img-responsive" id="<%- for_freshman[i].id%>" alt="<%- for_freshman[i].name %>" src="常用的連結.png" />
+                            <p style="top:80px; left:70px; position: absolute;"><%- for_freshman[i].name %></p>
+                        </div>
+                    <%}%>
+                <%}%>
         </section>
         <!--常用連結 end-->
         <!-- <svg height="346.410161513775459" width="400">
