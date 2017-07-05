@@ -1,9 +1,10 @@
 /*全網站設定*/
 body{
-  font-family: "STFangsong","STHeiti Light","Microsoft YaHei";
+  font-family: "Microsoft YaHei";
 }
 main {
     /*至少會出現一個螢幕的長度*/
+    /*padding-top: 50px ;*/
     min-height: 100vh;
     overflow-x:hidden;
     /*關於背景*/
@@ -18,8 +19,7 @@ main {
     -webkit-background-size: cover;
 }
 
-
-/* 為了把footer sticky黏在最下面 全部都必要 */
+/* 為了把footer 黏在最下面 必要 */
 /****************************************************/
 html {
     min-height: 100%;
@@ -36,6 +36,26 @@ footer {
 }
 /****************************************************/
 
+
+/*navbar*/
+/****************************************************/
+
+/* navbar logo */
+/*.navbar-brand {
+  padding: 0px !important;
+}*/
+/*.navbar-brand > img {
+  height: 100%;
+  padding: 10px 15px 10px 15px;
+  width: auto;
+}*/
+/* 主要設定區 背景色 白字 */
+.navbar .container{
+  width: 100%;
+}
+
+/****************************************************/
+
 /*footer*/
 /****************************************************/
 footer{
@@ -46,7 +66,7 @@ footer h3 {
 }
 footer .footer-above {
   padding-top: 50px;
-  background-color: #588655; /* 上footer背景色 */
+  background-color: #ec5250; /* 上footer背景色 */
 }
 footer .footer-col {
   margin-bottom: 50px;
@@ -56,33 +76,31 @@ footer .footer-col {
     font-size:1em; /* 超連結大小可以改 */
 }
 /*連結的字*/
+.footer-ul {
+    list-style-type:none; /* 不要那顆圓形 */
+    padding-left:0px; /* 圓形那顆的去掉 */
+    margin-left:2px; /* 加了比較好看一點 */
+}
 .footer-ul li a,.footer-col p a {
     text-decoration: none; /* 不要底線 */
-    color:#f7f4cb;
+    color:#fff;
     transition: color 0.2s linear 0s, background 0.2s linear 0s;
 }
 .footer-ul li a:hover {
-    color:#ff670f;
+    color:#edf96b;
     transition: color 0.2s linear 0s, background 0.2s linear 0s;
 }
 
 /*聯絡我們的按鈕*/
-.btn-outline {
+.fa-ul li {
   color: #e6e6e6;
   font-size: 20px;
-  border: solid 2px #e6e6e6;
   background: transparent;
   transition: all 0.3s ease-in-out;
   margin-top: 15px;
+  margin-bottom: 15px;
 }
-.btn-outline:hover,
-.btn-outline:focus,
-.btn-outline:active,
-.btn-outline.active {
-  color: #18BC9C;
-  background: white;
-  border: solid 2px white;
-}
+
 
 .btn-social {
   display: inline-block;
@@ -96,20 +114,9 @@ footer .footer-col {
 }
 
 
-
-
 footer .footer-below {
   padding: 25px 0;
-  background-color: #283e27;/* 下footer背景色 */
+  background-color: #ab0301;/* 下footer背景色 */
 }
-
-
-.footer-ul {
-    list-style-type:none; /* 不要那顆圓形 */
-    padding-left:0px; /* 圓形那顆的去掉 */
-    margin-left:2px; /* 加了比較好看一點 */
-}
-
-
 
 /****************************************************/
