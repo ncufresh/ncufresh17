@@ -2,3 +2,40 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+    <script>
+    $(document).ready(function(){
+        $('.delete_build').click(function(){
+            if(confirm("確定要刪除?")){
+                var id = $(this).val();
+                $.ajax({
+                    url:    '/campus/delete/'+ id,
+                    type:   'GET',
+                    error: function(e){
+                        console.log("ERR");
+                    },
+                    success: function(data){
+                        $('#b'+ id).remove();
+                    }
+                })
+            }
+        })
+    })
+</script>
+
+<script src="/javascript/ckeditor/ckeditor.js"></script>
+
+<script type="text/javascript">
+    UPLOADCARE_PUBLIC_KEY = "demopublickey";
+    CKEDITOR.replace('content',{
+    extraPlugins: 'uploadcare',
+    uploadcare: {
+        multiple: true
+    }
+    });
+    //一些相關設定
+    CKEDITOR.editorConfig = function (config){
+      config.enterMode = CKEDITOR.ENTER_BR;
+      config.autoParagraph = false;
+    };
+</script>

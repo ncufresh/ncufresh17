@@ -8,16 +8,101 @@
         <% include ../layouts/navbar %>
     </header>
 
-    <main class="container">
+    <main>
+      <div class="container">
+
+
         <div class="jumbotron">
-            <h1>This page is QQ <%= title  %></h1>
+            <!-- Modal -->
+            <div class="modal fade" id="add_build_model" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">新增建築物</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form action="/campus/add" method="post" accept-charset="utf-8">
+
+                                <div class="form-group">
+                                    <label for="name" class="control-label">建築物名稱</label>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="名稱">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="type" class="control-label">建築物類別</label>
+                                    <select name="type" id="type" class="form-control">
+                                        <option value="" selected="selected"></option>
+                                        <option value="行政">行政</option>
+                                        <option value="系館">系館</option>
+                                        <option value="中大景點">中大景點</option>
+                                        <option value="運動">運動</option>
+                                        <option value="飲食">飲食</option>
+                                        <option value="住宿">住宿</option>
+                                    </select>
+                                </div>
+
+                                <div class='form-group'>
+                                    <label for="content">建築物簡介</label>
+                                    <textarea name="content" rows="8" cols="80"></textarea><br>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="SOS" class="control-label">附近是否有SOS</label>
+                                    <select name="SOS" id="SOS" class="form-control">
+                                        <option value="1">是</option>
+                                        <option value="0">否</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="AED" class="control-label">附近是否有AED</label>
+                                    <select name="AED" id="AED" class="form-control">
+                                        <option value="1">是</option>
+                                        <option value="0">否</option>
+                                    </select>
+                                </div>
+
+                                <button type="submit" name="button" class="btn btn-primary">送出</button>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- Modal -->
+            <% for (var i in buildings){%>
+                <div class="modal fade" id="<%='preview_model'+buildings[i].id%>" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title"><%= buildings[i].name + " 簡介" %></h4>
+                            </div>
+                            <div class="modal-body">
+                                <%- buildings[i].content%>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            <%}%>
+            <h1>This page is <%= title  %></h1>
             <p>Welcome to templating using EJS</p>
-            
+
             <button class="new_building" data-toggle="modal" data-target="#add_build_model">新增建築物</button>
-            
+
             <table class="table table-hover">
                 <caption>已新增的建築</caption>
-                
+
                 <thead>
                     <tr>
                         <th></th>
@@ -36,13 +121,13 @@
                         <td><%= buildings[i].name %></td>
                         <td><%= buildings[i].type %></td>
                         <td>
-                            <button class="btn btn-warning btn-xs">瀏覽</button>
+                            <button class="btn btn-default btn-xs" data-toggle="modal" data-target="<%='#preview_model'+buildings[i].id%>">瀏覽</button>
                         </td>
                         <td>
-                            <button class="btn btn-warning btn-xs">編輯</button>
+                            <button class="btn btn-default btn-xs">編輯</button>
                         </td>
                         <td>
-                            <button class="btn btn-warning btn-xs">編輯</button>
+                            <button class="btn btn-default btn-xs">編輯</button>
                             <button class="btn btn-danger btn-xs delete_build" value="<%= buildings[i].id%>">刪除</button>
                         </td>
                     </tr>
@@ -50,24 +135,6 @@
                 </tbody>
             </table>
         </div>
-        <!-- Modal -->
-        <div class="modal fade" id="add_build_model" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Modal Header</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>Some text in the modal.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            
-            </div>
         </div>
     </main>
 
@@ -77,24 +144,3 @@
         <% include js %>
 </body>
 </html>
-
-<script>
-    $(document).ready(function(){
-        $('.delete_build').click(function(){
-            if(confirm("確定要刪除?")){
-                var id = $(this).val();
-                $.ajax({
-                    url:    '/campus/delete/'+ id,
-                    type:   'GET',
-                    error: function(e){
-                        console.log("ERR");
-                    },
-                    success: function(data){
-                        $('#b'+ id).remove();
-                    }
-                })
-            }
-
-        })
-    })
-</script>
