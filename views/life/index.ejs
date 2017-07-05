@@ -2,6 +2,80 @@
 <html lang="en">
 <head>
     <% include ../layouts/head %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    var foodtoggle = dormtoggle = traffic = studytoggle = entertainmenttoggle = true;
+    //  滑鼠移到圖上->圖片放大,滑鼠移開->縮回來
+    $(document).ready(function(){
+    //  $("#life-navigate-1,#life-navigate-2,#life-navigate-3,#life-navigate-4,#life-navigate-5").mouseover(function(){
+    //      $(this).animate({padding: '0px'}, 300);
+    //  });
+    //  $("#life-navigate-1,#life-navigate-2,#life-navigate-3,#life-navigate-4,#life-navigate-5").mouseout(function(){
+    //      $(this).animate({padding: '20px'}, 300);
+    //  });
+        $("#life-navigate-1").click(function(){
+          if(foodtoggle == true){
+              foodtoggle = -foodtoggle;
+              dormtoggle = traffic = studytoggle = entertainmenttoggle = true;
+              $("#life-navigate-2,#life-navigate-3,#life-navigate-4,#life-navigate-5").animate({opacity: '0.3'}, 200);
+              $("#life-navigate-1,#life-navigate-back").animate({opacity: '1.0'}, 200);
+              $("#food-pan").slideToggle(1200);
+              $("#food-pan").css({"display":"block"});
+              $("#dorm-pan,traffic-pan,study-pan,entertainment-pan").slideUp(1200).css({"display":"none"});
+          }
+          else{
+              foodtoggle = -foodtoggle;
+              $("#life-navigate-1,#life-navigate-2,#life-navigate-3,#life-navigate-4,#life-navigate-5").animate({opacity: '1'}, 200);
+              $("#life-navigate-back").animate({opacity: '0.0'}, 200);
+              $("#food-pan").slideToggle(1200);
+          }
+        });
+        $("#life-navigate-2").click(function(){
+          if(dormtoggle == true){
+              dormtoggle = -dormtoggle;
+              foodtoggle = traffictoggle = studytoggle = entertainmenttoggle = true;
+              $("#life-navigate-1,#life-navigate-3,#life-navigate-4,#life-navigate-5").animate({opacity: '0.3'}, 200);
+              $("#life-navigate-2,#life-navigate-back").animate({opacity: '1.0'}, 200);
+              $("#dorm-pan").slideToggle(1200);
+              $("#dorm-pan").slideUp(1200);
+              $("#food-pan,traffic-pan,study-pan,entertainment-pan").slideUp(1200).css({"display":"none"});
+          }
+          else{
+            dormtoggle = -dormtoggle;
+            $("#life-navigate-1,#life-navigate-2,#life-navigate-3,#life-navigate-4,#life-navigate-5").animate({opacity: '1'}, 200);
+            $("#life-navigate-back").animate({opacity: '0.0'}, 200);
+            $("#dorm-pan").slideToggle(1200);
+          }
+        });
+        $("#life-navigate-3").click(function(){
+          foodtoggle = true;
+          $("#life-navigate-1,#life-navigate-2,#life-navigate-4,#life-navigate-5").animate({opacity: '0.3'}, 200);
+          $("#life-navigate-3,#life-navigate-back").animate({opacity: '1.0'}, 200);
+          $("#food-pan").slideUp(1200);
+          $("#food-pan").css({"display":"none"});
+        });
+        $("#life-navigate-4").click(function(){
+          foodtoggle = true;
+          $("#life-navigate-1,#life-navigate-2,#life-navigate-3,#life-navigate-5").animate({opacity: '0.3'}, 200);
+          $("#life-navigate-4,#life-navigate-back").animate({opacity: '1.0'}, 200);
+          $("#food-pan").slideUp(1200);
+          $("#food-pan").css({"display":"none"});
+        });
+        $("#life-navigate-5").click(function(){
+          foodtoggle = true;
+          $("#life-navigate-1,#life-navigate-2,#life-navigate-3,#life-navigate-4").animate({opacity: '0.3'}, 200);
+          $("#life-navigate-5,#life-navigate-back").animate({opacity: '1.0'}, 200);
+          $("#food-pan").slideUp(1200);
+          $("#food-pan").css({"display":"none"});
+        });
+        $("#life-navigate-back").click(function(){
+          $("#life-navigate-1,#life-navigate-2,#life-navigate-3,#life-navigate-4,#life-navigate-5").animate({opacity: '1'}, 200);
+          $("#life-navigate-back").animate({opacity: '0.0'}, 200);
+          $("#food-pan").slideUp(1200);
+          $("#food-pan").css({"display":"none"});
+        });
+    });
+    </script>
 </head>
 <body>
     <header>
@@ -11,26 +85,48 @@
     <main>
       <div class="container">
         <div>
-            <h1 class="text-center">中大生活</h1>
-            <h1></h1>
-            <h1></h1>
-            <h1></h1>
-
-        <div class="jumbotron">
-            <h1>This page is <%= title  %></h1>
-            <p>Welcome to templating using EJS</p>
+            <h1 class="text-center" style="margin-bottom: 8vw">中大生活</h1>
+            <h4 id="life-navigate-back" style="margin-left: 50px; opacity: 0.0"><u>返回</u></h4>
         </div>
+        <div class="row" style="margin-bottom: 100px">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-2"><img id="life-navigate-1" class="img-responsive" style="max-width: 12vw; display:inline-block" src="按鈕.png" alt="食"/></div>
+            <div class="col-xs-2"><img id="life-navigate-2" class="img-responsive" style="max-width: 12vw; display:inline-block" src="按鈕.png" alt="住"/></div>
+            <div class="col-xs-2"><img id="life-navigate-3" class="img-responsive" style="max-width: 12vw; display:inline-block" src="按鈕.png" alt="行"/></div>
+            <div class="col-xs-2"><img id="life-navigate-4" class="img-responsive" style="max-width: 12vw; display:inline-block" src="按鈕.png" alt="育"/></div>
+            <div class="col-xs-2"><img id="life-navigate-5" class="img-responsive" style="max-width: 12vw; display:inline-block" src="按鈕.png" alt="樂"/></div>
+            <div class="col-xs-1"></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-1"></div>
+          <div class="col-xs-2" id="food-pan" style="display:none">
+              <table border="0">
+                <tr>
+                  <td><img id="food-pan-1" class="img-responsive" style="display:inline-block" src="按鈕2.png"></td>
+                </tr>
+                <tr>
+                  <td><img id="food-pan-2" class="img-responsive" style=" display:inline-block" src="按鈕2.png"></td>
+                </tr>
+                <tr>
+                  <td><img id="food-pan-3" class="img-responsive" style=" display:inline-block" src="按鈕2.png"></td>
+                </tr>
+                <tr>
+                  <td><img id="food-pan-4" class="img-responsive" style=" display:inline-block" src="按鈕2.png"></td>
+                </tr>
+                <tr>
+                  <td><img id="food-pan-5" class="img-responsive" style=" display:inline-block" src="按鈕2.png"></td>
+                </tr>
+                <tr>
+                  <td><img id="food-pan-6" class="img-responsive" style=" display:inline-block" src="按鈕2.png"></td>
+                </tr>
+                <tr>
+                  <td><img id="food-pan-7" class="img-responsive" style=" display:inline-block" src="按鈕2.png"></td>
+                </tr>
+              </table>
+          </div>
         </div>
     </main>
-    <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-2"><a href="/life/food"><img style="max-width: 180px" src="life0.png" alt="食"/></a></div>
-        <div class="col-md-2"><img style="max-width: 180px" src="life0.png" alt="住"/></div>
-        <div class="col-md-2"><img style="max-width: 180px" src="life0.png" alt="行"/></div>
-        <div class="col-md-2"><img style="max-width: 180px" src="life0.png" alt="育"/></div>
-        <div class="col-md-2"><img style="max-width: 180px" src="life0.png" alt="樂"/></div>
-        <div class="col-md-1"></div>
-    </div>
+
     <footer>
         <% include ../layouts/footer %>
     </footer>
