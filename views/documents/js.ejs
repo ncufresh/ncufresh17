@@ -1,4 +1,129 @@
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+<script src="/javascript/ckeditor/ckeditor.js"></script>
+
+<script type="text/javascript">
+  CKEDITOR.replace('content',{
+    filebrowserUploadUrl: '/uploader',
+  });
+  CKEDITOR.editorConfig = function (config){
+      config.enterMode = CKEDITOR.ENTER_BR;
+      config.autoParagraph = false;
+  };
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("select").change(function() {
+	    if ($(this).find(':selected').text()=="常用連結"){
+	    	$('#commonly_used_link_label').css({"display":"inline-block"});
+	    	$('#not_commonly_used_link_label').css({"display":"none"});
+	    }else{
+	    	$('#commonly_used_link_label').css({"display":"none"});
+	    	$('#not_commonly_used_link_label').css({"display":"inline-block"});
+	    }
+	});
+    $("#freshmen-source,#master-freshmen-source,#often-link-source").mouseover(function(){
+            $(this).animate({
+                padding:'0px'
+            }, 200);
+    });
+    $("#freshmen-source,#master-freshmen-source,#often-link-source").mouseout(function(){
+            $(this).animate({
+                padding:'2vw'
+            }, 200);
+    });
+    <% for (var i in for_freshman){%>
+        $("#<%- for_freshman[i].id%>").mouseover(function(){
+		        $(this).animate({
+		            padding:'0px'
+		        }, 200);
+		        console.log("fresh");
+		});
+		$("#<%- for_freshman[i].id%>").mouseout(function(){
+		        $(this).animate({
+		            padding:'2vw'
+		        }, 200);
+		});
+    <%}%>
+    $("#freshmen-source").click(function(){
+        console.log("ha");
+        $('#freshmen-distaination').css({"display":"block"});
+        $('#master-freshmen-distaination').css({"display":"none"});
+        $('#often-link-distaination').css({"display":"none"});
+        $('html,body').animate({
+            scrollTop: $('#freshmen-distaination').offset().top
+        }, 1000);
+        return false;
+    });
+    $("#master-freshmen-source").click(function(){
+        console.log("ha");
+        $('#freshmen-distaination').css({"display":"none"});
+        $('#master-freshmen-distaination').css({"display":"block"});
+        $('#often-link-distaination').css({"display":"none"});
+        $('html,body').animate({
+            scrollTop: $('#master-freshmen-distaination').offset().top
+        }, 1000);
+        return false;
+    });
+    $("#often-link-source").click(function(){
+        console.log("ha");
+        $('#freshmen-distaination').css({"display":"none"});
+        $('#master-freshmen-distaination').css({"display":"none"});
+        $('#often-link-distaination').css({"display":"block"});
+        $('html,body').animate({
+            scrollTop: $('#often-link-distaination').offset().top
+        }, 1000);
+        return false;
+    });
+    $(".under-1-source").click(function(){
+        console.log("ha");
+        $('#under-1').css({"display":"block"});
+        $('#under-2').css({"display":"none"});
+        $('#under-3').css({"display":"none"});
+        $('#under-1').addClass("active");
+        $('#under-2').removeClass("active");
+        $('#under-3').removeClass("active");
+        return false;
+    });
+    $(".under-2-source").click(function(){
+        console.log("ha");
+        $('#under-1').css({"display":"none"});
+        $('#under-2').css({"display":"block"});
+        $('#under-3').css({"display":"none"});
+        $('#under-1').removeClass("active");
+        $('#under-2').addClass("active");
+        $('#under-3').removeClass("active");
+        return false;
+    });
+    $(".under-3-source").click(function(){
+        console.log("ha");
+        $('#under-1').css({"display":"none"});
+        $('#under-2').css({"display":"none"});
+        $('#under-3').css({"display":"block"});
+        $('#under-1').removeClass("active");
+        $('#under-2').removeClass("active");
+        $('#under-3').addClass("active");
+        return false;
+    });
+    $(".under-4-source").click(function(){
+        console.log("ha");
+        $('#under-4').css({"display":"block"});
+        $('#under-5').css({"display":"none"});
+        $('#under-4').addClass("active");
+        $('#under-5').removeClass("active");
+        return false;
+    });
+    $(".under-5-source").click(function(){
+        console.log("ha");
+        $('#under-4').css({"display":"none"});
+        $('#under-5').css({"display":"block"});
+        $('#under-4').removeClass("active");
+        $('#under-5').addClass("active");
+        return false;
+    });
+});
+</script>
