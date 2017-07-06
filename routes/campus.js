@@ -32,6 +32,12 @@ router.get('/newData/:id',function(req,res,next){
   });
 });
 
+router.get('/get_img/:id',function(req,res,next){
+  img_list.find({build_id:req.params.id},function(err,data){
+    res.send(data);
+  })
+})
+
 router.get('/delete/:id',function(req,res,next){
   building.findById(req.params.id).remove().exec();
   res.redirect('/campus/newData');
@@ -75,7 +81,8 @@ router.post('/imgUpload',function(req,res,next) {
 
       var uploadedFile = files.uploadingImg;
       var tmpPath = uploadedFile.path;
-      var targetPath = './public/img/campus/' + shortId.generate()+uploadedFile.name.substr(uploadedFile.name.lastIndexOf('.'));
+      var fileName =shortId.generate() + uploadedFile.name.substr(uploadedFile.name.lastIndexOf('.'));
+      var targetPath = './public/img/campus/' + fileName;
       console.log(tmpPath);
       console.log(targetPath);
       // 跨分區會error
@@ -99,9 +106,10 @@ router.post('/imgUpload',function(req,res,next) {
         });
       });
       var a=new img_list({
-        build_id:req.body.imgid,
-        img_path:targetPath
+        build_id:fields.imgid,
+        img_path:'/img/campus/' + fileName
       }).save();
+      console.log(fields.imgid);
 
   });
 

@@ -1,52 +1,69 @@
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 
-    <script>
-    $(document).ready(function(){
-        $('.delete_build').click(function(){
-            if(confirm("確定要刪除?")){
-                var id = $(this).val();
-                $.ajax({
-                    url:    '/campus/delete/'+ id,
-                    type:   'GET',
-                    error: function(e){
-                        console.log("ERR  :"+e);
-                    },
-                    success: function(data){
-                        $('#b'+ id).remove();
-                    }
-                });
-            }
-        })
-        $('.edit_build').click(function(){
+<script>
+$(document).ready(function(){
+    $('select').css({
+        'padding' : '0px'
+    });
+    $('.delete_build').click(function(){
+        if(confirm("確定要刪除?")){
             var id = $(this).val();
             $.ajax({
-                url:    "/campus/newData/"+id,
+                url:    '/campus/delete/'+ id,
+                type:   'GET',
                 error: function(e){
                     console.log("ERR  :"+e);
                 },
                 success: function(data){
-                    $("#bid").val(data._id);
-                    $("#name").val(data.name);
-                    $("#type").val(data.type);
-                    $("#SOS").val(data.sos?1:0);
-                    $("#AED").val(data.AED?1:0);
-                    CKEDITOR.instances['content'].setData(data.content);
-                    $("#btn_save").val("update");
-                    $("#add_build_modal").modal("show");
+                    $('#b'+ id).remove();
                 }
-
             });
-        })
-
-        $('.edit_img').click(function(){
-            console.log($(this).val());
-            $("#imgid").val($(this).val());
-            $("#img_preview_modal").modal("show");
-        })
+        }
     })
+    $('.edit_build').click(function(){
+        var id = $(this).val();
+        $.ajax({
+            url:    "/campus/newData/"+id,
+            error: function(e){
+                console.log("ERR  :"+e);
+            },
+            success: function(data){
+                $("#bid").val(data._id);
+                $("#name").val(data.name);
+                $("#type").val(data.type);
+                $("#SOS").val(data.sos?1:0);
+                $("#AED").val(data.AED?1:0);
+                CKEDITOR.instances['content'].setData(data.content);
+                $("#btn_save").val("update");
+                $("#add_build_modal").modal("show");
+            }
+
+        });
+    })
+
+    $('.edit_img').click(function(){
+         $("#img_body").empty();
+        var id=$(this).val();
+        $("#imgid").val(id);        
+        $.ajax({
+            url:    "/campus/get_img/"+id,
+            error: function(e){
+                console.log("ERR  :"+e);
+            },
+            success: function(data){
+                console.log(data)
+                for(var i in data){
+                    $("#img_body").append('<img src= "' +data[i].img_path+'"' + 'width="100%"' + '>' )
+                }
+            }
+        })
+        $("#img_preview_modal").modal("show");
+    
+    })
+})
 </script>
 
 <script src="/javascript/ckeditor/ckeditor.js"></script>
