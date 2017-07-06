@@ -34,7 +34,7 @@ $(document).ready(function(){
                 $("#bid").val(data._id);
                 $("#name").val(data.name);
                 $("#type").val(data.type);
-                $("#SOS").val(data.sos?1:0);
+                $("#SOS").val(data.SOS?1:0);
                 $("#AED").val(data.AED?1:0);
                 CKEDITOR.instances['content'].setData(data.content);
                 $("#btn_save").val("update");

@@ -49,9 +49,12 @@ router.post('/add',function(req,res,next){
       name:req.body.name,
       type:req.body.type,
       content:req.body.content,
-      SOS:req.body.SOS,
-      AED:req.body.AED,
+      SOS:req.body.SOS==0?false:true,
+      AED:req.body.AED==0?false:true,
       updated_at:Date.now()
+    },function(err){
+      if(err)
+        console.log(err);
     });
   }
   else{
@@ -59,8 +62,8 @@ router.post('/add',function(req,res,next){
       name:req.body.name,
       type:req.body.type,
       content:req.body.content,
-      SOS:req.body.SOS,
-      AED:req.body.AED,
+      SOS:req.body.SOS==0?false:true,
+      AED:req.body.AED==0?false:true,
       updated_at:Date.now()
     }).save();
   }
