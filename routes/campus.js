@@ -32,6 +32,12 @@ router.get('/newData/:id',function(req,res,next){
   });
 });
 
+router.get('/get_img/:id',function(req,res,next){
+  img_list.find({build_id:req.params.id},function(err,data){
+    res.send(data);
+  })
+})
+
 router.get('/delete/:id',function(req,res,next){
   building.findById(req.params.id).remove().exec();
   res.redirect('/campus/newData');
@@ -43,9 +49,12 @@ router.post('/add',function(req,res,next){
       name:req.body.name,
       type:req.body.type,
       content:req.body.content,
-      SOS:req.body.SOS,
-      AED:req.body.AED,
+      SOS:req.body.SOS==0?false:true,
+      AED:req.body.AED==0?false:true,
       updated_at:Date.now()
+    },function(err){
+      if(err)
+        console.log(err);
     });
   }
   else{
@@ -53,8 +62,8 @@ router.post('/add',function(req,res,next){
       name:req.body.name,
       type:req.body.type,
       content:req.body.content,
-      SOS:req.body.SOS,
-      AED:req.body.AED,
+      SOS:req.body.SOS==0?false:true,
+      AED:req.body.AED==0?false:true,
       updated_at:Date.now()
     }).save();
   }
@@ -75,7 +84,8 @@ router.post('/imgUpload',function(req,res,next) {
 
       var uploadedFile = files.uploadingImg;
       var tmpPath = uploadedFile.path;
-      var targetPath = './public/img/campus/' + shortId.generate()+uploadedFile.name.substr(uploadedFile.name.lastIndexOf('.'));
+      var fileName =shortId.generate() + uploadedFile.name.substr(uploadedFile.name.lastIndexOf('.'));
+      var targetPath = './public/img/campus/' + fileName;
       console.log(tmpPath);
       console.log(targetPath);
       // 跨分區會error
@@ -99,9 +109,10 @@ router.post('/imgUpload',function(req,res,next) {
         });
       });
       var a=new img_list({
-        build_id:req.body.imgid,
-        img_path:targetPath
+        build_id:fields.imgid,
+        img_path:'/img/campus/' + fileName
       }).save();
+      console.log(fields.imgid);
 
   });
 
