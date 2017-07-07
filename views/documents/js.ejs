@@ -62,17 +62,48 @@ $(document).ready(function(){
             }, 200);
     });
     <% for (var i in for_freshman){%>
-        $("#<%- for_freshman[i].id%>").mouseover(function(){
+        $("#<%- for_freshman[i].id%>").mouseenter(function(){
+            if ("<%-for_freshman[i].type%>"!="常用連結"){
 		        $(this).animate({
 		            padding:'0px'
 		        }, 200);
-		        console.log("fresh");
+            }else{
+                if ($("#<%- for_freshman[i].id+"link"%>").is(':hover')){
+
+                }else{
+                    $(this).animate({
+                        opacity: '0.4'
+                    }, { duration: 200, queue: false });
+                    $("#<%- for_freshman[i].id+"link"%>").animate({
+                        opacity: '1'
+                    }, { duration: 200, queue: false });
+                    console.log("mouseover");
+                }
+            }
 		});
-		$("#<%- for_freshman[i].id%>").mouseout(function(){
+		$("#<%- for_freshman[i].id%>").mouseleave(function(){
+            if ("<%-for_freshman[i].type%>"!="常用連結"){
 		        $(this).animate({
 		            padding:'2vw'
 		        }, 200);
+            }else{
+                if ($("#<%- for_freshman[i].id+"link"%>").is(':hover')){
+
+                }else{
+                    $(this).animate({
+                        opacity: '1'
+                    }, { duration: 200, queue: false });
+                    $("#<%- for_freshman[i].id+"link"%>").animate({
+                        opacity: '0'
+                    }, { duration: 200, queue: false });
+                    console.log("mouseout");
+                }
+            }
 		});
+        $("#<%- for_freshman[i].id+"link"%>").mouseover(function(){
+            $("#<%- for_freshman[i].id%>").css({"opacity":"0.4"});
+            $("#<%- for_freshman[i].id+"link"%>").css({"opacity":"1"});
+        });
     <%}%>
     $("#freshmen-source").click(function(){
         $('#freshmen-distaination').css({"display":"block"});

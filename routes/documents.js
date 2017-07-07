@@ -44,15 +44,7 @@ router.post('/insertimg/:id',function(req,res,next) {
 
       var uploadedFile = files.uploadingImg;
       var tmpPath = uploadedFile.path;
-      var id_of_for_freshman;
-      for_freshman.find({_id:'req.params.id'},function(err,docs){
-        if(err){
-          console.log(err);
-          return;
-        }
-        id_of_for_freshman=docs.name;
-      });
-      var fileName = id_of_for_freshman + uploadedFile.name.substr(uploadedFile.name.lastIndexOf('.'));
+      var fileName = req.params.id + uploadedFile.name.substr(uploadedFile.name.lastIndexOf('.'));
       var targetPath = './public/documents/' + fileName;
       console.log(tmpPath);
       console.log(targetPath);
