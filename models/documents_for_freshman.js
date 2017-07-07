@@ -9,7 +9,8 @@ var for_freshman = mongoose.Schema({
     },
     name        : String,
     type        : String,
-    content     : String
+    content     : String,
+    img_path: String
 });
 
 module.exports = mongoose.model( 'for_freshman', for_freshman );
