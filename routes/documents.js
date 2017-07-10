@@ -12,6 +12,12 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get('/require_data/:id',function(req,res,next){
+  for_freshman.find({_id:req.params.id},function(err,data){
+    res.send(data[0]);
+  });
+});
+
 router.get('/delete/:id',function(req,res,next){
   console.log("delete");
   for_freshman.findById(req.params.id).remove().exec();
@@ -27,6 +33,18 @@ router.post('/add',function(req,res,next){
   }).save();
   console.log("true");
   console.log(req.body.content);
+  res.redirect('/documents');
+});
+
+router.post('/update',function(req,res,next){
+  for_freshman.update({_id:req.params.id},{
+        name:req.body.name,
+        type:req.body.type,
+        content:req.body.content
+      },function(err){
+        if(err)
+          console.log(err);
+      });
   res.redirect('/documents');
 });
 

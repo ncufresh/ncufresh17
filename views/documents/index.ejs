@@ -56,9 +56,54 @@
                                 <input id="commonly_used_link_textarea" name="content" type="text" style="visibility:hidden;" value="http://"></input><br>
                             </div>
 
+                            <button type="submit" name="button" class="btn btn-primary">送出</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="modal fade" id="edit_data_model" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">修改</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/documents/update" method="post" accept-charset="utf-8">
+                            <div class="form-group">
+                                <label for="name" class="control-label">名稱</label>
+                                <input type="hidden" id="edit_id" name="id">
+                                <input type="text" class="form-control" id="edit_name" name="name" placeholder="名稱">
                             </div>
 
-                            <button type="submit" name="button" class="btn btn-primary">送出</button>
+                            <div class="form-group">
+                                <label for="type" class="control-label">類別</label>
+                                <select name="type" id="edit_type" class="form-control">
+                                    <option selected="not_commonly_used_link" value="大一新生—註冊報到">大一新生—註冊報到</option>
+                                    <option selected="not_commonly_used_link" value="大一新生—新生週活動">大一新生—新生週活動</option>
+                                    <option selected="not_commonly_used_link" value="大一新生—共同課程及門檻">大一新生—共同課程及門檻</option>
+                                    <option selected="not_commonly_used_link" value="碩一新生—註冊報到">碩一新生—註冊報到</option>
+                                    <option selected="not_commonly_used_link" value="碩一新生—新生週活動">碩一新生—新生週活動</option>
+                                    <option selected="commonly_used_link" value="常用連結">常用連結</option>
+                                    <option selected="" value="">請選擇</option>
+                                </select>
+                            </div>
+
+                            <div class='form-group'>
+                                <label id="not_commonly_used_link_label" style="display:inline-block;" for="content">內容</label>
+                                <textarea id="not_commonly_used_link_textarea" name="content" rows="8" cols="80"></textarea><br>
+                                <label id="commonly_used_link_label" style="display:none;" for="content">在這裡輸入連結</label>
+                                <input id="commonly_used_link_textarea" name="content" type="text" style="visibility:hidden;" value="http://"></input><br>
+                            </div>
+
+                            <button type="submit" name="button" class="btn btn-primary">更改</button>
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -114,6 +159,7 @@
                                 <p><%- for_freshman[i].content %></p>
                             </div>
                             <div class="modal-footer">
+                                <button class="btn btn-danger btn-xs" id="edit_data" value="<%- for_freshman[i].id%>" data-dismiss="modal"><i class="fa fa-apple fa-lg"></i>編輯</button>
                                 <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#<%- for_freshman[i].id+"insertimg"%>" data-dismiss="modal"><i class="fa fa-apple fa-lg"></i> 新增或更新圖片</button>
                                 <button class="btn btn-danger btn-xs delete_data" value="<%= for_freshman[i].id%>" data-dismiss="modal"><i class="fa fa-trash-o fa-lg"></i> 刪除</button>
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

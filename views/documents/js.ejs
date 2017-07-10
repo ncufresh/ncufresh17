@@ -18,6 +18,24 @@
 <script type="text/javascript">
 $('.navbar').css({"margin-bottom":"0px"});
 $(document).ready(function(){
+    $('#edit_data').click(function(){
+        var id = $(this).val();
+        $.ajax({
+            url:    "/documents/require_data/"+id,
+            error: function(e){
+                console.log("ERR  :"+e);
+            },
+            success: function(data){
+                $("#edit_id").val(data._id);
+                $("#edit_name").val(data.name);
+                $("#edit_type").val(data.type);
+                CKEDITOR.instances['content'].setData(data.content);
+                $("#commonly_used_link_textarea").val(data.content);
+                $("#edit_data_model").modal("show");
+            }
+
+        });
+    })
     $('.delete_data').click(function(){
         if(confirm("確定要刪除?")){
             var id = $(this).val();
