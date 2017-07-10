@@ -14,6 +14,15 @@ router.get('/department', function(req, res, next) {
 router.get('/organization', function(req, res, next) {
   res.render('groups/organization', { title: 'groups' });
 });
+router.get('/add_de', function(req, res, next) {
+  res.render('groups/add_de', { title: 'groups' });
+});
+router.get('/add_club', function(req, res, next) {
+  res.render('groups/add_club', { title: 'groups' });
+});
+router.get('/add_or', function(req, res, next) {
+  res.render('groups/add_or', { title: 'groups' });
+});
 
 module.exports = router;
 

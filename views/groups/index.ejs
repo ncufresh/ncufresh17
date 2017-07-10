@@ -8,23 +8,17 @@
         <% include ../layouts/navbar %>
     </header>
 
-    <main class="container">
+    <main>
+      <div class="container">
+
+
         <div class="jumbotron">
             <h1>系所社團</h1>
             <hr size="8px" align="center" width="100%">
-            <button type="button" style="position:relative;left:0px" onclick="self.location.href='/groups/department'">系所</button>
-            <button type="button" style="position:relative;left:50px" onclick="self.location.href='/groups/club'">社團</button>
-            <button type="button" style="position:relative;left:100px" onclick="self.location.href='/groups/organization'">學生組織</button>
-            <style>
-            button {
-                width: 300px;
-                height: 300px;
-                line-height: 300px;
-                border: 1px dashed red;
-                border-radius: 300px;   /* 高度 */
-                text-align:center;
-            }
-            </style>
+            <button type="button" style="position:relative;left:20px" onclick="self.location.href='/groups/department'"><img src="系所.png"></button>
+            <button type="button" style="position:relative;left:20px" onclick="self.location.href='/groups/club'"><img src="社團.png"></button>
+            <button type="button" style="position:relative;left:20px" onclick="self.location.href='/groups/organization'"><img src="學生組織.png"></button>
+        </div>
         </div>
     </main>
 
@@ -32,5 +26,6 @@
         <% include ../layouts/footer %>
     </footer>
         <% include js %>
+        <% include ../layouts/js %>
 </body>
 </html>

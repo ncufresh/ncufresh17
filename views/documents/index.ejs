@@ -2,41 +2,252 @@
 <html lang="en">
 <head>
     <% include ../layouts/head %>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
-<body style="background-image:url('背景.png'); background-position: center top; background-size: contain; background-repeat: no-repeat">
-    <header>
+<body>
+    <header style="min-width: 100vw;">
         <% include ../layouts/navbar %>
     </header>
 
-    <main class="container">
+    <main  style=" background-color: #00BFFF !important; min-width: 100vw; max-width:100vw">
 
-        <div class="container" style="height: 700px; min-width: 500px;">
-            <h1 style="font-family: Georgia, Garamond, serif; color:white;" class="text-center container">welcome to here</h1>
+        <div class="container" style="margin-bottom: 50vh;">
+            <h1 style="font-family: Georgia, Garamond, serif; color:white; padding-bottom: 50px;font-size: 700%;" class="text-center container">welcome to here</h1>
             <div class="row container">
-                <div class="col-xs-4"><img style="display:inline-block;" class="img-responsive" alt="大一新生" src="大一新生.png" /></div>
-                <div class="col-xs-4"><img style="display:inline-block;" class="img-responsive" alt="碩一新生" src="碩一新生.png" /></div>
-                <div class="col-xs-4"><img style="display:inline-block;" class="img-responsive" alt="常用連結" src="常用連結.png" /></div>
+                <div class="col-xs-4"><img id="freshmen-source" style="display:inline-block; padding: 2vw;" class="img-responsive" alt="大一新生" src="大學生.png" /></div>
+                <div class="col-xs-4"><img id="master-freshmen-source" style="display:inline-block; padding: 2vw;" class="img-responsive" alt="研究生" src="研究生.png" /></div>
+                <div class="col-xs-4"><img id="often-link-source" style="display:inline-block; padding: 2vw;" class="img-responsive" alt="常用連結" src="常用連結.png" /></div>
             </div>
         </div>
 
-        <section class="container">
+        <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#add_model">新增</button>
+        <div class="modal fade" id="add_model" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">新增</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/documents/add" method="post" accept-charset="utf-8">
+
+                            <div class="form-group">
+                                <label for="name" class="control-label">新增名稱</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="名稱">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="type" class="control-label">類別</label>
+                                <select name="type" id="type" class="form-control">
+                                    <option selected="not_commonly_used_link" value="大一新生—註冊報到">大一新生—註冊報到</option>
+                                    <option selected="not_commonly_used_link" value="大一新生—新生週活動">大一新生—新生週活動</option>
+                                    <option selected="not_commonly_used_link" value="大一新生—共同課程及門檻">大一新生—共同課程及門檻</option>
+                                    <option selected="not_commonly_used_link" value="碩一新生—註冊報到">碩一新生—註冊報到</option>
+                                    <option selected="not_commonly_used_link" value="碩一新生—新生週活動">碩一新生—新生週活動</option>
+                                    <option selected="commonly_used_link" value="常用連結">常用連結</option>
+                                    <option selected="" value="">請選擇</option>
+                                </select>
+                            </div>
+
+                            <div class='form-group'>
+                                <label id="not_commonly_used_link_label" style="display:inline-block;" for="content">內容</label>
+                                <textarea id="not_commonly_used_link_textarea" name="content" rows="8" cols="80"></textarea><br>
+                                <label id="commonly_used_link_label" style="display:none;" for="content">在這裡輸入連結</label>
+                                <input id="commonly_used_link_textarea" name="content" type="text" style="visibility:hidden;" value="http://"></input><br>
+                            </div>
+
+                            <button type="submit" name="button" class="btn btn-primary">送出</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="modal fade" id="edit_data_model" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">修改</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/documents/update" method="post" accept-charset="utf-8">
+                            <div class="form-group">
+                                <label for="name" class="control-label">名稱</label>
+                                <input type="hidden" id="edit_id" name="id">
+                                <input type="text" class="form-control" id="edit_name" name="name" placeholder="名稱">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="type" class="control-label">類別</label>
+                                <select name="type" id="edit_type" class="form-control">
+                                    <option selected="not_commonly_used_link" value="大一新生—註冊報到">大一新生—註冊報到</option>
+                                    <option selected="not_commonly_used_link" value="大一新生—新生週活動">大一新生—新生週活動</option>
+                                    <option selected="not_commonly_used_link" value="大一新生—共同課程及門檻">大一新生—共同課程及門檻</option>
+                                    <option selected="not_commonly_used_link" value="碩一新生—註冊報到">碩一新生—註冊報到</option>
+                                    <option selected="not_commonly_used_link" value="碩一新生—新生週活動">碩一新生—新生週活動</option>
+                                    <option selected="commonly_used_link" value="常用連結">常用連結</option>
+                                    <option selected="" value="">請選擇</option>
+                                </select>
+                            </div>
+
+                            <div class='form-group'>
+                                <label id="not_commonly_used_link_label" style="display:inline-block;" for="content">內容</label>
+                                <textarea id="not_commonly_used_link_textarea" name="content" rows="8" cols="80"></textarea><br>
+                                <label id="commonly_used_link_label" style="display:none;" for="content">在這裡輸入連結</label>
+                                <input id="commonly_used_link_textarea" name="content" type="text" style="visibility:hidden;" value="http://"></input><br>
+                            </div>
+
+                            <button type="submit" name="button" class="btn btn-primary">更改</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <% for (var i in for_freshman){%>
+            <div class="modal fade" id="<%=for_freshman[i].id+"insertimg"%>" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title"><%- for_freshman[i].name+" 新增或更新圖片" %></h4>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" enctype="multipart/form-data" action="<%="/documents/insertimg/"+for_freshman[i].id%>">
+                                <input type="hidden" id="imgid" name="imgid">
+                                <label for="<%=for_freshman[i].id+"uploadingImg"%>" class="input-group">
+                                    <input type="text" class="form-control" id="img_path" name="img_path">
+                                    <div class="input-group-btn">
+                                        <span class="btn btn-default">
+                                            <i class="fa fa-file" aria-hidden="true"></i> 上傳
+                                        </span>
+                                    </div>
+                                </label>
+                                <input class="form-control" id="<%=for_freshman[i].id+"uploadingImg"%>" type="file" name="uploadingImg" style="display: none;" accept="image/*" onchange="
+        this.form.img_path.value=this.value.substr(this.value.lastIndexOf('\\')+1);">
+                                <input type="submit">
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <%if (for_freshman[i].type!="常用連結"){%>
+                <div class="modal fade" id="<%=for_freshman[i].id+"for_freshman"%>" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title"><%- for_freshman[i].name %></h4>
+                            </div>
+                            <div class="modal-body">
+                                <p><%- for_freshman[i].content %></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-danger btn-xs" id="edit_data" value="<%- for_freshman[i].id%>" data-dismiss="modal"><i class="fa fa-apple fa-lg"></i>編輯</button>
+                                <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#<%- for_freshman[i].id+"insertimg"%>" data-dismiss="modal"><i class="fa fa-apple fa-lg"></i> 新增或更新圖片</button>
+                                <button class="btn btn-danger btn-xs delete_data" value="<%= for_freshman[i].id%>" data-dismiss="modal"><i class="fa fa-trash-o fa-lg"></i> 刪除</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            <%}%>
+        <%}%>
+
+        <!--大一新生 start-->
+        <section class="container" id="freshmen-distaination">
             <h1 class="text-center">大一新生</h1>
-            <ul class="nav nav-pills nav-justified">
-                <li role="presentation" class="text-center"><a href="#under-1">註冊報到</a></li>
-                <li role="presentation" class="text-center"><a href="#under-2">新生週活動</a></li>
-                <li role="presentation" class="text-center"><a href="#under-3">共同課程及門檻</a></li>
+            <ul class="nav nav-pills nav-justified row" style="padding: 10px;">
+                <li role="presentation" class="text-center under-1-source"><a href="#under-1">註冊報到</a></li>
+                <li role="presentation" class="text-center under-2-source"><a href="#under-2">新生週活動</a></li>
+                <li role="presentation" class="text-center under-3-source"><a href="#under-3">共同課程及門檻</a></li>
             </ul>
-            <div class="row container">
-                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="新生註冊通知&日程表" src="新生註冊通知&日程表.png" /></div>
-                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="學籍登錄" src="學籍登錄.png" /></div>
-                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="學籍登錄" src="學籍登錄.png" /></div>
-                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="兵役注意資料" src="兵役注意資料.png" /></div>
-                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="學雜費繳費&貸款" src="學雜費繳費&貸款.png" /></div>
-                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="入住交通管制圖&報到流程" src="入住交通管制圖&報到流程.png" /></div>
-                <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive" alt="腳踏車通行證申請" src="腳踏車通行證申請.png" /></div>
+            <div class="row container" id="under-1">
+                <% for (var i in for_freshman){%>
+                    <% if ( for_freshman[i].type == "大一新生—註冊報到"){ %>
+                            <img style="display:inline-block;  padding: 2vw !important;" class="img-responsive col-xs-3" id="<%- for_freshman[i].id%>" alt="<%- for_freshman[i].name %>" data-toggle="modal" data-target="#<%- for_freshman[i].id+"for_freshman"%>" src="<%-for_freshman[i].img_path%>" />
+                    <%}%>
+                <%}%>
+            </div>
+            <div class="row container" id="under-2" style="display: none;">
+                <% for (var i in for_freshman){%>
+                    <% if ( for_freshman[i].type == "大一新生—新生週活動"){ %>
+                        <img style="display:inline-block;  padding: 2vw !important;" class="img-responsive col-xs-3" id="<%- for_freshman[i].id%>" alt="<%- for_freshman[i].name %>" data-toggle="modal" data-target="#<%- for_freshman[i].id+"for_freshman"%>" src="<%-for_freshman[i].img_path%>" />
+                    <%}%>
+                <%}%>
+            </div>
+            <div class="row container" id="under-3" style="display: none;">
+                <% for (var i in for_freshman){%>
+                    <% if ( for_freshman[i].type == "大一新生—共同課程及門檻"){ %>
+                        <img style="display:inline-block;  padding: 2vw !important;" class="img-responsive col-xs-3" id="<%- for_freshman[i].id%>" alt="<%- for_freshman[i].name %>" data-toggle="modal" data-target="#<%- for_freshman[i].id+"for_freshman"%>" src="<%-for_freshman[i].img_path%>" />
+                    <%}%>
+                <%}%>
             </div>
         </section>
+        <!--大一新生 end-->
+
+        <!--碩一新生 start-->
+        <section class="container" id="master-freshmen-distaination" style="display:none;">
+            <h1 class="text-center">碩一新生</h1>
+            <ul class="nav nav-pills nav-justified row" style="padding: 10px;">
+                <li role="presentation" class="text-center under-4-source"><a href="#under-4">註冊報到</a></li>
+                <li role="presentation" class="text-center under-5-source"><a href="#under-5">新生週活動</a></li>
+            </ul>
+            <div class="row container" id="under-4">
+                <% for (var i in for_freshman){%>
+                    <% if ( for_freshman[i].type == "碩一新生—註冊報到"){ %>
+                        <img style="display:inline-block;  padding: 2vw !important;" class="img-responsive col-xs-3" id="<%- for_freshman[i].id%>" alt="<%- for_freshman[i].name %>" data-toggle="modal" data-target="#<%- for_freshman[i].id+"for_freshman"%>" src="<%-for_freshman[i].img_path%>" />
+                    <%}%>
+                <%}%>
+            </div>
+            <div class="row container" id="under-5" style="display: none;">
+                <% for (var i in for_freshman){%>
+                    <% if ( for_freshman[i].type == "碩一新生—新生週活動"){ %>
+                        <img style="display:inline-block;  padding: 2vw !important;" class="img-responsive col-xs-3" id="<%- for_freshman[i].id%>" alt="<%- for_freshman[i].name %>" data-toggle="modal" data-target="#<%- for_freshman[i].id+"for_freshman"%>" src="<%-for_freshman[i].img_path%>" />
+                    <%}%>
+                <%}%>
+            </div>
+        </section>
+        <!--碩一新生 end-->
+
+        <!--常用連結 start-->
+        <section class="container" id="often-link-distaination" style="display:none; margin: 0px; padding-left: 2vw; padding-right: 2vw;">
+            <h1 class="text-center" style="width: 96vw">常用連結</h1>
+            <% for (var i in for_freshman){%>
+                <% if ( for_freshman[i].type == "常用連結"){ %>
+                    <button style="width: 96vw" type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#<%- for_freshman[i].id+"insertimg"%>"><%-"上傳 "+for_freshman[i].name+"的圖片"%></button>
+                <%}%>
+            <%}%>
+            <div class="row container" style="width: 96vw">
+                <% for (var i in for_freshman){%>
+                    <% if ( for_freshman[i].type == "常用連結"){ %>
+                        <div class="thumbnail col-xs-3" style=" position:relative; border-width: 0px !important; margin: 2vw !important;">
+                            <a href="<%-for_freshman[i].content%>">
+                                <img style="display:inline-block;" id="<%- for_freshman[i].id%>" alt="<%- for_freshman[i].name %>" src="<%- for_freshman[i].img_path%>" />
+                                <p  id="<%- for_freshman[i].id+"link"%>" style="font-size: 2vw; top:9vw; left:8vw; position: absolute; opacity: 0;">按我前往</p>
+                            </a>
+                        </div>
+                    <%}%>
+                <%}%>
+        </section>
+        <!--常用連結 end-->
         <!-- <svg height="346.410161513775459" width="400">
             <polygon points="100,0 0,173.205080756887729 100,346.410161513775459 300,346.410161513775459 400,173.205080756887729 300,0" style="fill:lime;stroke:purple;stroke-width:1" />
         </svg> -->
@@ -46,5 +257,6 @@
         <% include ../layouts/footer %>
     </footer>
         <% include js %>
+        <% include ../layouts/js %>
 </body>
 </html>

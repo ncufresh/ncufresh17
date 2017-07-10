@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../layouts/head %>
+</head>
+<body>
+    <header>
+        <% include ../layouts/navbar %>
+    </header>
+
+    <main>
+      <div class="container">
+
+
+        <div class="jumbotron">
+            <h1>新增社團</h1>
+            <hr size="8px" align="center" width="100%">
+            <form action="groups.js">
+            選擇類別:
+            <select name="classes">
+            <option value="learn">學術性</option>
+            <option value="play">康樂性</option>
+            <option value="love">聯誼性</option>
+            <option value="service">服務性</option>
+            </select>
+            <br>
+            社團名稱:
+            <input type="text" name="department"></br>
+            社團介紹:
+            <textarea name="content1"></textarea></br>
+            </form>
+            <input type="submit"></br>
+        </div>
+        </div>
+    </main>
+
+    <footer>
+        <% include ../layouts/footer %>
+    </footer>
+        <% include js %>
+        <% include ../layouts/js %>
+</body>
+</html>
