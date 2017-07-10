@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../layouts/head %>
+</head>
+<body>
+    <header>
+        <% include ../layouts/navbar %>
+    </header>
+
+    <ul id="navi">
+        <li><a href="/about/markting">行銷企劃組</a></li>
+        <li><a class="active" href="/about/programming">程式設計組</a></li>
+        <li><a href="/about/ceo">執行組</a></li>
+        <li><a href="/about/art">網頁美工組</a></li>
+        <li><a href="/about/video">媒體影音組</a></li>
+    </ul>
+
+
+    <main class="container">
+        <div class="jumbotron" style="height:580px; overflow-y: scroll;">
+            <h2>程式設計組</h2>
+            <hr>
+            <img src="/IMG_8505.jpg" alt="photo died!!!!!!" style="width:50%;height:240px;">
+            <p style="margin-top:10px;">程設組以程式架構出知訊網，並利用程式碼，做出其他組希望達到的各種功能，是這個網頁幕後的大功臣，也希望能以程式能力，期許新生一個更好的大學生活。</p>
+        </div>
+    </main>
+
+    <footer>
+        <% include ../layouts/footer %>
+    </footer>
+        <% include js %>
+</body>
+</html>
+
+<style>
+
+    #navi {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 140px;
+        background-color: #f1f1f1;
+        position: fixed;
+        height: 300px;
+        overflow: auto;
+    }
+
+    li a {
+        display: block;
+        color: #000;
+        padding: 8px 16px;
+        text-decoration: none;
+    }
+
+    li a.active {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    li a:hover:not(.active) {
+        background-color: #555;
+        color: white;
+    }
+
+</style>
