@@ -103,7 +103,7 @@
                         </div>
                         <div class="modal-body">
                             <div class="text-center" id ="img_body"></div>
-                            <form method="post" enctype="multipart/form-data" action="/campus/imgUpload">
+                            <form method="post" enctype="multipart/form-data" action="/campus/imgUpload" id="img_form">
                                 <input type="hidden" id="imgid" name="imgid">
                                 <label for="uploadingImg" class="input-group">
                                     <input type="text" class="form-control" id="img_path" name="img_path">
@@ -115,7 +115,7 @@
                                 </label>
                                 <input class="form-control" id="uploadingImg" type="file" name="uploadingImg" style="display: none;" accept="image/*" onchange="
         this.form.img_path.value=this.value.substr(this.value.lastIndexOf('\\')+1);">
-                                <input type="submit">
+                                <input type="button" id="uploadImg" value="送出">
                             </form>
 
                         </div>
