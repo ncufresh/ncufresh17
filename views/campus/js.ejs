@@ -56,15 +56,55 @@ $(document).ready(function(){
             success: function(data){
                 console.log(data)
                 for(var i in data){
-                    $("#img_body").append('<img src= "' +data[i].img_path+'"' + 'width="100%"' + '>' )
+                    $("#img_body").append('<div id="'+ 'img'+ data[i]._id +'">'+
+                                            '<img src= "' +data[i].img_path+'"' + 'width="100%"' + '>'+'\n'+
+                                            '<button class="btn delete_img btn-success" value ="'+data[i]._id +'">'+'刪除圖片'+'</button>'+
+                                            '</div>' )
                 }
             }
         })
         $("#img_preview_modal").modal("show");
-    
+    })
+    $(document).on('click','.delete_img',function(){
+        if(confirm("確定要刪除?")){
+            var id = $(this).val();
+            $.ajax({
+                url:    '/campus/delete_img/'+ id,
+                type:   'GET',
+                error: function(e){
+                    console.log("ERR  :"+e);
+                },
+                success: function(data){
+                    $('#img'+ id).remove();
+                }
+            });
+        }
+    })
+    $('#uploadImg').click(function(){
+        var formData = new FormData($("#img_form")[0]);
+        $.ajax({
+            url: "/campus/imgUpload",
+            type: 'POST',
+            data: formData,
+            datatype: 'json',
+            processData: false,
+            contentType: false,
+            enctype: 'multipart/form-data',
+            success: function(data){
+                console.log(data);
+                $("#img_body").append('<div id="'+ 'img'+ data._id +'">'+
+                                            '<img src= "' +data.img_path+'"' + 'width="100%"' + '>'+'\n'+
+                                            '<button class="btn delete_img btn-success" value ="'+data._id +'">'+'刪除圖片'+'</button>'+
+                                            '</div>' )
+            },
+            error: function(e){
+                console.log(e);
+            }
+        });
     })
 })
 </script>
+
 
 <script src="/javascript/ckeditor/ckeditor.js"></script>
 

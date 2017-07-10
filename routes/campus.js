@@ -43,6 +43,11 @@ router.get('/delete/:id',function(req,res,next){
   res.redirect('/campus/newData');
 });
 
+router.get('/delete_img/:id',function(req,res,next){
+  img_list.findById(req.params.id).remove().exec();
+  res.redirect('/campus/newData');
+});
+
 router.post('/add',function(req,res,next){
   if(req.body.button=="update"){
     building.update({_id:req.body.bid},{
@@ -85,7 +90,7 @@ router.post('/imgUpload',function(req,res,next) {
       var uploadedFile = files.uploadingImg;
       var tmpPath = uploadedFile.path;
       var fileName =shortId.generate() + uploadedFile.name.substr(uploadedFile.name.lastIndexOf('.'));
-      var targetPath = './public/img/campus/' + fileName;
+      var targetPath = './public/campus/' + fileName;
       console.log(tmpPath);
       console.log(targetPath);
       // 跨分區會error
@@ -110,13 +115,13 @@ router.post('/imgUpload',function(req,res,next) {
       });
       var a=new img_list({
         build_id:fields.imgid,
-        img_path:'/img/campus/' + fileName
-      }).save();
+        img_path:'/campus/' + fileName
+      });
+      a.save();
       console.log(fields.imgid);
-
+      res.send(a);
   });
 
-  res.redirect('/campus/newData');
 })
 
 module.exports = router;
