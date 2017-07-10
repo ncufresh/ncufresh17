@@ -8,11 +8,28 @@
         <% include ../layouts/navbar %>
     </header>
 
-    <main>
-      <div class="container">
-        <div class="jumbotron">
-            <h1>This page is <%= title  %></h1>
-            <p>Welcome to templating using EJS</p>
+    <ul id="navi">
+        <li><a href="/about/markting">行銷企劃組</a></li>
+        <li><a href="/about/programming">程式設計組</a></li>
+        <li><a href="/about/ceo">執行組</a></li>
+        <li><a href="/about/art">網頁美工組</a></li>
+        <li><a href="/about/video">媒體影音組</a></li>
+    </ul>
+
+    <main class="container">
+        <div class="jumbotron" style="height:580px; overflow-y: scroll;">
+            <h2>關於我們</h2>
+            <hr>
+            <img src="/IMG_9281.jpg" alt="photo died!!!!!!" style="width:100%;height:240px;">
+            <ul style="margin-top:30px;">
+                <li style="padding-left:14px;">為了迎接大學新鮮人，我們提供了各項新生需要的服務</li>
+                <li><span><a href="/documents"><b>新生必讀</b></a></span>提供了到大學需要注意的事項</li>
+                <li><span><a href="/QnA" style="padding-right:14px;"><b>新生Q&A</b></a></span>透過問與答，解決新生的各種問題</li>
+                <li><span><a href="/campus"><b>校園導覽</b></a></span>讓新生對校園有更進一步的認識</li>
+                <li><span><a href="/groups"><b>系所社團</b></a></span>輕鬆掌握在中央的食衣住行育樂</li>
+                <li><span><a href="/video"><b>影音專區</b></a></span>由影片帶領新生搶先體驗中大生活</li>
+                <li><span><a href="/personal"><b>個人專區</b></a></span>在知訊網中開拓一片屬於自己的地盤吧！</li>
+            </ul>
         </div>
       </div>
 
@@ -25,3 +42,41 @@
         <% include ../layouts/js %>
 </body>
 </html>
+
+<style>
+
+    #navi {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 140px;
+        background-color: #f1f1f1;
+        position: fixed;
+        height: 300px;
+        overflow: auto;
+    }
+
+    li a {
+        display: block;
+        color: #000;
+        padding: 8px 16px;
+        text-decoration: none;
+    }
+
+    li a.active {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    li a:hover:not(.active) {
+        background-color: #555;
+        color: white;
+    }
+    .jumbotron li {
+        font-size: 1.2em;
+    }
+    span {
+        display: inline-block;
+    }
+
+</style>
