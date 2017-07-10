@@ -21,7 +21,7 @@ var smallgame = require('./routes/smallgame');
 var video = require('./routes/video');
 var personal = require('./routes/personal');
 var about = require('./routes/about');
-
+var aboutweb = require('./routes/aboutweb');
 
 var app = express();
 
@@ -64,6 +64,8 @@ app.use('/video', video);
 app.use('/personal', personal);
 // 關於我們
 app.use('/about', about);
+// 網站地圖
+app.use('/aboutweb', aboutweb);
 
 
 // ckeditor uploader
