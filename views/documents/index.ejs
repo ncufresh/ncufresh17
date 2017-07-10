@@ -97,10 +97,10 @@
                             </div>
 
                             <div class='form-group'>
-                                <label id="not_commonly_used_link_label" style="display:inline-block;" for="content">內容</label>
-                                <textarea id="not_commonly_used_link_textarea" name="content" rows="8" cols="80"></textarea><br>
-                                <label id="commonly_used_link_label" style="display:none;" for="content">在這裡輸入連結</label>
-                                <input id="commonly_used_link_textarea" name="content" type="text" style="visibility:hidden;" value="http://"></input><br>
+                                <label id="not_commonly_used_link_label_in_edit_data" style="display:inline-block;" for="content">內容</label>
+                                <textarea id="not_commonly_used_link_textarea_in_edit_data" name="Content" rows="8" cols="80"></textarea><br>
+                                <label id="commonly_used_link_label_in_edit_data" style="display:none;" for="">在這裡輸入連結</label>
+                                <input id="commonly_used_link_textarea_in_edit_data" name="" type="text" style="visibility:hidden;" value="http://"></input><br>
                             </div>
 
                             <button type="submit" name="button" class="btn btn-primary">更改</button>
@@ -159,9 +159,9 @@
                                 <p><%- for_freshman[i].content %></p>
                             </div>
                             <div class="modal-footer">
-                                <button class="btn btn-danger btn-xs" id="edit_data" value="<%- for_freshman[i].id%>" data-dismiss="modal"><i class="fa fa-apple fa-lg"></i>編輯</button>
+                                <button class="btn btn-danger btn-xs edit_data" value="<%- for_freshman[i].id%>" data-dismiss="modal"><i class="fa fa-apple fa-lg"></i>編輯</button>
                                 <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#<%- for_freshman[i].id+"insertimg"%>" data-dismiss="modal"><i class="fa fa-apple fa-lg"></i> 新增或更新圖片</button>
-                                <button class="btn btn-danger btn-xs delete_data" value="<%= for_freshman[i].id%>" data-dismiss="modal"><i class="fa fa-trash-o fa-lg"></i> 刪除</button>
+                                <button class="btn btn-danger btn-xs delete_data" value="<%= for_freshman[i].id%>" data-dismiss="modal"><i class="fa fa-trash-o fa-lg"></i>刪除</button>
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             </div>
                         </div>
@@ -232,7 +232,8 @@
             <h1 class="text-center" style="width: 96vw">常用連結</h1>
             <% for (var i in for_freshman){%>
                 <% if ( for_freshman[i].type == "常用連結"){ %>
-                    <button style="width: 96vw" type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#<%- for_freshman[i].id+"insertimg"%>"><%-"上傳 "+for_freshman[i].name+"的圖片"%></button>
+                    <button style="width: 96vw" type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#<%- for_freshman[i].id+"insertimg"%>"><%-"上傳 "+for_freshman[i].name+" 的圖片"%></button>
+                    <button style="width: 96vw" class="btn btn-danger btn-lg btn-block edit_data" value="<%- for_freshman[i].id%>"><i class="fa fa-apple fa-lg"></i><%-"編輯 "+for_freshman[i].name%></button>
                 <%}%>
             <%}%>
             <div class="row container" style="width: 96vw">
