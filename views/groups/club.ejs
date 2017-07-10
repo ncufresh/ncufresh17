@@ -15,7 +15,48 @@
         <div class="jumbotron">
             <h1>社團</h1>
             <hr size="8px" align="center" width="100%">
-            <a href='/groups/add_club'>Click here to add new club</a></br>
+            <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#add_club" style="width:100px;height:30px;text-align:center;">add</button></br>
+
+              <!-- Modal -->
+              <div class="modal fade" id="add_club" role="dialog">
+                <div class="modal-dialog modal-lg">
+
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 style="color:red;">新增系所</h4>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                      <form action="/groups/add" method="post" accept-charset="utf-8">
+                        <div class="form-group">
+                          <label for="type" class="form-control">社團性質</label>
+                          <select name="type" id="type" class="form-control">
+                                      <option value="learn">學術性</option>
+                                      <option value="play">康樂性</option>
+                                      <option value="love">聯誼性</option>
+                                      <option value="service">服務性</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label for="name" class="form-control">社團名稱</label>
+                          <input type="text" class="form-control" id="name" placeholder="資訊管理學系">
+                        </div>
+                        <div class="form-group">
+                          <label for="introduce" class="form-control">社團介紹</label>
+                          <textarea name="content1"></textarea></br>
+                        </div>
+                        <button type="submit" class="btn btn-default btn-success btn-block" style="width:100px;height:30px;text-align:center;">add</button>
+                      </form>
+
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-default" data-dismiss="modal" style="width:120px;height:30px;text-align:left;">cancel</button>
+                    </div>
+                  </div>
+                </div>
+              </div> 
+            </div>
+
             <button type="button" style="position:relative;left:130px">學術性</button>
             <button type="button" style="position:relative;left:180px">康樂性</button>
             <button type="button" style="position:relative;left:230px">聯誼性</button>
