@@ -2,3 +2,181 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+<script src="/javascript/ckeditor/ckeditor.js"></script>
+
+<script type="text/javascript">
+  CKEDITOR.replace('content',{
+    filebrowserUploadUrl: '/uploader',
+  });
+  CKEDITOR.editorConfig = function (config){
+      config.enterMode = CKEDITOR.ENTER_BR;
+      config.autoParagraph = false;
+  };
+</script>
+
+
+
+<script>
+
+//for clock 
+function toggle_visibility(id) {
+       var e = document.getElementById(id);
+       if(e.style.display == 'block')
+          e.style.display = 'none';
+       else
+          e.style.display = 'block';
+}
+
+var countdownNumberEl = document.getElementsByClassName('countdown-number')[0];
+var countdown = 10;
+//for clock 
+
+$(document).ready(function() {
+
+	//start game
+	$('.btn2').click(function(){
+	
+		$('.row').hide(); //hide all buttons
+		$('.game, .countdown, .row2').toggle(); //appear game div
+
+    countdownNumberEl.textContent = countdown;
+
+		var interval = setInterval(function() {
+			if (countdown == 0) {  	
+      		clearInterval(interval);
+			return;
+    		}
+  		countdown = --countdown < 0 ? 10 : countdown;
+
+  		countdownNumberEl.textContent = countdown;
+		}, 1000);
+
+    });
+    //start game
+
+}); 
+
+</script>
+
+<style>
+
+.game{
+	height: 1000px;
+	display: none;
+}
+
+/*BUTTON*/
+
+.row button{
+	height:100px;
+	width:150px;
+	
+}
+
+.btn1{
+	float: left;
+}
+
+.btn2{
+	margin:150px 425px;
+	width:300px;
+}
+
+.btn3{
+	float: right;
+}
+/*BUTTON*/
+
+/*CLOCK*/
+.countdown {
+  position: relative;
+  margin: auto;
+  margin-top: 100px;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  display: none;
+}
+
+.countdown-number {
+  color: black;
+  display: inline-block;
+  line-height: 40px;
+}
+
+svg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  transform: rotateY(-180deg) rotateZ(-90deg);
+}
+
+svg circle {
+  stroke-dasharray: 113px;
+  stroke-dashoffset: 0px;
+  stroke-linecap: round;
+  stroke-width: 2px;
+  stroke: black;
+  fill: none;
+  animation: countdown 11s linear infinite forwards;
+}
+
+@keyframes countdown {
+  from {
+    stroke-dashoffset: 0px;
+  }
+  to {
+    stroke-dashoffset: 113px;
+  }
+}
+/*CLOCK*/
+
+/*BAR*/
+
+
+.row2{
+	display: none;
+}
+
+#bar1 {
+  border: 3px solid #000;
+  background-color: #d66838;
+  height: 300px;
+  position: relative;
+  width:15px;
+  float:right;
+}
+
+
+.health{
+	position :relative;
+	background-color: #e4cf62;
+	margin-left: -15px;
+	width:30px;
+	animation: mymove 5s infinite;
+}
+
+@keyframes mymove {
+    0%   {height: 300px;}
+    25%  {height: 50px;}
+    75%  {height: 20px}
+    100% {height: 0px;}
+}
+
+#bar2 {
+  border: 3px solid #000;
+  background-color: #d66838;
+  height: 300px;
+  position: relative;
+  width:15px;
+  float:left;
+}
+
+/*BAR*/
+
+</style>
+
+
