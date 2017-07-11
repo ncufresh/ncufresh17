@@ -35,7 +35,7 @@ $(document).ready(function(){
                 }
                 $("#edit_id").val(data._id);
                 $("#edit_name").val(data.name);
-                $("#edit_type").val(data.type);
+                $("#edit_type").html(data.type);
                 CKEDITOR.instances['not_commonly_used_link_textarea_in_edit_data'].setData(data.content);
                 $("#commonly_used_link_textarea_in_edit_data").val(data.content);
                 $("#edit_data_model").modal("show");
@@ -96,14 +96,14 @@ $(document).ready(function(){
             $('#not_commonly_used_link_textarea_in_edit_data').attr({"name":"content"});
         }
     });
-    $("#freshmen-source,#master-freshmen-source,#often-link-source").mouseover(function(){
+    $("#freshmen-source,#master-freshmen-source,#often-link-source").mouseenter(function(){
             $(this).animate({
-                padding:'0px'
+                padding:'0vh'
             }, 200);
     });
-    $("#freshmen-source,#master-freshmen-source,#often-link-source").mouseout(function(){
+    $("#freshmen-source,#master-freshmen-source,#often-link-source").mouseleave(function(){
             $(this).animate({
-                padding:'2vw'
+                padding:'2vh'
             }, 200);
     });
     <% for (var i in for_freshman){%>

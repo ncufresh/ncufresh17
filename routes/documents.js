@@ -20,19 +20,50 @@ router.get('/require_data/:id',function(req,res,next){
 
 router.get('/delete/:id',function(req,res,next){
   console.log("delete");
-  for_freshman.findById(req.params.id).remove().exec();
-  res.redirect('/documents');
+  var total;
+  var the_type;
+  var the_order;
+  for_freshman.find({_id:req.params.id}).exec(function (err, results) {
+    the_type = results[0].type;
+    the_order = results[0].order;
+    for_freshman.find({type:the_type}).exec(function (err, result) {
+      total = result.length;
+      console.log("有 "+total+" 個");
+      console.log("順序是第 "+the_order+" 個");
+      console.log("type是: "+the_type);
+      the_order++;
+      for (var ha = the_order ; ha <= total ;ha++)
+      {
+        var temp = ha;
+        temp--;
+        for_freshman.update({order:ha,type:the_type},{
+          order: temp
+        },function(err){
+          if(err)
+            console.log(err);
+        });
+      }
+      for_freshman.findById(req.params.id).remove().exec();
+      res.redirect('/documents');
+    });
+  });
 });
 
 router.post('/add',function(req,res,next){
-  var b = new for_freshman({
-    name:req.body.name,
-    type:req.body.type,
-    content:req.body.content,
-    img_path: ""
-  }).save();
-  console.log("true");
-  console.log(req.body.content);
+  var temp;
+  for_freshman.find({type:req.body.type}).exec(function (err, results) {
+    if(err) throw err;
+    temp = results.length;
+    temp++;
+    console.log(temp);
+    var b = new for_freshman({
+      name:req.body.name,
+      type:req.body.type,
+      content:req.body.content,
+      img_path: "",
+      order: temp
+    }).save();
+  });
   res.redirect('/documents');
 });
 
@@ -65,6 +96,7 @@ router.post('/insertimg/:id',function(req,res,next) {
       // console.log(files);
 
       var uploadedFile = files.uploadingImg;
+      
       var tmpPath = uploadedFile.path;
       var fileName = req.params.id + uploadedFile.name.substr(uploadedFile.name.lastIndexOf('.'));
       var targetPath = './public/documents/' + fileName;
