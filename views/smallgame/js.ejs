@@ -3,20 +3,6 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 
-<script src="/javascript/ckeditor/ckeditor.js"></script>
-
-<script type="text/javascript">
-  CKEDITOR.replace('content',{
-    filebrowserUploadUrl: '/uploader',
-  });
-  CKEDITOR.editorConfig = function (config){
-      config.enterMode = CKEDITOR.ENTER_BR;
-      config.autoParagraph = false;
-  };
-</script>
-
-
-
 <script>
 
 //for clock 
@@ -29,28 +15,47 @@ function toggle_visibility(id) {
 }
 
 var countdownNumberEl = document.getElementsByClassName('countdown-number')[0];
+var roundNumber = document.getElementsByClassName('round-number')[0];
 var countdown = 10;
+var round = 1;
 //for clock 
 
 $(document).ready(function() {
 
+	//rules
+	$('#btn3').click(function(){
+		$('.btn1').remove();
+		$(this).parent().remove();//remove all buttons
+		$('.box, .btn5, .btn6, .btn7').toggle();
+	});
+	//rules
+
 	//start game
-	$('.btn2').click(function(){
+	$('#btn2').click(function(){
 	
-		$('.row').hide(); //hide all buttons
-		$('.game, .countdown, .row2').toggle(); //appear game div
+		$(this).parent().remove(); //hide all buttons
+		$('.jumbotron').css("background-image", "none");
+		$('.game, .countdown, .row2').show(); //appear game div
 
-    countdownNumberEl.textContent = countdown;
+    	//NO.OF QUESTION
+    	roundNumber.textContent = "第" + round + "題";
+    	var interval1 = setInterval(function() {
+    		round = ++round < 21 ? round : 1;
+    		roundNumber.textContent = "第" + round + "題";
+		}, 11000);
 
+    	//COUNTDOWN
+    	countdownNumberEl.textContent = countdown;
 		var interval = setInterval(function() {
-			if (countdown == 0) {  	
-      		clearInterval(interval);
-			return;
-    		}
-  		countdown = --countdown < 0 ? 10 : countdown;
-
-  		countdownNumberEl.textContent = countdown;
+			countdown = --countdown < 0 ? 10 : countdown;
+			countdownNumberEl.textContent = countdown;
 		}, 1000);
+
+		
+
+		
+
+		
 
     });
     //start game
@@ -61,64 +66,115 @@ $(document).ready(function() {
 
 <style>
 
+.jumbotron{
+	background-image: url("gamebg.png") ;
+	background-color: rgba(133, 82, 30, 1);
+	background-size: contain;
+	width:700px;
+	height:700px;
+	margin: auto;
+	position:relative;
+}
+
 .game{
-	height: 1000px;
+	height: 700px;
 	display: none;
 }
 
 /*BUTTON*/
 
 .row button{
-	height:100px;
-	width:150px;
 	
 }
 
 .btn1{
-	float: left;
+	float:left;
 }
 
-.btn2{
-	margin:150px 425px;
-	width:300px;
+.button{
+	margin-top: 400px;
+	width:150px;
+	margin-left: 190px;
 }
 
-.btn3{
-	float: right;
+.button button{
+	margin-top: 10px;
+	width:200px;
+	border:3px solid rgba(103, 51, 0, 1);
+	background-color: rgba(207, 169, 114, 1);
+	color:rgba(103, 51, 0, 1);
+	font-weight: bold;
+	font-size: 20px;
 }
+
 /*BUTTON*/
+
+/*RULES*/
+.box{
+	background-image: url("gamerules.png");
+	background-size: contain;
+	width: 450px;
+	height:610px;
+	display: none;
+	position: relative;
+	margin-left:80px;
+}
+
+.btn5{
+	float:right;
+	display: none;
+}
+
+.btn6{
+	position: absolute;
+	bottom:0;
+	right:0;
+	display: none;
+}
+
+.btn7{
+	position: absolute;
+	bottom:0;
+	left:0;
+	display: none;
+}
+/*RULES*/
 
 /*CLOCK*/
 .countdown {
+	
   position: relative;
   margin: auto;
-  margin-top: 100px;
-  height: 40px;
-  width: 40px;
+  margin-top: 10px;
+  padding-top: 18px;
+  padding-left: 15px;
+  height: 140px;
+  width: 140px;
   text-align: center;
   display: none;
 }
 
 .countdown-number {
+	font-size: 40px;
   color: black;
   display: inline-block;
-  line-height: 40px;
+  line-height: 125px;
 }
 
 svg {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 40px;
-  height: 40px;
+	position: absolute;
+	top:0;
+	left:0;
+  width: 160px;
+  height: 160px;
   transform: rotateY(-180deg) rotateZ(-90deg);
 }
 
 svg circle {
-  stroke-dasharray: 113px;
+  stroke-dasharray: 440px;
   stroke-dashoffset: 0px;
   stroke-linecap: round;
-  stroke-width: 2px;
+  stroke-width: 8px;
   stroke: black;
   fill: none;
   animation: countdown 11s linear infinite forwards;
@@ -129,16 +185,30 @@ svg circle {
     stroke-dashoffset: 0px;
   }
   to {
-    stroke-dashoffset: 113px;
+    stroke-dashoffset: 440px;
   }
 }
 /*CLOCK*/
+
+/*ROUND NO.*/
+.round-number{
+	margin-top: 10px;
+	font-size: 25px;
+}
+/*ROUND NO.*/
 
 /*BAR*/
 
 
 .row2{
 	display: none;
+	margin-top: 50px;
+	
+}
+
+#question{
+	border: 3px solid #000;
+	position: relative;
 }
 
 #bar1 {
