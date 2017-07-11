@@ -1,28 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <% include ../layouts/head %>
+  <% include ../layouts/head %>
 </head>
 <body>
-    <header>
-        <% include ../layouts/navbar %>
-    </header>
+  <header>
+    <% include ../layouts/navbar %>
+  </header>
 
-    <main>
-      <div class="container">
+  <main>
+    <%# 側導覽列 %>
+    <div>
+      <ul>
+        <li>所有問題</li>
+        <li>校園生活</li>
+        <li>學生事務</li>
+        <li>宿舍生活</li>
+        <li>其他</li>
+        <li>我要發問</li>
+      </ul>
+    </div>
+    <%# 熱門問題 %>
+    <div>
+      <h1>熱門問題</h1>
+      <p>歡迎發問</p>
+      <table class="table table-hover">
+        <tr>
+          <td>類別</td>
+          <td>日期</td>
+          <td>標題</td>
+          <td>觀看人數</td>
+        </tr>
+        <tr>
+          <td>類別</td>
+          <td>日期</td>
+          <td>標題</td>
+          <td>觀看人數</td>
+        </tr>
+      </table>
+      <%# 所有問題 %>
+      <h1>所有問題</h1>
+      <p>歡迎發問</p>
+      <table class="table table-hover">
+        <tr>
+          <td>類別</td>
+          <td>日期</td>
+          <td>標題</td>
+          <td>觀看人數</td>
+        </tr>
+        <tr>
+          <td>類別</td>
+          <td>日期</td>
+          <td>標題</td>
+          <td>觀看人數</td>
+        </tr>
+      </table>
+    </div>
+    <%# 分頁導覽 %>
+    <div>
+      <ul class="pagination">
+        <li><a href="#"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li><a href="#"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
+      </ul>
+    </div>
+  </main>
 
-
-        <div class="jumbotron">
-            <h1>This page is <%= title  %></h1>
-            <p>Welcome to templating using EJS</p>
-        </div>
-        </div>
-    </main>
-
-    <footer>
-        <% include ../layouts/footer %>
-    </footer>
-        <% include js %>
-        <% include ../layouts/js %>
+  <footer>
+    <% include ../layouts/footer %>
+  </footer>
+  <% include js %>
+  <% include ../layouts/js %>
 </body>
 </html>

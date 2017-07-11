@@ -1,9 +1,14 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
+// 讀取頁面
 router.get('/', function(req, res, next) {
   res.render('QnA/index', { title: 'QnA' });
+});
+
+// 新增問題
+router.post('/', function(req, res){
+  // post a question
 });
 
 module.exports = router;
