@@ -1,7 +1,13 @@
 var mongoose = require('mongoose');
+var shortId = require('shortid');
 
 var department = mongoose.Schema({
-    class : String,
+	_id: {
+	type: String,
+	unique: true,
+	'default': shortId.generate
+	},
+    type : String,
     name : String,
     introduction : String,
     organization : String,
