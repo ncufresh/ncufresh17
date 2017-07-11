@@ -37,14 +37,18 @@ router.post('/add',function(req,res,next){
 });
 
 router.post('/update',function(req,res,next){
-  for_freshman.update({_id:req.params.id},{
+  for_freshman.update({_id:req.body.id},{
         name:req.body.name,
         type:req.body.type,
-        content:req.body.content
+        content:req.body.Content
       },function(err){
         if(err)
           console.log(err);
       });
+  console.log(req.body.id);
+  console.log(req.body.name);
+  console.log(req.body.type);
+  console.log(req.body.Content);
   res.redirect('/documents');
 });
 
