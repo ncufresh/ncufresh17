@@ -16,19 +16,23 @@
 
             <!--BUTTON-->
             <div class="row" id="row">
-                <!--Rules-->
-            <div class="box">
-                <div class="btn5"><button type="button"  >X </button></div>
-                <div class="btn6"><button type="button"  >上一頁</button></div>
-                <div class="btn7"><button type="button"  >下一頁</button></div>
-            </div>
-            <!--Rules-->
+                <!--Rules & ranking-->
+                <div class="box">
+                    <div class="btn5"><button type="button"  >X </button></div>
+                    <div class="btn6"><button type="button"  >上一頁</button></div>
+                    <div class="btn7"><button type="button"  >下一頁</button></div>
+                    <div class="col-xs-4" id="btn8"><button type="button"  >個人積分</br> Score</button></div>
+                    <div class="col-xs-4" id="btn9"><button type="button"  >排行榜</br> Ranking</button></div>
+                </div>
+                <!--Rules & ranking-->
+
                 <div class="btn1"><button type="button"  >Mute</button></div>
-                <div class="button">
+            <div class="button">
                 <button type="button" id="btn2">遊戲開始 </br>Start </button>
                 <button type="button" id="btn3">遊戲說明 </br>Game Rules</button>
                 <button type="button" id="btn4">個人積分及排行榜 </br>Scores & Ranking</button>
-            </div></div>
+            </div>
+            </div>
             <!--BUTTON-->
 
             
@@ -36,43 +40,61 @@
             <!--GAME-->
             <div class="game">
                 
-            
+                <div class="row1">
+                <!--Player-->
+                <div class="col-xs-4" id="player"><img src="player.png"></div>
+                <!--Player-->
+
                 <!--CLOCK & ROUND NO.-->
-                <div class="countdown">
-                <div class="countdown-number"></div>
-                <svg>
-                <circle r="69.85699" cx="81" cy="81"></circle>
-                </svg>
-                <div class="round-number"></div>
+                <div class="col-xs-4" id="countdown">
+                    <div class="countdown-number"></div>
+                    <svg>
+                    <circle r="69.85699" cx="81" cy="81"></circle>
+                    </svg>
+                    <div class="round-number"></div>
                 </div>
                 <!--CLOCK & ROUND NO.-->
-            
-                <!--Point BAR-->
+
+                <!--PC-->
+                <div class="col-xs-4" id="pc"><img src="pc.png"></div>
+                <!--PC-->
+                </div>
+
+                <!--POINT-->
                 <div class="row2">
+                    <div class="col-xs-4" id="plyptn"></div>
+                    <div class="col-xs-4" id="pcptn"></div>
+                </div>
+                <!--POINT-->
+                
+                <!--Point BAR-->
+                <div class="row3">
             
-                <div class="col-xs-4" id="bar1">
-                <div class="health"></div>
-                <div id="lost1"></div>
-                <div id="heal1"></div>
-                </div>
+                    <div class="col-xs-4" id="bar1">
+                        <div class="health"></div>
+                        <div id="lost1"></div>
+                        <div id="heal1"></div>
+                    </div>
                 <!--Point BAR-->
 
-                <!--Q&A--
-                <div class="col-xs-4" id="question">
-                <div class="Q"></div>
-                <div class="Q"></div>
-                <div class="Q"></div>
-                <div class="Q"></div>
-                </div>
-
-                !--Q&A-->
+                <!--Q&A-->
+                    <div class="col-xs-4" id="question">
+                        <div class="Q"></div>
+                        <div class="A">
+                            <div><button type="button" id="ans1"></button></div>
+                            <div><button type="button" id="ans2"></button></div>
+                            <div><button type="button" id="ans3"></button></div>
+                            <div><button type="button" id="ans4"></button></div>
+                        </div>
+                    </div>
+                <!--Q&A-->
 
                 <!--Point BAR-->
-                <div class="col-xs-4" id="bar2">
-                <div class="health"></div>
-                <div id="lost2"></div>
-                <div id="heal2"></div>
-                </div>
+                    <div class="col-xs-4" id="bar2">
+                        <div class="health"></div>
+                        <div id="lost2"></div>
+                        <div id="heal2"></div>
+                    </div>
             
             
                 </div>

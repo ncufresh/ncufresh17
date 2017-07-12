@@ -6,27 +6,35 @@
 <script>
 
 //for clock 
-function toggle_visibility(id) {
-       var e = document.getElementById(id);
-       if(e.style.display == 'block')
-          e.style.display = 'none';
-       else
-          e.style.display = 'block';
-}
-
 var countdownNumberEl = document.getElementsByClassName('countdown-number')[0];
 var roundNumber = document.getElementsByClassName('round-number')[0];
 var countdown = 10;
 var round = 1;
 //for clock 
 
+
+
 $(document).ready(function() {
+
+	//Beginning
+	$('.game, #countdown, .row3, #btn8, #btn9').hide();
+	$('.btn5').parent().hide();
+	//Beginning
 
 	//rules
 	$('#btn3').click(function(){
-		$('.btn1').remove();
-		$(this).parent().remove();//remove all buttons
-		$('.box, .btn5, .btn6, .btn7').toggle();
+		$('.btn1').hide();
+		$('.box').css("background-image", "url(gamerules.png)");
+		$(this).parent().hide(); //hide all buttons
+		$('.btn5').parent().show();
+		$('.btn6, .btn7').show();
+	});
+
+	$('.btn5').click(function(){
+		$(this).parent().hide();
+		$('#btn3').parent().show();
+		$('.btn1').show();
+		
 	});
 	//rules
 
@@ -35,7 +43,8 @@ $(document).ready(function() {
 	
 		$(this).parent().remove(); //hide all buttons
 		$('.jumbotron').css("background-image", "none");
-		$('.game, .countdown, .row2').show(); //appear game div
+		$('.game, #countdown, .row3').show(); //show game div
+		$('.btn1').hide();
 
     	//NO.OF QUESTION
     	roundNumber.textContent = "第" + round + "題";
@@ -51,14 +60,27 @@ $(document).ready(function() {
 			countdownNumberEl.textContent = countdown;
 		}, 1000);
 
-		
-
-		
-
-		
-
     });
     //start game
+
+    //ranking
+	$('#btn4').click(function(){
+		
+		$('.btn5').parent().show();
+		$('.box').css("background-image", "none");
+		$('.btn1, .btn6, .btn7').hide();
+		$(this).parent().hide(); //hide all buttons
+		$('#btn8, #btn9').show();
+		
+	});
+
+	$('.btn5').click(function(){
+		$(this).parent().hide();
+		$('#btn3').parent().show();
+		$('.btn1').show();
+		
+	});
+	//ranking
 
 }); 
 
@@ -109,49 +131,90 @@ $(document).ready(function() {
 
 /*BUTTON*/
 
+/*RANKING*/
+#btn8 button, #btn9 button{
+	width: 100px;
+	height:100px;
+	border:3px solid rgba(103, 51, 0, 1);
+	background-color: rgba(207, 169, 114, 1);
+	color:rgba(103, 51, 0, 1);
+	font-weight: bold;
+	font-size: 20px;
+	margin-top:250px;
+}
+
+#btn8{
+	
+	margin-left:50px;
+}
+
+#btn9{
+
+	margin-right:50px;
+
+}
+/*RANKING*/
+
 /*RULES*/
 .box{
-	background-image: url("gamerules.png");
 	background-size: contain;
+	background-color: rgba(207, 169, 114, 1);
 	width: 450px;
 	height:610px;
-	display: none;
 	position: relative;
 	margin-left:80px;
 }
 
 .btn5{
 	float:right;
-	display: none;
 }
 
 .btn6{
 	position: absolute;
 	bottom:0;
 	right:0;
-	display: none;
 }
 
 .btn7{
 	position: absolute;
 	bottom:0;
 	left:0;
-	display: none;
 }
 /*RULES*/
 
+/*GAME*/
+.row1{
+	width: 700px;
+	height: 200px;
+	margin-left: -60px;
+	padding:0;
+}
+/*GAME*/
+
+/*頭像*/
+#player{
+	float:left;
+	margin-right: 40px;
+}
+
+#pc{
+	float:right;
+	width:180px;
+}
+/*頭像*/
+
 /*CLOCK*/
-.countdown {
+#countdown {
 	
   position: relative;
   margin: auto;
   margin-top: 10px;
   padding-top: 18px;
-  padding-left: 15px;
+  padding-left: 35px;
   height: 140px;
   width: 140px;
   text-align: center;
-  display: none;
+  
 }
 
 .countdown-number {
@@ -197,27 +260,66 @@ svg circle {
 }
 /*ROUND NO.*/
 
+/*POINT*/
+
+
+#plyptn{
+	border:3px solid black;
+	margin-left: -40px;
+	float:left;
+	width: 120px;
+	height:50px;
+}
+
+#pcptn{
+	border:3px solid black;
+	float: right;
+	margin-right: -40px;
+	width: 120px;
+	height:50px;
+}
+/*POINT*/
+
+/*Q*/
+#question{
+	width:400px;
+	height:350px;
+	margin:0px 53px;
+	padding: 0px;
+}
+
+.Q{
+	border:3px solid black;
+	width:400px;
+	height:100px;
+	background-color: rgba(207, 169, 114, 1);
+}
+
+.A button{
+	border:3px solid black;
+	width:400px;
+	margin-top: 20px;
+	height:50px;
+	background-color: rgba(207, 169, 114, 1);
+}
+/*Q*/
+
 /*BAR*/
 
 
-.row2{
-	display: none;
+.row3{
+	
 	margin-top: 50px;
 	
-}
-
-#question{
-	border: 3px solid #000;
-	position: relative;
 }
 
 #bar1 {
   border: 3px solid #000;
   background-color: #d66838;
   height: 300px;
-  position: relative;
   width:15px;
-  float:right;
+  float:left;
+  margin-top: 50px;
 }
 
 
@@ -240,9 +342,9 @@ svg circle {
   border: 3px solid #000;
   background-color: #d66838;
   height: 300px;
-  position: relative;
   width:15px;
-  float:left;
+  float:right;
+  margin-top: 50px;
 }
 
 /*BAR*/
