@@ -10,7 +10,8 @@ var for_freshman = mongoose.Schema({
     name        : String,
     type        : String,
     content     : String,
-    img_path: String
+    img_path: String,
+    order : Number
 });
 
 module.exports = mongoose.model( 'for_freshman', for_freshman );
