@@ -12,7 +12,7 @@
           <br>
           <div class="jumbotron">
               <div class="container">
-                <ul class="nav nav-tabs">
+                <ul id="de_tabs" class="nav nav-tabs">
                   <li><a data-toggle="tab" href="#learn">學術性</a></li>
                   <li><a data-toggle="tab" href="#play">康樂性</a></li>
                   <li><a data-toggle="tab" href="#love">聯誼性</a></li>
@@ -20,20 +20,45 @@
                 </ul>
 
                   <div class="tab-content">
-                  <div id="learn" class="tab-pane fade in active">
+                  <div id="learn" class="tab-pane fade">
                     <h3 style="font-size:80px;">學術性</h3>
+                    <hr size="8px" align="center" width="100%">
+                    <ul class="breadcrumb">
+                      <li><a href="/groups">系所社團</a> <span class="divider"></span></li>
+                      <li><a href="/groups/club">社團</a> <span class="divider"></span></li>
+                      <li class="active">學術性社團</li>
+                    </ul>
                   </div>
                   <div id="play" class="tab-pane fade">
                     <h3 style="font-size:80px;">康樂性</h3>
+                    <hr size="8px" align="center" width="100%">
+                    <ul class="breadcrumb">
+                      <li><a href="/groups">系所社團</a> <span class="divider"></span></li>
+                      <li><a href="/groups/club">社團</a> <span class="divider"></span></li>
+                      <li class="active">康樂性社團</li>
+                    </ul>
                   </div>
                   <div id="love" class="tab-pane fade">
                     <h3 style="font-size:80px;">聯誼性</h3>
+                    <hr size="8px" align="center" width="100%">
+                    <ul class="breadcrumb">
+                      <li><a href="/groups">系所社團</a> <span class="divider"></span></li>
+                      <li><a href="/groups/club">社團</a> <span class="divider"></span></li>
+                      <li class="active">聯誼性社團</li>
+                    </ul>
                   </div>
                   <div id="service" class="tab-pane fade">
                     <h3 style="font-size:80px;">服務性</h3>
+                    <hr size="8px" align="center" width="100%">
+                    <ul class="breadcrumb">
+                      <li><a href="/groups">系所社團</a> <span class="divider"></span></li>
+                      <li><a href="/groups/club">社團</a> <span class="divider"></span></li>
+                      <li class="active">服務性社團</li>
+                    </ul>
                   </div>
                 </div>
               </div>
+              <input type='hidden' value='<%= firstClick%>' id="firstClick">
           </div>
         </div>
 
@@ -44,6 +69,12 @@
     </footer>
         <% include js %>
         <% include ../layouts/js %>
-
+    <script type="text/javascript">
+      $(document).ready(function(){
+        var one = $('#firstClick').val();
+        console.log(one);
+        $('#de_tabs a[href="#'+one+'"]').tab('show');
+      })
+    </script>  
 </body>
 </html>
