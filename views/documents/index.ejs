@@ -20,7 +20,7 @@
         </div>
 
         <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#add_model">新增</button>
-        <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#add_model">更改順序</button>
+        <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#change_order_model">更改順序</button>
 
         <!-- 新增model -->
         <div class="modal fade" id="add_model" role="dialog">
@@ -70,6 +70,32 @@
             </div>
         </div>
 
+        <!-- 修改排序model -->
+        <div class="modal fade" id="change_order_model" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">修改排序</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h5>大一新生—註冊報到</h5>
+                        <ul id="change_order_1">
+                            <%var I = 1; for (var i in for_freshman){ if (for_freshman[i].type=="大一新生—註冊報到"){%>
+                                <div id="<%-"one"+I%>" style="border-style: solid;border-width:1px;">
+                                    <li id="<%- "change_order"+for_freshman[i]._id %>" class="change_order_one"><%- for_freshman[i].name %></li>
+                                </div>
+                            <%I++;}}%>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
 
         <!--  修改model -->
         <div class="modal fade" id="edit_data_model" role="dialog">

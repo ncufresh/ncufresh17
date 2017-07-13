@@ -7,7 +7,7 @@ var shortId = require('shortid');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  for_freshman.find({}).exec(function(err,for_freshman){
+  for_freshman.find({}).sort({order:1}).exec(function(err,for_freshman){
     res.render('documents/index',{title: 'documents', for_freshman: for_freshman});
   });
 });
@@ -116,23 +116,22 @@ router.post('/insertimg/:id',function(req,res,next) {
 
       var readStream = fs.createReadStream(tmpPath)
       var writeStream = fs.createWriteStream(targetPath);
-      readStream.pipe(writeStream,function(){
+      readStream.on("end",function(){
+        for_freshman.update({_id:req.params.id},{
+          img_path:'/documents/' + fileName
+        },function(err){
+          if(err)
+            console.log(err);
+        });
+        console.log(fields.imgid);
+      })
+      .pipe(writeStream,function(){
         fs.unlink(tmpPath, function(err) {
           if(err)console.log("刪除暫存err")
           console.log('File Uploaded to ' + targetPath + ' - ' + uploadedFile.size + ' bytes');
         });
       });
-
-      for_freshman.update({_id:req.params.id},{
-        img_path:'/documents/' + fileName
-      },function(err){
-        if(err)
-          console.log(err);
-      });
-      console.log(fields.imgid);
-
   });
-
   res.redirect('/documents');
 })
 
