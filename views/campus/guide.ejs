@@ -9,13 +9,26 @@
     </header>
 
     <main>
-      <div class="container">
-
-
-        <div class="jumbotron">
-            <h1>This page is QQ <%= title  %></h1>
-            <p>Welcome to templating using EJS</p>
-        </div>
+        <div class="container-fluid">
+            <div style="margin-left:25px;margin-right:25px;">
+                <h1><%= title  %></h1>
+                <a href="/campus/editMap"><button class="btn btn-success new_building">編輯地圖物件</button></a>
+                <div class="row">
+                    <div class="col-xs-1" style="padding:0px;">
+                        <img class="mouse-animate" src="/campus/default/1.png" width="100%" alt="" style=" margin-top:25%; margin-bottom:25%; padding:0.5vh;">
+                        <img class="mouse-animate" src="/campus/default/2.png" width="100%" alt="" style=" margin-top:25%; margin-bottom:25%; padding:0.5vh;">
+                        <img class="mouse-animate" src="/campus/default/3.png" width="100%" alt="" style=" margin-top:25%; margin-bottom:25%; padding:0.5vh;">
+                    </div>
+                    <div class="col-xs-10">
+                        <img src="/campus/default/back.png" width="100%" alt="">  
+                    </div>
+                    <div class="col-xs-1" style="padding:0px;">
+                        <img class="mouse-animate" src="/campus/default/4.png" width="100%" alt="" style=" margin-top:25%; margin-bottom:25%; padding:0.5vh;">
+                        <img class="mouse-animate" src="/campus/default/5.png" width="100%" alt="" style=" margin-top:25%; margin-bottom:25%; padding:0.5vh;">
+                        <img class="mouse-animate" src="/campus/default/6.png" width="100%" alt="" style=" margin-top:25%; margin-bottom:25%; padding:0.5vh;">
+                    </div>
+                </div>
+            </div>       
         </div>
     </main>
 
