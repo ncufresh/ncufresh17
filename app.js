@@ -8,20 +8,9 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var multipart = require('connect-multiparty');
 var multipartMiddleware = multipart();
-
-var index = require('./routes/index');
-var users = require('./routes/users');
-
-var documents = require('./routes/documents');
-var QnA = require('./routes/QnA');
-var campus = require('./routes/campus');
-var groups = require('./routes/groups');
-var life = require('./routes/life');
-var smallgame = require('./routes/smallgame');
-var video = require('./routes/video');
-var personal = require('./routes/personal');
-var about = require('./routes/about');
-var aboutweb = require('./routes/aboutweb');
+var session  = require('express-session');
+var flash    = require('connect-flash');
+var passport = require('passport');
 
 var app = express();
 
@@ -37,10 +26,38 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({
+  secret:'ThisIsNcuFreshAndWeAreTheBest',
+  resave: true,
+  saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+
 // database config
 var configDB = require('./config/database');
 mongoose.Promise = global.Promise;
 mongoose.connect(configDB.url,{useMongoClient: true});
+
+// passport 認證
+require('./config/passport')(passport);
+var index = require('./routes/index')(passport);
+var users = require('./routes/users');
+
+var documents = require('./routes/documents');
+var QnA = require('./routes/QnA');
+var campus = require('./routes/campus');
+var groups = require('./routes/groups');
+var life = require('./routes/life');
+var smallgame = require('./routes/smallgame');
+var video = require('./routes/video');
+var personal = require('./routes/personal');
+var about = require('./routes/about');
+var aboutweb = require('./routes/aboutweb');
+
+
+
 
 // Routes
 app.use('/', index);
