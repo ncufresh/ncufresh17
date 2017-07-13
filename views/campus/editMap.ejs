@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../layouts/head %>
+</head>
+<body>
+    <header>
+        <% include ../layouts/navbar %>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="jumbotron">
+                <!--building add/edit Modal -->
+                <div class="modal fade" id="add_mapObj_modal" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">新增地圖物件</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/campus/newMapObj" method="post" accept-charset="utf-8">
+
+                                    <div class="form-group">
+                                        <label for="map_obj_id" class="control-label"><p>物件名稱</p></label>
+                                        <select name="map_obj_id" id="map_obj_id" class="form-control">
+                                            <option value="" selected="selected"></option>
+                                            <%for(var i in buildings){ %>
+                                                <option value="<%=buildings[i]._id%>"><%=buildings[i].name%></option>
+                                            <%}%>
+                                        </select>
+                                    </div>
+
+                                    <div class='form-group'>
+                                        <label for="x-position"><p>X座標</p></label>
+                                        <input type="text" name="x-position" value=0>
+                                    </div>
+
+                                    <div class='form-group'>
+                                        <label for="y-position"><p>Y座標</p></label>
+                                        <input type="text" name="y-position" value=0>
+                                    </div>
+
+                                    <label for="uploadMapImg" class="input-group">
+                                        <p>上傳圖片</p>
+                                        <input type="text" readonly class="form-control" id="img_path" name="img_path">
+                                        <div class="input-group-btn">
+                                            <span class="btn btn-default">
+                                                <i class="fa fa-file" aria-hidden="true"></i> 上傳
+                                            </span>
+                                        </div>
+                                    </label>
+                                    <input class="form-control" id="uploadMapImg" type="file" name="uploadMapImg" style="display: none;" accept="image/*" onchange="
+                                    this.form.img_path.value=this.value.substr(this.value.lastIndexOf('\\')+1);">
+                                    <button type="button" name="button" class="btn btn-primary">送出</button>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <h1><%= title  %></h1>
+                <button class="btn btn-success" data-toggle="modal" data-target="#add_mapObj_modal">新增地圖物件</button>
+                <a href="/campus/guide"><button class="btn btn-success">回前頁</button></a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <% include ../layouts/footer %>
+    </footer>
+        <% include js %>
+        <% include ../layouts/js %>
+</body>
+</html>

@@ -12,7 +12,8 @@ var img_list = mongoose.Schema({
         'default':Date.now()
     },
     build_id: String,
-    img_path: String
+    img_path: String,
+    fileName: String
 });
 
 module.exports = mongoose.model( 'img_list', img_list );

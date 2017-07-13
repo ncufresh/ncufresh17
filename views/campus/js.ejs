@@ -2,7 +2,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" type="text/javascript"></script>
 <script>
 $(document).ready(function(){
     $('select').css({
@@ -80,6 +80,7 @@ $(document).ready(function(){
             });
         }
     })
+
     $('#uploadImg').click(function(){
         var formData = new FormData($("#img_form")[0]);
         $.ajax({
@@ -102,6 +103,17 @@ $(document).ready(function(){
             }
         });
     })
+
+    $(".mouse-animate").mouseenter(function(){
+            $(this).animate({
+                padding:'0vh'
+            }, 200);
+    });
+    $(".mouse-animate").mouseleave(function(){
+            $(this).animate({
+                padding:'1vh'
+            }, 200);
+    });
 })
 </script>
 
