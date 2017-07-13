@@ -31,7 +31,7 @@ router.get('/editMap',function(req,res,next){
   building.find({}).sort({CreateDate:-1}).exec(function(err,buildings){
     res.render('campus/editMap',{ title: '編輯地圖物件', buildings: buildings});
   });
-})
+});
 
 router.get('/newData/:id',function(req,res,next){
   building.find({_id:req.params.id},function(err,data){
@@ -43,7 +43,7 @@ router.get('/get_img/:id',function(req,res,next){
   img_list.find({build_id:req.params.id},function(err,data){
     res.send(data);
   })
-})
+});
 
 router.get('/delete/:id',function(req,res,next){
   building.findById(req.params.id).remove().exec();
@@ -86,102 +86,102 @@ router.post('/add',function(req,res,next){
       updated_at:Date.now()
     }).save();
   }
-    res.redirect('/campus/newData');
+  res.redirect('/campus/newData');
 });
 
 router.post('/newMapObj',function(req,res,next){
   var form = new formidable.IncomingForm();
   form.parse(req, function(err, fields, files){
-      if(err){
-          console.log("上傳err");
-      }
-      // console.log('received fields: ');
-      // console.log(fields);
-      // console.log('received files: ');
-      // console.log(files);
+    if(err){
+        console.log("上傳err");
+    }
+    // console.log('received fields: ');
+    // console.log(fields);
+    // console.log('received files: ');
+    // console.log(files);
 
-      var uploadedFile = files.uploadingImg;
-      var tmpPath = uploadedFile.path;
-      var fileName =shortId.generate() + uploadedFile.name.substr(uploadedFile.name.lastIndexOf('.'));
-      var targetPath = './public/campus/' + fileName;
-      console.log(tmpPath);
-      console.log(targetPath);
-      // 跨分區會error
-      // fs.rename(tmpPath, targetPath, function(err) {
-      //   if (err){
-      //     console.log(err);
-      //   }
-      //   else{ 
-      //     fs.unlink(tmpPath, function() {
-      //       console.log('File Uploaded to ' + targetPath + ' - ' + uploadedFile.size + ' bytes');
-      //     });
-      //   }
-      // });
+    var uploadedFile = files.uploadingImg;
+    var tmpPath = uploadedFile.path;
+    var fileName =shortId.generate() + uploadedFile.name.substr(uploadedFile.name.lastIndexOf('.'));
+    var targetPath = './public/campus/' + fileName;
+    console.log(tmpPath);
+    console.log(targetPath);
+    // 跨分區會error
+    // fs.rename(tmpPath, targetPath, function(err) {
+    //   if (err){
+    //     console.log(err);
+    //   }
+    //   else{ 
+    //     fs.unlink(tmpPath, function() {
+    //       console.log('File Uploaded to ' + targetPath + ' - ' + uploadedFile.size + ' bytes');
+    //     });
+    //   }
+    // });
 
-      var readStream = fs.createReadStream(tmpPath)
-      var writeStream = fs.createWriteStream(targetPath);
-      new map_obj({
-        build_id:fields.map_obj_id,
-        path:'/campus/' + fileName,
-        fileName:fileName
-      }).save();
+    var readStream = fs.createReadStream(tmpPath)
+    var writeStream = fs.createWriteStream(targetPath);
+    new map_obj({
+      build_id:fields.map_obj_id,
+      path:'/campus/' + fileName,
+      fileName:fileName
+    }).save();
 
-      readStream.on("end",function(){
-        fs.unlink(tmpPath);
-      }).pipe(writeStream);
-      
-      
-      console.log(fields.imgid);
-})
+    readStream.on("end",function(){
+      fs.unlink(tmpPath);
+    }).pipe(writeStream);
+    
+    console.log(fields.imgid);
+  });
+});
 
 router.post('/imgUpload',function(req,res,next) {
 
   var form = new formidable.IncomingForm();
   form.parse(req, function(err, fields, files){
-      if(err){
-          console.log("上傳err");
-      }
-      // console.log('received fields: ');
-      // console.log(fields);
-      // console.log('received files: ');
-      // console.log(files);
+    if(err){
+        console.log("上傳err");
+    }
+    // console.log('received fields: ');
+    // console.log(fields);
+    // console.log('received files: ');
+    // console.log(files);
 
-      var uploadedFile = files.uploadingImg;
-      var tmpPath = uploadedFile.path;
-      var fileName =shortId.generate() + uploadedFile.name.substr(uploadedFile.name.lastIndexOf('.'));
-      var targetPath = './public/campus/' + fileName;
-      console.log(tmpPath);
-      console.log(targetPath);
-      // 跨分區會error
-      // fs.rename(tmpPath, targetPath, function(err) {
-      //   if (err){
-      //     console.log(err);
-      //   }
-      //   else{ 
-      //     fs.unlink(tmpPath, function() {
-      //       console.log('File Uploaded to ' + targetPath + ' - ' + uploadedFile.size + ' bytes');
-      //     });
-      //   }
-      // });
+    var uploadedFile = files.uploadingImg;
+    var tmpPath = uploadedFile.path;
+    var fileName =shortId.generate() + uploadedFile.name.substr(uploadedFile.name.lastIndexOf('.'));
+    var targetPath = './public/campus/' + fileName;
+    console.log(tmpPath);
+    console.log(targetPath);
+    // 跨分區會error
+    // fs.rename(tmpPath, targetPath, function(err) {
+    //   if (err){
+    //     console.log(err);
+    //   }
+    //   else{ 
+    //     fs.unlink(tmpPath, function() {
+    //       console.log('File Uploaded to ' + targetPath + ' - ' + uploadedFile.size + ' bytes');
+    //     });
+    //   }
+    // });
 
-      var readStream = fs.createReadStream(tmpPath)
-      var writeStream = fs.createWriteStream(targetPath);
-      var a=new img_list({
-        build_id:fields.imgid,
-        img_path:'/campus/' + fileName,
-        fileName:fileName
+    var readStream = fs.createReadStream(tmpPath)
+    var writeStream = fs.createWriteStream(targetPath);
+    var a=new img_list({
+      build_id:fields.imgid,
+      img_path:'/campus/' + fileName,
+      fileName:fileName
+    });
+    a.save();
+    readStream.on("end",function(){
+      fs.unlink(tmpPath,function(){
+        res.send(a);
       });
-      a.save();
-      readStream.on("end",function(){
-        fs.unlink(tmpPath,function(){
-          res.send(a);
-        });
-      }).pipe(writeStream);
-      
-      
-      console.log(fields.imgid);
+    }).pipe(writeStream);
+    
+    
+    console.log(fields.imgid);
   });
 
-})
+});
 
 module.exports = router;
