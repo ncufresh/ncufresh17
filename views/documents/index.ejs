@@ -3,15 +3,14 @@
 <head>
     <% include ../layouts/head %>
 </head>
-<body>
+<body">
     <header style="min-width: 100vw;">
         <% include ../layouts/navbar %>
     </header>
-
+    <p style="background-color: #00BFFF !important; font-family: Georgia, Garamond, serif; color:white; padding-bottom: 5vh; margin-bottom: 0px; font-size: 10vw; word-spacing: 0.2em; width:auto;" class="text-center container">Welcome to here.</p>
     <main  style=" background-color: #00BFFF !important; min-width: 100vw; max-width:100vw">
 
         <div class="container" style="margin-bottom: 50vh;">
-            <p style="font-family: Georgia, Garamond, serif; color:white; padding-bottom: 5vh;font-size: 10vw; word-spacing: 0.2em" class="text-center container">welcome to here</>
             <div class="row container">
                 <div class="col-xs-4"><img id="freshmen-source" style="display:inline-block; padding: 2vw;" class="img-responsive" alt="大一新生" src="大學生.png" /></div>
                 <div class="col-xs-4"><img id="master-freshmen-source" style="display:inline-block; padding: 2vw;" class="img-responsive" alt="研究生" src="研究生.png" /></div>
@@ -80,14 +79,32 @@
                         <h4 class="modal-title">修改排序</h4>
                     </div>
                     <div class="modal-body">
-                        <h5>大一新生—註冊報到</h5>
-                        <ul id="change_order_1">
-                            <%var I = 1; for (var i in for_freshman){ if (for_freshman[i].type=="大一新生—註冊報到"){%>
-                                <div id="<%-"one"+I%>" style="border-style: solid;border-width:1px;">
-                                    <li id="<%- "change_order"+for_freshman[i]._id %>" class="change_order_one"><%- for_freshman[i].name %></li>
-                                </div>
-                            <%I++;}}%>
-                        </ul>
+                        <form action="/documents/change_order" method="post" accept-charset="utf-8">
+
+                            <div class="form-group">
+                                <label for="type" class="control-label">類別</label>
+                                <select name="type" id="change_order_id" class="form-control">
+                                    <option selected="not_commonly_used_link" value="大一新生—註冊報到">大一新生—註冊報到</option>
+                                    <option selected="not_commonly_used_link" value="大一新生—新生週活動">大一新生—新生週活動</option>
+                                    <option selected="not_commonly_used_link" value="大一新生—共同課程及門檻">大一新生—共同課程及門檻</option>
+                                    <option selected="not_commonly_used_link" value="碩一新生—註冊報到">碩一新生—註冊報到</option>
+                                    <option selected="not_commonly_used_link" value="碩一新生—新生週活動">碩一新生—新生週活動</option>
+                                    <option selected="commonly_used_link" value="常用連結">常用連結</option>
+                                    <option selected="" value="">請選擇</option>
+                                </select>
+                            </div>
+
+                            <div class='form-group'>
+                                <select name="first_order" id="first_order" class="form-control">
+                                </select>
+                                <label style="display:inline-block;" for="content">與</label>
+                                <select name="second_order" id="second_order" class="form-control">
+                                </select>
+                                <label style="display:inline-block;" for="content">交換</label>
+                            </div>
+
+                            <button type="submit" name="button" class="btn btn-primary">送出</button>
+                        </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -206,29 +223,39 @@
                 <li role="presentation" class="text-center under-3-source"><a href="#under-3">共同課程及門檻</a></li>
             </ul>
             <div class="row container" id="under-1">
-                <% for (var i in for_freshman){%>
+                <%var temp=0; for (var i in for_freshman){%>
                     <% if ( for_freshman[i].type == "大一新生—註冊報到"){ %>
-                            <img style="display:inline-block; padding: 2vh !important;" class="img-responsive col-xs-3" id="<%- for_freshman[i].id%>" alt="<%- for_freshman[i].name %>" data-toggle="modal" data-target="#<%- for_freshman[i].id+"for_freshman"%>" src="<%-for_freshman[i].img_path%>" />
+                        <%temp++%>
+                        <%if(temp==4){%><div class="row container"><%}%>
+                            <img style="display:inline-block; padding: 2vw !important;" class="img-responsive col-xs-3" id="<%- for_freshman[i].id%>" alt="<%- for_freshman[i].name %>" data-toggle="modal" data-target="#<%- for_freshman[i].id+"for_freshman"%>" src="<%-for_freshman[i].img_path%>" />
+                        <%if(temp==4){%></div><%}%>
                     <%}%>
                 <%}%>
             </div>
             <div class="row container" id="under-2" style="display: none;">
-                <% for (var i in for_freshman){%>
+                <%var temp=0; for (var i in for_freshman){%>
                     <% if ( for_freshman[i].type == "大一新生—新生週活動"){ %>
+                        <%temp++%>
+                        <%if(temp==4){%><div class="row container"><%}%>
                         <img style="display:inline-block;  padding: 2vw !important;" class="img-responsive col-xs-3" id="<%- for_freshman[i].id%>" alt="<%- for_freshman[i].name %>" data-toggle="modal" data-target="#<%- for_freshman[i].id+"for_freshman"%>" src="<%-for_freshman[i].img_path%>" />
+                        <%if(temp==4){%></div><%}%>
                     <%}%>
                 <%}%>
             </div>
             <div class="row container" id="under-3" style="display: none;">
-                <% for (var i in for_freshman){%>
+                <%var temp=0; for (var i in for_freshman){%>
                     <% if ( for_freshman[i].type == "大一新生—共同課程及門檻"){ %>
+                        <%temp++%>
+                        <%if(temp==4){%><div class="row container"><%}%>
                         <img style="display:inline-block;  padding: 2vw !important;" class="img-responsive col-xs-3" id="<%- for_freshman[i].id%>" alt="<%- for_freshman[i].name %>" data-toggle="modal" data-target="#<%- for_freshman[i].id+"for_freshman"%>" src="<%-for_freshman[i].img_path%>" />
+                        <%if(temp==4){%></div><%}%>
                     <%}%>
                 <%}%>
             </div>
         </section>
         <!--大一新生 end-->
 
+        <%#fjdljfdljsa%>
         <!--碩一新生 start-->
         <section class="container" id="master-freshmen-distaination" style="display:none;">
             <h1 class="text-center">碩一新生</h1>
@@ -237,16 +264,22 @@
                 <li role="presentation" class="text-center under-5-source"><a href="#under-5">新生週活動</a></li>
             </ul>
             <div class="row container" id="under-4">
-                <% for (var i in for_freshman){%>
+                <%var temp=0; for (var i in for_freshman){%>
                     <% if ( for_freshman[i].type == "碩一新生—註冊報到"){ %>
+                        <%temp++%>
+                        <%if(temp==4){%><div class="row container"><%}%>
                         <img style="display:inline-block;  padding: 2vw !important;" class="img-responsive col-xs-3" id="<%- for_freshman[i].id%>" alt="<%- for_freshman[i].name %>" data-toggle="modal" data-target="#<%- for_freshman[i].id+"for_freshman"%>" src="<%-for_freshman[i].img_path%>" />
+                        <%if(temp==4){%></div><%}%>
                     <%}%>
                 <%}%>
             </div>
             <div class="row container" id="under-5" style="display: none;">
-                <% for (var i in for_freshman){%>
+                <%var temp=0; for (var i in for_freshman){%>
                     <% if ( for_freshman[i].type == "碩一新生—新生週活動"){ %>
+                        <%temp++%>
+                        <%if(temp==4){%><div class="row container"><%}%>
                         <img style="display:inline-block;  padding: 2vw !important;" class="img-responsive col-xs-3" id="<%- for_freshman[i].id%>" alt="<%- for_freshman[i].name %>" data-toggle="modal" data-target="#<%- for_freshman[i].id+"for_freshman"%>" src="<%-for_freshman[i].img_path%>" />
+                        <%if(temp==4){%></div><%}%>
                     <%}%>
                 <%}%>
             </div>
@@ -262,10 +295,10 @@
                     <button style="width: 96vw" class="btn btn-danger btn-lg btn-block edit_data" value="<%- for_freshman[i].id%>"><i class="fa fa-apple fa-lg"></i><%-"編輯 "+for_freshman[i].name%></button>
                 <%}%>
             <%}%>
-            <div class="row container" style="width: 96vw">
+            <div class="row container" style="width: 96vw;">
                 <% for (var i in for_freshman){%>
                     <% if ( for_freshman[i].type == "常用連結"){ %>
-                        <div class="thumbnail col-xs-3" style=" position:relative; border-width: 0px !important; margin: 2vw !important;">
+                        <div class="thumbnail col-xs-3" style=" position:relative; border-width: 0px !important; background-color: rgba(0%, 0%, 0%, 0)">
                             <a href="<%-for_freshman[i].content%>">
                                 <img style="display:inline-block;" id="<%- for_freshman[i].id%>" alt="<%- for_freshman[i].name %>" src="<%- for_freshman[i].img_path%>" />
                                 <p  id="<%- for_freshman[i].id+"link"%>" style="font-size: 2vw; top:9vw; left:8vw; position: absolute; opacity: 0;">按我前往</p>
@@ -279,7 +312,9 @@
             <polygon points="100,0 0,173.205080756887729 100,346.410161513775459 300,346.410161513775459 400,173.205080756887729 300,0" style="fill:lime;stroke:purple;stroke-width:1" />
         </svg> -->
     </main>
+    <style type="text/css">
 
+    </style>
     <footer>
         <% include ../layouts/footer %>
     </footer>
