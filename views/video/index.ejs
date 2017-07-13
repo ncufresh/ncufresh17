@@ -2,6 +2,21 @@
 <html lang="en">
 <head>
     <% include ../layouts/head %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $(".cc").mouseenter(function(){
+                $(this).animate({
+                    padding:'0px'
+                }, 200);
+        });
+        $(".cc").mouseleave(function(){
+                $(this).animate({
+                    padding:'2vh'
+                }, 200);
+        });
+    });
+    </script>
 </head>
 <body>
     <header>
@@ -29,15 +44,12 @@
             </div>
             <div class="row">
                 <div class="col-xs-1"><img src=""/></div>
-                <div class="col-xs-5"><a href="/video/life"><img src="/video/圖片1.png" class="img-responsive" alt="生活BTN"/></a></div>
-                <div class="col-xs-5"><a href="/video/interview"><img src="/video/圖片2.png" class="img-responsive" alt="採訪BTN"/></a></div>
+                <div class="col-xs-5"><a href="/video/life"><img style="padding: 2vh;" src="/video/圖片1.png" class="img-responsive cc" alt="生活BTN"/></a></div>
+                <div class="col-xs-5"><a href="/video/interview"><img style="padding: 2vh;" src="/video/圖片2.png" class="img-responsive cc" alt="採訪BTN"/></a></div>
                 <div class="col-xs-1"><img src=""/></div>
             </div>
         </div>
     </main>
-
-
-
 
     <footer>
         <% include ../layouts/footer %>
