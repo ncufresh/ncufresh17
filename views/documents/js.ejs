@@ -119,11 +119,6 @@ $(document).ready(function(){
                 padding:'2vh'
             }, 200);
     });
-    <% for(var i=1;i<=100;i++){ %>
-        $("#<%- "one"+i%>").droppable({
-          accept: "ui-draggable"
-        });
-    <%}%>
     <% for (var i in for_freshman){%>
         $("#<%- for_freshman[i].id%>").mouseenter(function(){
             if ("<%-for_freshman[i].type%>"!="常用連結"){
