@@ -45,6 +45,17 @@ $(document).ready(function(){
 
         });
     })
+    $('#change_order_id').change(function(){
+        $('#first_order').html("");
+        $('#second_order').html("");
+        <%for (var i in for_freshman){%>
+            if($(this).find(':selected').text()=="<%-for_freshman[i].type%>"){
+                $('#first_order').html($('#first_order').html()+'<option value="<%-for_freshman[i].order%>"><%-for_freshman[i].order%></option>');
+                $('#second_order').html($('#second_order').html()+'<option value="<%-for_freshman[i].order%>"><%-for_freshman[i].order%></option>');
+            }
+        <%}%>
+
+    });
     $('.delete_data').click(function(){
         if(confirm("確定要刪除?")){
             var id = $(this).val();
@@ -114,7 +125,6 @@ $(document).ready(function(){
         });
     <%}%>
     <% for (var i in for_freshman){%>
-        $("#<%- "change_order"+for_freshman[i].id%>").draggable();
         $("#<%- for_freshman[i].id%>").mouseenter(function(){
             if ("<%-for_freshman[i].type%>"!="常用連結"){
 		        $(this).animate({

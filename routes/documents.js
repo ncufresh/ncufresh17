@@ -83,6 +83,35 @@ router.post('/update',function(req,res,next){
   res.redirect('/documents');
 });
 
+router.post('/change_order',function(req,res,next){
+  console.log(req.body.type);
+  console.log(req.body.first_order);
+  console.log(req.body.second_order);
+  var first_order = req.body.first_order.toString();
+  var second_order = req.body.second_order.toString();
+  for_freshman.update({type:req.body.type,order:first_order},{
+    order:0
+  },function(err){
+    if(err)
+      console.log(err);
+    for_freshman.update({type:req.body.type,order:second_order},{
+      order:first_order
+    },function(err){
+      if(err)
+        console.log(err);
+      for_freshman.update({type:req.body.type,order:0},{
+        order:second_order
+      },function(err){
+        if(err)
+          console.log(err);
+      });
+    });
+  });
+  
+  
+  res.redirect('/documents');
+});
+
 router.post('/insertimg/:id',function(req,res,next) {
 
   var form = new formidable.IncomingForm();
