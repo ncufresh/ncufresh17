@@ -9,10 +9,10 @@
         <% include ../layouts/navbar %>
     </header>
 
-    <main class="container">
-        <div class="jumbotron row" style="overflow:auto;">
+    <main class="container" style="position:center;">
+        <div class="jumbotron row" style="overflow:auto; background-color: #00BFFF !important;">
             <div class="col-md-6" style="padding-left:50px; padding-right:50px;">
-                <h1>個人專區</h1>
+                <h1 style="font-family:Microsoft JhengHei; color:white;">個人專區</h1>
 
                 <div class="well" id="profile" style="height:150px; text-align:center;">
 
@@ -36,8 +36,8 @@
                                 </div>
                                 
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">No_Way!</button>
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Confirm</button>
+                                    <button type="button" class="btn btn-default" onclick="uploadPhoto()" data-dismiss="modal">Confirm</button>
+                                    <button type="button" class="btn btn-default" onclick="cancelUpload()" data-dismiss="modal">No_Way!</button>
                                 </div>
                                 
                             </div>
@@ -45,13 +45,15 @@
                         </div>
                     </div>
                     <!---->
-                    <span id="img_title" style="vertical-align: middle;"><font size="6">大頭貼</font></span>
+                    <span id="img_title"><font size="8">大頭貼</font></span>
             
                 </div>
-
-                <input type="button" onclick="self.location.href='/smallgame'" style="margin-left:160px; background-image:url('/大一新生.png');
-                    width: 100px; height: 100px; background-size: contain; background-repeat: no-repeat; background-position: center;">
-
+                
+                <h2 style="font-size:320%; float:left; margin:25px 0px 0px 15px;">小遊戲GOGO</h2>
+                <a href="/smallgame">
+                    <img src="/松鼠02.png" style="margin-left:20px; width: 100px; height: 100px;"/> 
+                </a>
+                
             </div>
             
             <div class="col-md-6" id="Q-A">
@@ -69,28 +71,28 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr data-toggle="modal" data-target="#QA-Modal1">
+                                <tr data-toggle="modal" data-target="#QA-Modal" class="openModal">
                                     <td>1</td>
                                     <td>大便</td>
                                     <td>7/4</td>
                                     <td>到處都有廁所嗎</td>
                                 </tr>
-                                <tr data-toggle="modal" data-target="#QA-Modal2">
+                                <tr data-toggle="modal" data-target="#QA-Modal" class="openModal">
                                     <td>2</td>
                                     <td>吃飯</td>
                                     <td>7/7</td>
                                     <td>聽說中央都吃大便，是真的嗎？</td>
                                 </tr>
-                                <tr data-toggle="modal" data-target="#QA-Modal">
+                                <tr data-toggle="modal" data-target="#QA-Modal" class="openModal">
                                     <td>3</td>
                                     <td>隨便</td>
                                     <td>7/10</td>
                                     <td>wwwwww</td>
                                 </tr>
 
-                                <% for(var i=0; i<4; i++) {%>
+                                <% for(var i=0; i<4; i++) { %>
                                     <% var index = i + 4 %>
-                                    <tr data-toggle="modal" data-target="#QA-Modal">
+                                    <tr data-toggle="modal" data-target="#QA-Modal" class="openModal">
                                         <td> <%= index %> </td>
                                         <td>test</td>
                                         <td>7/14</td>
@@ -103,7 +105,7 @@
                         
                     </div>
                     
-                    <!--//////////////////-->
+                    <!--/////////  Q&A Modal Setting  //////////-->
                     <div class="modal fade" id="QA-Modal" role="dialog">
                         <div class="modal-dialog">
                         
@@ -112,7 +114,7 @@
                             
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h3 class="modal-title">Title:</h3>
+                                    <h3 class="modal-title" id="tt"></h3>
                                 </div>
                                 
                                 <div id="qesField" class="modal-body"></div>
@@ -126,12 +128,13 @@
                         
                         </div>
                     </div>
-                    <!--//////////////////-->
+                    <!--/////////  Q&A Modal Setting  //////////-->
                 </div>
             </div>
 
         </div>
         </div>
+
     </main>
 
     <footer>
@@ -143,6 +146,11 @@
 </html>
 
 <style>
+
+    h2 {
+        font-family:Microsoft JhengHei; 
+        color:white;
+    }
 
     .table-hover tbody tr:hover td {
         background-color: #a9b4c6;
