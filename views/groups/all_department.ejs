@@ -12,7 +12,8 @@
           <br>
           <div class="jumbotron">
               <div class="container">
-                <ul class="nav nav-tabs">
+              
+                <ul id="de_tabs" class="nav nav-tabs">
                   <li><a data-toggle="tab" href="#literature">文學院</a></li>
                   <li><a data-toggle="tab" href="#science">理學院</a></li>
                   <li><a data-toggle="tab" href="#engineering">工學院</a></li>
@@ -26,34 +27,89 @@
 
                   <div class="tab-content">
                   <div id="literature" class="tab-pane fade">
+                  <ul class="breadcrumb">
+                    <li><a href="/groups">系所社團</a> <span class="divider"></span></li>
+                    <li><a href="/groups/department">系所</a> <span class="divider"></span></li>
+                    <li class="active">文學院</li>
+                  </ul>
                     <h3 style="font-size:80px;">文學院</h3>
+                    <hr size="8px" align="center" width="100%">
                   </div>
                   <div id="science" class="tab-pane fade">
+                  <ul class="breadcrumb">
+                    <li><a href="/groups">系所社團</a> <span class="divider"></span></li>
+                    <li><a href="/groups/department">系所</a> <span class="divider"></span></li>
+                    <li class="active">理學院</li>
+                  </ul>
                     <h3 style="font-size:80px;">理學院</h3>
+                    <hr size="8px" align="center" width="100%">
                   </div>
                   <div id="engineering" class="tab-pane fade">
+                  <ul class="breadcrumb">
+                    <li><a href="/groups">系所社團</a> <span class="divider"></span></li>
+                    <li><a href="/groups/department">系所</a> <span class="divider"></span></li>
+                    <li class="active">工學院</li>
+                  </ul>
                     <h3 style="font-size:80px;">工學院</h3>
+                    <hr size="8px" align="center" width="100%">
                   </div>
                   <div id="management" class="tab-pane fade">
+                  <ul class="breadcrumb">
+                    <li><a href="/groups">系所社團</a> <span class="divider"></span></li>
+                    <li><a href="/groups/department">系所</a> <span class="divider"></span></li>
+                    <li class="active">管理學院</li>
+                  </ul>
                     <h3 style="font-size:80px;">管理學院</h3>
+                    <hr size="8px" align="center" width="100%">
                   </div>
                   <div id="ceecs" class="tab-pane fade">
+                  <ul class="breadcrumb">
+                    <li><a href="/groups">系所社團</a> <span class="divider"></span></li>
+                    <li><a href="/groups/department">系所</a> <span class="divider"></span></li>
+                    <li class="active">資訊電資學院</li>
+                  </ul>
                     <h3 style="font-size:80px;">資訊電資學院</h3>
+                    <hr size="8px" align="center" width="100%">
                   </div>
                   <div id="earth" class="tab-pane fade">
+                  <ul class="breadcrumb">
+                    <li><a href="/groups">系所社團</a> <span class="divider"></span></li>
+                    <li><a href="/groups/department">系所</a> <span class="divider"></span></li>
+                    <li class="active">地球科學學院</li>
+                  </ul>
                     <h3 style="font-size:80px;">地球科學學院</h3>
+                    <hr size="8px" align="center" width="100%">
                   </div>
                   <div id="hikka" class="tab-pane fade">
+                  <ul class="breadcrumb">
+                    <li><a href="/groups">系所社團</a> <span class="divider"></span></li>
+                    <li><a href="/groups/department">系所</a> <span class="divider"></span></li>
+                    <li class="active">客家學院</li>
+                  </ul>
                     <h3 style="font-size:80px;">客家學院</h3>
+                    <hr size="8px" align="center" width="100%">
                   </div>
                   <div id="chst" class="tab-pane fade">
+                  <ul class="breadcrumb">
+                    <li><a href="/groups">系所社團</a> <span class="divider"></span></li>
+                    <li><a href="/groups/department">系所</a> <span class="divider"></span></li>
+                    <li class="active">生醫理工學院</li>
+                  </ul>
                     <h3 style="font-size:80px;">生醫理工學院</h3>
+                    <hr size="8px" align="center" width="100%">
                   </div>
                   <div id="space" class="tab-pane fade">
+                  <ul class="breadcrumb">
+                    <li><a href="/groups">系所社團</a> <span class="divider"></span></li>
+                    <li><a href="/groups/department">系所</a> <span class="divider"></span></li>
+                    <li class="active">太空及遙測學位中心</li>
+                  </ul>
                     <h3 style="font-size:80px;">太空及遙測學位中心</h3>
+                    <hr size="8px" align="center" width="100%">
                   </div>
                 </div>
               </div>
+              <input type='hidden' value='<%= firstClick%>' id="firstClick">
           </div>
         </div>
 
@@ -64,6 +120,12 @@
     </footer>
         <% include js %>
         <% include ../layouts/js %>
-
+    <script type="text/javascript">
+      $(document).ready(function(){
+        var one = $('#firstClick').val();
+        console.log(one);
+        $('#de_tabs a[href="#'+one+'"]').tab('show');
+      })
+    </script>  
 </body>
 </html>
