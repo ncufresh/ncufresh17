@@ -8,7 +8,7 @@ var shortId = require('shortid');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   for_freshman.find({}).sort({order:1}).exec(function(err,for_freshman){
-    res.render('documents/index',{title: 'documents', for_freshman: for_freshman});
+    res.render('documents/index',{title: 'documents', for_freshman: for_freshman, user: req.user});
   });
 });
 

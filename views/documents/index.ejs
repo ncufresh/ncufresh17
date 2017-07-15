@@ -293,6 +293,7 @@
                 <% if ( for_freshman[i].type == "常用連結"){ %>
                     <button style="width: 96vw" type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#<%- for_freshman[i].id+"insertimg"%>"><%-"上傳 "+for_freshman[i].name+" 的圖片"%></button>
                     <button style="width: 96vw" class="btn btn-danger btn-lg btn-block edit_data" value="<%- for_freshman[i].id%>"><i class="fa fa-apple fa-lg"></i><%-"編輯 "+for_freshman[i].name%></button>
+                    <button style="width: 96vw" class="btn btn-success btn-lg btn-block delete_data" value="<%= for_freshman[i].id%>" data-dismiss="modal"><i class="fa fa-trash-o fa-lg"></i><%-"刪除 "+for_freshman[i].name%></button>
                 <%}%>
             <%}%>
             <div class="row container" style="width: 96vw;">
