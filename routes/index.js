@@ -86,10 +86,10 @@ module.exports = function(passport) {
     var client_secret = '19856e10b37e92998633e72477c4806ca8d368326d12e8b864e9fac09316e92ce242ca755f1a8d6e23b35e64393a2cfd7979c192fa605458ab312bfb18514e06';
     var urll = root + '/oauth/token';
     axios.post(urll, {
-      grant_type: 'authorization_code',
-      code: req.query.code,
-      client_id: client_id,
-      client_secret: client_secret
+      'grant_type': 'authorization_code',
+      'code': req.query.code,
+      'client_id': client_id,
+      'client_secret': client_secret
     })
     .then(function (response) {
       res.send(response);
