@@ -70,17 +70,17 @@ module.exports = function(passport) {
     });
   }));
 
-  passport.use('provider', new OAuth2Strategy({
-      authorizationURL: 'https://api.cc.ncu.edu.tw/oauth/oauth/authorize',
-      tokenURL: 'https://api.cc.ncu.edu.tw/oauth/oauth/token',
-      clientID: 'NjVlNTZjMjktYWViZC00M2YyLTk0NTctNDk3NTY5NjQ0NmM5',
-      clientSecret: '19856e10b37e92998633e72477c4806ca8d368326d12e8b864e9fac09316e92ce242ca755f1a8d6e23b35e64393a2cfd7979c192fa605458ab312bfb18514e06',
-      callbackURL: 'ncufresh17.tk:3000/auth/provider/callback'
-    },
-    function(accessToken, refreshToken, profile, done) {
-      console.log(accessToken);
-    }
-  ));
+  // passport.use('provider', new OAuth2Strategy({
+  //     authorizationURL: 'https://api.cc.ncu.edu.tw/oauth/oauth/authorize',
+  //     tokenURL: 'https://api.cc.ncu.edu.tw/oauth/oauth/token',
+  //     clientID: 'NjVlNTZjMjktYWViZC00M2YyLTk0NTctNDk3NTY5NjQ0NmM5',
+  //     clientSecret: '19856e10b37e92998633e72477c4806ca8d368326d12e8b864e9fac09316e92ce242ca755f1a8d6e23b35e64393a2cfd7979c192fa605458ab312bfb18514e06',
+  //     callbackURL: 'ncufresh17.tk:3000/auth/provider/callback'
+  //   },
+  //   function(accessToken, refreshToken, profile, done) {
+  //     console.log(accessToken);
+  //   }
+  // ));
 
 
 

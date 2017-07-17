@@ -32,7 +32,7 @@ router.get('/all_department', function(req, res, next) {
 	department.find({}).exec(function(err,department){
 	var url_parts = url.parse(req.url, true);
 	var query = url_parts.query;
-  res.render('groups/all_department', { 
+  res.render('groups/all_department', {
   	title: 'groups',
   	user: req.user,
   	firstClick: req.query.dep,
@@ -44,7 +44,7 @@ router.get('/all_club', function(req, res, next) {
 	club.find({}).exec(function(err,club){
 	var url_parts = url.parse(req.url, true);
 	var query = url_parts.query;
-  res.render('groups/all_club', { 
+  res.render('groups/all_club', {
   	title: 'groups',
   	user: req.user,
   	firstClick: req.query.club,
@@ -81,4 +81,3 @@ router.post('/add_club', function(req, res, next) {
 
 
 module.exports = router;
-
