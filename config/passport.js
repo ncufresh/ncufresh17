@@ -74,8 +74,8 @@ module.exports = function(passport) {
       authorizationURL: 'https://api.cc.ncu.edu.tw/oauth/oauth/authorize',
       tokenURL: 'https://api.cc.ncu.edu.tw/oauth/oauth/token',
       clientID: 'NjVlNTZjMjktYWViZC00M2YyLTk0NTctNDk3NTY5NjQ0NmM5',
-      clientSecret: '8833036ce15345e4705d54c6ae9f10b18eb8e6cb9ecf6c77ac945655aa6d36e4a8e1c64de14887ef4575b39d835ff223d9edb05635cdc2b0a1912e8d28c2c221',
-      // callbackURL: 'ncufresh17.tk:3000/auth/provider/callback'
+      clientSecret: '19856e10b37e92998633e72477c4806ca8d368326d12e8b864e9fac09316e92ce242ca755f1a8d6e23b35e64393a2cfd7979c192fa605458ab312bfb18514e06',
+      callbackURL: 'ncufresh17.tk:3000/auth/provider/callback'
     },
     function(accessToken, refreshToken, profile, done) {
       console.log(accessToken);

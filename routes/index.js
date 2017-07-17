@@ -73,7 +73,9 @@ module.exports = function(passport) {
 
   router.get('/auth/provider/callback',
   passport.authenticate('provider', { successRedirect: '/',
-                                      failureRedirect: '/login' }));
+                                      failureRedirect: '/login' }),function(){
+                                        
+                                      });
 
   //Todo test
   router.get('/todo', function(req, res, next) {
