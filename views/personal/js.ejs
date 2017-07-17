@@ -1,20 +1,14 @@
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-
 <script>
 
-/// previewe from uploaded image
+/// Preview uploaded image
     $("#uploadImage").change(function() {
         readImage( this );
     });
 
     function readImage(input) {
         if ( input.files && input.files[0] ) {
-            $("#img_title").remove();
             $('#myModal').modal('show');
-            
+            $("#img_title").remove();
             var FR= new FileReader();
             FR.onload = function(e) {
                 //e.target.result = base64 format picture
@@ -25,21 +19,31 @@
 
         }
     }
+
+/// Confirm/Cancel upload image
+
+    function uploadPhoto() {
+        alert("confirm");
+    }
+
+    function cancelUpload() {
+        alert("cancel");
+        $('#img').attr( "src", "");
+        $('#profile').append('<span id="img_title"><font size="8">大頭貼</font></span>');
+    }
+
 /// Q-A table action
+    
+    $(document).ready(function(){
+        $('.openModal').on('click', function(){
 
-    $(function(){
-        $('#QA-Modal').modal({
-            keyboard: true,
-            backdrop: "static",
-            show:false,
+            var titleText = $(this).closest('tr').find('td:eq(3)').text();
+            var qesText = $(this).closest('tr').find('td:eq(3)').text();
+            var ansText = $(this).closest('tr').find('td:eq(3)').text();
             
-        }).on('show', function(){
-            alert("123");
-            var qesText = $(event.target).closest('tr').find('td:eq(1)').text();
-            var ansText = $(event.target).closest('tr').find('td:eq(3)').text();
-
-            $(this).find('#qesField').html($('<b> Question: ' + qesText  + '</b>'));
-            $(this).find('#ansField').html($('<b> Answer: ' + ansText + '</b>'));
+            $('#tt').html('標題: ' + titleText);
+            $('#qesField').html($('<b> Question: ' + qesText  + '</b>'));
+            $('#ansField').html($('<b> Answer:  asdfasdf </b>'));
         });
     });
 

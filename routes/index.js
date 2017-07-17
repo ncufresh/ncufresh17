@@ -49,7 +49,7 @@ module.exports = function(passport) {
 
 
   //處理登入
-  router.post('/login', passport.authenticate('local-login', {
+  router.post('/login',isLoggedIn, passport.authenticate('local-login', {
     successRedirect : '/profile', // 成功則導入profile
     failureRedirect : '/login',   // 失敗則返回登入頁
     failureFlash : true // 允許 flash 訊息
@@ -61,7 +61,13 @@ module.exports = function(passport) {
     res.redirect('/');
   });
 
+  //portal 登入
 
+  router.get('/auth/provider', passport.authenticate('provider',{ scope: 'user.info.basic.read' }));
+
+  router.get('/auth/provider/callback',
+  passport.authenticate('provider', { successRedirect: '/',
+                                      failureRedirect: '/login' }));
 
   //Todo test
   router.get('/todo', function(req, res, next) {

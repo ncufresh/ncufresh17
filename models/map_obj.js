@@ -7,6 +7,8 @@ var map_obj = mongoose.Schema({
     unique: true,
     'default': shortId.generate
     },
+    build_name  : String,
+    build_type  : String,
     build_id    : String,
     path        : String,
     fileName    : String,

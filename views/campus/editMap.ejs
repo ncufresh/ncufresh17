@@ -11,7 +11,7 @@
     <main>
         <div class="container">
             <div class="jumbotron">
-                <!--building add/edit Modal -->
+                <!-- 新增表單 -->
                 <div class="modal fade" id="add_mapObj_modal" role="dialog">
                     <div class="modal-dialog modal-lg">
                         <!-- Modal content-->
@@ -21,11 +21,12 @@
                                 <h4 class="modal-title">新增地圖物件</h4>
                             </div>
                             <div class="modal-body">
-                                <form action="/campus/newMapObj" method="post" accept-charset="utf-8">
+                                
+                                <form action="/campus/newMapObj" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 
                                     <div class="form-group">
                                         <label for="map_obj_id" class="control-label"><p>物件名稱</p></label>
-                                        <select name="map_obj_id" id="map_obj_id" class="form-control">
+                                        <select name="map_obj_id" class="form-control">
                                             <option value="" selected="selected"></option>
                                             <%for(var i in buildings){ %>
                                                 <option value="<%=buildings[i]._id%>"><%=buildings[i].name%></option>
@@ -35,12 +36,12 @@
 
                                     <div class='form-group'>
                                         <label for="x-position"><p>X座標</p></label>
-                                        <input type="text" name="x-position" value=0>
+                                        <input type="text" name="x_position" value=0>
                                     </div>
 
                                     <div class='form-group'>
                                         <label for="y-position"><p>Y座標</p></label>
-                                        <input type="text" name="y-position" value=0>
+                                        <input type="text" name="y_position" value=0>
                                     </div>
 
                                     <label for="uploadMapImg" class="input-group">
@@ -54,7 +55,7 @@
                                     </label>
                                     <input class="form-control" id="uploadMapImg" type="file" name="uploadMapImg" style="display: none;" accept="image/*" onchange="
                                     this.form.img_path.value=this.value.substr(this.value.lastIndexOf('\\')+1);">
-                                    <button type="button" name="button" class="btn btn-primary">送出</button>
+                                    <button type="submit" name="button" class="btn btn-primary">送出</button>
                                 </form>
                             </div>
                             <div class="modal-footer">
@@ -64,9 +65,79 @@
 
                     </div>
                 </div>
+
+                <!-- 編輯表單 -->
+                <div class="modal fade" id="edit_mapObj_modal" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">新增地圖物件</h4>
+                            </div>
+                            <div class="modal-body">
+                                
+                                <form action="/campus/newMapObj" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+
+                                    <div class='form-group'>
+                                        <label for="x-position"><p>X座標</p></label>
+                                        <input type="text" name="x_position" id="x-position" value=0>
+                                    </div>
+
+                                    <div class='form-group'>
+                                        <label for="y-position"><p>Y座標</p></label>
+                                        <input type="text" name="y_position" id="y-position" value=0>
+                                    </div>
+
+                                    <div class='form-group'>
+                                        <label for="size"><p>Size</p></label>
+                                        <input type="text" name="size" id="size" value=0>
+                                    </div>
+
+                                    <button type="submit" name="button" class="btn btn-primary" >送出</button>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <h1><%= title  %></h1>
                 <button class="btn btn-success" data-toggle="modal" data-target="#add_mapObj_modal">新增地圖物件</button>
                 <a href="/campus/guide"><button class="btn btn-success">回前頁</button></a>
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th><p>名稱</p></th>
+                            <th><p>圖片</p></th>
+                            <th><p>X座標</p></th>
+                            <th><p>Y座標</p></th>
+                            <th><p>size</p></th>
+                            <th><p>編輯</p></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    <% for(var i in map_objs){ %>
+                        <tr class = "mapObj_table" value="<%= map_objs[i]._id %>" >
+                            <td></td>
+                            <td class="build_name"><p><%= map_objs[i].build_name %></p></td>
+                            <td class="build_img"><img src="<%= map_objs[i].path %>" width="100%"></img></td>
+                            <td class="build_x"><p><%= map_objs[i].x_position %></p></td>
+                            <td class="build_y"><p><%= map_objs[i].y_position %></p></td>
+                            <td class="build_size"><p><%= map_objs[i].size %></p></td>
+                            <td>
+                                <button class="btn btn-default btn-xs edit_mapObj" value="<%= map_objs[i].id%>">編輯</button>
+                                <button class="btn btn-danger btn-xs delete_mapObj" value="<%= map_objs[i].id%>"><i class="fa fa-trash-o fa-lg"></i> 刪除</button>
+                            </td>
+                        </tr>
+                    <% } %>
+                    </tbody>
+                </table>
             </div>
         </div>
     </main>

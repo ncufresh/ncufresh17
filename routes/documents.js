@@ -8,7 +8,7 @@ var shortId = require('shortid');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   for_freshman.find({}).sort({order:1}).exec(function(err,for_freshman){
-    res.render('documents/index',{title: 'documents', for_freshman: for_freshman});
+    res.render('documents/index',{title: 'documents', for_freshman: for_freshman, user: req.user});
   });
 });
 
@@ -80,6 +80,35 @@ router.post('/update',function(req,res,next){
   console.log(req.body.name);
   console.log(req.body.type);
   console.log(req.body.Content);
+  res.redirect('/documents');
+});
+
+router.post('/change_order',function(req,res,next){
+  console.log(req.body.type);
+  console.log(req.body.first_order);
+  console.log(req.body.second_order);
+  var first_order = req.body.first_order.toString();
+  var second_order = req.body.second_order.toString();
+  for_freshman.update({type:req.body.type,order:first_order},{
+    order:0
+  },function(err){
+    if(err)
+      console.log(err);
+    for_freshman.update({type:req.body.type,order:second_order},{
+      order:first_order
+    },function(err){
+      if(err)
+        console.log(err);
+      for_freshman.update({type:req.body.type,order:0},{
+        order:second_order
+      },function(err){
+        if(err)
+          console.log(err);
+      });
+    });
+  });
+  
+  
   res.redirect('/documents');
 });
 
