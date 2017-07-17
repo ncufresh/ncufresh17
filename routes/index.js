@@ -1,8 +1,11 @@
 var express = require('express');
 var router = express.Router();
+var axios = require('axios');
 
 var async = require('async');
 var Todo = require('../models/Todo');
+var url = require('url');
+
 
 module.exports = function(passport) {
 
@@ -72,7 +75,28 @@ module.exports = function(passport) {
   router.get('/auth/provider/callback',isLoggedIn, function(req, res, next){
     var url_parts = url.parse(req.url, true);
   	var query = url_parts.query;
-    return req.query.code;
+    //decline
+    if(!req.query.code){
+      res.redirect('/login');
+    }
+    // res.send("code existing");
+    // api
+    var root = 'https://api.cc.ncu.edu.tw/oauth';
+    var client_id = 'NjVlNTZjMjktYWViZC00M2YyLTk0NTctNDk3NTY5NjQ0NmM5';
+    var client_secret = '19856e10b37e92998633e72477c4806ca8d368326d12e8b864e9fac09316e92ce242ca755f1a8d6e23b35e64393a2cfd7979c192fa605458ab312bfb18514e06';
+    var url = root + '/oauth/token';
+    axios.post(url, {
+      grant_type: 'authorization_code',
+      code: req.query.code,
+      client_id: client_id,
+      client_secret: client_secret
+    })
+    .then(function (response) {
+      res.send(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 
   })
 
