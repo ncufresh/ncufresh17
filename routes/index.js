@@ -96,6 +96,7 @@ module.exports = function(passport) {
     })
     .catch(function (error) {
       console.log(error);
+      res.redirect('/login');
     });
 
   })
