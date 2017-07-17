@@ -73,12 +73,12 @@ module.exports = function(passport) {
   passport.use('provider', new OAuth2Strategy({
       authorizationURL: 'https://api.cc.ncu.edu.tw/oauth/oauth/authorize',
       tokenURL: 'https://api.cc.ncu.edu.tw/oauth/oauth/token',
-      clientID: 'YjcxNTlhODMtYTdjZC00YWQ1LThhYzYtZWQ4MTU1MWI0M2M4',
+      clientID: 'NjVlNTZjMjktYWViZC00M2YyLTk0NTctNDk3NTY5NjQ0NmM5',
       clientSecret: '8833036ce15345e4705d54c6ae9f10b18eb8e6cb9ecf6c77ac945655aa6d36e4a8e1c64de14887ef4575b39d835ff223d9edb05635cdc2b0a1912e8d28c2c221',
       // callbackURL: 'ncufresh17.tk:3000/auth/provider/callback'
     },
     function(accessToken, refreshToken, profile, done) {
-      // console.log(accessToken);
+      console.log(accessToken);
     }
   ));
 

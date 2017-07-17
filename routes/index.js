@@ -62,7 +62,13 @@ module.exports = function(passport) {
   });
 
   //portal 登入
-
+  // router.get('/auth/provider', isLoggedIn, function(req, res, next){
+  //   var root = 'https://api.cc.ncu.edu.tw/oauth';
+  //   var client_id = 'NjVlNTZjMjktYWViZC00M2YyLTk0NTctNDk3NTY5NjQ0NmM5';
+  //   var scope = 'user.info.basic.read';
+  //   var url = root + '/oauth/authorize?response_type=code&scope=' + scope + '&client_id=' + client_id;
+  //   res.redirect(url);
+  // } );
   router.get('/auth/provider', passport.authenticate('provider',{ scope: 'user.info.basic.read' }));
 
   router.get('/auth/provider/callback',
