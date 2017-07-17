@@ -69,8 +69,8 @@ module.exports = function(passport) {
     var root = 'https://api.cc.ncu.edu.tw/oauth';
     var client_id = 'NjVlNTZjMjktYWViZC00M2YyLTk0NTctNDk3NTY5NjQ0NmM5';
     var scope = 'user.info.basic.read';
-    var url = root + '/oauth/authorize?response_type=code&scope=' + scope + '&client_id=' + client_id;
-    res.redirect(url);
+    var urll = root + '/oauth/authorize?response_type=code&scope=' + scope + '&client_id=' + client_id;
+    res.redirect(urll);
   } );
   router.get('/auth/provider/callback',isLoggedIn, function(req, res, next){
     var url_parts = url.parse(req.url, true);
@@ -84,8 +84,8 @@ module.exports = function(passport) {
     var root = 'https://api.cc.ncu.edu.tw/oauth';
     var client_id = 'NjVlNTZjMjktYWViZC00M2YyLTk0NTctNDk3NTY5NjQ0NmM5';
     var client_secret = '19856e10b37e92998633e72477c4806ca8d368326d12e8b864e9fac09316e92ce242ca755f1a8d6e23b35e64393a2cfd7979c192fa605458ab312bfb18514e06';
-    var url = root + '/oauth/token';
-    axios.post(url, {
+    var urll = root + '/oauth/token';
+    axios.post(urll, {
       grant_type: 'authorization_code',
       code: req.query.code,
       client_id: client_id,
