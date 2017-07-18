@@ -114,28 +114,27 @@ module.exports = function(passport) {
         console.log('body:'+body);
         personalObj = JSON.parse(body);
         // find user using id(學號)
-        User.find({'local.email': personalObj.id+'@cc.ncu.edu.tw'},function(err,obj) {
-          console.log(obj);
-          // if(obj){
-          //   console.log('obj existing');
-          // }else{
-          //   var newUser = new User();
-          //   newUser.local.name = personalObj.name;
-          //   newUser.local.email = personalObj.id+'@cc.ncu.edu.tw';
-          //   newUser.local.password = "";
-          //   newUser.local.accountType = personalObj.type;
-          //   newUser.local.created = new Date();
-          //
-          //   newUser.save(function(err) {
-          //     if (err) {
-          //       console.log('err:'+err);
-          //       res.redirect('/login');
-          //     } else {
-          //       req.user = newUser;
-          //       res.redirect('/');
-          //     }
-          //   });
-          // }
+        User.findOne({'local.email': personalObj.id+'@cc.ncu.edu.tw'},function(err,obj) {
+          if(obj){
+            console.log('obj existing');
+          }else{
+            var newUser = new User();
+            newUser.local.name = personalObj.name;
+            newUser.local.email = personalObj.id+'@cc.ncu.edu.tw';
+            newUser.local.password = "";
+            newUser.local.accountType = personalObj.type;
+            newUser.local.created = new Date();
+
+            newUser.save(function(err) {
+              if (err) {
+                console.log('err:'+err);
+                res.redirect('/login');
+              } else {
+                req.user = newUser;
+                res.redirect('/');
+              }
+            });
+          }
 
         });
       }
