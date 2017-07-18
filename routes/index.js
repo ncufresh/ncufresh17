@@ -72,8 +72,7 @@ module.exports = function(passport) {
     if(!req.query.code){
       res.redirect('/login');
     }
-    // res.send("code existing");
-    // api
+    // api get accessToken
     var root = 'https://api.cc.ncu.edu.tw/oauth';
     var client_id = process.env.PORTAL_CLIENT_ID;
     var client_secret = process.env.PORTAL_CLIENT_SECRET;
@@ -93,7 +92,7 @@ module.exports = function(passport) {
       console.log('response error!');
       res.redirect('/login');
     }
-      // api
+      // api get personal information
       root = 'https://api.cc.ncu.edu.tw';
       urll = root + '/personnel/v1/info';
       // console.log('req:'+req);
@@ -111,14 +110,22 @@ module.exports = function(passport) {
           res.redirect('/login');
         }
         console.log('body:'+body);
+        personalObj = JSON.parse(body);
+        // find user using id(學號)
+        User.findOne({'email': personalObj.id+'@cc.ncu.edu.tw'}, function(err,obj) {
+          if(obj){
+            console.log('obj existing');
+          }else{
+            console.log('obj not existing');
+          }
+
+        });
       }
       );
     });
 
   })
-  function createOrGetUser(req){
 
-  }
 
   // router.get('/auth/provider', passport.authenticate('provider',{ scope: 'user.info.basic.read' }));
   //
