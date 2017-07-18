@@ -93,7 +93,7 @@ module.exports = function(passport) {
       res.redirect('/login');
     };
       // console.log('Upload successful!  Server responded with:', body);
-      user = $this->createOrGetUser(body);
+      user = createOrGetUser(body);
     });
 
   })
