@@ -265,14 +265,13 @@
         <% include ../layouts/navbar %>
     </header>
 
-    <main style=" background-color: #00BFFF !important; min-width: 100vw; max-width:100vw">
+    <main style=" background-color: #00BFFF !important; min-width: 100vw; max-width:100vw; padding-top: 10px">
       <div class="container">
-        <div class="text-right"><a href="/video">影音專區</a></div>
+        <div class="text-right" style="font-size: 1.2vw"><a href="/video">影音專區</a></div>
         <div class="row">
             <section class="container">
-                <!-- <h1 class="text-center">大一新生</h1> -->
                 <div class="col-xs-3">
-                    <ul class="nav nav-pills nav-justified row" style="padding: 10px;">
+                    <ul class="nav nav-pills nav-justified" style="padding: 10px;">
                         <div class="row">
                             <div class="col-xs-3"><img src=""/></div>
                             <div class="col-xs-2"><a href="/"><img src="/video/圖片10.png" alt="home"/></a></div>
@@ -295,14 +294,16 @@
                         <li role="presentation" class="under-8-source"><a href="#under-8">生醫理工學院</a></li>
                     </ul>
                 </div>
-                <div class="row container" id="under-0" style="display: block;">
-                    <div class="col-xs-3"><img src=""/></div>
-                    <div class="col-xs-6"><h1><strong>歡迎進入採訪區</strong></h1></div>
-                    <div class="col-xs-9"><img src="/video/圖片3.png" alt="tt"/></div>
+                <div id="under-0" style="display: block;">
+                    <div >
+                        <div class="col-xs-3"><img src=""/></div>
+                        <div class="col-xs-6"><h1><strong>歡迎進入採訪區</strong></h1></div>
+                    </div>
+                        <div class="col-xs-9"><img src="/video/圖片3.png" alt="tt"/></div>
                     <div class="col-xs-1"><img src=""/></div>
                     <div class="col-xs-7"><img style="display:inline-block;" class="img-responsive" alt="校景" src="/video/圖片11.png" class="img-responsive"/></div>
                 </div>
-                <div class="row container" id="under-1" style="display: none;">
+                <div id="under-1" style="display: none;">
                     <div class="text-center"><h1 style="font-size: 300%;"><strong>文學院</strong></h1></div>
                     <div class="col-xs-9"><h1></h1></div>
                     <div class="col-xs-9"><h1></h1></div>
@@ -310,7 +311,7 @@
                     <div class="col-xs-3"><img style="display:inline-block;padding: 2vh;" class="img-responsive cc" id="c2" alt="英文" src="/video/英文.png" data-toggle="modal" data-target="#2"/></div>
                     <div class="col-xs-3"><img style="display:inline-block;padding: 2vh;" class="img-responsive cc" id="c3" alt="法文" src="/video/法文.png" data-toggle="modal" data-target="#3"/></div>
                 </div>
-                <div class="row container" id="under-2" style="display: none;">
+                <div id="under-2" style="display: none;">
                     <div class="text-center"><h1 style="font-size: 300%;"><strong>理學院</strong></h1></div>
                     <div class="col-xs-9"><h1></h1></div>
                     <div class="col-xs-9"><h1></h1></div>
@@ -318,30 +319,32 @@
                     <div class="col-xs-3"><img style="display:inline-block;padding: 2vh;" class="img-responsive cc" id="c5" alt="化材" src="/video/化材.png" data-toggle="modal" data-target="#5"/></div>
                     <div class="col-xs-3"><img style="display:inline-block;padding: 2vh;" class="img-responsive cc" id="c6" alt="機械" src="/video/機械.png" data-toggle="modal" data-target="#6"/></div>
                 </div>
-                <div class="row container" id="under-3" style="display: none;">
+                <div id="under-3" style="display: none;">
                     <div class="text-center"><h1 style="font-size: 300%;"><strong>工學院</strong></h1></div>
                     <div class="col-xs-9"><h1></h1></div>
                     <div class="col-xs-9"><h1></h1></div>
-                    <div class="col-xs-1"><h1></h1></div>
-                    <div class="col-xs-3"><img style="display:inline-block;padding: 2vh;" class="img-responsive cc" id="c7" alt="化學" src="/video/化學.png" data-toggle="modal" data-target="#7"/></div>
-                    <div class="col-xs-3"><img style="display:inline-block;padding: 2vh;" class="img-responsive cc" id="c8" alt="數學" src="/video/數學.png" class="img-responsive" data-toggle="modal" data-target="#8"/></div>
-                    <div class="col-xs-3"><img style="display:inline-block;padding: 2vh;" class="img-responsive cc" id="c9" alt="光電" src="/video/光電.png" data-toggle="modal" data-target="#9"/></div>
-                    <!-- <div><class="col-xs-3 cc"><img src=""/></div> -->
-                    <div class="col-xs-3"><img style="display:inline-block;padding: 2vh;" class="img-responsive cc" id="c10" alt="理學院" src="/video/理學院.png" data-toggle="modal" data-target="#10"/></div>
-                    <div class="col-xs-3"><img style="display:inline-block;padding: 2vh;" class="img-responsive cc" id="c11" alt="物理" src="/video/物理.png"  data-toggle="modal" data-target="#11"/></div>
+                    <div>
+                        <div class="col-xs-3"><img style="display:inline-block;padding: 2vh;" class="img-responsive cc" id="c7" alt="化學" src="/video/化學.png" data-toggle="modal" data-target="#7"/></div>
+                        <div class="col-xs-3"><img style="display:inline-block;padding: 2vh;" class="img-responsive cc" id="c8" alt="數學" src="/video/數學.png" class="img-responsive" data-toggle="modal" data-target="#8"/></div>
+                        <div class="col-xs-3"><img style="display:inline-block;padding: 2vh;" class="img-responsive cc" id="c9" alt="光電" src="/video/光電.png" data-toggle="modal" data-target="#9"/></div>
+                    </div>
+                    <div>
+                        <div class="col-xs-3"><img style="display:inline-block;padding: 2vh;" class="img-responsive cc" id="c10" alt="理學院" src="/video/理學院.png" data-toggle="modal" data-target="#10"/></div>
+                        <div class="col-xs-3"><img style="display:inline-block;padding: 2vh;" class="img-responsive cc" id="c11" alt="物理" src="/video/物理.png"  data-toggle="modal" data-target="#11"/></div>
+                    </div>
                 </div>
-                <div class="row container" id="under-4" style="display: none;">
+                <div id="under-4" style="display: none;">
                     <div class="text-center"><h1 style="font-size: 300%;"><strong>管理學院</strong></h1></div>
                     <div class="col-xs-9"><h1></h1></div>
                     <div class="col-xs-9"><h1></h1></div>
-                    <div class="col-xs-1"><h1></h1></div>
-                    <div class="col-xs-3"><img style="display:inline-block;padding: 2vh;" class="img-responsive cc" id="c12" alt="企管" src="/video/企管.png" data-toggle="modal" data-target="#12"/></div>
-                    <div class="col-xs-3"><img style="display:inline-block;padding: 2vh;" class="img-responsive cc" id="c13" alt="財金" src="/video/財金.png" data-toggle="modal" data-target="#13"/></div>
-                    <div class="col-xs-1"><h1></h1></div>
-                    <div class="col-xs-3"><img style="display:inline-block;padding: 2vh;" class="img-responsive cc" id="c14" alt="經濟" src="/video/經濟.png" data-toggle="modal" data-target="#14"/></div>
+                    <div>
+                        <div class="col-xs-3"><img style="display:inline-block;padding: 2vh;" class="img-responsive cc" id="c12" alt="企管" src="/video/企管.png" data-toggle="modal" data-target="#12"/></div>
+                        <div class="col-xs-3"><img style="display:inline-block;padding: 2vh;" class="img-responsive cc" id="c13" alt="財金" src="/video/財金.png" data-toggle="modal" data-target="#13"/></div>
+                        <div class="col-xs-3"><img style="display:inline-block;padding: 2vh;" class="img-responsive cc" id="c14" alt="經濟" src="/video/經濟.png" data-toggle="modal" data-target="#14"/></div>
+                    </div>
                     <div class="col-xs-3"><img style="display:inline-block;padding: 2vh;" class="img-responsive cc" id="c15" alt="資管" src="/video/資管.png" data-toggle="modal" data-target="#15"/></div>
                 </div>
-                <div class="row container" id="under-5" style="display: none;">
+                <div id="under-5" style="display: none;">
                     <div class="text-center"><h1 style="font-size: 300%;"><strong>資訊電機學院</strong></h1></div>
                     <div class="col-xs-9"><h1></h1></div>
                     <div class="col-xs-9"><h1></h1></div>
@@ -349,7 +352,7 @@
                     <div class="col-xs-3"><img style="display:inline-block;padding: 2vh;" class="img-responsive cc" id="c17" alt="資工" src="/video/資工.png" data-toggle="modal" data-target="#17"/></div>
                     <div class="col-xs-3"><img style="display:inline-block;padding: 2vh;" class="img-responsive cc" id="c18" alt="電機" src="/video/電機.png" data-toggle="modal" data-target="#18"/></div>
                 </div>
-                <div class="row container" id="under-6" style="display: none;">
+                <div id="under-6" style="display: none;">
                     <div class="text-center"><h1 style="font-size: 300%;"><strong>地球科學學院</strong></h1></div>
                     <div class="col-xs-9"><h1></h1></div>
                     <div class="col-xs-9"><h1></h1></div>
@@ -357,14 +360,14 @@
                     <div class="col-xs-3"><img style="display:inline-block;padding: 2vh;" class="img-responsive cc" id="c19" alt="大氣" src="/video/大氣.png" alt="" data-toggle="modal" data-target="#19"/></div>
                     <div class="col-xs-3"><img style="display:inline-block;padding: 2vh;" class="img-responsive cc" id="c20" alt="地科" src="/video/地科.png" data-toggle="modal" data-target="#20"/></div>
                 </div>
-                    <div class="row container" id="under-7" style="display: none;">
+                <div id="under-7" style="display: none;">
                     <div class="text-center"><h1 style="font-size: 300%;"><strong>客家學院</strong></h1></div>
                     <div class="col-xs-9"><h1></h1></div>
                     <div class="col-xs-9"><h1></h1></div>
                     <div class="col-xs-3"><h1></h1></div>
                     <div class="col-xs-3"><img style="display:inline-block;padding: 2vh;" class="img-responsive cc" id="c21" alt="客家" src="/video/客家.png" data-toggle="modal" data-target="#21"/></div>
                 </div>
-                <div class="row container" id="under-8" style="display: none;">
+                <div id="under-8" style="display: none;">
                     <div class="text-center"><h1 style="font-size: 300%;"><strong>生醫理工學院</strong></h1></div>
                     <div class="col-xs-9"><h1></h1></div>
                     <div class="col-xs-9"><h1></h1></div>
@@ -373,6 +376,8 @@
                     <div class="col-xs-3"><img style="display:inline-block;padding: 2vh;" class="img-responsive cc" id="c23" alt="生醫" src="/video/生醫.png" data-toggle="modal" data-target="#23"/></div>
                 </div>
             </section>
+
+
         <!-- Modal -->
         <div class="modal fade" id="1" role="dialog">
             <div class="modal-dialog">
@@ -383,7 +388,7 @@
                         <h4 class="modal-title">中國文學系</h4>
                     </div>
                     <div class="modal-body">
-                        <img style="max-width: 800px" src="/video/國文.png" class="img-responsive"/>
+                        <div id="s1"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default d1" data-dismiss="modal">Close</button>
@@ -403,7 +408,7 @@
                         <h4 class="modal-title">英美語文學系</h4>
                     </div>
                     <div class="modal-body">
-                        <img style="max-width: 800px" src="/video/英文.png" class="img-responsive"/>
+                        <div id="s2"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default d2" data-dismiss="modal">Close</button>
@@ -423,7 +428,7 @@
                         <h4 class="modal-title">法國語文學系</h4>
                     </div>
                     <div class="modal-body">
-                        <img style="max-width: 800px" src="/video/法文.png" class="img-responsive"/>
+                        <div id="s3"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default d3" data-dismiss="modal">Close</button>
@@ -443,7 +448,7 @@
                         <h4 class="modal-title">土木工程學系</h4>
                     </div>
                     <div class="modal-body">
-                        <img style="max-width: 800px" src="/video/土木.png" class="img-responsive"/>
+                        <div id="s4"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default d4" data-dismiss="modal">Close</button>
@@ -463,7 +468,7 @@
                         <h4 class="modal-title">化學工程與材料工程學系</h4>
                     </div>
                     <div class="modal-body">
-                        <img style="max-width: 800px" src="/video/化材.png" class="img-responsive"/>
+                        <div id="s5"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default d5" data-dismiss="modal">Close</button>
@@ -483,7 +488,7 @@
                         <h4 class="modal-title">機械工程學系</h4>
                     </div>
                     <div class="modal-body">
-                        <img style="max-width: 800px" src="/video/機械.png" class="img-responsive"/>
+                        <div id="s6"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default d6" data-dismiss="modal">Close</button>
@@ -503,7 +508,7 @@
                         <h4 class="modal-title">化學學系</h4>
                     </div>
                     <div class="modal-body">
-                        <img style="max-width: 800px" src="/video/化學.png" class="img-responsive"/>
+                        <div id="s7"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default d7" data-dismiss="modal">Close</button>
@@ -523,7 +528,7 @@
                         <h4 class="modal-title">數學系</h4>
                     </div>
                     <div class="modal-body">
-                        <img style="max-width: 800px" src="/video/數學.png" class="img-responsive"/>
+                        <div id="s8"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default d8" data-dismiss="modal">Close</button>
@@ -543,7 +548,7 @@
                         <h4 class="modal-title">光電科學與工程學系</h4>
                     </div>
                     <div class="modal-body">
-                        <img style="max-width: 800px" src="/video/光電.png" class="img-responsive"/>
+                        <div id="s9"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default d9" data-dismiss="modal">Close</button>
@@ -563,7 +568,7 @@
                         <h4 class="modal-title">理學院學士班</h4>
                     </div>
                     <div class="modal-body">
-                        <img style="max-width: 800px" src="/video/理學院.png" class="img-responsive"/>
+                        <div id="s10"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default d10" data-dismiss="modal">Close</button>
@@ -583,7 +588,7 @@
                         <h4 class="modal-title">物理學系</h4>
                     </div>
                     <div class="modal-body">
-                        <img style="max-width: 800px" src="/video/物理.png" class="img-responsive"/>
+                        <div id="s11"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default d11" data-dismiss="modal">Close</button>
@@ -603,7 +608,7 @@
                         <h4 class="modal-title">企業管理學系</h4>
                     </div>
                     <div class="modal-body">
-                        <img style="max-width: 800px" src="/video/企管.png" class="img-responsive"/>
+                        <div id="s12"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default d12" data-dismiss="modal">Close</button>
@@ -623,7 +628,7 @@
                         <h4 class="modal-title">財務金融學系</h4>
                     </div>
                     <div class="modal-body">
-                        <img style="max-width: 800px" src="/video/財金.png" class="img-responsive"/>
+                        <div id="s13"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default d13" data-dismiss="modal">Close</button>
@@ -643,7 +648,7 @@
                         <h4 class="modal-title">經濟學系</h4>
                     </div>
                     <div class="modal-body">
-                        <img style="max-width: 800px" src="/video/經濟.png" class="img-responsive"/>
+                        <div id="s14"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default d14" data-dismiss="modal">Close</button>
@@ -663,7 +668,7 @@
                         <h4 class="modal-title">資訊管理學系</h4>
                     </div>
                     <div class="modal-body">
-                        <img style="max-width: 800px" src="/video/資管.png" class="img-responsive"/>
+                        <div id="s15"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default d15" data-dismiss="modal">Close</button>
@@ -683,7 +688,7 @@
                         <h4 class="modal-title">通訊工程學系</h4>
                     </div>
                     <div class="modal-body">
-                        <img style="max-width: 800px" src="/video/通訊.png" class="img-responsive"/>
+                        <div id="s16"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default d16" data-dismiss="modal">Close</button>
@@ -703,7 +708,7 @@
                         <h4 class="modal-title">資訊工程學系</h4>
                     </div>
                     <div class="modal-body">
-                        <img style="max-width: 800px" src="/video/資工.png" class="img-responsive"/>
+                        <div id="s17"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default d17" data-dismiss="modal">Close</button>
@@ -723,7 +728,7 @@
                         <h4 class="modal-title">電機工程學系</h4>
                     </div>
                     <div class="modal-body">
-                        <img style="max-width: 800px" src="/video/電機.png" class="img-responsive"/>
+                        <div id="s18"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default d18" data-dismiss="modal">Close</button>
@@ -743,7 +748,7 @@
                         <h4 class="modal-title">大氣科學學系</h4>
                     </div>
                     <div class="modal-body">
-                        <img style="max-width: 800px" src="/video/大氣.png" class="img-responsive"/>
+                        <div id="s19"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default d19" data-dismiss="modal">Close</button>
@@ -763,7 +768,7 @@
                         <h4 class="modal-title">地球科學學系</h4>
                     </div>
                     <div class="modal-body">
-                        <img style="max-width: 800px" src="/video/地科.png" class="img-responsive"/>
+                        <div id="s20"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default d20" data-dismiss="modal">Close</button>
@@ -783,7 +788,7 @@
                         <h4 class="modal-title">客家語文暨社會科學學系</h4>
                     </div>
                     <div class="modal-body">
-                        <img style="max-width: 800px" src="/video/客家.png" class="img-responsive"/>
+                        <div id="s21"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default d21" data-dismiss="modal">Close</button>
@@ -803,7 +808,7 @@
                         <h4 class="modal-title">生命科學系</h4>
                     </div>
                     <div class="modal-body">
-                        <img style="max-width: 800px" src="/video/生科.png" class="img-responsive"/>
+                        <div id="s22"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default d22" data-dismiss="modal">Close</button>
@@ -823,7 +828,7 @@
                         <h4 class="modal-title">生醫科學與工程學系</h4>
                     </div>
                     <div class="modal-body">
-                        <img style="max-width: 800px" src="/video/生醫.png d23" class="img-responsive"/>
+                        <div id="s23"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
