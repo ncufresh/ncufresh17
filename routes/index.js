@@ -122,6 +122,7 @@ module.exports = function(passport) {
         console.log('response error!');
         res.redirect('/login');
       }
+      console.log('body:'+body);
       return body;
     }
     )
