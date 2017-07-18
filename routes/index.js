@@ -3,6 +3,7 @@ var router = express.Router();
 
 var async = require('async');
 var Todo = require('../models/Todo');
+var User = require('../models/user');
 var url = require('url');
 var request = require('request');
 
