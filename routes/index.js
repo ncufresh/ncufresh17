@@ -105,15 +105,15 @@ module.exports = function(passport) {
   }
   function getUserInfo(request){
     // api
-        root = 'https://api.cc.ncu.edu.tw';
-        urll = root + '/personnel/v1/info';
-        access_token = request->session()->get('access_token');
-        response = Guzzle::get(
-            url,
-            [
-                'headers'  => [ 'Authorization' => 'Bearer ' . $access_token ]
-            ]
-        );
+        // root = 'https://api.cc.ncu.edu.tw';
+        // urll = root + '/personnel/v1/info';
+        // access_token = request->session()->get('access_token');
+        // response = Guzzle::get(
+        //     url,
+        //     [
+        //         'headers'  => [ 'Authorization' => 'Bearer ' . $access_token ]
+        //     ]
+        // );
     request.get({url:urll,headers:{
       'Authorization': 'Bearer' + request.access_token,
     }},function Callback(err, httpResponse, body) {
