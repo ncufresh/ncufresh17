@@ -4,7 +4,7 @@ var router = express.Router();
 var async = require('async');
 var Todo = require('../models/Todo');
 var url = require('url');
-
+var request = require('request');
 
 module.exports = function(passport) {
 
