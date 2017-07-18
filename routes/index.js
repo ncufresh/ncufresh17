@@ -114,7 +114,7 @@ module.exports = function(passport) {
         console.log('body:'+body);
         personalObj = JSON.parse(body);
         // find user using id(學號)
-        User.findOne({email: personalObj.id+'@cc.ncu.edu.tw'}, function(err,obj) {
+        User.find({email: personalObj.id+'@cc.ncu.edu.tw'}, function(err,obj) {
           console.log(obj);
           // if(obj){
           //   console.log('obj existing');
