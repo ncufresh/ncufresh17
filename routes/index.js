@@ -116,7 +116,11 @@ module.exports = function(passport) {
         // find user using id(學號)
         User.findOne({'local.email': personalObj.id+'@cc.ncu.edu.tw'},function(err,obj) {
           if(obj){
-            console.log('obj existing');
+            req.logIn(obj, function(err){
+              if(!err){
+                res.redirect('/');
+              }
+            });
           }else{
             var newUser = new User();
             newUser.local.name = personalObj.name;
@@ -130,8 +134,12 @@ module.exports = function(passport) {
                 console.log('err:'+err);
                 res.redirect('/login');
               } else {
-                req.user = newUser;
-                res.redirect('/');
+                req.logIn(newUser, function(err){
+                  if(!err){
+                    res.redirect('/');
+                  }
+                });
+
               }
             });
           }
