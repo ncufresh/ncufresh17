@@ -92,10 +92,14 @@ module.exports = function(passport) {
       console.log('response error!');
       res.redirect('/login');
     };
-      console.log('Upload successful!  Server responded with:', body);
+      // console.log('Upload successful!  Server responded with:', body);
+      user = $this->createOrGetUser(body);
     });
 
   })
+  function createOrGetUser(request){
+    console.log('body:'+request);
+  }
 
   // router.get('/auth/provider', passport.authenticate('provider',{ scope: 'user.info.basic.read' }));
   //
