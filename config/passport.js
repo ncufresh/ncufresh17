@@ -53,8 +53,10 @@ module.exports = function(passport) {
           return done(null, false, req.flash('signupMessage', '已有相同帳號被註冊'));
         } else {
           var newUser = new User();
+          newUser.local.name = sanitize(req.body.name);
           newUser.local.email = sanitize(email);
           newUser.local.password = newUser.generateHash(password);
+          newUser.local.accountType = "normal";
           newUser.local.created = new Date();
 
           newUser.save(function(err) {

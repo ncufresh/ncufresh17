@@ -8,98 +8,105 @@
         <% include ../layouts/navbar %>
     </header>
 
-    <main style=" background-color: #6699FF !important; min-width: 100vw; max-width:100vw">
+    <main style= " background-color: #4499FF !important; min-width: 100vw; max-width:100vw">
       <div class="container">
-        <div>
-            <h1 class="text-center" style="margin-bottom: 8vw">中大生活</h1>
-            <h4 id="life-navigate-back" style="margin-left: 50px; opacity: 0.0"><u>返回</u></h4>
-        </div>
-        <div class="row" style="margin-bottom: 100px">
-            <div class="col-xs-1"></div>
-            <div class="col-xs-2"><img id="life-navigate-1" class="img-responsive" style="cursor:pointer; max-width: 12vw; display:inline-block" src="按鈕.png" alt="食"/></div>
-            <div class="col-xs-2"><img id="life-navigate-2" class="img-responsive" style="cursor:pointer; max-width: 12vw; display:inline-block" src="按鈕.png" alt="住"/></div>
-            <div class="col-xs-2"><img id="life-navigate-3" class="img-responsive" style="cursor:pointer; max-width: 12vw; display:inline-block" src="按鈕.png" alt="行"/></div>
-            <div class="col-xs-2"><img id="life-navigate-4" class="img-responsive" style="cursor:pointer; max-width: 12vw; display:inline-block" src="按鈕.png" alt="育"/></div>
-            <div class="col-xs-2"><img id="life-navigate-5" class="img-responsive" style="cursor:pointer; max-width: 12vw; display:inline-block" src="按鈕.png" alt="樂"/></div>
-            <div class="col-xs-1"></div>
-        </div>
-        <div class="row">
-          <div class="col-xs-1"></div>
-          <div class="col-xs-2">
-              <section class="container" id="food-mainpan" style="display:none">
-                <ul>
-                  <li><img id="food-pan1" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 12vw; opacity:0.5" src="按鈕2.png"></li>
-                  <li><img id="food-pan2" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 12vw; opacity:0.5" src="按鈕2.png"></li>
-                  <li><img id="food-pan3" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 12vw; opacity:0.5" src="按鈕2.png"></li>
-                  <li><img id="food-pan4" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 12vw; opacity:0.5" src="按鈕2.png"></li>
-                  <li><img id="food-pan5" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 12vw; opacity:0.5" src="按鈕2.png"></li>
-                  <li><img id="food-pan6" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 12vw; opacity:0.5" src="按鈕2.png"></li>
-                  <li><img id="food-pan7" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 12vw; opacity:0.5" src="按鈕2.png"></li>
-              </section>
-             <section class="container" id="dorm-mainpan" style="display:none">
-                <ul>
-                  <li><img id="dorm-pan1" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 12vw; opacity:0.5" src="按鈕2.png"></li>
-                  <li><img id="dorm-pan2" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 12vw; opacity:0.5" src="按鈕2.png"></li>
-                  <li><img id="dorm-pan3" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 12vw; opacity:0.5" src="按鈕2.png"></li>
-                  <li><img id="dorm-pan4" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 12vw; opacity:0.5" src="按鈕2.png"></li>
-                  <li><img id="dorm-pan5" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 12vw; opacity:0.5" src="按鈕2.png"></li>
-                  <li><img id="dorm-pan6" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 12vw; opacity:0.5" src="按鈕2.png"></li>
-              </section>
-              <section class="container" id="traffic-mainpan" style="display:none">
-                <ul>
-                  <li><img id="traffic-pan1" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 12vw; opacity:0.5" src="按鈕2.png"></li>
-                  <li><img id="traffic-pan2" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 12vw; opacity:0.5" src="按鈕2.png"></li>
-                  <li><img id="traffic-pan3" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 12vw; opacity:0.5" src="按鈕2.png"></li>
-              </section>
-             <section class="container" id="study-mainpan" style="display:none">
-                <ul>
-                  <li><img id="study-pan1" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 12vw; opacity:0.5" src="按鈕2.png"></li>
-                  <li><img id="study-pan2" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 12vw; opacity:0.5" src="按鈕2.png"></li>
-                  <li><img id="study-pan3" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 12vw; opacity:0.5" src="按鈕2.png"></li>
-                  <li><img id="study-pan4" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 12vw; opacity:0.5" src="按鈕2.png"></li>
-                  <li><img id="study-pan5" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 12vw; opacity:0.5" src="按鈕2.png"></li>
-                  <li><img id="study-pan6" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 12vw; opacity:0.5" src="按鈕2.png"></li>
-                  <li><img id="study-pan7" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 12vw; opacity:0.5" src="按鈕2.png"></li>
-                  <li><img id="study-pan8" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 12vw; opacity:0.5" src="按鈕2.png"></li>
-              </section>
-            <section class="container" id="entertainment-mainpan" style="display:none">
-                <ul>
-                  <li><img id="entertainment-pan1" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 12vw; opacity:0.5" src="按鈕2.png"></li>
-                  <li><img id="entertainment-pan2" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 12vw; opacity:0.5" src="按鈕2.png"></li>
-                  <li><img id="entertainment-pan3" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 12vw; opacity:0.5" src="按鈕2.png"></li>
-                  <li><img id="entertainment-pan4" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 12vw; opacity:0.5" src="按鈕2.png"></li>
-                  <li><img id="entertainment-pan5" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 12vw; opacity:0.5" src="按鈕2.png"></li>
-              </section>
+        <div class="jumbotron" style="min-height:80vw">
+          <div>
+              <h1 class="text-center" style="margin-bottom: 8vw">中大生活</h1>
           </div>
-        <div class="col-xs-9">
-          <section id=food-pan1-info style="display:none">
-            <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:16vw; padding-bottom:16vw">照片</div>
-            <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:6vw; padding-bottom:6vw">文字敘述</div>
-          </section>
-          <section id=food-pan2-info style="display:none">
-            <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:16vw; padding-bottom:16vw">照片</div>
-            <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:6vw; padding-bottom:6vw">文字敘述</div>
-          </section>
-          <section id=food-pan3-info style="display:none">
-            <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:16vw; padding-bottom:16vw">照片</div>
-            <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:6vw; padding-bottom:6vw">文字敘述</div>
-          </section>
-          <section id=food-pan4-info style="display:none">
-            <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:16vw; padding-bottom:16vw">照片</div>
-            <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:6vw; padding-bottom:6vw">文字敘述</div>
-          </section>
-          <section id=food-pan5-info style="display:none">
-            <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:16vw; padding-bottom:16vw">照片</div>
-            <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:6vw; padding-bottom:6vw">文字敘述</div>
-          </section>
-          <section id=food-pan6-info style="display:none">
-            <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:16vw; padding-bottom:16vw">照片</div>
-            <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:6vw; padding-bottom:6vw">文字敘述</div>
-          </section>
-          <section id=food-pan7-info style="display:none">
-            <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:16vw; padding-bottom:16vw">照片</div>
-            <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:6vw; padding-bottom:6vw">文字敘述</div>
-          </section>
+          <div class="row" style="margin-bottom: 100px">
+              <div class="col-xs-1"></div>
+              <div class="col-xs-2"><img id="life-navigate-1" class="img-responsive" style="cursor:pointer; max-width: 10vw; display:inline-block" src="按鈕.png" alt="食"/></div>
+              <div class="col-xs-2"><img id="life-navigate-2" class="img-responsive" style="cursor:pointer; max-width: 10vw; display:inline-block" src="按鈕.png" alt="住"/></div>
+              <div class="col-xs-2"><img id="life-navigate-3" class="img-responsive" style="cursor:pointer; max-width: 10vw; display:inline-block" src="按鈕.png" alt="行"/></div>
+              <div class="col-xs-2"><img id="life-navigate-4" class="img-responsive" style="cursor:pointer; max-width: 10vw; display:inline-block" src="按鈕.png" alt="育"/></div>
+              <div class="col-xs-2"><img id="life-navigate-5" class="img-responsive" style="cursor:pointer; max-width: 10vw; display:inline-block" src="按鈕.png" alt="樂"/></div>
+              <div class="col-xs-1"></div>
+          </div>
+          <div>
+            <h4 id="life-navigate-back" style="margin-left: 50px; opacity: 0.0"><u>返回</u></h4>
+          </div>
+          <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-2">
+                <section class="container" id="food-mainpan" style="display:none">
+                  <ul>
+                    <li><img id="food-pan1" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
+                    <li><img id="food-pan2" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
+                    <li><img id="food-pan3" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
+                    <li><img id="food-pan4" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
+                    <li><img id="food-pan5" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
+                    <li><img id="food-pan4" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
+                    <li><img id="food-pan7" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
+                </section>
+               <section class="container" id="dorm-mainpan" style="display:none">
+                  <ul>
+                    <li><img id="dorm-pan1" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
+                    <li><img id="dorm-pan2" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
+                    <li><img id="dorm-pan3" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
+                    <li><img id="dorm-pan4" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
+                    <li><img id="dorm-pan5" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
+                    <li><img id="dorm-pan4" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
+                </section>
+                <section class="container" id="traffic-mainpan" style="display:none">
+                  <ul>
+                    <li><img id="traffic-pan1" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
+                    <li><img id="traffic-pan2" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
+                    <li><img id="traffic-pan3" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
+                </section>
+               <section class="container" id="study-mainpan" style="display:none">
+                  <ul>
+                    <li><img id="study-pan1" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
+                    <li><img id="study-pan2" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
+                    <li><img id="study-pan3" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
+                    <li><img id="study-pan4" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
+                    <li><img id="study-pan5" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
+                    <li><img id="study-pan4" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
+                    <li><img id="study-pan7" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
+                    <li><img id="study-pan8" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
+                </section>
+              <section class="container" id="entertainment-mainpan" style="display:none">
+                  <ul>
+                    <li><img id="entertainment-pan1" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
+                    <li><img id="entertainment-pan2" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
+                    <li><img id="entertainment-pan3" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
+                    <li><img id="entertainment-pan4" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
+                    <li><img id="entertainment-pan5" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
+                </section>
+            </div>
+          <div class="col-xs-9">
+            <section>
+              <div id=food-video style="display:none;position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/3DEkF2uvPoc?ecver=2" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe></div>
+            </section>
+            <section id=food-pan1-info style="display:none">
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:12vw; padding-bottom:12vw">照片1</div>
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:4vw; padding-bottom:4vw">文字敘述1</div>
+            </section>
+            <section id=food-pan2-info style="display:none">
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:12vw; padding-bottom:12vw">照片2</div>
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:4vw; padding-bottom:4vw">文字敘述2</div>
+            </section>
+            <section id=food-pan3-info style="display:none">
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:12vw; padding-bottom:12vw">照片3</div>
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:4vw; padding-bottom:4vw">文字敘述3</div>
+            </section>
+            <section id=food-pan4-info style="display:none">
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:12vw; padding-bottom:12vw">照片4</div>
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:4vw; padding-bottom:4vw">文字敘述4</div>
+            </section>
+            <section id=food-pan5-info style="display:none">
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:12vw; padding-bottom:12vw">照片</div>
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:4vw; padding-bottom:4vw">文字敘述</div>
+            </section>
+            <section id=food-pan4-info style="display:none">
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:12vw; padding-bottom:12vw">照片</div>
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:4vw; padding-bottom:4vw">文字敘述</div>
+            </section>
+            <section id=food-pan7-info style="display:none">
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:12vw; padding-bottom:12vw">照片</div>
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:4vw; padding-bottom:4vw">文字敘述</div>
+            </section>
+          </div>
         </div>
       </div>
     </main>
