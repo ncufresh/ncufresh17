@@ -28,9 +28,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
-  secret:'ThisIsNcuFreshAndWeAreTheBest',
-  resave: true,
-  saveUninitialized: false
+	secret:'ThisIsNcuFreshAndWeAreTheBest',
+	resave: true,
+	saveUninitialized: false
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -47,7 +47,7 @@ var index = require('./routes/index')(passport);
 var users = require('./routes/users');
 
 var documents = require('./routes/documents');
-var QnA = require('./routes/QnA');
+var qna = require('./routes/qna');
 var campus = require('./routes/campus');
 var groups = require('./routes/groups');
 var life = require('./routes/life');
@@ -57,9 +57,6 @@ var personal = require('./routes/personal');
 var about = require('./routes/about');
 var aboutweb = require('./routes/aboutweb');
 
-
-
-
 // Routes
 app.use('/', index);
 app.use('/users', users);
@@ -67,7 +64,7 @@ app.use('/users', users);
 // 新生必讀
 app.use('/documents', documents);
 // 新生Ｑ＆Ａ
-app.use('/QnA', QnA);
+app.use('/qna', qna);
 // 校園導覽
 app.use('/campus', campus);
 // 系所社團
@@ -88,44 +85,44 @@ app.use('/aboutweb', aboutweb);
 
 // ckeditor uploader
 app.post('/uploader', multipartMiddleware, function(req, res) {
-  var fs = require('fs');
+	var fs = require('fs');
 
-  fs.readFile(req.files.upload.path, function (err, data) {
-    var newPath = __dirname + '/public/uploads/' + req.files.upload.name;
-    fs.writeFile(newPath, data, function (err) {
-      if (err) console.log({err: err});
-      else {
-        html = "";
-        html += "<script type='text/javascript'>";
-        html += "    var funcNum = " + req.query.CKEditorFuncNum + ";";
-        html += "    var url     = \"/uploads/" + req.files.upload.name + "\";";
-        html += "    var message = \"Uploaded file successfully\";";
-        html += "";
-        html += "    window.parent.CKEDITOR.tools.callFunction(funcNum, url, message);";
-        html += "</script>";
+	fs.readFile(req.files.upload.path, function (err, data) {
+		var newPath = __dirname + '/public/uploads/' + req.files.upload.name;
+		fs.writeFile(newPath, data, function (err) {
+			if (err) console.log({err: err});
+			else {
+				html = "";
+				html += "<script type='text/javascript'>";
+				html += "    var funcNum = " + req.query.CKEditorFuncNum + ";";
+				html += "    var url     = \"/uploads/" + req.files.upload.name + "\";";
+				html += "    var message = \"Uploaded file successfully\";";
+				html += "";
+				html += "    window.parent.CKEDITOR.tools.callFunction(funcNum, url, message);";
+				html += "</script>";
 
-        res.send(html);
-      }
-    });
-  });
+				res.send(html);
+			}
+		});
+	});
 });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+	var err = new Error('Not Found');
+	err.status = 404;
+	next(err);
 });
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+	// set locals, only providing error in development
+	res.locals.message = err.message;
+	res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+	// render the error page
+	res.status(err.status || 500);
+	res.render('error');
 });
 
 module.exports = app;
