@@ -114,7 +114,7 @@ module.exports = function(passport) {
         //         'headers'  => [ 'Authorization' => 'Bearer ' . $access_token ]
         //     ]
         // );
-    request.get({url:urll,headers:{
+    request({url:urll,headers:{
       'Authorization': 'Bearer' + request.access_token,
     }},function Callback(err, httpResponse, body) {
       if (err) {
