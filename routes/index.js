@@ -84,7 +84,7 @@ module.exports = function(passport) {
         'code': req.query.code,
         'client_id': client_id,
         'client_secret': client_secret
-      }}, function Callback(err, httpResponse, body) {
+      }}, function Callback(err, httpResponse, req) {
       if (err) {
         return console.error('failed:', err);
         res.redirect('/login');
@@ -93,32 +93,31 @@ module.exports = function(passport) {
       console.log('response error!');
       res.redirect('/login');
     }
-      user = createOrGetUser(body);
+      // api
+      root = 'https://api.cc.ncu.edu.tw';
+      urll = root + '/personnel/v1/info';
+      // console.log('req:'+req);
+      obj = JSON.parse(req);
+      console.log('access_token:'+obj.access_token);
+      request({url:urll,headers:{
+        'Authorization': 'Bearer' + obj.access_token,
+      }},function Callback(err, httpResponse, body) {
+        if (err) {
+          return console.error('failed:', err);
+          res.redirect('/login');
+        }
+        if(!httpResponse.statusCode===200){
+          console.log('response error!');
+          res.redirect('/login');
+        }
+        console.log('body:'+body);
+      }
+      );
     });
 
   })
   function createOrGetUser(req){
-    // api
-    root = 'https://api.cc.ncu.edu.tw';
-    urll = root + '/personnel/v1/info';
-    // console.log('req:'+req);
-    obj = JSON.parse(req);
-    console.log('access_token:'+obj.access_token);
-    request({url:urll,headers:{
-      'Authorization': 'Bearer' + obj.access_token,
-    }},function Callback(err, httpResponse, body) {
-      if (err) {
-        return console.error('failed:', err);
-        res.redirect('/login');
 
-      }
-      if(!httpResponse.statusCode===200){
-        console.log('response error!');
-        res.redirect('/login');
-      }
-      console.log('body:'+body);
-    }
-    );
   }
 
   // router.get('/auth/provider', passport.authenticate('provider',{ scope: 'user.info.basic.read' }));
