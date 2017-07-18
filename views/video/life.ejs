@@ -19,31 +19,34 @@
             $("#videofood").html("")
         });
         $("#f1").click(function(){
-            $("#videofood").html('')
+            $("#videofood").html('<div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe></div>')
         });
         $(".g2").click(function(){
             $("#videohousing").html("")
         });
         $("#f2").click(function(){
-            $("#videohousing").html('<iframe src="https://www.youtube.com/embed/uMCjmFM1im0?ecver=2" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe>')
+            $("#videohousing").html('<div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe></div>')
         });
         $(".g3").click(function(){
             $("#videotransportation").html("")
         });
         $("#f3").click(function(){
-            $("#videotransportation").html('')
+            $("#videotransportation").html('<div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe></div>')
         });
         $(".g4").click(function(){
             $("#videoeducation").html("")
         });
         $("#f4").click(function(){
-            $("#videoeducation").html('')
+            $("#videoeducation").html('<div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe></div>')
         });
         $(".g5").click(function(){
             $("#videoentertainment").html("")
         });
         $("#f5").click(function(){
-            $("#videoentertainment").html('')
+            $("#videoentertainment").html('<div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe></div>')
+        });
+        $("#warn").click(function(){
+            alert("記得一定要先試試看能不能開, 影音組的各位不要一直只想著放假 加油好嗎");
         });
     });
     </script>
@@ -53,14 +56,17 @@
         <% include ../layouts/navbar %>
     </header>
 
-    <main style=" background-color: #00BFFF !important; min-width: 100vw; max-width:100vw">
+    <main style=" background-color: #00BFFF !important; min-width: 100vw; max-width:100vw; padding-top: 10px">
       <div class="container">
 
 
-    <a href="/">首頁 ></a>
-    <a href="/video"> 影音專區</a>
+    <div style="font-size: 1.2vw">
+        <a href="/">首頁></a>
+        <a href="/video">影音專區</a>
+    </div>
+    
         <div>
-            <h1 class="text-center"><strong>歡迎進入生活區</strong></h1>
+            <h1 class="text-center" style="font-size: 3vw"><strong>歡迎進入生活區</strong></h1>
         </div>
         <div class="col-xs-12"><img style="max-width: 1000px" src="/video/圖片3.png" class="img-responsive"/></div>
         <div class="row">
@@ -70,7 +76,6 @@
             <div class="col-xs-2"><img src="" class="img-responsive" data-toggle="modal" data-target="#101"/></div>
             <div class="col-xs-4"><img style="padding: 2vh;" src="/video/圖片1.png" id="f1" class="img-responsive cc" alt="food" data-toggle="modal" data-target="#5"/></div>
             <div class="col-xs-4"><img style="padding: 2vh;" src="/video/圖片1.png" id="f2" class="img-responsive cc" alt="housing" data-toggle="modal" data-target="#6"/></div>
-            <!-- <div class="col-xs-2"><img src="/video/圖片100.png" class="img-responsive" data-toggle="modal" data-target="#100"/></div> -->
         </div>
 
         <div class="row">
@@ -83,7 +88,50 @@
             <div class="col-xs-4"><img src="" class="img-responsive"/></div>
         </div>
 
-    <!-- Modal -->
+
+        <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#edit">加入影片</button>
+        <!-- 修改排序model -->
+        <div class="modal fade" id="edit" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">加入影片</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/video/add" method="post" accept-charset="utf-8">
+
+                            <div class="form-group">
+                                <label for="type" class="control-label">選擇影片名稱</label>
+                                <select name="type" id="change_order_id" class="form-control">
+                                    <option selected="not_commonly_used_link" value="food">【中大生活-食】</option>
+                                    <option selected="not_commonly_used_link" value="housing">【中大生活-住】</option>
+                                    <option selected="not_commonly_used_link" value="transportation">【中大生活-行】</option>
+                                    <option selected="not_commonly_used_link" value="education">【中大生活-育】</option>
+                                    <option selected="not_commonly_used_link" value="entertainment">【中大生活-樂】</option>
+                                    <option selected="" value="">請選擇</option>
+                                </select>
+                            </div>
+
+                            <div class='form-group'>
+                                <label id="not_commonly_used_link_label" style="display:inline-block;" for="content">輸入影片網址</label>
+                                <textarea id="textarea" name="content" rows="8" cols="80"></textarea><br>
+                            </div>
+
+                            <button type="submit" name="button" class="btn btn-primary" id="warn">< 加入影片 ></button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    <!-- Modal-->
         <div class="modal fade" id="5" role="dialog">
             <div class="modal-dialog">
 
@@ -94,7 +142,7 @@
                         <h4 class="modal-title">【中大生活-食】</h4>
                     </div>
                     <div class="modal-body">
-                        <img style="max-width: 800px" src="/video/圖片4.png" class="img-responsive"/>
+                        <div id="videofood"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default g1" data-dismiss="modal">Close</button>
@@ -114,7 +162,7 @@
                         <h4 class="modal-title">【中大生活-住】</h4>
                     </div>
                     <div class="modal-body">
-                        <div id="videohousing" style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/uMCjmFM1im0?ecver=2" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe></div>
+                        <div id="videohousing"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default g2" data-dismiss="modal">Close</button>
@@ -134,7 +182,7 @@
                         <h4 class="modal-title">【中大生活-行】</h4>
                     </div>
                     <div class="modal-body">
-                        <img style="max-width: 800px" src="/video/圖片4.png" class="img-responsive"/>
+                        <div id="videotransportation"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default g3" data-dismiss="modal">Close</button>
@@ -154,7 +202,7 @@
                         <h4 class="modal-title">【中大生活-育】</h4>
                     </div>
                     <div class="modal-body">
-                        <img style="max-width: 800px" src="/video/圖片4.png" class="img-responsive"/>
+                        <div id="videoeducation"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default g4" data-dismiss="modal">Close</button>
@@ -174,7 +222,7 @@
                         <h4 class="modal-title">【中大生活-樂】</h4>
                     </div>
                     <div class="modal-body">
-                        <img style="max-width: 800px" src="/video/圖片4.png" class="img-responsive"/>
+                        <div id="videoentertainment"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default g5" data-dismiss="modal">Close</button>
@@ -184,28 +232,9 @@
             </div>
         </div>
         </div>
-    <!-- Modal -->
-        <div class="modal fade" id="101" role="dialog">
-            <div class="modal-dialog">
-
-    <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">I'm watching you.</h4>
-                    </div>
-                    <div class="modal-body">
-                        <img style="max-width: 800px" src="/video/圖片99.png" class="img-responsive"/>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        </div>
     </main>
+
+
 
     <footer>
         <% include ../layouts/footer %>
