@@ -88,7 +88,7 @@ module.exports = function(passport) {
       if (err) {
         return console.error('failed:', err);
       }
-      console.log(httpResponse);
+      console.log(httpResponse.statusCode);
       console.log('Upload successful!  Server responded with:', body);
     });
 
