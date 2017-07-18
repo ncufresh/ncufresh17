@@ -78,19 +78,7 @@ module.exports = function(passport) {
     var client_id = process.env.PORTAL_CLIENT_ID;
     var client_secret = process.env.PORTAL_CLIENT_SECRET;
     var urll = root + '/oauth/token';
-    // axios.post(urll, qs.stringify({
-    //   grant_type: 'authorization_code',
-    //   'code': req.query.code,
-    //   'client_id': client_id,
-    //   'client_secret': client_secret
-    // }))
-    // .then(function (response) {
-    //   res.send(response);
-    // })
-    // .catch(function (error) {
-    //   console.log(error);
-    //   // res.redirect('/login');
-    // });
+
     request.post({url:urll, form: {
         'grant_type': 'authorization_code',
         'code': req.query.code,
@@ -100,6 +88,7 @@ module.exports = function(passport) {
       if (err) {
         return console.error('failed:', err);
       }
+      console.log(httpResponse);
       console.log('Upload successful!  Server responded with:', body);
     });
 
