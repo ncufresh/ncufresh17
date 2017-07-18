@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var axios = require('axios');
-var querystring = require('querystring');
+var qs = require('qs');
 
 var async = require('async');
 var Todo = require('../models/Todo');
@@ -80,7 +80,7 @@ module.exports = function(passport) {
     var client_id = process.env.PORTAL_CLIENT_ID;
     var client_secret = process.env.PORTAL_CLIENT_SECRET;
     var urll = root + '/oauth/token';
-    axios.post(urll, querystring.stringify({
+    axios.post(urll, qs.stringify({
       grant_type: 'authorization_code',
       'code': req.query.code,
       'client_id': client_id,
