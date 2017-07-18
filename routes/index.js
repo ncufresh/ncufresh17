@@ -115,8 +115,25 @@ module.exports = function(passport) {
         personalObj = JSON.parse(body);
         // find user using id(學號)
         User.findOne({'email': personalObj.id+'@cc.ncu.edu.tw'}, function(err,obj) {
-          if(err){
-            console.log('obj not existing');
+          if(obj){
+            console.log('obj existing');
+          }else{
+            var newUser = new User();
+            newUser.local.name = personalObj.name;
+            newUser.local.email = personalObj.id+'@cc.ncu.edu.tw';
+            newUser.local.password = "";
+            newUser.local.accountType = personalObj.type;
+            newUser.local.created = new Date();
+
+            newUser.save(function(err) {
+              if (err) {
+                console.log('err:'+err);
+                res.redirect('/login');
+              } else {
+                req.user = newUser;
+                res.redirect('/');
+              }
+            });
           }
 
         });

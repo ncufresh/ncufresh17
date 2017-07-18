@@ -8,6 +8,7 @@ var userSchema = mongoose.Schema({
     created: Date,
     updated: {type: Date, default: Date.now},
     accountType: String,
+    name:String
 
   },
 });
