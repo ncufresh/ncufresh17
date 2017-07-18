@@ -6,7 +6,6 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "axios": "^0.16.2",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "~1.17.1",
     "connect-flash": "^0.1.1",
@@ -26,6 +25,7 @@
     "passport-oauth": "^1.0.0",
     "passport-oauth2": "^1.4.0",
     "regexp-clone": "0.0.1",
+    "request": "^2.81.0",
     "sanitize-html": "^1.14.1",
     "serve-favicon": "~2.4.2",
     "shortid": "^2.2.8",
