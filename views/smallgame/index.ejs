@@ -153,9 +153,9 @@ svg {
     position: absolute;
     top:0;
     left:0;
-  width: 160px;
-  height: 160px;
-  transform: rotateY(-180deg) rotateZ(-90deg);
+    width: 160px;
+    height: 160px;
+    transform: rotateY(-180deg) rotateZ(-90deg);
 }
 
 svg circle {
@@ -271,6 +271,19 @@ svg circle {
 
 /*BAR*/
 
+/*ANSWER*/
+.wrong{
+    width:auto;
+    height:50px;
+    display: none;
+}
+
+.correct{
+    width:auto;
+    height:50px;
+    display: none;
+}
+
 </style>
 
 
@@ -337,8 +350,8 @@ svg circle {
 
                 <!--POINT-->
                 <div class="row2">
-                    <div class="col-xs-4" id="plyptn"><p></p></div>
-                    <div class="col-xs-4" id="pcptn"><p></p></div>
+                    <div class="col-xs-4" id="plyptn"></div>
+                    <div class="col-xs-4" id="pcptn"></div>
                 </div>
                 <!--POINT-->
                 
@@ -354,10 +367,30 @@ svg circle {
                     <div class="col-xs-4" id="question">
                         <div class="Q" ><p id="q"></p></div>
                         <div class="A" >
-                            <div><button type="button" onclick="answer1()"><p id="ans1"></p></button></div>
-                            <div><button type="button" onclick="answer2()"><p id="ans2"></p></button></div>
-                            <div><button type="button" onclick="answer3()"><p id="ans3"></p></button></div>
-                            <div><button type="button" onclick="answer4()"><p id="ans4"></p></button></div>
+                            <div><button type="button" onclick="answer1()">
+                                    <img src="/game/select.png" class="correct" id="correct01" alt="correct" />
+                                    <img src="/game/wrong.png" class="wrong" id="wrong01" alt="wrong" />
+                                    <p id="ans1"></p>
+                                    
+                            </button></div>
+                            <div><button type="button" onclick="answer2()">
+                                    <img src="/game/select.png" class="correct" id="correct02" alt="correct" />
+                                    <img src="/game/wrong.png" class="wrong" id="wrong02" alt="wrong" />
+                                    <p id="ans2"></p>
+                                    
+                            </button></div>
+                            <div><button type="button" onclick="answer3()">
+                                    <img src="/game/select.png" class="correct" id="correct03" alt="correct" />
+                                    <img src="/game/wrong.png" class="wrong" id="wrong03" alt="wrong" />
+                                    <p id="ans3"></p>
+                                    
+                            </button></div>
+                            <div><button type="button" onclick="answer4()">
+                                    <img src="/game/select.png" class="correct" id="correct04" alt="correct" />
+                                    <img src="/game/wrong.png" class="wrong" id="wrong04" alt="wrong" />
+                                    <p id="ans4"></p>
+                                    
+                            </button></div>
                         </div>
                     </div>
                 <!--Q&A-->
@@ -373,6 +406,10 @@ svg circle {
 
             </div>
             <!--GAME-->
+
+            <div class="getscore" id="getscore">
+                
+            </div>
 
         </div>
 
