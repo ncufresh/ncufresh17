@@ -66,6 +66,7 @@ module.exports = function(passport) {
     var urll = root + '/oauth/authorize?response_type=code&scope=' + scope + '&client_id=' + client_id;
     res.redirect(urll);
   } );
+
   router.get('/auth/provider/callback',isLoggedIn, function(req, res, next){
     var url_parts = url.parse(req.url, true);
   	var query = url_parts.query;
@@ -114,9 +115,7 @@ module.exports = function(passport) {
         personalObj = JSON.parse(body);
         // find user using id(學號)
         User.findOne({'email': personalObj.id+'@cc.ncu.edu.tw'}, function(err,obj) {
-          if(obj){
-            console.log('obj existing');
-          }else{
+          if(err){
             console.log('obj not existing');
           }
 
