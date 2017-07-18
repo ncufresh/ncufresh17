@@ -93,13 +93,13 @@ module.exports = function(passport) {
       console.log('response error!');
       res.redirect('/login');
     }
-      // console.log('Upload successful!  Server responded with:', body);
+      console.log('Server responded with:', body);
       user = createOrGetUser(body);
     });
 
   })
   function createOrGetUser(req){
-    console.log('body:'+request);
+    console.log('body:'+req);
     portal = getUserInfo(req)
     console.log('portal:'+portal);
   }
