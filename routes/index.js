@@ -98,22 +98,16 @@ module.exports = function(passport) {
     });
 
   })
-  function createOrGetUser(request){
-    // console.log('body:'+request);
-    portal = getUserInfo(request)
-    console.log(portal);
+  function createOrGetUser(req){
+    console.log('body:'+request);
+    portal = getUserInfo(req)
+    console.log('portal:'+portal);
   }
   function getUserInfo(req){
     // api
-        root = 'https://api.cc.ncu.edu.tw';
-        urll = root + '/personnel/v1/info';
-        // access_token = request->session()->get('access_token');
-        // response = Guzzle::get(
-        //     url,
-        //     [
-        //         'headers'  => [ 'Authorization' => 'Bearer ' . $access_token ]
-        //     ]
-        // );
+    root = 'https://api.cc.ncu.edu.tw';
+    urll = root + '/personnel/v1/info';
+    console.log('access_token:'+req.access_token);
     request({url:urll,headers:{
       'Authorization': 'Bearer' + req.access_token,
     }},function Callback(err, httpResponse, body) {
