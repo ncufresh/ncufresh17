@@ -8,24 +8,35 @@
         <% include ../layouts/navbar %>
     </header>
 
-    <main>
+    <main style="background: #cce8f7;">
         <div class="container-fluid">
             <div style="margin-left:25px;margin-right:25px;">
                 <h1><%= title  %></h1>
                 <a href="/campus/editMap"><button class="btn btn-success new_building">編輯地圖物件</button></a>
                 <div class="row">
                     <div class="col-xs-1" style="padding:0px;">
-                        <img class="mouse-animate" src="/campus/default/1.png" width="100%" alt="" style=" margin-top:25%; margin-bottom:25%; padding:0.5vh;">
-                        <img class="mouse-animate" src="/campus/default/2.png" width="100%" alt="" style=" margin-top:25%; margin-bottom:25%; padding:0.5vh;">
-                        <img class="mouse-animate" src="/campus/default/3.png" width="100%" alt="" style=" margin-top:25%; margin-bottom:25%; padding:0.5vh;">
+                        <img class="mouse-animate" src="/campus/default/1.png" width="100%" alt="" style=" margin-top:25%; margin-bottom:25%; padding:1vh;">
+                        <img class="mouse-animate" src="/campus/default/2.png" width="100%" alt="" style=" margin-top:25%; margin-bottom:25%; padding:1vh;">
+                        <img class="mouse-animate" src="/campus/default/3.png" width="100%" alt="" style=" margin-top:25%; margin-bottom:25%; padding:1vh;">
                     </div>
-                    <div class="col-xs-10">
-                        <img src="/campus/default/back.png" width="100%" alt="">  
+                    <div class="col-xs-10" style="position:relative;padding:0px;padding-bottom:46.666667%;">
+                        <img src="/campus/default/back.png"style="position:absolute;" width="100%" alt="">  
+                        <%for(var i in map_objs){%>
+                            
+                            <img class="mouse-animate map-build" src="<%= map_objs[i].path%>" alt="<%= map_objs[i].build_name%>" style="
+                                position:absolute;
+                                padding:1vh;
+                                height:auto;
+                                width:<%= map_objs[i].size+'%'%>;
+                                top:<%= map_objs[i].y_position+'%'%>;
+                                left:<%= map_objs[i].x_position+'%'%>;
+                            ">
+                        <%}%>
                     </div>
                     <div class="col-xs-1" style="padding:0px;">
-                        <img class="mouse-animate" src="/campus/default/4.png" width="100%" alt="" style=" margin-top:25%; margin-bottom:25%; padding:0.5vh;">
-                        <img class="mouse-animate" src="/campus/default/5.png" width="100%" alt="" style=" margin-top:25%; margin-bottom:25%; padding:0.5vh;">
-                        <img class="mouse-animate" src="/campus/default/6.png" width="100%" alt="" style=" margin-top:25%; margin-bottom:25%; padding:0.5vh;">
+                        <img class="mouse-animate" src="/campus/default/4.png" width="100%" alt="" style=" margin-top:25%; margin-bottom:25%; padding:1vh;">
+                        <img class="mouse-animate" src="/campus/default/5.png" width="100%" alt="" style=" margin-top:25%; margin-bottom:25%; padding:1vh;">
+                        <img class="mouse-animate" src="/campus/default/6.png" width="100%" alt="" style=" margin-top:25%; margin-bottom:25%; padding:1vh;">
                     </div>
                 </div>
             </div>       

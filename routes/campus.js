@@ -13,7 +13,13 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/guide', function (req, res, next) {
-	res.render('campus/guide', { user: req.user, title: '校園地圖' });
+	map_obj.find({}).exec(function(err,map_objs){
+		res.render('campus/guide', {
+			user: req.user,
+			title: '校園地圖' ,
+			map_objs: map_objs
+		});
+	})
 });
 
 router.get('/help', function (req, res, next) {
@@ -67,6 +73,19 @@ router.get('/delete_img/:id', function (req, res, next) {
 	});
 });
 
+router.get('/delete_mapObj/:id', function (req, res, next) {
+	console.log(req.params.id);
+	map_obj.findById(req.params.id, function (err, data) {
+		fs.unlink('./public/campus/' + data.fileName, function (e) {
+			if (e) console.log(e);
+			else {
+				map_obj.findById(req.params.id).remove().exec();
+			}
+			res.redirect('/campus/editMap');
+		});
+	});
+});
+
 router.post('/add', function (req, res, next) {
 	if (req.body.button == "update") {
 		building.update({ _id: req.body.bid }, {
@@ -95,60 +114,71 @@ router.post('/add', function (req, res, next) {
 });
 
 router.post('/newMapObj', function (req, res, next) {
-	var form = new formidable.IncomingForm();
+	// console.log(req.body.button);
+	if(req.body.button!="edit"){
+		var form = new formidable.IncomingForm();
+		form.parse(req, function (err, fields, files) {
+			if (err) {
+				console.log(err);
+			}
+			console.log('received fields: ');
+			console.log(fields);
+			console.log('received files: ');
+			console.log(files);
 
-	form.parse(req, function (err, fields, files) {
-		if (err) {
-			console.log(err);
-		}
-		console.log('received fields: ');
-		console.log(fields);
-		console.log('received files: ');
-		console.log(files);
+			var uploadedFile = files.uploadMapImg;
+			var tmpPath = uploadedFile.path;
+			var fileName = shortId.generate() + uploadedFile.name.substr(uploadedFile.name.lastIndexOf('.'));
+			var targetPath = './public/campus/' + fileName;
+			console.log(tmpPath);
+			console.log(targetPath);
+			// 跨分區會error
+			// fs.rename(tmpPath, targetPath, function(err) {
+			//   if (err){
+			//     console.log(err);
+			//   }
+			//   else{ 
+			//     fs.unlink(tmpPath, function() {
+			//       console.log('File Uploaded to ' + targetPath + ' - ' + uploadedFile.size + ' bytes');
+			//     });
+			//   }
+			// });
 
-		var uploadedFile = files.uploadMapImg;
-		var tmpPath = uploadedFile.path;
-		var fileName = shortId.generate() + uploadedFile.name.substr(uploadedFile.name.lastIndexOf('.'));
-		var targetPath = './public/campus/' + fileName;
-		console.log(tmpPath);
-		console.log(targetPath);
-		// 跨分區會error
-		// fs.rename(tmpPath, targetPath, function(err) {
-		//   if (err){
-		//     console.log(err);
-		//   }
-		//   else{ 
-		//     fs.unlink(tmpPath, function() {
-		//       console.log('File Uploaded to ' + targetPath + ' - ' + uploadedFile.size + ' bytes');
-		//     });
-		//   }
-		// });
+			var readStream = fs.createReadStream(tmpPath)
+			var writeStream = fs.createWriteStream(targetPath);
+			building.findById(fields.map_obj_id).exec(function(err,data){
+				console.log(fields.map_obj_id);
+				console.log(data);
+				new map_obj({
+					build_name: data.name,
+					build_type: data.type,
+					build_id: fields.map_obj_id,
+					path: '/campus/' + fileName,
+					fileName: fileName,
+					x_position: fields.x_position,
+					y_position: fields.y_position,
+					size: 1
+				}).save(function(){
+					res.redirect('/campus/editMap');
+				});
 
-		var readStream = fs.createReadStream(tmpPath)
-		var writeStream = fs.createWriteStream(targetPath);
-		building.findById(fields.map_obj_id).exec(function(err,data){
-			console.log(fields.map_obj_id);
-			console.log(data);
-			new map_obj({
-				build_name: data.name,
-				build_type: data.type,
-				build_id: fields.map_obj_id,
-				path: '/campus/' + fileName,
-				fileName: fileName,
-				x_position: fields.x_position,
-				y_position: fields.y_position,
-				size: 1
-			}).save(function(){
-				res.redirect('/campus/editMap');
+				readStream.on("end", function () {
+					fs.unlink(tmpPath);
+				}).pipe(writeStream);
+
 			});
-
-			readStream.on("end", function () {
-				fs.unlink(tmpPath);
-			}).pipe(writeStream);
-
 		});
-
-	});
+	}
+	else{
+		map_obj.update({_id:req.body.mapObj_id},{
+			x_position: req.body.x_position,
+			y_position: req.body.y_position,
+			size: req.body.size
+		},function(e){
+			if(e) console.log(e);
+			res.redirect('/campus/editMap');
+		});
+	}
 });
 
 router.post('/imgUpload', function (req, res, next) {

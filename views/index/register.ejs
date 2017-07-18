@@ -20,6 +20,10 @@
 
             <!-- LOGIN FORM -->
             <form action="/register" method="post">
+              <div class="form-group">
+                  <label>Name</label>
+                  <input type="text" class="form-control" name="name" required>
+              </div>
                 <div class="form-group">
                     <label>Email</label>
                     <input type="email" class="form-control" name="email" required>
@@ -35,7 +39,8 @@
             <hr>
 
             <p>Already have an account? <a href="/login">登入</a></p>
-            <p>Or go <a href="/">home</a>.</p>
+            <p>透過portal登入！ <a href="/auth/provider">前往</a></p>
+            <p>回到 <a href="/">首頁</a></p>
 
           </div>
         </div>

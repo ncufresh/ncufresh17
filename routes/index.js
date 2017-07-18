@@ -1,12 +1,11 @@
 var express = require('express');
 var router = express.Router();
-var axios = require('axios');
-var querystring = require('querystring');
 
 var async = require('async');
 var Todo = require('../models/Todo');
+var User = require('../models/user');
 var url = require('url');
-
+var request = require('request');
 
 module.exports = function(passport) {
 
@@ -52,12 +51,6 @@ module.exports = function(passport) {
   }));
 
 
-  //處理登入
-  router.post('/login',isLoggedIn, passport.authenticate('local-login', {
-    successRedirect : '/profile', // 成功則導入profile
-    failureRedirect : '/login',   // 失敗則返回登入頁
-    failureFlash : true // 允許 flash 訊息
-  }));
 
   // 登出用
   router.get('/logout', function(req, res) {
@@ -73,6 +66,7 @@ module.exports = function(passport) {
     var urll = root + '/oauth/authorize?response_type=code&scope=' + scope + '&client_id=' + client_id;
     res.redirect(urll);
   } );
+
   router.get('/auth/provider/callback',isLoggedIn, function(req, res, next){
     var url_parts = url.parse(req.url, true);
   	var query = url_parts.query;
@@ -80,27 +74,83 @@ module.exports = function(passport) {
     if(!req.query.code){
       res.redirect('/login');
     }
-    // res.send("code existing");
-    // api
+    // api get accessToken
     var root = 'https://api.cc.ncu.edu.tw/oauth';
-    var client_id = 'NjVlNTZjMjktYWViZC00M2YyLTk0NTctNDk3NTY5NjQ0NmM5';
-    var client_secret = '19856e10b37e92998633e72477c4806ca8d368326d12e8b864e9fac09316e92ce242ca755f1a8d6e23b35e64393a2cfd7979c192fa605458ab312bfb18514e06';
+    var client_id = process.env.PORTAL_CLIENT_ID;
+    var client_secret = process.env.PORTAL_CLIENT_SECRET;
     var urll = root + '/oauth/token';
-    axios.post(urll, querystring.stringify({
-      grant_type: 'authorization_code',
-      'code': req.query.code,
-      'client_id': client_id,
-      'client_secret': client_secret
-    }))
-    .then(function (response) {
-      res.send(response);
-    })
-    .catch(function (error) {
-      console.log(error);
+
+    request.post({url:urll, form: {
+        'grant_type': 'authorization_code',
+        'code': req.query.code,
+        'client_id': client_id,
+        'client_secret': client_secret
+      }}, function Callback(err, httpResponse, token) {
+      if (err) {
+        return console.error('failed:', err);
+        res.redirect('/login');
+      }
+    if(!httpResponse.statusCode===200){
+      console.log('response error!');
       res.redirect('/login');
+    }
+      // api get personal information
+      root = 'https://api.cc.ncu.edu.tw';
+      urll = root + '/personnel/v1/info';
+      // console.log('req:'+req);
+      obj = JSON.parse(token);
+      console.log('access_token:'+obj.access_token);
+      request({url:urll,headers:{
+        'Authorization': 'Bearer' + obj.access_token,
+      }},function Callback(err, httpResponse, body) {
+        if (err) {
+          return console.error('failed:', err);
+          res.redirect('/login');
+        }
+        if(!httpResponse.statusCode===200){
+          console.log('response error!');
+          res.redirect('/login');
+        }
+        console.log('body:'+body);
+        personalObj = JSON.parse(body);
+        // find user using id(學號)
+        User.findOne({'local.email': personalObj.id+'@cc.ncu.edu.tw'},function(err,obj) {
+          if(obj){
+            req.login(obj, function(err){
+              if(!err){
+                res.redirect('/');
+              }
+            });
+          }else{
+            var newUser = new User();
+            newUser.local.name = personalObj.name;
+            newUser.local.email = personalObj.id+'@cc.ncu.edu.tw';
+            newUser.local.password = "";
+            newUser.local.accountType = personalObj.type;
+            newUser.local.created = new Date();
+
+            newUser.save(function(err) {
+              if (err) {
+                console.log('err:'+err);
+                res.redirect('/login');
+              } else {
+                req.login(newUser, function(err){
+                  if(!err){
+                    res.redirect('/');
+                  }
+                });
+
+              }
+            });
+          }
+
+        });
+      }
+      );
     });
 
   })
+
 
   // router.get('/auth/provider', passport.authenticate('provider',{ scope: 'user.info.basic.read' }));
   //
