@@ -67,9 +67,20 @@ $(document).ready(function(){
     })
 
     $('.edit_mapObj').click(function(){
-        $('#x-position').val( $(this).parentsUntil('tbody').children('.build_x').text());
-        $('#y-position').val( $(this).parentsUntil('tbody').children('.build_y').text());
-        $('#size').val( $(this).parentsUntil('tbody').children('.build_size').text());
+        var id = $(this).val();
+        $("#building_img").css({
+            "height":"auto",
+            "width":$(this).parentsUntil('tr').siblings('.build_size').text()+'%'
+        });
+        $('#building_img').attr('src',$(this).parentsUntil('tr').siblings('.build_img').children('img').attr('src')).css({
+            left: $(this).parentsUntil('tr').siblings('.build_x').text()+"%",
+            top:$(this).parentsUntil('tr').siblings('.build_y').text()+"%"
+        });
+        $('#mapObj_id').val(id);
+        $('#mapObj_title').text("編輯"+$(this).parentsUntil('tr').siblings('.build_name').text());
+        $('#x-position').val( $(this).parentsUntil('tr').siblings('.build_x').text());
+        $('#y-position').val( $(this).parentsUntil('tr').siblings('.build_y').text());
+        $('#size').val( $(this).parentsUntil('tr').siblings('.build_size').text());
         $('#edit_mapObj_modal').modal();
     })
 
@@ -84,6 +95,22 @@ $(document).ready(function(){
                 },
                 success: function(data){
                     $('#img'+ id).remove();
+                }
+            });
+        }
+    })
+
+    $(document).on('click','.delete_mapObj',function(){
+        if(confirm("確定要刪除?")){
+            var id = $(this).val();
+            $.ajax({
+                url:    '/campus/delete_mapObj/'+ id,
+                type:   'GET',
+                error: function(e){
+                    console.log("ERR  :"+e);
+                },
+                success: function(data){
+                    $('#mapObj'+ id).remove();
                 }
             });
         }
@@ -115,13 +142,34 @@ $(document).ready(function(){
     $(".mouse-animate").mouseenter(function(){
             $(this).animate({
                 padding:'0vh'
-            }, 200);
+            }, 100);
     });
     $(".mouse-animate").mouseleave(function(){
             $(this).animate({
                 padding:'1vh'
-            }, 200);
+            }, 100);
     });
+    $(".draggable").draggable({
+        stop: function(){
+            var x=$("#building_img").css("left").substring(0,$("#building_img").css("left").length-2)/$("#editmap").width()*100;
+            var y=$("#building_img").css("top").substring(0,$("#building_img").css("top").length-2)/$("#editmap").height()*100;
+            $('#x-position').val(x);
+            $('#y-position').val(y);
+        }
+    });
+    $("#size,#x-position,#y-position").change(function(){
+        $("#building_img").css({
+            "height":"auto",
+            "width":$("#size").val()+"%",
+            "top":$("#y-position").val()+"%",
+            "left":$("#x-position").val()+"%"
+        });
+    })
+
+    $(".navbar").css({
+        "margin-bottom": "0px"
+    });
+
 })
 </script>
 
