@@ -93,20 +93,15 @@ module.exports = function(passport) {
       console.log('response error!');
       res.redirect('/login');
     }
-      // console.log('Server responded with:', body);
       user = createOrGetUser(body);
     });
 
   })
   function createOrGetUser(req){
-    portal = getUserInfo(req)
-    console.log('portal:'+portal);
-  }
-  function getUserInfo(req,callback){
     // api
     root = 'https://api.cc.ncu.edu.tw';
     urll = root + '/personnel/v1/info';
-    console.log('req:'+req);
+    // console.log('req:'+req);
     obj = JSON.parse(req);
     console.log('access_token:'+obj.access_token);
     request({url:urll,headers:{
@@ -122,10 +117,8 @@ module.exports = function(passport) {
         res.redirect('/login');
       }
       console.log('body:'+body);
-      callback(body);
     }
-    )
-
+    );
   }
 
   // router.get('/auth/provider', passport.authenticate('provider',{ scope: 'user.info.basic.read' }));
