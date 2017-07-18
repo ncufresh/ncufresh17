@@ -26,6 +26,8 @@
         if(foodtoggle == true){
             foodtoggle = -foodtoggle;
             dormtoggle = traffic = studytoggle = entertainmenttoggle = true;
+            $("#food-video").css({"display":"block"});
+            $("#food-video").html('<iframe src="https://www.youtube.com/embed/3DEkF2uvPoc?ecver=2" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe>');
             $("#life-navigate-2,#life-navigate-3,#life-navigate-4,#life-navigate-5").animate({opacity: '0.3'}, 200);
             $("#life-navigate-1,#life-navigate-back").animate({opacity: '1.0'}, 200);
             $("#food-mainpan").slideToggle(1200);
@@ -34,6 +36,7 @@
         }
         else{
             foodtoggle = -foodtoggle;
+            $("#food-video").css({"display":"none"});
             $("#life-navigate-1,#life-navigate-2,#life-navigate-3,#life-navigate-4,#life-navigate-5").animate({opacity: '1'}, 200);
             $("#life-navigate-back").animate({opacity: '0.0'}, 200);
             $("#food-mainpan").slideToggle(1200);
@@ -109,6 +112,7 @@
         }
       });
       $("#life-navigate-back").click(function(){
+        $("#food-video").css({"display":"none"});
         $("#life-navigate-1,#life-navigate-2,#life-navigate-3,#life-navigate-4,#life-navigate-5").animate({opacity: '1'}, 200);
         $("#life-navigate-back").animate({opacity: '0.0'}, 200);
         $("#food-mainpan,#dorm-mainpan,#traffic-mainpan,#study-mainpan,#entertainment-mainpan").slideUp(2000).css({"display":"none"});
@@ -138,6 +142,7 @@
       //    $(this).css({"opacity":"0.3"});
     //  });
       $("#food-pan1").click(function(){
+        $("#food-video").css({"display":"none"});
         $("#food-pan1").css({"opacity":"1.0"});
         $("#food-pan2").css({"opacity":"0.3"});
         $("#food-pan3").css({"opacity":"0.3"});
@@ -154,6 +159,7 @@
         $("#food-pan7-info").css({"display":"none"});
       });
       $("#food-pan2").click(function(){
+        $("#food-video").css({"display":"none"});
         $("#food-pan1").css({"opacity":"0.3"});
         $("#food-pan2").css({"opacity":"1.0"});
         $("#food-pan3").css({"opacity":"0.3"});
@@ -170,6 +176,7 @@
         $("#food-pan7-info").css({"display":"none"});
       });
       $("#food-pan3").click(function(){
+        $("#food-video").css({"display":"none"});
         $("#food-pan1").css({"opacity":"0.3"});
         $("#food-pan2").css({"opacity":"0.3"});
         $("#food-pan3").css({"opacity":"1.0"});
@@ -186,6 +193,7 @@
         $("#food-pan7-info").css({"display":"none"});
       });
       $("#food-pan4").click(function(){
+        $("#food-video").css({"display":"none"});
         $("#food-pan1").css({"opacity":"0.3"});
         $("#food-pan2").css({"opacity":"0.3"});
         $("#food-pan3").css({"opacity":"0.3"});
@@ -202,6 +210,7 @@
         $("#food-pan7-info").css({"display":"none"});
       });
       $("#food-pan5").click(function(){
+        $("#food-video").css({"display":"none"});
         $("#food-pan1").css({"opacity":"0.3"});
         $("#food-pan2").css({"opacity":"0.3"});
         $("#food-pan3").css({"opacity":"0.3"});
@@ -218,6 +227,7 @@
         $("#food-pan7-info").css({"display":"none"});
       });
       $("#food-pan6").click(function(){
+        $("#food-video").css({"display":"none"});
         $("#food-pan1").css({"opacity":"0.3"});
         $("#food-pan2").css({"opacity":"0.3"});
         $("#food-pan3").css({"opacity":"0.3"});
@@ -234,6 +244,7 @@
         $("#food-pan7-info").css({"display":"none"});
       });
       $("#food-pan7").click(function(){
+        $("#food-video").css({"display":"none"});
         $("#food-pan1").css({"opacity":"0.3"});
         $("#food-pan2").css({"opacity":"0.3"});
         $("#food-pan3").css({"opacity":"0.3"});
