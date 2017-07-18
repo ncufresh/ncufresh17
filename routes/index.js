@@ -116,7 +116,7 @@ module.exports = function(passport) {
         // find user using id(學號)
         User.findOne({'local.email': personalObj.id+'@cc.ncu.edu.tw'},function(err,obj) {
           if(obj){
-            req.logIn(obj, function(err){
+            req.login(obj, function(err){
               if(!err){
                 res.redirect('/');
               }
@@ -134,7 +134,7 @@ module.exports = function(passport) {
                 console.log('err:'+err);
                 res.redirect('/login');
               } else {
-                req.logIn(newUser, function(err){
+                req.login(newUser, function(err){
                   if(!err){
                     res.redirect('/');
                   }
