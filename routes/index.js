@@ -52,12 +52,6 @@ module.exports = function(passport) {
   }));
 
 
-  //處理登入
-  router.post('/login',isLoggedIn, passport.authenticate('local-login', {
-    successRedirect : '/profile', // 成功則導入profile
-    failureRedirect : '/login',   // 失敗則返回登入頁
-    failureFlash : true // 允許 flash 訊息
-  }));
 
   // 登出用
   router.get('/logout', function(req, res) {
@@ -83,8 +77,8 @@ module.exports = function(passport) {
     // res.send("code existing");
     // api
     var root = 'https://api.cc.ncu.edu.tw/oauth';
-    var client_id = 'NjVlNTZjMjktYWViZC00M2YyLTk0NTctNDk3NTY5NjQ0NmM5';
-    var client_secret = '19856e10b37e92998633e72477c4806ca8d368326d12e8b864e9fac09316e92ce242ca755f1a8d6e23b35e64393a2cfd7979c192fa605458ab312bfb18514e06';
+    var client_id = process.env.PORTAL_CLIENT_ID;
+    var client_secret = process.env.PORTAL_CLIENT_SECRET;
     var urll = root + '/oauth/token';
     axios.post(urll, querystring.stringify({
       grant_type: 'authorization_code',
@@ -97,7 +91,7 @@ module.exports = function(passport) {
     })
     .catch(function (error) {
       console.log(error);
-      res.redirect('/login');
+      // res.redirect('/login');
     });
 
   })

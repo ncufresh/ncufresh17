@@ -1,3 +1,3 @@
 module.exports = {
-  url: 'mongodb://localhost/ncufresh17'
+  url: process.env.DB_HOST,
 }
