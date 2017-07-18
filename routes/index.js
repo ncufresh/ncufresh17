@@ -99,11 +99,6 @@ module.exports = function(passport) {
 
   })
   function createOrGetUser(req){
-    // console.log('body:'+req);
-    portal = getUserInfo(req)
-    console.log('portal:'+portal);
-  }
-  function getUserInfo(req){
     // api
     root = 'https://api.cc.ncu.edu.tw';
     urll = root + '/personnel/v1/info';
@@ -123,10 +118,9 @@ module.exports = function(passport) {
         res.redirect('/login');
       }
       console.log('body:'+body);
-      return body;
+      
     }
     )
-
   }
 
   // router.get('/auth/provider', passport.authenticate('provider',{ scope: 'user.info.basic.read' }));
