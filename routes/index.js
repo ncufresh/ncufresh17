@@ -128,7 +128,7 @@ module.exports = function(passport) {
       }
       return body;
     }
-    ),
+    )
 
   }
 
