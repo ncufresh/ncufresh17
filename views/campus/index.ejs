@@ -1,39 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <% include ../layouts/head %>
 </head>
+
 <body>
     <header>
         <% include ../layouts/navbar %>
     </header>
 
-    <main>
-      <div class="container">
-        <div class="jumbotron">
-            <h1>This page is QQ <%= title  %></h1>
-            <p>Welcome to templating using EJS</p>
+    <main style="background: #cce8f7; padding:2vw">
+        <div class="container">
+            <img src="/campus/default/campus3.png" alt="" width="100%" >
             <a href="/campus/newData">新增建築物</a>
-             <div class="row text-center">
-                <div class="col-sm-6">
+            <div class="row text-center">
+                <div class="col-xs-6">
                     <a href="/campus/guide">
-                        校園地圖
+                        <img class="mouse-animate" src="/campus/default/campus1.png" alt="" width="80%" style="padding:1vh">
                     </a>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-xs-6">
                     <a href="/campus/help">
-                        校園防災
+                        <img class="mouse-animate" src="/campus/default/campus2.png" alt="" width="80%" style="padding:1vh">
                     </a>
                 </div>
             </div>
-          </div>
         </div>
     </main>
 
     <footer>
         <% include ../layouts/footer %>
     </footer>
-        <% include js %>
+    <% include js %>
         <% include ../layouts/js %>
 </body>
+
 </html>

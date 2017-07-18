@@ -73,11 +73,11 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">新增地圖物件</h4>
+                                <h4 class="modal-title" id="mapObj_title">編輯地圖物件</h4>
                             </div>
                             <div class="modal-body">
                                 
-                                <form action="/campus/newMapObj" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+                                <form action="/campus/newMapObj" method="post" accept-charset="utf-8">
 
                                     <div class='form-group'>
                                         <label for="x-position"><p>X座標</p></label>
@@ -93,8 +93,12 @@
                                         <label for="size"><p>Size</p></label>
                                         <input type="text" name="size" id="size" value=0>
                                     </div>
-
-                                    <button type="submit" name="button" class="btn btn-primary" >送出</button>
+                                    <div style="position:relative;width:100%;padding-bottom:56%">
+                                        <img src="/campus/default/back.png" id="editmap" width="100%" alt="" style="position:absolute;">
+                                        <img class="draggable" src="" alt="" id="building_img" style="position:absolute;">
+                                    </div>
+                                    <input type="hidden" name="mapObj_id" id="mapObj_id">
+                                    <button type="submit" name="button" value="edit" class="btn btn-primary" >送出</button>
                                 </form>
                             </div>
                             <div class="modal-footer">
@@ -123,7 +127,7 @@
 
                     <tbody>
                     <% for(var i in map_objs){ %>
-                        <tr class = "mapObj_table" value="<%= map_objs[i]._id %>" >
+                        <tr class = "mapObj_table" value="<%= map_objs[i]._id %>" id="<%='mapObj'+ map_objs[i]._id %>">
                             <td></td>
                             <td class="build_name"><p><%= map_objs[i].build_name %></p></td>
                             <td class="build_img"><img src="<%= map_objs[i].path %>" width="100%"></img></td>
