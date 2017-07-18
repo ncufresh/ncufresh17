@@ -1,3 +1,5 @@
+* 測試網址： http://ncufresh17.tk/
+
 # 如何開始
 
 `git clone https://gitlab.com/ncufresh/ncufresh17.git`
