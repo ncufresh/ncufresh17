@@ -84,21 +84,52 @@ module.exports = function(passport) {
         'code': req.query.code,
         'client_id': client_id,
         'client_secret': client_secret
-      }}, function optionalCallback(err, httpResponse, body) {
+      }}, function Callback(err, httpResponse, body) {
       if (err) {
         return console.error('failed:', err);
+        res.redirect('/login');
       }
     if(!httpResponse.statusCode===200){
       console.log('response error!');
       res.redirect('/login');
-    };
+    }
       // console.log('Upload successful!  Server responded with:', body);
       user = createOrGetUser(body);
     });
 
   })
   function createOrGetUser(request){
-    console.log('body:'+request);
+    // console.log('body:'+request);
+    portal = getUserInfo(request)
+    console.log(portal);
+  }
+  function getUserInfo(request){
+    // api
+        root = 'https://api.cc.ncu.edu.tw';
+        urll = root + '/personnel/v1/info';
+        access_token = request->session()->get('access_token');
+        response = Guzzle::get(
+            url,
+            [
+                'headers'  => [ 'Authorization' => 'Bearer ' . $access_token ]
+            ]
+        );
+    request.get({url:urll,headers:{
+      'Authorization': 'Bearer' + request.access_token,
+    }},function Callback(err, httpResponse, body) {
+      if (err) {
+        return console.error('failed:', err);
+        res.redirect('/login');
+
+      }
+      if(!httpResponse.statusCode===200){
+        console.log('response error!');
+        res.redirect('/login');
+      }
+      return body;
+    }
+    ),
+
   }
 
   // router.get('/auth/provider', passport.authenticate('provider',{ scope: 'user.info.basic.read' }));
