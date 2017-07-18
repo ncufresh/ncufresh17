@@ -105,8 +105,8 @@ module.exports = function(passport) {
   }
   function getUserInfo(request){
     // api
-        // root = 'https://api.cc.ncu.edu.tw';
-        // urll = root + '/personnel/v1/info';
+        root = 'https://api.cc.ncu.edu.tw';
+        urll = root + '/personnel/v1/info';
         // access_token = request->session()->get('access_token');
         // response = Guzzle::get(
         //     url,
