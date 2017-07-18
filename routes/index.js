@@ -103,7 +103,7 @@ module.exports = function(passport) {
     portal = getUserInfo(request)
     console.log(portal);
   }
-  function getUserInfo(request){
+  function getUserInfo(req){
     // api
         root = 'https://api.cc.ncu.edu.tw';
         urll = root + '/personnel/v1/info';
@@ -115,7 +115,7 @@ module.exports = function(passport) {
         //     ]
         // );
     request({url:urll,headers:{
-      'Authorization': 'Bearer' + request.access_token,
+      'Authorization': 'Bearer' + req.access_token,
     }},function Callback(err, httpResponse, body) {
       if (err) {
         return console.error('failed:', err);
