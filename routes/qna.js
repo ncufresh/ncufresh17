@@ -3,7 +3,7 @@ var router = express.Router();
 
 // 讀取頁面
 router.get('/', function(req, res, next) {
-  res.render('QnA/index', { title: 'QnA', user: req.user });
+  res.render('qna/index', { title: 'QnA', user: req.user });
 });
 
 // 新增問題
