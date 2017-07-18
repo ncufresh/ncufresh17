@@ -85,7 +85,7 @@ module.exports = function(passport) {
         'code': req.query.code,
         'client_id': client_id,
         'client_secret': client_secret
-      }}, function Callback(err, httpResponse, req) {
+      }}, function Callback(err, httpResponse, token) {
       if (err) {
         return console.error('failed:', err);
         res.redirect('/login');
@@ -98,7 +98,7 @@ module.exports = function(passport) {
       root = 'https://api.cc.ncu.edu.tw';
       urll = root + '/personnel/v1/info';
       // console.log('req:'+req);
-      obj = JSON.parse(req);
+      obj = JSON.parse(token);
       console.log('access_token:'+obj.access_token);
       request({url:urll,headers:{
         'Authorization': 'Bearer' + obj.access_token,
