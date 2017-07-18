@@ -34,6 +34,37 @@
                   </ul>
                     <h3 style="font-size:80px;">文學院</h3>
                     <hr size="8px" align="center" width="100%">
+                    <div class="row container" id="literature">
+                        <% for (var i in department){%>
+                            <% if ( department[i].type == "literature"){ %>
+                                    <img data-toggle="modal" data-target="#<%- department[i].id%>" src="01文圖標.png"/>
+                                    <p><%= department[i].name %></p>
+                                      <!-- Modal -->
+                                      <div class="modal fade" id="<%=department[i].id%>" role="dialog">
+                                        <div class="modal-dialog">
+                                        <!-- Modal content-->
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                              <h1 class="modal-title"><%= department[i].name %></h1>
+                                            </div>
+                                            <div class="modal-body">
+                                              <p>系所介紹:<%= department[i].introduction %></p>
+                                              <p>系學會:<%= department[i].organization %></p>
+                                              <p>系所活動:<%= department[i].activity %></p>
+                                              <p>系隊:<%= department[i].team %></p>
+                                              <p>系上課程:<%= department[i].course %></p>
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                          </div>
+                                          
+                                        </div>
+                                      </div>
+                            <%}%>
+                        <%}%>
+                    </div>
                   </div>
                   <div id="science" class="tab-pane fade">
                   <ul class="breadcrumb">
@@ -43,6 +74,37 @@
                   </ul>
                     <h3 style="font-size:80px;">理學院</h3>
                     <hr size="8px" align="center" width="100%">
+                    <div class="row container" id="science">
+                        <% for (var i in department){%>
+                            <% if ( department[i].type == "science"){ %>
+                                    <img data-toggle="modal" data-target="#<%- department[i].id%>" src="02理圖標.png"/>
+                                    <p><%= department[i].name %></p>
+                                      <!-- Modal -->
+                                      <div class="modal fade" id="<%=department[i].id%>" role="dialog">
+                                        <div class="modal-dialog">
+                                        <!-- Modal content-->
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                              <h1 class="modal-title"><%= department[i].name %></h1>
+                                            </div>
+                                            <div class="modal-body">
+                                              <p>系所介紹:<%= department[i].introduction %></p>
+                                              <p>系學會:<%= department[i].organization %></p>
+                                              <p>系所活動:<%= department[i].activity %></p>
+                                              <p>系隊:<%= department[i].team %></p>
+                                              <p>系上課程:<%= department[i].course %></p>
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                          </div>
+                                          
+                                        </div>
+                                      </div>
+                            <%}%>
+                        <%}%>
+                    </div>
                   </div>
                   <div id="engineering" class="tab-pane fade">
                   <ul class="breadcrumb">
@@ -52,6 +114,37 @@
                   </ul>
                     <h3 style="font-size:80px;">工學院</h3>
                     <hr size="8px" align="center" width="100%">
+                    <div class="row container" id="engineering">
+                        <% for (var i in department){%>
+                            <% if ( department[i].type == "engineering"){ %>
+                                    <img data-toggle="modal" data-target="#<%- department[i].id%>" src="03工圖標.png"/>
+                                    <p><%= department[i].name %></p>
+                                      <!-- Modal -->
+                                      <div class="modal fade" id="<%=department[i].id%>" role="dialog">
+                                        <div class="modal-dialog">
+                                        <!-- Modal content-->
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                              <h1 class="modal-title"><%= department[i].name %></h1>
+                                            </div>
+                                            <div class="modal-body">
+                                              <p>系所介紹:<%= department[i].introduction %></p>
+                                              <p>系學會:<%= department[i].organization %></p>
+                                              <p>系所活動:<%= department[i].activity %></p>
+                                              <p>系隊:<%= department[i].team %></p>
+                                              <p>系上課程:<%= department[i].course %></p>
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                          </div>
+                                          
+                                        </div>
+                                      </div>
+                            <%}%>
+                        <%}%>
+                    </div>
                   </div>
                   <div id="management" class="tab-pane fade">
                   <ul class="breadcrumb">
@@ -61,6 +154,37 @@
                   </ul>
                     <h3 style="font-size:80px;">管理學院</h3>
                     <hr size="8px" align="center" width="100%">
+                    <div class="row container" id="management">
+                        <% for (var i in department){%>
+                            <% if ( department[i].type == "management"){ %>
+                                    <img data-toggle="modal" data-target="#<%- department[i].id%>" src="04管理圖標.png"/>
+                                    <p><%= department[i].name %></p>
+                                      <!-- Modal -->
+                                      <div class="modal fade" id="<%=department[i].id%>" role="dialog">
+                                        <div class="modal-dialog">
+                                        <!-- Modal content-->
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                              <h1 class="modal-title"><%= department[i].name %></h1>
+                                            </div>
+                                            <div class="modal-body">
+                                              <p>系所介紹:<%= department[i].introduction %></p>
+                                              <p>系學會:<%= department[i].organization %></p>
+                                              <p>系所活動:<%= department[i].activity %></p>
+                                              <p>系隊:<%= department[i].team %></p>
+                                              <p>系上課程:<%= department[i].course %></p>
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                          </div>
+                                          
+                                        </div>
+                                      </div>
+                            <%}%>
+                        <%}%>
+                    </div>
                   </div>
                   <div id="ceecs" class="tab-pane fade">
                   <ul class="breadcrumb">
@@ -70,6 +194,37 @@
                   </ul>
                     <h3 style="font-size:80px;">資訊電資學院</h3>
                     <hr size="8px" align="center" width="100%">
+                    <div class="row container" id="ceecs">
+                        <% for (var i in department){%>
+                            <% if ( department[i].type == "ceecs"){ %>
+                                    <img data-toggle="modal" data-target="#<%- department[i].id%>" src="05資電圖標.png"/>
+                                    <p><%= department[i].name %></p>
+                                      <!-- Modal -->
+                                      <div class="modal fade" id="<%=department[i].id%>" role="dialog">
+                                        <div class="modal-dialog">
+                                        <!-- Modal content-->
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                              <h1 class="modal-title"><%= department[i].name %></h1>
+                                            </div>
+                                            <div class="modal-body">
+                                              <p>系所介紹:<%= department[i].introduction %></p>
+                                              <p>系學會:<%= department[i].organization %></p>
+                                              <p>系所活動:<%= department[i].activity %></p>
+                                              <p>系隊:<%= department[i].team %></p>
+                                              <p>系上課程:<%= department[i].course %></p>
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                          </div>
+                                          
+                                        </div>
+                                      </div>
+                            <%}%>
+                        <%}%>
+                    </div>
                   </div>
                   <div id="earth" class="tab-pane fade">
                   <ul class="breadcrumb">
@@ -79,6 +234,37 @@
                   </ul>
                     <h3 style="font-size:80px;">地球科學學院</h3>
                     <hr size="8px" align="center" width="100%">
+                    <div class="row container" id="earth">
+                        <% for (var i in department){%>
+                            <% if ( department[i].type == "earth"){ %>
+                                    <img data-toggle="modal" data-target="#<%- department[i].id%>" src="06地科圖標.png"/>
+                                    <p><%= department[i].name %></p>
+                                      <!-- Modal -->
+                                      <div class="modal fade" id="<%=department[i].id%>" role="dialog">
+                                        <div class="modal-dialog">
+                                        <!-- Modal content-->
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                              <h1 class="modal-title"><%= department[i].name %></h1>
+                                            </div>
+                                            <div class="modal-body">
+                                              <p>系所介紹:<%= department[i].introduction %></p>
+                                              <p>系學會:<%= department[i].organization %></p>
+                                              <p>系所活動:<%= department[i].activity %></p>
+                                              <p>系隊:<%= department[i].team %></p>
+                                              <p>系上課程:<%= department[i].course %></p>
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                          </div>
+                                          
+                                        </div>
+                                      </div>
+                            <%}%>
+                        <%}%>
+                    </div>
                   </div>
                   <div id="hikka" class="tab-pane fade">
                   <ul class="breadcrumb">
@@ -88,6 +274,37 @@
                   </ul>
                     <h3 style="font-size:80px;">客家學院</h3>
                     <hr size="8px" align="center" width="100%">
+                    <div class="row container" id="hikka">
+                        <% for (var i in department){%>
+                            <% if ( department[i].type == "hikka"){ %>
+                                    <img data-toggle="modal" data-target="#<%- department[i].id%>" src="07客家圖標.png"/>
+                                    <p><%= department[i].name %></p>
+                                      <!-- Modal -->
+                                      <div class="modal fade" id="<%=department[i].id%>" role="dialog">
+                                        <div class="modal-dialog">
+                                        <!-- Modal content-->
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                              <h1 class="modal-title"><%= department[i].name %></h1>
+                                            </div>
+                                            <div class="modal-body">
+                                              <p>系所介紹:<%= department[i].introduction %></p>
+                                              <p>系學會:<%= department[i].organization %></p>
+                                              <p>系所活動:<%= department[i].activity %></p>
+                                              <p>系隊:<%= department[i].team %></p>
+                                              <p>系上課程:<%= department[i].course %></p>
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                          </div>
+                                          
+                                        </div>
+                                      </div>
+                            <%}%>
+                        <%}%>
+                    </div>
                   </div>
                   <div id="chst" class="tab-pane fade">
                   <ul class="breadcrumb">
@@ -97,6 +314,37 @@
                   </ul>
                     <h3 style="font-size:80px;">生醫理工學院</h3>
                     <hr size="8px" align="center" width="100%">
+                    <div class="row container" id="chst">
+                        <% for (var i in department){%>
+                            <% if ( department[i].type == "chst"){ %>
+                                    <img data-toggle="modal" data-target="#<%- department[i].id%>" src="08生醫圖標.png"/>
+                                    <p><%= department[i].name %></p>
+                                      <!-- Modal -->
+                                      <div class="modal fade" id="<%=department[i].id%>" role="dialog">
+                                        <div class="modal-dialog">
+                                        <!-- Modal content-->
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                              <h1 class="modal-title"><%= department[i].name %></h1>
+                                            </div>
+                                            <div class="modal-body">
+                                              <p>系所介紹:<%= department[i].introduction %></p>
+                                              <p>系學會:<%= department[i].organization %></p>
+                                              <p>系所活動:<%= department[i].activity %></p>
+                                              <p>系隊:<%= department[i].team %></p>
+                                              <p>系上課程:<%= department[i].course %></p>
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                          </div>
+                                          
+                                        </div>
+                                      </div>
+                            <%}%>
+                        <%}%>
+                    </div>
                   </div>
                   <div id="space" class="tab-pane fade">
                   <ul class="breadcrumb">
@@ -106,6 +354,37 @@
                   </ul>
                     <h3 style="font-size:80px;">太空及遙測學位中心</h3>
                     <hr size="8px" align="center" width="100%">
+                    <div class="row container" id="space">
+                        <% for (var i in department){%>
+                            <% if ( department[i].type == "space"){ %>
+                                    <img data-toggle="modal" data-target="#<%- department[i].id%>" src="09太空中心圖標.png"/>
+                                    <p><%= department[i].name %></p>
+                                      <!-- Modal -->
+                                      <div class="modal fade" id="<%=department[i].id%>" role="dialog">
+                                        <div class="modal-dialog">
+                                        <!-- Modal content-->
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                              <h1 class="modal-title"><%= department[i].name %></h1>
+                                            </div>
+                                            <div class="modal-body">
+                                              <p>系所介紹:<%= department[i].introduction %></p>
+                                              <p>系學會:<%= department[i].organization %></p>
+                                              <p>系所活動:<%= department[i].activity %></p>
+                                              <p>系隊:<%= department[i].team %></p>
+                                              <p>系上課程:<%= department[i].course %></p>
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                          </div>
+                                          
+                                        </div>
+                                      </div>
+                            <%}%>
+                        <%}%>
+                    </div>
                   </div>
                 </div>
               </div>

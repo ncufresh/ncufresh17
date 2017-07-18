@@ -10,32 +10,47 @@ var shortId = require('shortid');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('groups/index', { title: 'groups' });
+  res.render('groups/index', { title: 'groups', user: req.user });
 });
 router.get('/club', function(req, res, next) {
-  res.render('groups/club', { title: 'groups' });
+  res.render('groups/club', { title: 'groups', user: req.user });
 });
 router.get('/department', function(req, res, next) {
-  res.render('groups/department', { title: 'groups' });
+  res.render('groups/department', { title: 'groups', user: req.user });
 });
 router.get('/organization', function(req, res, next) {
-  res.render('groups/organization', { title: 'groups' });
+  res.render('groups/organization', { title: 'groups', user: req.user });
 });
+
+router.get('/all_department/:id',function(req,res,next){
+  department.find({_id:req.params.id},function(err,data){
+    res.send(data[0]);
+  });
+});
+
 router.get('/all_department', function(req, res, next) {
+	department.find({}).exec(function(err,department){
 	var url_parts = url.parse(req.url, true);
 	var query = url_parts.query;
-  res.render('groups/all_department', { 
+  res.render('groups/all_department', {
   	title: 'groups',
+  	user: req.user,
   	firstClick: req.query.dep,
+  	department: department,
    });
+});
 });
 router.get('/all_club', function(req, res, next) {
+	club.find({}).exec(function(err,club){
 	var url_parts = url.parse(req.url, true);
 	var query = url_parts.query;
-  res.render('groups/all_club', { 
+  res.render('groups/all_club', {
   	title: 'groups',
+  	user: req.user,
   	firstClick: req.query.club,
+  	club: club,
    });
+});
 });
 
 router.post('/add_de', function(req, res, next) {
@@ -66,4 +81,3 @@ router.post('/add_club', function(req, res, next) {
 
 
 module.exports = router;
-

@@ -6,32 +6,307 @@
 <body>
     <header>
         <% include ../layouts/navbar %>
+
+        <style>
+
+#menu{
+    display: none;
+}
+
+.jumbotron{
+    background-image: url("/game/gamebg.png") ;
+    background-color: rgba(133, 82, 30, 1);
+    background-size: contain;
+    width:700px;
+    height:700px;
+    margin: auto;
+    position:relative;
+
+}
+
+.game{
+    height: 700px;
+    display: none;
+}
+
+/*BUTTON*/
+
+
+.btn1{
+    float:left;
+}
+
+.button{
+    margin-top: 400px;
+    width:150px;
+    margin-left: 190px;
+
+}
+
+.button button{
+    margin-top: 10px;
+    width:200px;
+    border:3px solid rgba(103, 51, 0, 1);
+    background-color: rgba(207, 169, 114, 1);
+    color:rgba(103, 51, 0, 1);
+    font-weight: bold;
+    font-size: 20px;
+
+}
+
+/*BUTTON*/
+
+/*RULES*/
+#target{
+    position: absolute;
+    width:450px;
+    height:auto;
+    margin:auto;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+
+
+.box{
+    background-color: rgba(207, 169, 114, 1);
+    width: 450px;
+    height:610px;
+    position: relative;
+    margin-left:80px;
+    border:3px solid rgba(103, 51, 0, 1);
+    display:none;
+}
+
+#cls{
+    top:0;
+    right:0;
+    position: absolute;
+}
+
+#nxt{
+    position: absolute;
+    bottom:0;
+    right:0;
+    background-image: url("/game/nxt.png") ;
+    width: 113px;
+    height: 57px;
+    background-size: contain;
+}
+
+#pre{
+    position: absolute;
+    bottom:0;
+    left:0;
+    background-image: url("/game/pre.png") ;
+    width: 113px;
+    height: 57px;
+    background-size: contain;
+}
+/*RULES*/
+
+/*GAME*/
+.row1{
+    width: 700px;
+    height: 200px;
+    margin-left: -60px;
+    padding:0;
+}
+/*GAME*/
+
+/*頭像*/
+#player{
+    float:left;
+    margin-right: 40px;
+}
+
+#pc{
+    float:right;
+    width:180px;
+}
+/*頭像*/
+
+/*CLOCK*/
+#countdown {
+    
+  position: relative;
+  margin: auto;
+  margin-top: 10px;
+  padding-top: 18px;
+  padding-left: 35px;
+  height: 140px;
+  width: 140px;
+  text-align: center;
+  
+}
+
+.countdown-number {
+    font-size: 40px;
+  color: black;
+  display: inline-block;
+  line-height: 125px;
+}
+
+svg {
+    position: absolute;
+    top:0;
+    left:0;
+  width: 160px;
+  height: 160px;
+  transform: rotateY(-180deg) rotateZ(-90deg);
+}
+
+svg circle {
+  stroke-dasharray: 440px;
+  stroke-dashoffset: 0px;
+  stroke-linecap: round;
+  stroke-width: 8px;
+  stroke: black;
+  fill: none;
+  animation: countdown 10s linear infinite forwards;
+}
+
+@keyframes countdown {
+  from {
+    stroke-dashoffset: 0px;
+  }
+  to {
+    stroke-dashoffset: 440px;
+  }
+}
+/*CLOCK*/
+
+/*ROUND NO.*/
+.round-number{
+    margin-top: 10px;
+    font-size: 25px;
+}
+/*ROUND NO.*/
+
+/*POINT*/
+
+
+#plyptn{
+    border:3px solid black;
+    margin-left: -40px;
+    float:left;
+    width: 120px;
+    height:50px;
+}
+
+#pcptn{
+    border:3px solid black;
+    float: right;
+    margin-right: -40px;
+    width: 120px;
+    height:50px;
+}
+/*POINT*/
+
+/*Q*/
+#question{
+    width:400px;
+    height:350px;
+    margin:0px 53px;
+    padding: 0px;
+}
+
+.Q{
+    border:3px solid black;
+    width:400px;
+    height:100px;
+    background-color: rgba(207, 169, 114, 1);
+}
+
+.A button{
+    border:3px solid black;
+    width:400px;
+    margin-top: 20px;
+    height:50px;
+    background-color: rgba(207, 169, 114, 1);
+}
+/*Q*/
+
+/*BAR*/
+
+
+.row3{
+    
+    margin-top: 50px;
+    
+}
+
+#bar1 {
+  border: 3px solid #000;
+  background-color: #d66838;
+  height: 300px;
+  width:15px;
+  float:left;
+  margin-top: 50px;
+}
+
+
+#pchealth, #plyhealth{
+    position :relative;
+    background-color: #e4cf62;
+    margin-left: -15px;
+    width:30px;
+    }
+
+@keyframes mymove {
+    0%   {height: 100%;}
+    100% {height: 85%;}
+}
+
+#bar2 {
+  border: 3px solid #000;
+  background-color: #d66838;
+  height: 300px;
+  width:15px;
+  float:right;
+  margin-top: 50px;
+}
+
+/*BAR*/
+
+</style>
+
+
     </header>
 
     <main>
-      <div class="container">
+      <div class="container" id="menu">
 
 
-        <div class="jumbotron">
+        <div class="jumbotron" >
 
             <!--BUTTON-->
             <div class="row" id="row">
-                <!--Rules & ranking-->
-                <div class="box">
-                    <div class="btn5"><button type="button"  >X </button></div>
-                    <div class="btn6"><button type="button"  >上一頁</button></div>
-                    <div class="btn7"><button type="button"  >下一頁</button></div>
-                    <div class="col-xs-4" id="btn8"><button type="button"  >個人積分</br> Score</button></div>
-                    <div class="col-xs-4" id="btn9"><button type="button"  >排行榜</br> Ranking</button></div>
+                <!--nxt pre close btn-->
+                <div class="box" id="box">
+                    <img id="target" alt="rules" align="middle"/>
+                    <button type="button" id="cls" onclick="cloSe()">X </button>
+                    <button type="button" id="nxt" onclick="nextPic()" ></button>
+                    <button type="button" id="pre" onclick="prePic()"></button>
+                    
                 </div>
-                <!--Rules & ranking-->
+                <!--nxt pre close btn-->
 
-                <div class="btn1"><button type="button"  >Mute</button></div>
-            <div class="button">
-                <button type="button" id="btn2">遊戲開始 </br>Start </button>
-                <button type="button" id="btn3">遊戲說明 </br>Game Rules</button>
-                <button type="button" id="btn4">個人積分及排行榜 </br>Scores & Ranking</button>
-            </div>
+                <!--main-->
+                <div class="btn1"><button type="button">Mute</button></div>
+                <div class="button">
+                    <button type="button" id="btn2" onclick="start()">遊戲開始 </br>Start </button>
+                    <button type="button" id="btn3" onclick="rules()">遊戲說明 </br>Game Rules</button>
+                    <button type="button" id="btn4" onclick="m2()">個人積分及排行榜 </br>Scores & Ranking</button>
+
+                    <button type="button" id="btn5" onclick="score()">個人積分</br> Score</button>
+                    <button type="button" id="btn6" onclick="rank()">排行榜</br> Ranking</button>
+                    <button type="button" id="btn7" onclick="back()">返回</br> Back</button>
+                </div>
+                <!--main-->
+
             </div>
             <!--BUTTON-->
 
@@ -42,7 +317,7 @@
                 
                 <div class="row1">
                 <!--Player-->
-                <div class="col-xs-4" id="player"><img src="player.png"></div>
+                <div class="col-xs-4" id="player"><img src="/game/player.png"></div>
                 <!--Player-->
 
                 <!--CLOCK & ROUND NO.-->
@@ -56,14 +331,14 @@
                 <!--CLOCK & ROUND NO.-->
 
                 <!--PC-->
-                <div class="col-xs-4" id="pc"><img src="pc.png"></div>
+                <div class="col-xs-4" id="pc"><img src="/game/pc.png"></div>
                 <!--PC-->
                 </div>
 
                 <!--POINT-->
                 <div class="row2">
-                    <div class="col-xs-4" id="plyptn"></div>
-                    <div class="col-xs-4" id="pcptn"></div>
+                    <div class="col-xs-4" id="plyptn"><p></p></div>
+                    <div class="col-xs-4" id="pcptn"><p></p></div>
                 </div>
                 <!--POINT-->
                 
@@ -71,29 +346,25 @@
                 <div class="row3">
             
                     <div class="col-xs-4" id="bar1">
-                        <div class="health"></div>
-                        <div id="lost1"></div>
-                        <div id="heal1"></div>
+                        <div id="plyhealth"></div>
                     </div>
                 <!--Point BAR-->
 
                 <!--Q&A-->
                     <div class="col-xs-4" id="question">
-                        <div class="Q"></div>
-                        <div class="A">
-                            <div><button type="button" id="ans1"></button></div>
-                            <div><button type="button" id="ans2"></button></div>
-                            <div><button type="button" id="ans3"></button></div>
-                            <div><button type="button" id="ans4"></button></div>
+                        <div class="Q" ><p id="q"></p></div>
+                        <div class="A" >
+                            <div><button type="button" onclick="answer1()"><p id="ans1"></p></button></div>
+                            <div><button type="button" onclick="answer2()"><p id="ans2"></p></button></div>
+                            <div><button type="button" onclick="answer3()"><p id="ans3"></p></button></div>
+                            <div><button type="button" onclick="answer4()"><p id="ans4"></p></button></div>
                         </div>
                     </div>
                 <!--Q&A-->
 
                 <!--Point BAR-->
                     <div class="col-xs-4" id="bar2">
-                        <div class="health"></div>
-                        <div id="lost2"></div>
-                        <div id="heal2"></div>
+                        <div id="pchealth"></div>
                     </div>
             
             
@@ -102,6 +373,7 @@
 
             </div>
             <!--GAME-->
+
         </div>
 
 
