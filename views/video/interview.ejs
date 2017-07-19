@@ -123,139 +123,142 @@
             $("#s1").html("")
         });
         $("#c1").click(function(){
-            $("#s1").html('')
+            $("#s1").html('<%- D1 %>')
         });
         $(".d2").click(function(){
             $("#s2").html("")
         });
         $("#c2").click(function(){
-            $("#s2").html('')
+            $("#s2").html('<%- D2 %>')
         });
         $(".d3").click(function(){
             $("#s3").html("")
         });
         $("#c3").click(function(){
-            $("#s3").html('')
+            $("#s3").html('<%- D3 %>')
         });
         $(".d4").click(function(){
             $("#s4").html("")
         });
         $("#c4").click(function(){
-            $("#s4").html('')
+            $("#s4").html('<%- D4 %>')
         });
         $(".d5").click(function(){
             $("#s5").html("")
         });
         $("#c5").click(function(){
-            $("#s5").html('')
+            $("#s5").html('<%- D5 %>')
         });
         $(".d6").click(function(){
             $("#s6").html("")
         });
         $("#c6").click(function(){
-            $("#s6").html('')
+            $("#s6").html('<%- D6 %>')
         });
         $(".d7").click(function(){
             $("#s7").html("")
         });
         $("#c7").click(function(){
-            $("#s7").html('')
+            $("#s7").html('<%- D7 %>')
         });
         $(".d8").click(function(){
             $("#s8").html("")
         });
         $("#c8").click(function(){
-            $("#s8").html('')
+            $("#s8").html('<%- D8 %>')
         });
         $(".d9").click(function(){
             $("#s9").html("")
         });
         $("#c9").click(function(){
-            $("#s9").html('')
+            $("#s9").html('<%- D9 %>')
         });
         $(".d10").click(function(){
             $("#s10").html("")
         });
         $("#c10").click(function(){
-            $("#s10").html('')
+            $("#s10").html('<%- D10 %>')
         });
         $(".d11").click(function(){
             $("#s11").html("")
         });
         $("#c11").click(function(){
-            $("#s11").html('')
+            $("#s11").html('<%- D11 %>')
         });
         $(".d12").click(function(){
             $("#s12").html("")
         });
         $("#c12").click(function(){
-            $("#s12").html('')
+            $("#s12").html('<%- D12 %>')
         });
         $(".d13").click(function(){
             $("#s13").html("")
         });
         $("#c13").click(function(){
-            $("#s13").html('')
+            $("#s13").html('<%- D13 %>')
         });
         $(".d14").click(function(){
             $("#s14").html("")
         });
         $("#c14").click(function(){
-            $("#s14").html('')
+            $("#s14").html('<%- D14 %>')
         });
         $(".d15").click(function(){
             $("#s15").html("")
         });
         $("#c15").click(function(){
-            $("#s15").html('')
+            $("#s15").html('<%- D15 %>')
         });
         $(".d16").click(function(){
             $("#s16").html("")
         });
         $("#c16").click(function(){
-            $("#s16").html('')
+            $("#s16").html('<%- D16 %>')
         });
         $(".d17").click(function(){
             $("#s17").html("")
         });
         $("#c17").click(function(){
-            $("#s17").html('')
+            $("#s17").html('<%- D17 %>')
         });
         $(".d18").click(function(){
             $("#s18").html("")
         });
         $("#c18").click(function(){
-            $("#s18").html('')
+            $("#s18").html('<%- D18 %>')
         });
         $(".d19").click(function(){
             $("#s19").html("")
         });
         $("#c19").click(function(){
-            $("#s19").html('')
+            $("#s19").html('<%- D19 %>')
         });
         $(".d20").click(function(){
             $("#s20").html("")
         });
         $("#c20").click(function(){
-            $("#s20").html('')
+            $("#s20").html('<%- D20 %>')
         });
         $(".d21").click(function(){
             $("#s21").html("")
         });
         $("#c21").click(function(){
-            $("#s21").html('')
+            $("#s21").html('<%- D21 %>')
         });
         $(".d22").click(function(){
             $("#s22").html("")
         });
         $("#c22").click(function(){
-            $("#s22").html('')
+            $("#s22").html('<%- D22 %>')
         });
         $(".d23").click(function(){
             $("#s23").html("")
         });
         $("#c23").click(function(){
-            $("#s23").html('')
+            $("#s23").html('<%- D23 %>')
+        });
+        $("#warn").click(function(){
+            alert("記得一定要先試試看能不能開, 影音組的各位不要一直只想著放假 加油好嗎");
         });
     });
     </script>
@@ -376,6 +379,66 @@
                     <div class="col-xs-3"><img style="display:inline-block;padding: 2vh;" class="img-responsive cc" id="c23" alt="生醫" src="/video/生醫.png" data-toggle="modal" data-target="#23"/></div>
                 </div>
             </section>
+
+            <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#edit">加入影片</button>
+        <!-- 修改排序model -->
+        <div class="modal fade" id="edit" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">加入影片</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/video/addQQ" method="post" accept-charset="utf-8">
+
+                            <div class="form-group">
+                                <label for="type" class="control-label">選擇系所名稱</label>
+                                <select name="type" id="change_order_id" class="form-control">
+                                    <option selected="not_commonly_used_link" value="D1"> 中國文學系 </option>
+                                    <option selected="not_commonly_used_link" value="D2"> 英美語文學系 </option>
+                                    <option selected="not_commonly_used_link" value="D3"> 法國語文學系 </option>
+                                    <option selected="not_commonly_used_link" value="D4"> 土木工程學系 </option>
+                                    <option selected="not_commonly_used_link" value="D5"> 化學工程與材料工程學系 </option>
+                                    <option selected="not_commonly_used_link" value="D6"> 機械工程學系 </option>
+                                    <option selected="not_commonly_used_link" value="D7"> 化學學系 </option>
+                                    <option selected="not_commonly_used_link" value="D8"> 數學系 </option>
+                                    <option selected="not_commonly_used_link" value="D9"> 光電科學與工程學系 </option>
+                                    <option selected="not_commonly_used_link" value="D10"> 理學院學士班 </option>
+                                    <option selected="not_commonly_used_link" value="D11"> 物理學系 </option>
+                                    <option selected="not_commonly_used_link" value="D12"> 企業管理學系 </option>
+                                    <option selected="not_commonly_used_link" value="D13"> 財務金融學系 </option>
+                                    <option selected="not_commonly_used_link" value="D14"> 經濟學系 </option>
+                                    <option selected="not_commonly_used_link" value="D15"> 資訊管理學系 </option>
+                                    <option selected="not_commonly_used_link" value="D16"> 通訊工程學系 </option>
+                                    <option selected="not_commonly_used_link" value="D17"> 資訊工程學系 </option>
+                                    <option selected="not_commonly_used_link" value="D18"> 電機工程學系 </option>
+                                    <option selected="not_commonly_used_link" value="D19"> 大氣科學學系 </option>
+                                    <option selected="not_commonly_used_link" value="D20"> 地球科學學系 </option>
+                                    <option selected="not_commonly_used_link" value="D21"> 客家語文暨社會科學學系 </option>
+                                    <option selected="not_commonly_used_link" value="D22"> 生命科學系 </option>
+                                    <option selected="not_commonly_used_link" value="D23"> 生醫科學與工程學系 </option>
+                                    <option selected="" value="">請選擇</option>
+                                </select>
+                            </div>
+                            <div class='form-group'>
+                                <label id="not_commonly_used_link_label" style="display:inline-block;" for="content">請在Youtube影片下按分享 -> 嵌入 -> 複製整串編碼後貼上</label>
+                                <textarea id="textarea" name="content" rows="8" cols="80"></textarea><br>
+                            </div>
+
+                            <button type="submit" name="button" class="btn btn-primary" id="warn">< 加入影片 ></button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
 
 
         <!-- Modal -->
