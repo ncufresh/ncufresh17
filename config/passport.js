@@ -49,8 +49,11 @@ module.exports = function(passport) {
         if (err) {
           return done(err);
         }
+        if(/@cc.ncu.edu.tw\s*$/.test(email)){
+          return done(null, false, req.flash('signupMessage', '你不能用@cc.ncu.edu.tw做結尾 請用portal登入！'));
+        }
         if (user) {
-          return done(null, false, req.flash('signupMessage', '已有相同帳號被註冊'));
+          return done(null, false, req.flash('signupMessage', '已有相同帳號被註冊！'));
         } else {
           var newUser = new User();
           newUser.local.name = sanitize(req.body.name);
