@@ -6,6 +6,8 @@
 
 `cd ncufresh17`
 
+`cp .env.example .env`
+
 `npm install`
 
 on macOS
