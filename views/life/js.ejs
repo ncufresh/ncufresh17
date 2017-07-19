@@ -23,30 +23,40 @@
     //      $(this).animate({padding: '2vw'}, 300);
     //  });
       $("#life-navigate-1").click(function(){
-        if(foodtoggle == true){
-            foodtoggle = -foodtoggle;
-            dormtoggle = traffic = studytoggle = entertainmenttoggle = true;
-            $("#food-video").css({"display":"block"});
-            $("#food-video").html('<iframe src="https://www.youtube.com/embed/3DEkF2uvPoc?ecver=2" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe>');
-            $("#life-navigate-2,#life-navigate-3,#life-navigate-4,#life-navigate-5").animate({opacity: '0.3'}, 200);
-            $("#life-navigate-1,#life-navigate-back").animate({opacity: '1.0'}, 200);
-            $("#food-mainpan").slideToggle(1200);
-            $("#food-mainpan").css({"display":"block"});
-            $("#dorm-mainpan,#traffic-mainpan,#study-mainpan,#entertainment-mainpan").slideUp(10000).css({"display":"none"});
-        }
-        else{
-            foodtoggle = -foodtoggle;
-            $("#food-video").css({"display":"none"});
-            $("#life-navigate-1,#life-navigate-2,#life-navigate-3,#life-navigate-4,#life-navigate-5").animate({opacity: '1'}, 200);
-            $("#life-navigate-back").animate({opacity: '0.0'}, 200);
-            $("#food-mainpan").slideToggle(1200);
-            $("#food-pan1,#food-pan2,#food-pan3,#food-pan4,#food-pan5,#food-pan6,#food-pan7").css({"opacity":"0.3"});
+        //if(foodtoggle == true){
+        //    foodtoggle = -foodtoggle;
+      //      dormtoggle = traffic = studytoggle = entertainmenttoggle = true;
+        //    $("#food-video").css({"display":"block"});
+      //      $("#dorm-video").css({"display":"none"});
+      //      $("#traffic-video").css({"display":"none"});
+      //      $("#study-video").css({"display":"none"});
+      //      $("#entertainment-video").css({"display":"none"});
+      //      $("#food-video").html('<iframe src="https://www.youtube.com/embed/3DEkF2uvPoc?ecver=2" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe>');
+      //      $("#life-navigate-2,#life-navigate-3,#life-navigate-4,#life-navigate-5").animate({opacity: '0.3'}, 200);
+      //      $("#life-navigate-1,#life-navigate-back").animate({opacity: '1.0'}, 200);
+      //      $("#food-mainpan").slideToggle(1200);
+      //      $("#food-mainpan").css({"display":"block"});
+      //      $("#dorm-mainpan,#traffic-mainpan,#study-mainpan,#entertainment-mainpan").slideUp(10000).css({"display":"none"});
+      //  }
+      //  else{
+      //      foodtoggle = -foodtoggle;
+      //      $("#food-video").css({"display":"none"});
+      //      $("#life-navigate-1,#life-navigate-2,#life-navigate-3,#life-navigate-4,#life-navigate-5").animate({opacity: '1'}, 200);
+      //      $("#life-navigate-back").animate({opacity: '0.0'}, 200);
+      //      $("#food-mainpan").slideToggle(1200);
+      //      $("#food-pan1,#food-pan2,#food-pan3,#food-pan4,#food-pan5,#food-pan6,#food-pan7").css({"opacity":"0.3"});
         }
       });
       $("#life-navigate-2").click(function(){
         if(dormtoggle == true){
             dormtoggle = -dormtoggle;
             foodtoggle = traffictoggle = studytoggle = entertainmenttoggle = true;
+            $("#food-video").css({"display":"none"});
+            $("#dorm-video").css({"display":"block"});
+            $("#traffic-video").css({"display":"none"});
+            $("#study-video").css({"display":"none"});
+            $("#entertainment-video").css({"display":"none"});
+            $("#dorm-video").html('<iframe src="https://www.youtube.com/embed/ZZ5LpwO-An4?ecver=2" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe>');
             $("#life-navigate-1,#life-navigate-3,#life-navigate-4,#life-navigate-5").animate({opacity: '0.3'}, 200);
             $("#life-navigate-2,#life-navigate-back").animate({opacity: '1.0'}, 200);
             $("#dorm-mainpan").slideToggle(1200);
@@ -55,6 +65,7 @@
         }
         else{
             dormtoggle = -dormtoggle;
+            $("#dorm-video").css({"display":"none"});
             $("#life-navigate-1,#life-navigate-2,#life-navigate-3,#life-navigate-4,#life-navigate-5").animate({opacity: '1'}, 200);
             $("#life-navigate-back").animate({opacity: '0.0'}, 200);
             $("#dorm-mainpan").slideToggle(1200);
@@ -64,6 +75,12 @@
         if(traffictoggle == true){
             traffictoggle = -traffictoggle;
             foodtoggle = dormtoggle = studytoggle = entertainmenttoggle = true;
+            $("#food-video").css({"display":"none"});
+            $("#dorm-video").css({"display":"none"});
+            $("#traffic-video").css({"display":"block"});
+            $("#study-video").css({"display":"none"});
+            $("#entertainment-video").css({"display":"none"});
+            $("#traffic-video").html('<iframe src="https://www.youtube.com/embed/miomuSGoPzI?ecver=2" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe>');
             $("#life-navigate-1,#life-navigate-2,#life-navigate-4,#life-navigate-5").animate({opacity: '0.3'}, 200);
             $("#life-navigate-3,#life-navigate-back").animate({opacity: '1.0'}, 200);
             $("#food-mainpan,#dorm-mainpan,#study-mainpan,#entertainment-mainpan").slideUp(10000).css({"display":"none"});
@@ -72,6 +89,7 @@
         }
         else{
             traffictoggle = -traffictoggle;
+            $("#traffic-video").css({"display":"none"});
             $("#life-navigate-1,#life-navigate-2,#life-navigate-3,#life-navigate-4,#life-navigate-5").animate({opacity: '1'}, 200);
             $("#life-navigate-back").animate({opacity: '0.0'}, 200);
             $("#traffic-mainpan").slideToggle(3000);
@@ -81,6 +99,12 @@
         if(studytoggle == true){
             studytoggle = -studytoggle;
             foodtoggle = dormtoggle = traffictoggle = entertainmenttoggle = true;
+            $("#food-video").css({"display":"none"});
+            $("#dorm-video").css({"display":"none"});
+            $("#traffic-video").css({"display":"none"});
+            $("#study-video").css({"display":"block"});
+            $("#entertainment-video").css({"display":"none"});
+            $("#traffic-video").html('<iframe src="https://www.youtube.com/embed/FM7MFYoylVs?ecver=2" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe>');
             $("#life-navigate-1,#life-navigate-2,#life-navigate-3,#life-navigate-5").animate({opacity: '0.3'}, 200);
             $("#life-navigate-4,#life-navigate-back").animate({opacity: '1.0'}, 200);
             $("#food-mainpan,#dorm-mainpan,#traffic-mainpan,#entertainment-mainpan").slideUp(10000).css({"display":"none"});
@@ -89,6 +113,7 @@
         }
         else{
             studytoggle = -studytoggle;
+            $("#study-video").css({"display":"none"});
             $("#life-navigate-1,#life-navigate-2,#life-navigate-3,#life-navigate-4,#life-navigate-5").animate({opacity: '1'}, 200);
             $("#life-navigate-back").animate({opacity: '0.0'}, 200);
             $("#study-mainpan").slideToggle(3000);
@@ -98,6 +123,12 @@
         if(entertainmenttoggle == true){
             entertainmenttoggle = -entertainmenttoggle;
             foodtoggle = dormtoggle = traffictoggle = studytoggle = true;
+            $("#food-video").css({"display":"none"});
+            $("#dorm-video").css({"display":"none"});
+            $("#traffic-video").css({"display":"none"});
+            $("#study-video").css({"display":"none"});
+            $("#entertainment-video").css({"display":"block"});
+            $("#traffic-video").html('<iframe src="https://www.youtube.com/embed/ZcoqR9Bwx1Y?ecver=2" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe>');
             $("#life-navigate-1,#life-navigate-2,#life-navigate-3,#life-navigate-4").animate({opacity: '0.3'}, 200);
             $("#life-navigate-5,#life-navigate-back").animate({opacity: '1.0'}, 200);
             $("#food-mainpan,#dorm-mainpan,#traffic-mainpan,#study-mainpan").slideUp(10000).css({"display":"none"});
@@ -106,6 +137,7 @@
         }
         else{
             entertainmenttoggle = -entertainmenttoggle;
+            $("#entertainment-video").css({"display":"none"});
             $("#life-navigate-1,#life-navigate-2,#life-navigate-3,#life-navigate-4,#life-navigate-5").animate({opacity: '1'}, 200);
             $("#life-navigate-back").animate({opacity: '0.0'}, 200);
             $("#entertainment-mainpan").slideToggle(1200);
@@ -113,6 +145,10 @@
       });
       $("#life-navigate-back").click(function(){
         $("#food-video").css({"display":"none"});
+        $("#dorm-video").css({"display":"none"});
+        $("#traffic-video").css({"display":"none"});
+        $("#study-video").css({"display":"none"});
+        $("#entertainment-video").css({"display":"none"});
         $("#life-navigate-1,#life-navigate-2,#life-navigate-3,#life-navigate-4,#life-navigate-5").animate({opacity: '1'}, 200);
         $("#life-navigate-back").animate({opacity: '0.0'}, 200);
         $("#food-mainpan,#dorm-mainpan,#traffic-mainpan,#study-mainpan,#entertainment-mainpan").slideUp(2000).css({"display":"none"});

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../layouts/head %>
+</head>
+<body>
+    <header>
+        <% include ../layouts/navbar %>
+    </header>
+
+    <main>
+      <div class="container">
+        <div class="jumbotron" style="min-height:80vw">
+          <div>
+              <h1 class="text-center" style="margin-bottom: 8vw">中大生活</h1>
+          </div>
+          <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#add_life" style="width:100px;height:30px;text-align:center;">add</button></br>
+
+            <!-- Modal -->
+            <div class="modal fade" id="add_life" role="dialog">
+              <div class="modal-dialog modal-lg">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 style="color:red;">新增地點</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  <div class="modal-body">
+                    <form action="/groups/add_life" method="post" accept-charset="utf-8">
+                      <div class="form-life">
+                        <label for="type" class="form-control">類別</label>
+                        <select name="type" id="type" class="form-control">
+                          <option value="food">食</option>
+                          <option value="dorm">住</option>
+                          <option value="traffic">行</option>
+                          <option value="study">育</option>
+                          <option value="entertainment">樂</option>
+                          <option value="others">其他</option>
+                        </select>
+                      </div>
+                      <div class="form-life">
+                        <label for="name" class="form-control">地點名稱</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="男13一樓">
+                      </div>
+                      <div class="form-life">
+                        <label for="introduction" class="form-control">文字敘述</label>
+                        <textarea name="introduction" id="introduction"></textarea></br>
+                      </div>
+                      <button type="submit" class="btn btn-default btn-success btn-block" style="width:100px;height:30px;text-align:center;">確定</button>
+                    </form>
+                  </div>
+
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-default" data-dismiss="modal" style="width:120px;height:30px;text-align:left;">取消</button>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="row container" id="life">
+              <% for (var i in life){%>
+                  <% if ( life[i].type == "food"){ %>
+                          <img data-toggle="modal" data-target="#<%- life[i].id%>" src="按鈕2.png"/>
+                          <p><%= department[i].name %></p>
+                            <!-- Modal -->
+                            <div class="modal fade" id="<%- life[i].id%>" role="dialog">
+                              <div class="modal-dialog">
+                              <!-- Modal content-->
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h1 class="modal-title"><%= department[i].name %></h1>
+                                  </div>
+                                  <div class="modal-body">
+                                    <p>系所介紹:<%= department[i].introduction %></p>
+                                    <p>系學會:<%= department[i].organization %></p>
+                                    <p>系所活動:<%= department[i].activity %></p>
+                                    <p>系隊:<%= department[i].team %></p>
+                                    <p>系上課程:<%= department[i].course %></p>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+                  <%}%>
+              <%}%>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+        <% include ../layouts/footer %>
+    </footer>
+        <% include js %>
+        <% include ../layouts/js %>
+</body>
+</html>
