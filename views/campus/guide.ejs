@@ -11,19 +11,21 @@
     <main style="background: #cce8f7;">
         <div class="container-fluid">
             <div style="margin-left:25px;margin-right:25px;">
-                <h1><%= title  %></h1>
+                <img src="/campus/default/guide1.png" alt="" width="100%" >
                 <a href="/campus/editMap"><button class="btn btn-success new_building">編輯地圖物件</button></a>
-                <div class="row">
-                    <div class="col-xs-1" style="padding:0px;">
-                        <img class="mouse-animate" src="/campus/default/1.png" width="100%" alt="" style=" margin-top:25%; margin-bottom:25%; padding:1vh;">
-                        <img class="mouse-animate" src="/campus/default/2.png" width="100%" alt="" style=" margin-top:25%; margin-bottom:25%; padding:1vh;">
-                        <img class="mouse-animate" src="/campus/default/3.png" width="100%" alt="" style=" margin-top:25%; margin-bottom:25%; padding:1vh;">
+                <div class="row" style="position:relative;">
+                    <div class="col-xs-1" style="padding:0px;padding-bottom:46.666667%;">
+                        <img src="" alt="" width="110%" id="type-title" style="display:none;">
+                        <img class="mouse-animate type-menu" src="/campus/default/1.png" width="100%" alt="系館" style="padding:1vh; cursor: pointer; position:absolute; top:10%">
+                        <img class="mouse-animate type-menu" src="/campus/default/2.png" width="100%" alt="行政" style="padding:1vh; cursor: pointer; position:absolute; top:40%">
+                        <img class="mouse-animate type-menu" src="/campus/default/3.png" width="100%" alt="運動" style="padding:1vh; cursor: pointer; position:absolute; top:70%">
                     </div>
                     <div class="col-xs-10" style="position:relative;padding:0px;padding-bottom:46.666667%;">
                         <img src="/campus/default/back.png"style="position:absolute;" width="100%" alt="">  
                         <%for(var i in map_objs){%>
                             
-                            <img class="mouse-animate map-build" src="<%= map_objs[i].path%>" alt="<%= map_objs[i].build_name%>" style="
+                            <img class="mouse-animate map-build <%= map_objs[i].build_type%>" src="<%= map_objs[i].path%>" alt="<%= map_objs[i].build_name%>" style="
+                                cursor: pointer;
                                 position:absolute;
                                 padding:1vh;
                                 height:auto;
@@ -33,10 +35,10 @@
                             ">
                         <%}%>
                     </div>
-                    <div class="col-xs-1" style="padding:0px;">
-                        <img class="mouse-animate" src="/campus/default/4.png" width="100%" alt="" style=" margin-top:25%; margin-bottom:25%; padding:1vh;">
-                        <img class="mouse-animate" src="/campus/default/5.png" width="100%" alt="" style=" margin-top:25%; margin-bottom:25%; padding:1vh;">
-                        <img class="mouse-animate" src="/campus/default/6.png" width="100%" alt="" style=" margin-top:25%; margin-bottom:25%; padding:1vh;">
+                    <div class="col-xs-1" style="padding:0px;padding-bottom:46.666667%;">
+                        <img class="mouse-animate type-menu" src="/campus/default/4.png" width="100%" alt="中大景點" style="padding:1vh; cursor: pointer; position:absolute; top:10%">
+                        <img class="mouse-animate type-menu" src="/campus/default/5.png" width="100%" alt="飲食" style="padding:1vh; cursor: pointer; position:absolute; top:40%">
+                        <img class="mouse-animate type-menu" src="/campus/default/6.png" width="100%" alt="住宿" style="padding:1vh; cursor: pointer; position:absolute; top:70%">
                     </div>
                 </div>
             </div>       

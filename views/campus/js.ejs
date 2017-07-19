@@ -169,6 +169,44 @@ $(document).ready(function(){
     $(".navbar").css({
         "margin-bottom": "0px"
     });
+    $(".type-menu").mouseenter(function(){
+        var now=$(this).attr("alt");
+        $(".map-build").stop(false,true);
+        $(".map-build."+now).css("display","block").animate({
+            opacity:1
+        },200);
+        $(".map-build").not("."+now).animate({
+            opacity:0
+        },200,function(){
+            $(".map-build").not("."+now).css("display","none")
+        });
+    });
+    $(".type-menu").mouseleave(function(){
+        if($(this).hasClass("no-animate"))return;
+        var now=$(this).attr("alt");
+        $(".map-build").stop(false,true);
+        $(".map-build").not("."+now).css("display","block").animate({
+            opacity:1
+        },200);
+    })
+    $(".type-menu").click(function(){
+        $(".type-menu").addClass("no-animate");
+        $(".type-menu, #type-title").stop(false,true);
+        $(".type-menu").fadeOut(300);  
+        $("#type-title").attr("src",$(this).attr("src"))
+                        .attr("alt",$(this).attr("alt")).fadeIn(1000);
+    });
+    $("#type-title").click(function(){
+        $(".type-menu").removeClass("no-animate");
+        $(".type-menu, #type-title").stop(false,true);
+        $("#type-title").fadeOut(300);
+        $(".type-menu").fadeIn(300);
+        var now=$(this).attr("alt");
+        $(".map-build").stop(false,true);
+        $(".map-build").not("."+now).css("display","block").animate({
+            opacity:1
+        },200);
+    })
 
 })
 </script>
