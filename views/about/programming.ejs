@@ -3,28 +3,28 @@
 <head>
     <% include ../layouts/head %>
 </head>
-<body style="background-color: #00BFFF !important;">
+<body style="background-image: url('background.png'); background-size: contain; background-repeat: no-repeat; ">
     <header>
         <% include ../layouts/navbar %>
     </header>
 
-    <ul id="navi" style="height:25%;">
-        <li><a href="/about/markting">行銷企劃組</a></li>
-        <li><a class="active" href="/about/programming">程式設計組</a></li>
-        <li><a href="/about/ceo">執行組</a></li>
-        <li><a href="/about/art">網頁美工組</a></li>
-        <li><a href="/about/video">媒體影音組</a></li>
+    <ul id="navi" style="height:34%;">
+        <img src="/about/logo.png" style="width:95px; height:58px; margin: 5px 5px 5px 7px;">
+        <li><a href="/about/markting" style="background-image: url('markting.png');"></a></li>
+        <li><a href="/about/programming" style="background-image: url('programming.png');"></a></li>
+        <li><a href="/about/ceo" style="background-image: url('ceo.png');"></a></li>
+        <li><a href="/about/art" style="background-image: url('art.png');"></a></li>
+        <li><a href="/about/video" style="background-image: url('video.png');"></a></li>
     </ul>
 
-
-    <main class="container" style="background-color: #00BFFF !important;">
-        <div class="jumbotron" style="height:580px; overflow-y: scroll;">
+    <div class="container">
+        <div style="height:580px; overflow-y: scroll;">
             <h2>程式設計組</h2>
             <hr>
-            <img src="/IMG_8505.jpg" alt="photo died!!!!!!" style="width:50%;height:240px;">
-            <p style="margin-top:10px;">程設組以程式架構出知訊網，並利用程式碼，做出其他組希望達到的各種功能，是這個網頁幕後的大功臣，也希望能以程式能力，期許新生一個更好的大學生活。</p>
+            <img src="/about/IMG_8505.jpg" alt="photo died!!!!!!" style="width:40%;height:240px;">
+            <p style="margin-top:10px; font-size:24px;">程設組以程式架構出知訊網，並利用程式碼，做出其他組希望達到的各種功能，是這個網頁幕後的大功臣，也希望能以程式能力，期許新生一個更好的大學生活。</p>
         </div>
-    </main>
+    </div>
 
     <footer>
         <% include ../layouts/footer %>
@@ -40,10 +40,16 @@
         margin: 0;
         padding: 0;
         width: 140px;
-        background-color: #f1f1f1;
+        background-color: rgba(255, 255, 255, 0);;
         position: fixed;
         height: 300px;
         overflow: auto;
+    }
+
+    a {
+        background-repeat: no-repeat; 
+        background-size: contain;
+        height: 36px;
     }
 
     li a {
@@ -51,6 +57,7 @@
         color: #000;
         padding: 8px 16px;
         text-decoration: none;
+        height: 36px;
     }
 
     li a.active {

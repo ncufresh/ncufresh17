@@ -10,56 +10,65 @@
     </header>
 
     <main class="container" style="position:center;">
+    
         <div class="jumbotron row" style="overflow:auto; background-color: #00BFFF !important;">
             <div class="col-md-6" style="padding-left:50px; padding-right:50px;">
                 <h1 style="font-family:Microsoft JhengHei; color:white;">個人專區</h1>
+                <div style="width:200px; margin-left:200px">
+                    <div class="well" id="profile" style="width:150px; height:150px; float:left; margin-top:20px; margin-left:6px; padding: 5px 0 0 7px;">
 
-                <div class="well" id="profile" style="height:150px; text-align:center;">
+                        <img id="img" style="width: 142px; height: 142px;" src="/personal/profile.png">
+                        <!---->
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
+                            
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">上傳此照片當大頭貼？</h4>
+                                    </div>
+                                    
+                                    <div class="modal-body">
+                                        <img id="img2" style="max-width: 250px; max-height: 100px;">
+                                    </div>
+                                    
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" onclick="uploadPhoto()" data-dismiss="modal">沒錯</button>
+                                        <button type="button" class="btn btn-default" onclick="cancelUpload()" data-dismiss="modal">反悔了</button>
+                                    </div>
+                                    
+                                </div>
+                            
+                            </div>
+                        </div>
+                        <!---->
+                        <!--<span id="img_title"><font size="6">大頭貼</font></span>-->
+
+                    </div>
 
                     <input accept="image/*" id="uploadImage" type="file">
-                    <img id="img" style="max-width: 250px; max-height: 100px;">
-                    <!---->
-                    <!-- Modal -->
-                    <div class="modal fade" id="myModal" role="dialog">
-                        <div class="modal-dialog">
-                        
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                            
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Upload this photo as a profile picture?</h4>
-                                </div>
-                                
-                                <div class="modal-body">
-                                    <img id="img2" style="max-width: 250px; max-height: 100px;">
-                                </div>
-                                
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" onclick="uploadPhoto()" data-dismiss="modal">Confirm</button>
-                                    <button type="button" class="btn btn-default" onclick="cancelUpload()" data-dismiss="modal">No_Way!</button>
-                                </div>
-                                
-                            </div>
-                        
-                        </div>
-                    </div>
-                    <!---->
-                    <span id="img_title"><font size="8">大頭貼</font></span>
-            
+
                 </div>
-                
-                <h2 style="font-size:320%; float:left; margin:25px 0px 0px 15px;">小遊戲GOGO</h2>
-                <a href="/smallgame">
-                    <img src="/松鼠02.png" style="margin-left:20px; width: 100px; height: 100px;"/> 
+
+                <a href="/smallgame" style="float:left margin-top:-20px;">
+                    <img class="mySlides" src="/personal/action0.png" onmouseenter="moveIn();">
+                    <img class="mySlides" src="/personal/action1.png" style="display: none;">
+                    <img class="mySlides" src="/personal/action2.png" style="display: none;">
+                    <img class="mySlides" src="/personal/action3.png" style="display: none;">
+                    <img class="mySlides" src="/personal/action4.png" style="display: none;">
+                    <img class="mySlides" src="/personal/action5.png" style="display: none;">
                 </a>
-                
+                <!--<h2 style="font-size:320%; margin:25px 0px 0px 15px;">小遊戲GOGO</h2>-->
+
             </div>
             
             <div class="col-md-6" id="Q-A">
                 <h2><u>Q&A幫您解答</u></h2>
 
-                <div class="well" style="width: 100%; max-height: 300px; overflow-y: scroll; text-align: center; float: left;">
+                <div class="well" style="width: 100%; max-height: 500px; overflow-y: scroll; text-align: center; float: left;">
                     <div class="table-responsive">          
                         <table class="table table-hover" id="ta">
                             <thead>
@@ -90,7 +99,7 @@
                                     <td>wwwwww</td>
                                 </tr>
 
-                                <% for(var i=0; i<4; i++) { %>
+                                <% for(var i=0; i<25; i++) { %>
                                     <% var index = i + 4 %>
                                     <tr data-toggle="modal" data-target="#QA-Modal" class="openModal">
                                         <td> <%= index %> </td>
@@ -117,7 +126,6 @@
                                     <h3 class="modal-title" id="tt"></h3>
                                 </div>
                                 
-                                <div id="qesField" class="modal-body"></div>
                                 <div id="ansField" class="modal-body"></div>
                                 
                                 <div class="modal-footer">
@@ -154,6 +162,11 @@
 
     .table-hover tbody tr:hover td {
         background-color: #a9b4c6;
+    }
+
+    .mySlides {
+        width: 260px; 
+        height: 260px;
     }
 
 </style>
