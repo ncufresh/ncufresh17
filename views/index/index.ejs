@@ -2,20 +2,142 @@
 <html lang="en">
 <head>
     <% include ../layouts/head %>
+    <link rel="stylesheet" type="text/css" href="stylesheets/main/elastislide.css" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/main/gallery.css" />
+    <style>
+      .imgGall{
+        padding: 0px;
+      }
+      .news,.calendar,.dj{
+        /*background-color: #000;*/
+        padding: 0px;
+
+      }
+      .calendar{
+        background-color: rgb(240, 224, 36);
+      }
+      .news-word,.calendar-word{
+        text-align: center;
+      }
+      .wrapper:before, .wrapper:after,footer:before {
+  			background-repeat: no-repeat;
+  			background-size: 100% 100%;
+  			content: '';
+  			display: block;
+  			height: 6.5em;
+  			/*position: absolute;*/
+  			width: 100%;
+  		}
+      .news::before{
+        background-color: rgb(229, 78, 66);
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,100 100,0 100,100' style='fill:#fff' /%3E%3C/svg%3E");
+      }
+      .news-hr{
+        border:0; height:3px;
+        background-color:rgb(229, 78, 66);
+	      color:rgb(229, 78, 66)/* IE6 */
+      }
+
+      .calendar::before{
+        background-color: #fff;
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 100,100 0,100 ' style='fill:rgb(240, 224, 36)' /%3E%3C/svg%3E");
+      }
+      .dj::before{
+        background-color: rgb(240, 224, 36);
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 100,100 0,100 ' style='fill:#fff' /%3E%3C/svg%3E");
+      }
+      footer::before{
+        padding: 0px;
+        background-color: #fff;
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 100,100 0,100 ' style='fill:rgb(229, 78, 66)' /%3E%3C/svg%3E");
+      }
+
+    </style>
 </head>
 <body>
     <header>
         <% include ../layouts/navbar %>
     </header>
     <main>
-        <div class="container">
+        <div class="">
             <% if( user && user.local.accountType === "admin"){%>
               normal111
             <%}%>
-            <div class="imgGall">
-              
+            <div class="imgGall container-fluid gallery ">
+              <!-- Elastislide Carousel -->
+    					<ul id="carousel" class="elastislide-list">
+    						<li><a href="#"><img src="images/main/small/1.jpg" alt="image01" /></a></li>
+    						<li><a href="#"><img src="images/main/small/2.jpg" alt="image02" /></a></li>
+    						<li><a href="#"><img src="images/main/small/3.jpg" alt="image03" /></a></li>
+    						<li><a href="#"><img src="images/main/small/4.jpg" alt="image04" /></a></li>
+    						<li><a href="#"><img src="images/main/small/5.jpg" alt="image05" /></a></li>
+    						<li><a href="#"><img src="images/main/small/6.jpg" alt="image06" /></a></li>
+    						<li><a href="#"><img src="images/main/small/7.jpg" alt="image07" /></a></li>
+    						<li><a href="#"><img src="images/main/small/8.jpg" alt="image08" /></a></li>
+    						<li><a href="#"><img src="images/main/small/9.jpg" alt="image09" /></a></li>
+    						<li><a href="#"><img src="images/main/small/10.jpg" alt="image10" /></a></li>
+    						<li><a href="#"><img src="images/main/small/11.jpg" alt="image11" /></a></li>
+    						<li><a href="#"><img src="images/main/small/12.jpg" alt="image12" /></a></li>
+    						<li><a href="#"><img src="images/main/small/13.jpg" alt="image13" /></a></li>
+    						<li><a href="#"><img src="images/main/small/14.jpg" alt="image14" /></a></li>
+    						<li><a href="#"><img src="images/main/small/15.jpg" alt="image15" /></a></li>
+    						<li><a href="#"><img src="images/main/small/16.jpg" alt="image16" /></a></li>
+    						<li><a href="#"><img src="images/main/small/17.jpg" alt="image17" /></a></li>
+    						<li><a href="#"><img src="images/main/small/18.jpg" alt="image18" /></a></li>
+    						<li><a href="#"><img src="images/main/small/19.jpg" alt="image19" /></a></li>
+    						<li><a href="#"><img src="images/main/small/20.jpg" alt="image20" /></a></li>
+    					</ul>
+    					<!-- End Elastislide Carousel -->
+            </div>
+            <div class="news container-fluid wrapper">
+              <div class="news-word">
+                <h1>最新消息</h1>
+                <h4>我  們  將  會  定  期  更  新  最  新  資  訊！</h4>
+                <hr class="news-hr" width="10%">
+              </div>
+              <div class="row">
+                <div class="news-table col-md-4 col-md-offset-2">
+                  <div class="list-group">
+                  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+                    <div class="d-flex w-100 justify-content-between">
+                      <h5 class="mb-1">List group item heading</h5>
+                      <small>3 days ago</small>
+                    </div>
+                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                    <small>Donec id elit non mi porta.</small>
+                  </a>
+                  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                      <h5 class="mb-1">List group item heading</h5>
+                      <small class="text-muted">3 days ago</small>
+                    </div>
+                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                    <small class="text-muted">Donec id elit non mi porta.</small>
+                  </a>
+                  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                      <h5 class="mb-1">List group item heading</h5>
+                      <small class="text-muted">3 days ago</small>
+                    </div>
+                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                    <small class="text-muted">Donec id elit non mi porta.</small>
+                  </a>
+                </div>
+                </div>
+              </div>
+            </div>
+            <div class="calendar container-fluid wrapper">
+              <div class="calendar-word">
+                <h1>近期重要時程</h1>
+              </div>
+            </div>
+            <div class="dj container-fluid wrapper">
+              <div class="dj-word">
+                <h1>松濤電台</h1>
+              </div>
             </div>
         </div>
+
 
 
 
@@ -26,6 +148,15 @@
     </footer>
         <% include js %>
         <% include ../layouts/js %>
+        <script type="text/javascript" src="javascript/main/modernizr.custom.17475.js"></script>
+        <script type="text/javascript" src="javascript/main/jquery.elastislide.js"></script>
+        <script type="text/javascript">
+
+    			$( '#carousel' ).elastislide( {
+    				minItems : 5
+    			} );
+
+    		</script>
 
 </body>
 </html>

@@ -1,0 +1,32 @@
+/* Custom Elastislide Styling */
+
+.gallery .elastislide-horizontal {
+	height: 20vw;
+	background-color: rgb(229, 78, 66);
+	padding: 15px 15px;
+}
+
+.gallery .elastislide-wrapper nav span {
+	background-color: #000;
+}
+
+.gallery .elastislide-carousel ul li a{
+	padding: 0 10px;
+}
+
+.gallery .elastislide-carousel ul li a img {
+	border-radius: 10px;
+	border: none;
+	height: 150px;
+	width: 160px;
+}
+
+.gallery .elastislide-horizontal.elastislide-loading {
+	background-image: url(../images/loading_dark.gif);
+}
+
+@media screen and (max-width: 460px) {
+	.gallery .elastislide-horizontal {
+		padding: 10px 40px;
+	}
+}

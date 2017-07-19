@@ -8,7 +8,6 @@ main {
     min-height: 100vh;
     overflow-x:hidden;
     /*關於背景*/
-    /*background-image:url('/img/main/bg.jpg');*/
     background-color: #fcfffc;
     background-attachment:fixed;
     background-repeat:no-repeat;
@@ -17,6 +16,8 @@ main {
     -o-background-size: cover;
     -moz-background-size: cover;
     -webkit-background-size: cover;
+    margin-top: 50px;
+
 }
 
 /* 為了把footer 黏在最下面 必要 */
@@ -53,7 +54,9 @@ footer {
 .navbar .container{
   width: 100%;
 }
-
+.navbar{
+  pedding-button:200px;
+}
 /****************************************************/
 
 /*footer*/
@@ -66,7 +69,7 @@ footer h3 {
 }
 footer .footer-above {
   padding-top: 50px;
-  background-color: #ec5250; /* 上footer背景色 */
+  background-color: rgb(229, 78, 66); /* 上footer背景色 */
 }
 footer .footer-col {
   margin-bottom: 50px;
