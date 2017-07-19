@@ -28,29 +28,40 @@
 
     function cancelUpload() {
         alert("cancel");
-        $('#img').attr( "src", "");
-        $('#profile').append('<span id="img_title"><font size="8">大頭貼</font></span>');
+        $('#img').attr( "src", "/personal/profile.png");
+        //$('#profile').append('<span id="img_title"><font size="6">大頭貼</font></span>');
     }
 
 /// Q-A table action
     
     $(document).ready(function(){
         $('.openModal').on('click', function(){
-
-            var titleText = $(this).closest('tr').find('td:eq(3)').text();
-            var qesText = $(this).closest('tr').find('td:eq(3)').text();
-            var ansText = $(this).closest('tr').find('td:eq(3)').text();
             
+            var titleText = $(this).closest('tr').find('td:eq(3)').text();
+
             $('#tt').html('標題: ' + titleText);
-            $('#qesField').html($('<b> Question: ' + qesText  + '</b>'));
             $('#ansField').html($('<b> Answer:  asdfasdf </b>'));
         });
     });
 
-
 /// game button action
-    function gameOnClick() {
-        //document.getElementById("per").innerHTML = "Hello World";
+
+    var myIndex = 1;
+    var out = false;
+    function moveIn() {
+        if (out) {
+            return;
+        }
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";  
+        }
+        myIndex++;
+        if (myIndex > x.length) {myIndex = 1}        
+        x[myIndex-1].style.display = "block";
+        if (myIndex==6) {out=true;}
+        setTimeout(moveIn, 1000); 
     }
 
 </script>
