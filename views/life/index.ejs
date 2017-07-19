@@ -16,7 +16,7 @@
           </div>
           <div class="row" style="margin-bottom: 100px">
               <div class="col-xs-1"></div>
-              <div class="col-xs-2"><img id="life-navigate-1" class="img-responsive" style="cursor:pointer; max-width: 10vw; display:inline-block" src="按鈕.png" alt="食"/></div>
+              <div class="col-xs-2"><img  onclick="self.location.href='/life/food'" id="life-navigate-1" class="img-responsive" style="cursor:pointer; max-width: 10vw; display:inline-block" src="按鈕.png" alt="食"/></div>
               <div class="col-xs-2"><img id="life-navigate-2" class="img-responsive" style="cursor:pointer; max-width: 10vw; display:inline-block" src="按鈕.png" alt="住"/></div>
               <div class="col-xs-2"><img id="life-navigate-3" class="img-responsive" style="cursor:pointer; max-width: 10vw; display:inline-block" src="按鈕.png" alt="行"/></div>
               <div class="col-xs-2"><img id="life-navigate-4" class="img-responsive" style="cursor:pointer; max-width: 10vw; display:inline-block" src="按鈕.png" alt="育"/></div>
@@ -38,6 +38,7 @@
                     <li><img id="food-pan5" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
                     <li><img id="food-pan4" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
                     <li><img id="food-pan7" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
+                  </ul>
                 </section>
                <section class="container" id="dorm-mainpan" style="display:none">
                   <ul>
@@ -47,12 +48,14 @@
                     <li><img id="dorm-pan4" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
                     <li><img id="dorm-pan5" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
                     <li><img id="dorm-pan4" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
+                  </ul>
                 </section>
                 <section class="container" id="traffic-mainpan" style="display:none">
                   <ul>
                     <li><img id="traffic-pan1" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
                     <li><img id="traffic-pan2" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
                     <li><img id="traffic-pan3" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
+                  </ul>
                 </section>
                <section class="container" id="study-mainpan" style="display:none">
                   <ul>
@@ -64,6 +67,7 @@
                     <li><img id="study-pan4" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
                     <li><img id="study-pan7" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
                     <li><img id="study-pan8" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
+                  </ul>
                 </section>
               <section class="container" id="entertainment-mainpan" style="display:none">
                   <ul>
@@ -72,9 +76,11 @@
                     <li><img id="entertainment-pan3" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
                     <li><img id="entertainment-pan4" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
                     <li><img id="entertainment-pan5" class="img-responsive" style="cursor:pointer; display:inline-block; margin-bottom:10px; max-width: 8vw; opacity:0.5" src="按鈕2.png"></li>
+                  </ul>
                 </section>
             </div>
           <div class="col-xs-9">
+            <!-- food part -->
             <section>
               <div id=food-video style="display:none;position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/3DEkF2uvPoc?ecver=2" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe></div>
             </section>
@@ -98,7 +104,7 @@
               <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:12vw; padding-bottom:12vw">照片</div>
               <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:4vw; padding-bottom:4vw">文字敘述</div>
             </section>
-            <section id=food-pan4-info style="display:none">
+            <section id=food-pan6-info style="display:none">
               <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:12vw; padding-bottom:12vw">照片</div>
               <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:4vw; padding-bottom:4vw">文字敘述</div>
             </section>
@@ -106,6 +112,111 @@
               <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:12vw; padding-bottom:12vw">照片</div>
               <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:4vw; padding-bottom:4vw">文字敘述</div>
             </section>
+            <!-- dorm -->
+            <section>
+              <div id=dorm-video style="display:none;position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/ZZ5LpwO-An4?ecver=2" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe></div>
+            </section>
+            <section id=dorm-pan1-info style="display:none">
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:12vw; padding-bottom:12vw">照片1</div>
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:4vw; padding-bottom:4vw">文字敘述1</div>
+            </section>
+            <section id=dorm-pan2-info style="display:none">
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:12vw; padding-bottom:12vw">照片2</div>
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:4vw; padding-bottom:4vw">文字敘述2</div>
+            </section>
+            <section id=dorm-pan3-info style="display:none">
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:12vw; padding-bottom:12vw">照片3</div>
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:4vw; padding-bottom:4vw">文字敘述3</div>
+            </section>
+            <section id=dorm-pan4-info style="display:none">
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:12vw; padding-bottom:12vw">照片4</div>
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:4vw; padding-bottom:4vw">文字敘述4</div>
+            </section>
+            <section id=dorm-pan5-info style="display:none">
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:12vw; padding-bottom:12vw">照片</div>
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:4vw; padding-bottom:4vw">文字敘述</div>
+            </section>
+            <section id=dorm-pan6-info style="display:none">
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:12vw; padding-bottom:12vw">照片</div>
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:4vw; padding-bottom:4vw">文字敘述</div>
+            </section>
+            <!-- traffic -->
+            <section>
+              <div id=traffic-video style="display:none;position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/miomuSGoPzI?ecver=2" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe></div>
+            </section>
+            <section id=traffic-pan1-info style="display:none">
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:12vw; padding-bottom:12vw">照片1</div>
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:4vw; padding-bottom:4vw">文字敘述1</div>
+            </section>
+            <section id=traffic-pan2-info style="display:none">
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:12vw; padding-bottom:12vw">照片2</div>
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:4vw; padding-bottom:4vw">文字敘述2</div>
+            </section>
+            <section id=traffic-pan3-info style="display:none">
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:12vw; padding-bottom:12vw">照片3</div>
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:4vw; padding-bottom:4vw">文字敘述3</div>
+            </section>
+            <!-- study -->
+            <section>
+              <div id=study-video style="display:none;position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/FM7MFYoylVs?ecver=2" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe></div>
+            </section>
+            <section id=study-pan1-info style="display:none">
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:12vw; padding-bottom:12vw">照片1</div>
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:4vw; padding-bottom:4vw">文字敘述1</div>
+            </section>
+            <section id=study-pan2-info style="display:none">
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:12vw; padding-bottom:12vw">照片2</div>
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:4vw; padding-bottom:4vw">文字敘述2</div>
+            </section>
+            <section id=study-pan3-info style="display:none">
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:12vw; padding-bottom:12vw">照片3</div>
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:4vw; padding-bottom:4vw">文字敘述3</div>
+            </section>
+            <section id=study-pan4-info style="display:none">
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:12vw; padding-bottom:12vw">照片4</div>
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:4vw; padding-bottom:4vw">文字敘述4</div>
+            </section>
+            <section id=study-pan5-info style="display:none">
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:12vw; padding-bottom:12vw">照片</div>
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:4vw; padding-bottom:4vw">文字敘述</div>
+            </section>
+            <section id=study-pan6-info style="display:none">
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:12vw; padding-bottom:12vw">照片</div>
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:4vw; padding-bottom:4vw">文字敘述</div>
+            </section>
+            <section id=study-pan7-info style="display:none">
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:12vw; padding-bottom:12vw">照片</div>
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:4vw; padding-bottom:4vw">文字敘述</div>
+            </section>
+            <section id=study-pan8-info style="display:none">
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:12vw; padding-bottom:12vw">照片</div>
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:4vw; padding-bottom:4vw">文字敘述</div>
+            </section>
+            <!-- entertainment -->
+            <section>
+              <div id=entertainment-video style="display:none;position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/ZcoqR9Bwx1Y?ecver=2" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe></div>
+            </section>
+            <section id=entertainment-pan1-info style="display:none">
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:12vw; padding-bottom:12vw">照片1</div>
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:4vw; padding-bottom:4vw">文字敘述1</div>
+            </section>
+            <section id=entertainment-pan2-info style="display:none">
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:12vw; padding-bottom:12vw">照片2</div>
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:4vw; padding-bottom:4vw">文字敘述2</div>
+            </section>
+            <section id=entertainment-pan3-info style="display:none">
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:12vw; padding-bottom:12vw">照片3</div>
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:4vw; padding-bottom:4vw">文字敘述3</div>
+            </section>
+            <section id=entertainment-pan4-info style="display:none">
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:12vw; padding-bottom:12vw">照片4</div>
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:4vw; padding-bottom:4vw">文字敘述4</div>
+            </section>
+            <section id=entertainment-pan5-info style="display:none">
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:12vw; padding-bottom:12vw">照片</div>
+              <div style="font-size:40px; text-align:center; border:1px solid black; padding-top:4vw; padding-bottom:4vw">文字敘述</div>
+            </section>
+            <!-- others -->
           </div>
         </div>
       </div>

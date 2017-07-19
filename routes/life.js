@@ -21,5 +21,20 @@ router.get('/study', function(req, res, next) {
 router.get('/entertainment', function(req, res, next) {
   res.render('life/entertainment', { title: 'entertainment', user: req.user });
 });
+router.get('/food/:id',function(req,res,next){
+  department.find({_id:req.params.id},function(err,data){
+    res.send(data[0]);
+  });
+});
+router.post('/add_life', function(req, res, next) {
+	food({
+		type:req.body.type,
+		name:req.body.name,
+		introduction:req.body.introduction,
+	}).save(function(err, doc){
+		if(err)res.json(err);
+		else   res.redirect('/life/food');
+	});
+});
 
 module.exports = router;
