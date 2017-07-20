@@ -187,13 +187,14 @@ svg circle {
 
 /*POINT*/
 
-
 #plyptn{
     border:3px solid black;
     margin-left: -40px;
     float:left;
     width: 120px;
     height:50px;
+    font-size: 30px;
+    text-align: center;
 }
 
 #pcptn{
@@ -202,6 +203,8 @@ svg circle {
     margin-right: -40px;
     width: 120px;
     height:50px;
+    font-size: 30px;
+    text-align: center;
 }
 /*POINT*/
 
@@ -230,7 +233,6 @@ svg circle {
 /*Q*/
 
 /*BAR*/
-
 
 .row3{
     
@@ -283,6 +285,50 @@ svg circle {
     height:50px;
     display: none;
 }
+/*ANSWER*/
+
+/*SCORE*/
+#vs{
+    margin: 0;
+    display: none;
+}
+#vs p{
+    margin: 0;
+    font-size: 50px;
+    padding-top: 50px;
+    
+}
+
+#total, #bonus{
+    display: none;
+}
+
+#plytotal, #plybonus{
+    height:50px;
+    width: 200px;
+    float:left;
+    border:3px solid black
+}
+
+#pctotal, #pcbonus{
+    height:50px;
+    width: 200px;
+    float:right;
+    border:3px solid black
+}
+
+#userscore{
+    margin-left:190px;
+    display: none;
+}
+
+#userpoint, #username{
+    height:50px;
+    width:200px;
+    margin-top: 20px;
+    border:3px solid black;
+}
+/*SCORE*/
 
 </style>
 
@@ -330,10 +376,13 @@ svg circle {
                 
                 <div class="row1">
                 <!--Player-->
-                <div class="col-xs-4" id="player"><img src="/game/player.png"></div>
+                <div class="col-xs-4" id="player"><img src="/game/player.png" alt="player"></div>
                 <!--Player-->
 
+                <div class="col-xs-4" id="vs"><p>VS</p></div>
+
                 <!--CLOCK & ROUND NO.-->
+
                 <div class="col-xs-4" id="countdown">
                     <div class="countdown-number"></div>
                     <svg>
@@ -344,7 +393,7 @@ svg circle {
                 <!--CLOCK & ROUND NO.-->
 
                 <!--PC-->
-                <div class="col-xs-4" id="pc"><img src="/game/pc.png"></div>
+                <div class="col-xs-4" id="pc"><img src="/game/pc.png" alt="pc"></div>
                 <!--PC-->
                 </div>
 
@@ -370,24 +419,34 @@ svg circle {
                             <div><button type="button" onclick="answer1()">
                                     <img src="/game/select.png" class="correct" id="correct01" alt="correct" />
                                     <img src="/game/wrong.png" class="wrong" id="wrong01" alt="wrong" />
+                                    <img src="/game/select.png" class="correct" id="correct001" alt="correct" />
+                                    <img src="/game/wrong.png" class="wrong" id="wrong001" alt="wrong" />
                                     <p id="ans1"></p>
                                     
                             </button></div>
                             <div><button type="button" onclick="answer2()">
                                     <img src="/game/select.png" class="correct" id="correct02" alt="correct" />
                                     <img src="/game/wrong.png" class="wrong" id="wrong02" alt="wrong" />
+                                    <img src="/game/select.png" class="correct" id="correct002" alt="correct" />
+                                    <img src="/game/wrong.png" class="wrong" id="wrong002" alt="wrong" />
                                     <p id="ans2"></p>
+                                    
                                     
                             </button></div>
                             <div><button type="button" onclick="answer3()">
                                     <img src="/game/select.png" class="correct" id="correct03" alt="correct" />
                                     <img src="/game/wrong.png" class="wrong" id="wrong03" alt="wrong" />
+                                    <img src="/game/select.png" class="correct" id="correct003" alt="correct" />
+                                    <img src="/game/wrong.png" class="wrong" id="wrong003" alt="wrong" />
                                     <p id="ans3"></p>
+                                    
                                     
                             </button></div>
                             <div><button type="button" onclick="answer4()">
                                     <img src="/game/select.png" class="correct" id="correct04" alt="correct" />
                                     <img src="/game/wrong.png" class="wrong" id="wrong04" alt="wrong" />
+                                    <img src="/game/select.png" class="correct" id="correct004" alt="correct" />
+                                    <img src="/game/wrong.png" class="wrong" id="wrong004" alt="wrong" />
                                     <p id="ans4"></p>
                                     
                             </button></div>
@@ -404,12 +463,32 @@ svg circle {
                 </div>
                 <!--Point BAR-->
 
+                <!--GETSCORE-->
+                <div class="getscore" id="getscore">
+
+                <div id="total">
+                    <div class="col-xs-4" id="plytotal"></div>
+                    <div class="col-xs-4" id="pctotal"></div>
+                </div>
+
+                <div id="bonus">
+                    <div class="col-xs-4" id="plybonus"></div>
+                    <div class="col-xs-4" id="pcbonus"></div>
+                </div>
+               
+                </div>
+                 <!--GETSCORE-->
+
             </div>
             <!--GAME-->
 
-            <div class="getscore" id="getscore">
-                
+            <div id="userscore">
+                <img src="/game/player.png" alt="player">
+                <div id="username">username</div>
+                <div id="userpoint"></div>
             </div>
+
+            
 
         </div>
 
@@ -425,3 +504,6 @@ svg circle {
         <% include ../layouts/js %>
 </body>
 </html>
+
+
+
