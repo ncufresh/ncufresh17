@@ -4,8 +4,29 @@
     <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 
 <script>
+//audio
+var bingo = document.getElementById("bingo");
+var ding = document.getElementById("ding");
+var bgm = document.getElementById("bgm");
+var gamestart = document.getElementById("gamestart");
+//audio
 
-//for rules
+function mute(){
+    bgm.muted = true;
+    gamestart.muted = true;
+    bingo.muted = true;
+    ding.muted = true;
+}
+
+//beginning
+$(document).ready(function() {
+    bgm.play();
+    $('#menu').fadeIn(1000);
+    $('#menubutton').toggle();
+});
+//beginning
+
+//RULES
     var target = document.getElementById('target');
     var counter = 0;
     var myPictures = [
@@ -16,20 +37,15 @@
         "/game/rules5.png"
     ];
     
-
-    function rules() {
-
-
-        $('.btn1, #pre').hide();
+//when rules button click
+function rules() {
+        $('#box,#btn1,#menubutton').toggle();
+        $('#pre').hide();
         $('#nxt').show();
-        $('#btn3').parent().hide(); //hide all buttons
-        $('#cls').parent().show();
-
         target.src = myPictures[counter];
     }
 
-
- function nextPic() {
+function nextPic() {
             counter += 1;
             target.src = myPictures[counter];
             if (counter == 1) {
@@ -40,7 +56,7 @@
                 }  
 }
     
-    function prePic() {
+function prePic() {
         counter -= 1;
         target.src = myPictures[counter];
         if (counter == 0) {
@@ -51,31 +67,20 @@
         }  
     }
 
-    function cloSe() {
+function cloSe() {
         counter = 0;
-        $('#cls').parent().hide();
-        $('#btn3').parent().show();
-        $('.btn1').show();
+        $('#box,#btn1,#menubutton').toggle();
     }
-//for rules
+//RULES
 
-$(document).ready(function() {
 
-    $('#menu').fadeIn(1000);
-
-    $('.game, #countdown, .row3, #btn5, #btn6, #btn7').hide();
-
-});
-
-//ranking
+//RANKING
 function m2() {
-        $('#btn2, #btn3, #btn4').hide();
-        $('#btn5, #btn6, #btn7').show();
+        $('#menubutton, #rankbutton').toggle();
 }
 
 function back() {
-        $('#btn2, #btn3, #btn4').show();
-        $('#btn5, #btn6, #btn7').hide();
+        $('#menubutton, #rankbutton').toggle();
 }
 
 function score() {
@@ -85,7 +90,32 @@ function score() {
 function rank() {
         
 }
-//ranking
+//RANKING
+
+//START GAME
+function start() {
+        question_temp.sort(function(){return Math.random()>0.5?-1:1;});
+        clk();
+        bgm.pause();
+        gamestart.play();
+
+        $('#game').toggle(); //toggle all buttons
+        $('#menubutton,#btn1').toggle(); //toggle all buttons
+        $('.jumbotron').css("background-image", "none");
+
+        $("#q").append(question_temp[qid].q);
+        $("#ans1").append(question_temp[qid].o[0]);
+        $("#ans2").append(question_temp[qid].o[1]);
+        $("#ans3").append(question_temp[qid].o[2]);
+        $("#ans4").append(question_temp[qid].o[3]); 
+        $("#plyptn").append(plypoint);
+        $("#pcptn").append(pcpoint);
+            
+        countdown = 10;
+        roundNumber.textContent = "第" + round + "題";
+        countdownNumberEl.textContent = countdown;
+
+    }
 
 //QUIZ
 var quiz = [
@@ -106,11 +136,11 @@ var quiz = [
     { q: '請問中央大學沒有開設哪一堂語文課？', o: ['西班牙文','俄文','法文','德文'] , correctIndex:1},
     { q: '請問中央大學有開設哪一堂語文課？', o: ['德文','俄文','義大利文','馬來文 '] , correctIndex:0},
     { q: '中央大學哪一項運動沒有設置室內場館？', o: ['排球','籃球','桌球','網球'] , correctIndex:3},
-    { q: '中央大學的專業實驗劇場-黑盒子，隸屬於哪個單位？', o: ['資電學院','文學院','管理學院','工學院'] , correctIndex:1},
+    { q: '中央大學的專業實驗劇場-黑盒子，位於哪裡？', o: ['志希館','人文社會科學大樓','工一館','管理二館'] , correctIndex:1},
     { q: '中央可以固定一段時間會有電影放映的地方在哪裡?', o: ['107電影院','108電影院','106電影院','105電影院'] , correctIndex:0},
     { q: '若持中大證件到校內的小木屋鬆餅點餐，一項可折多少？', o: ['10','7','5','9'] , correctIndex:3},
     { q: '操場跑道的顏色為何?', o: ['藍色','紅色','黃色','白色'] , correctIndex:0},
-    { q: '女生宿舍最貴的為哪棟?', o: ['女4','女14','女1','女4'] , correctIndex:1},
+    { q: '女生宿舍最貴的為哪棟?', o: ['女4','女14','女1','女2'] , correctIndex:1},
     { q: '中央大學的地址?', o: ['中央路300號','學央路300號','中大路300號','以上皆非'] , correctIndex:2},
     { q: '幾號公車可以直達桃園高鐵站?', o: ['133','154','178','172'] , correctIndex:3},
     { q: '小木屋後面是甚麼學院?', o: ['管學院','文學院','理學院','工學院'] , correctIndex:0},
@@ -122,9 +152,9 @@ var quiz = [
     { q: '學校主要的校風為?', o: ['積極','純樸','活潑','朝氣'] , correctIndex:1},
     { q: '學校有醫學院嗎?', o: ['有','以前有','沒有','以上皆是'] , correctIndex:2},
     { q: '本校隸屬哪個系統?', o: ['台大聯盟','中聯大','央聯大','台聯大'] , correctIndex:3},
-    { q: '搭台聯大的專車去清大要錢嗎?', o: ['要','不要','以上皆是','以上皆非'] , correctIndex:0},
-    { q: '搭台聯大的專車去交大要錢嗎? ', o: ['不要','要','以上皆是','以上皆非'] , correctIndex:1},
-    { q: '搭台聯大的專車去陽明要錢嗎? ', o: ['要','不要','以上皆是','以上皆非'] , correctIndex:0},
+    { q: '搭台聯大的專車去清大要錢嗎?', o: ['要','不要','以上皆是','以上皆非'] , correctIndex:1},
+    { q: '搭台聯大的專車去交大要錢嗎? ', o: ['不要','要','以上皆是','以上皆非'] , correctIndex:0},
+    { q: '搭台聯大的專車去陽明要錢嗎? ', o: ['要','不要','以上皆是','以上皆非'] , correctIndex:1},
     { q: '中大在復校前所在位置為? ', o: ['山東','陝西','南京','遼北'] , correctIndex:2},
     { q: '凌晨3點有開的早餐店為?', o: ['萊姆思','達啵廚房','歐姆萊斯','惟客'] , correctIndex:3},
     { q: '校內有7-11嗎?', o: ['有','沒有','以上皆是','以上皆非'] , correctIndex:1},
@@ -141,7 +171,7 @@ var quiz = [
     { q: '我們可持中大圖書證到陽明借書嗎?', o: ['可','不可','以上皆是','以上皆非'] , correctIndex:0},
     { q: '圖書館平日幾點開館?', o: ['8am','9am','10am','11am'] , correctIndex:0},
     { q: '圖書館假日幾點開館?', o: ['9am','8am','10am','11am'] , correctIndex:3},
-    { q: '圖書館平日幾點閉館?', o: ['9:30pm','10pm','11pm','12pm'] , correctIndex:0},
+    { q: '圖書館學期中平日幾點閉館?', o: ['9:30pm','10pm','11pm','12pm'] , correctIndex:0},
     { q: '圖書館假日幾點閉館?', o: ['6pm','7pm','9pm','10pm'] , correctIndex:1},
     { q: '圖書館書最多可以借幾本?', o: ['5','6','10','20'] , correctIndex:3},
     { q: '校內工讀哪個網站可以找到?', o: ['lms','中央資管網頁','portal','中央資工網頁'] , correctIndex:2},
@@ -149,8 +179,8 @@ var quiz = [
     { q: '全校有幾個學系?', o: ['22','33','44','55'] , correctIndex:0},
     { q: '學生專用信箱web mail是由哪個單位負責管理的？', o: ['圖書館','電子計算中心','教務處','學務處'] , correctIndex:1},
     { q: '中央大學語言中心位在哪一棟大樓？', o: ['志希館','地科院','綜教館','管理二館'] , correctIndex:2},
-    { q: '中央大學宿舍網路校外的上傳流量『加總』之後上限為?', o: ['沒限制','3GB','4GB','5GB'] , correctIndex:1},
-    { q: '中央大學宿舍網路校外的下載流量『加總』之後上限為?', o: ['沒限制','3GB','4GB','5GB'] , correctIndex:0},
+    { q: '中央大學宿舍網路單日(24小時)校外的上傳流量『加總』之後上限為?', o: ['沒限制','3GB','4GB','5GB'] , correctIndex:1},
+    { q: '中央大學宿舍網路單日(24小時)校外的下載流量『加總』之後上限為?', o: ['沒限制','3GB','4GB','5GB'] , correctIndex:0},
     { q: '如果腳踏車壞了要去哪修?', o: ['找警衛伯伯','全家','家樂福','後門腳踏車店'] , correctIndex:3},
     { q: '中央大學的英文縮寫為?', o: ['NCU','HGSH','CYGSH','CYSH'] , correctIndex:0},
     { q: '郵局平日營業時間為?', o: ['9:30~18:00','8:00~17:00','10:00~17:00','9:00~18:00'] , correctIndex:1},
@@ -161,21 +191,21 @@ var quiz = [
     { q: '下列哪個偶像劇有在中央取景?', o: ['1989一念間','極品絕配','我的自由年代','我的愛情不平凡'] , correctIndex:2},
     { q: '校內沒有何種運動場地?', o: ['重訓室','壘球場','籃球場','保齡球館'] , correctIndex:3},
     { q: '校內沒有何種運動場地?', o: ['高爾夫球場','排球場','壘球場','籃球場'] , correctIndex:0},
-    { q: '校內有何種運動場地?', o: ['高爾夫球場','重訓室','足球場','保齡球館'] , correctIndex:1},
+    { q: '校內有何種運動場地?', o: ['高爾夫球場','重訓室','滑雪場','保齡球館'] , correctIndex:1},
     { q: '下列何者為中央大學的體育館名字?', o: ['據德樓','游藝館','依仁堂','志道樓'] , correctIndex:2},
     { q: '校內有個著名的劇場叫?', o: ['名劇場','107電影院','中央劇場','黑盒子劇場'] , correctIndex:3},
     { q: '若遇到人生低潮該去哪尋求協助?', o: ['諮商中心','校長室','教務處','學務處'] , correctIndex:0},
-    { q: '排球場在哪?', o: ['中大湖旁','依仁堂旁','舊圖旁','總圖書館旁'] , correctIndex:1},
+    { q: '中央大學校內哪裡有排球場?', o: ['中大湖旁','依仁堂旁','舊圖旁','總圖書館旁'] , correctIndex:1},
     { q: '你現在念哪所大學?', o: ['中山','中興','中央','中正'] , correctIndex:2},
     { q: '中央的垃圾場在?', o: ['中大湖後面','文院旁邊','籃球場旁','男9後面'] , correctIndex:3},
     { q: '中央大學除了哪兩天以外都有垃圾車時間?', o: ['六日','一二','日一','五六'] , correctIndex:0},
-    { q: '凌晨想吃消夜可到哪吃?', o: ['後門','宵夜街','女宿','男宿'] , correctIndex:1},
+    { q: '凌晨想吃宵夜可到哪吃?', o: ['後門','宵夜街','女宿','男宿'] , correctIndex:1},
     { q: '中央最新成立的學院為?', o: ['理學院','管理學院','生醫理工學院','資電學院'] , correctIndex:2},
     { q: '中央大學專屬的電台為?', o: ['大中大電視台','中中大電視台','好中大電視台','小中大電視台'] , correctIndex:3},
     { q: '中央學生自己專屬的學校信箱結尾為何?', o: ['@cc.ncu.edu.tw','@cc.ntu.edu.tw','@cc.cygsh.edu.tw','@cc.cysh.edu.tw'] , correctIndex:0},
     { q: '期中期末考時k書中心會開多久?', o: ['22點關','23點關','21點關','24小時開放'] , correctIndex:3},
     { q: '平時k書中心會開多久?', o: ['24小時開放','23點關','22點關','21點關'] , correctIndex:1},
-    { q: '請問106學年度，中央大學的FB社團名稱為何?', o: ['2016 嶄．望','中央大學','2017邂逅中央','中大自由年代'] , correctIndex:2},
+    { q: '請問106學年度，中央大學的FB社團名稱為何?', o: ['2016 嶄．望 中央大學','我愛上中央大學:)','2017邂逅中央','中大自由年代'] , correctIndex:2},
     { q: '中央甚麼樹最多?', o: ['榕樹','松樹','芒果樹','西瓜樹'] , correctIndex:1},
     { q: '中央目前有幾個學院?', o: ['8','10','12','14'] , correctIndex:0},
     { q: '請問中央大學的校色為什麼顏色?', o: ['紅綠','藍紫','紫金','靛紅'] , correctIndex:2},
@@ -183,7 +213,7 @@ var quiz = [
     { q: '中央大學內最高建築為哪棟?', o: ['客家學院','管理二館','舊圖','女14'] , correctIndex:3},
     { q: '中央大學內的新圖書館(總圖書館)總共有幾層樓?', o: ['8','9','10','11'] , correctIndex:0},
     { q: '你即將進入的國立中央大學於今年滿幾週年呢?', o: ['101','102','99','98'] , correctIndex:1},
-    { q: '校內的腳踏車打氣站分別位於何處?', o: ['小木屋旁','舊圖旁','正門警衛室','總圖書館旁'] , correctIndex:2},
+    { q: '中央大學哪裡有校內的腳踏車打氣站?', o: ['小木屋旁','舊圖旁','正門警衛室','總圖書館旁'] , correctIndex:2},
     { q: '學生機車騎入校園之入校時間限制時間為?', o: ['12~18時','11~23時','10~23時','8~21時'] , correctIndex:3},
     { q: '宿舍網路啟動碼價錢要花多少錢?', o: ['800','1500','1000','1200'] , correctIndex:0},
     { q: '請問中央大學道路的最高限速是多少公里?', o: ['5','10','15','25'] , correctIndex:3},
@@ -249,8 +279,8 @@ var quiz = [
     { q: '平常在校內可以騎機車嗎?', o: ['可以','可以吧','應該可以','不行'] , correctIndex:3},
     { q: '校內公用腳踏車可以騎出校外嗎?', o: ['可以','不行','以上皆是','以上皆非'] , correctIndex:1},
     { q: '好兇蛋餅晚上幾點開?', o: ['7pm','6pm','5pm','10pm'] , correctIndex:3},
-    { q: '好兇蛋餅幾點關門?', o: ['7am','8am','12am','5am'] , correctIndex:2},
-    { q: '好兇蛋餅從幾點開到幾點?', o: ['10pm~12am','7pm~7am','6pm~8am','5pm~5am'] , correctIndex:0},
+    { q: '好兇蛋餅上午幾點關門?', o: ['7am','8am','12pm','5am'] , correctIndex:2},
+    { q: '好兇蛋餅從幾點開到幾點?', o: ['10pm~隔天12pm','7pm~隔天7am','6pm~隔天8am','5pm~隔天5am'] , correctIndex:0},
     { q: '你喜歡這個網站嗎?', o: ['不喜歡','很喜歡','以上皆是','以上皆非'] , correctIndex:1},
     { q: '你喜歡這款遊戲嗎?', o: ['很喜歡','不喜歡','太喜歡了','可愛'] , correctIndex:2},
     { q: '要輸入網路卡號碼需要至哪個網頁?', o: ['服務學習網','生活職涯網','中央大學學生宿舍網路系統','lms'] , correctIndex:2},
@@ -258,7 +288,7 @@ var quiz = [
     { q: '英語自學中心在哪裡?', o: ['總圖','管理學院','理學院','舊圖'] , correctIndex:3},
     { q: '英語自學中心觀看英文影片幾分鐘一個戳章?', o: ['40分鐘','50分鐘','30分鐘','20分鐘'] , correctIndex:1},
     { q: '校內公用腳踏車，俗稱「小綠」，可以私自上鎖嗎?', o: ['不行','可以','以上皆是','以上皆非'] , correctIndex:0},
-    { q: '宿舍網路啟動碼生效時間是「宿網系統註冊完畢後」多久生效?', o: ['註冊馬上生效','須等一段時間','以上皆是','以上皆非'] , correctIndex:1},
+    { q: '宿舍網路啟動碼生效時間是「宿網系統註冊完畢後」多久生效?', o: ['註冊馬上生效','須等一段時間(24小時內)','以上皆是','以上皆非'] , correctIndex:1},
     { q: '宿舍網路每筆的註冊資料, 允許更換 MAC Address(網路啟動碼)幾次?', o: ['1次','2次','3次','5次'] , correctIndex:2},
     { q: '宿舍網路如果搬到其他宿舍或寢室, 可以修改幾次?', o: ['2次','4次','3次','5次'] , correctIndex:0},
     { q: '106學年度服務學習總共需要幾個小時才能畢業?', o: ['90小時','100小時','80小時','70小時'] , correctIndex:1},
@@ -271,7 +301,8 @@ var quiz = [
 //for clock 
 var countdownNumberEl = document.getElementsByClassName('countdown-number')[0];
 var roundNumber = document.getElementsByClassName('round-number')[0];
-var countdown = 10;
+var countdown ;
+
 var round = 1;
 //for clock 
 
@@ -361,28 +392,7 @@ var round = 1;
 
 
 
-  //start game
-function start() {
-        question_temp.sort(function(){return Math.random()>0.5?-1:1;});
-        clk();
 
-        $('#btn2').parent().remove(); //hide all buttons
-        $('.jumbotron').css("background-image", "none");
-        $('.game, #countdown, .row3').show(); //show game div
-        $('.btn1').hide();
-
-        $("#q").append(question_temp[qid].q);
-        $("#ans1").append(question_temp[qid].o[0]);
-        $("#ans2").append(question_temp[qid].o[1]);
-        $("#ans3").append(question_temp[qid].o[2]);
-        $("#ans4").append(question_temp[qid].o[3]); 
-        $("#plyptn").append(plypoint);
-        $("#pcptn").append(pcpoint);
-        
-        roundNumber.textContent = "第" + round + "題";
-        countdownNumberEl.textContent = countdown;
-
-    }
 
 //countdown interval
 function clk() {
@@ -391,24 +401,47 @@ function clk() {
 
 //svg interval  
 function clr() {
-    cLr = setTimeout(function(){ $('svg circle').css("animation", "countdown 10s linear 1 forwards"); }, 1000);
+    if(round < 6){
+            cLr = setTimeout(function(){ $('svg circle').css("animation", "countdown 10s linear 1 forwards"); }, 1000);
+        }
+    else if(round > 5 && round < 11){
+            cLr = setTimeout(function(){ $('svg circle').css("animation", "countdown 7s linear 1 forwards"); }, 1000);
+        }
+    else if(round > 10 && round < 16){
+            cLr = setTimeout(function(){ $('svg circle').css("animation", "countdown 6s linear 1 forwards"); }, 1000);
+        }
+    else if(round > 15 && round < 21){
+            cLr = setTimeout(function(){ $('svg circle').css("animation", "countdown 5s linear 1 forwards"); }, 1000);
+        }
 }
     
 //rounds
 function r() {
     $("#correct01,#correct02,#correct03,#correct04,#wrong01,#wrong02,#wrong03,#wrong04,#correct001,#correct002,#correct003,#correct004,#wrong001,#wrong002,#wrong003,#wrong004").css({"display": "none"});
-    $("").css({"display": "none"});
     $('button').disable(false);
     round++;
-    countdown=11;
     $('svg circle').css("animation", "none");
-    countdownNumberEl.textContent = 10;
     clr();
+    if(round < 6){
+            countdownNumberEl.textContent = 10;
+            countdown = 11;
+        }
+    else if(round > 5 && round < 11){
+            countdownNumberEl.textContent = 7;
+            countdown = 8;
+        }
+    else if(round > 10 && round < 16){
+            countdownNumberEl.textContent = 6;
+            countdown = 7;
+        }
+    else if(round > 15 && round < 21){
+            countdownNumberEl.textContent = 5;
+            countdown = 6;
+        }
     clk();
 
-    if(round == 10){
-            $('.row2, .row3, #countdown').hide();
-            $('#vs').show();
+    if(round == 21){
+            $('#row2, #row3, #countdown,#vs').toggle();
             showscore();
         }
             
@@ -428,10 +461,11 @@ function r() {
 
 //COUNTDOWN
 function cdn(){
+
     countdown = --countdown < 0 ? 10 : countdown;
     countdownNumberEl.textContent = countdown;
 
-        if(countdown == 0){
+        if( countdown == 0){
             answ();
             clearInterval(clock);
             $('svg circle').css("animation-play-state", "paused");
@@ -458,6 +492,7 @@ jQuery.fn.extend({
         clearInterval(clock);
         $('svg circle').css("animation-play-state", "paused");
         if( yrans == question_temp[qid].correctIndex){
+            bingo.play();
                 plypoint += 100;
                 $("#plyptn").empty();
                 $("#plyptn").append(plypoint);
@@ -466,18 +501,21 @@ jQuery.fn.extend({
             }
 
         else if( 1 == question_temp[qid].correctIndex){
+            ding.play();
             $("#ans1").parent().css({"color": "red", "border": "2px solid red"});
             $("#ans2").parent().css({"color": "green", "border": "2px solid green"});
             $("#wrong01").css({"display": "initial", "float": "left"});
             }
 
         else if( 2 == question_temp[qid].correctIndex){
+            ding.play();
             $("#ans1").parent().css({"color": "red", "border": "2px solid red"});
             $("#ans3").parent().css({"color": "green", "border": "2px solid green"});
             $("#wrong01").css({"display": "initial", "float": "left"});
             }
 
         else if( 3 == question_temp[qid].correctIndex){
+            ding.play();
             $("#ans1").parent().css({"color": "red", "border": "2px solid red"});
             $("#ans4").parent().css({"color": "green", "border": "2px solid green"});
             $("#wrong01").css({"display": "initial", "float": "left"});
@@ -495,6 +533,7 @@ jQuery.fn.extend({
         $('svg circle').css("animation-play-state", "paused");
 
         if( yrans == question_temp[qid].correctIndex){
+            bingo.play();
                 plypoint += 100;
                 $("#plyptn").empty();
                 $("#plyptn").append(plypoint);
@@ -503,18 +542,21 @@ jQuery.fn.extend({
             }
 
         else if( 0 == question_temp[qid].correctIndex){
+            ding.play();
             $("#wrong02").css({"display": "initial", "float": "left"});
             $("#ans2").parent().css({"color": "red", "border": "2px solid red"});
             $("#ans1").parent().css({"color": "green", "border": "2px solid green"});
             }
 
         else if( 2 == question_temp[qid].correctIndex){
+            ding.play();
             $("#wrong02").css({"display": "initial", "float": "left"});
             $("#ans2").parent().css({"color": "red", "border": "2px solid red"});
             $("#ans3").parent().css({"color": "green", "border": "2px solid green"});
             }
 
         else if( 3 == question_temp[qid].correctIndex){
+            ding.play();
             $("#wrong02").css({"display": "initial", "float": "left"});
             $("#ans2").parent().css({"color": "red", "border": "2px solid red"});
             $("#ans4").parent().css({"color": "green", "border": "2px solid green"});
@@ -531,6 +573,7 @@ jQuery.fn.extend({
         clearInterval(clock);
         $('svg circle').css("animation-play-state", "paused");
         if( yrans == question_temp[qid].correctIndex){
+                bingo.play();
                 plypoint += 100;
                 $("#plyptn").empty();
                 $("#plyptn").append(plypoint);
@@ -539,18 +582,21 @@ jQuery.fn.extend({
             }
 
         else if( 1 == question_temp[qid].correctIndex){
+            ding.play();
             $("#wrong03").css({"display": "initial", "float": "left"});
             $("#ans3").parent().css({"color": "red", "border": "2px solid red"});
             $("#ans2").parent().css({"color": "green", "border": "2px solid green"});
             }
 
         else if( 0 == question_temp[qid].correctIndex){
+            ding.play();
             $("#wrong03").css({"display": "initial", "float": "left"});
             $("#ans3").parent().css({"color": "red", "border": "2px solid red"});
             $("#ans1").parent().css({"color": "green", "border": "2px solid green"});
             }
 
         else if( 3 == question_temp[qid].correctIndex){
+            ding.play();
             $("#wrong03").css({"display": "initial", "float": "left"});
             $("#ans3").parent().css({"color": "red", "border": "2px solid red"});
             $("#ans4").parent().css({"color": "green", "border": "2px solid green"});
@@ -568,6 +614,7 @@ jQuery.fn.extend({
         $('svg circle').css("animation-play-state", "paused");
 
         if( yrans == question_temp[qid].correctIndex){
+            bingo.play();
                 plypoint += 100;
                 $("#plyptn").empty();
                 $("#plyptn").append(plypoint);
@@ -575,18 +622,21 @@ jQuery.fn.extend({
                 $("#correct04").css({"display": "initial", "float": "left"});
             }
         else if( 1 == question_temp[qid].correctIndex){
+            ding.play();
             $("#wrong04").css({"display": "initial", "float": "left"});
             $("#ans4").parent().css({"color": "red", "border": "2px solid red"});
             $("#ans2").parent().css({"color": "green", "border": "2px solid green"});
             }
 
         else if( 2 == question_temp[qid].correctIndex){
+            ding.play();
             $("#wrong04").css({"display": "initial", "float": "left"});
             $("#ans4").parent().css({"color": "red", "border": "2px solid red"});
             $("#ans3").parent().css({"color": "green", "border": "2px solid green"});
             }
 
         else if( 0 == question_temp[qid].correctIndex){
+            ding.play();
             $("#wrong04").css({"display": "initial", "float": "left"});
             $("#ans4").parent().css({"color": "red", "border": "2px solid red"});
             $("#ans1").parent().css({"color": "green", "border": "2px solid green"});
@@ -596,12 +646,13 @@ jQuery.fn.extend({
     } 
 
     function answ() { 
+        ding.play();
         pc();
         calcpc();
         calcply() ;
         $('button').disable(true);
         if( 0 == question_temp[qid].correctIndex){
-                $("#ans1").parent().css({"color": "green", "border": "2px solid green"});
+            $("#ans1").parent().css({"color": "green", "border": "2px solid green"});
             }
 
         else if( 1 == question_temp[qid].correctIndex){
@@ -685,7 +736,7 @@ function calcbonus(){
 
 //GET SCORE
 function showscore(){
-    $('#total, #bonus').show();
+    $('#total, #bonus').toggle();
     $("#plytotal").append("總共答對題數：" + plypoint/100 + "題");
     $("#pctotal").append("總共答對題數：" + pcpoint/100 + "題");
     $("#plybonus").append("連續答題：" + plybonusend + "題");
@@ -710,27 +761,27 @@ function showscore(){
             $("#plybonus").append("LOSE");
         }
         last();
-    }, 5000);
+    }, 3000);
 
     
 }
 
 function last(){
     setTimeout(function(){ 
-        $('#userscore').show();
-        $('.game').hide();
+        $('#userscore, #row1, #total, #bonus').toggle();
 
         if(plytotal>pctotal){
-            $("#userpoint").append("答對題數"+ plypoint/100 + "題*1.5=" + (plypoint/100)*1.5 + "積分" );
+            $("#userpoint").append("答對題數"+ plypoint/100 + "題*1.5=" + Math.round((plypoint/100)*1.5) + "積分" );
         }
         else if(plytotal==pctotal){
-           $("#userpoint").append("答對題數"+ plypoint/100 + "題*1=" + (plypoint/100)*1 + "積分" );
+           $("#userpoint").append("答對題數"+ plypoint/100 + "題*1=" + Math.round((plypoint/100)*1) + "積分" );
         }
         else {
-           $("#userpoint").append("答對題數"+ plypoint/100 + "題*0.2=" + (plypoint/100)*0.2 + "積分" );
+           $("#userpoint").append("答對題數"+ plypoint/100 + "題*0.2=" + Math.round((plypoint/100)*0.2)+ "積分" );
         }
     }, 3000);
 }
+
 //GET SCORE
 
 //start game
