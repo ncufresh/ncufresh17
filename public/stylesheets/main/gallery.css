@@ -1,7 +1,7 @@
 /* Custom Elastislide Styling */
 
 .gallery .elastislide-horizontal {
-	height: 20vw;
+	height: 180px;
 	background-color: rgb(229, 78, 66);
 	padding: 15px 15px;
 }

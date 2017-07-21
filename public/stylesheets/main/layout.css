@@ -4,7 +4,6 @@ body{
 }
 main {
     /*至少會出現一個螢幕的長度*/
-    /*padding-top: 50px ;*/
     min-height: 100vh;
     overflow-x:hidden;
     /*關於背景*/
@@ -56,6 +55,10 @@ footer {
 }
 .navbar{
   pedding-button:200px;
+}
+nav{
+  background-color: #1c9e73;
+  box-shadow: none;
 }
 /****************************************************/
 

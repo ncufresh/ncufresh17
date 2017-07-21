@@ -4,7 +4,9 @@
     <% include ../layouts/head %>
     <link rel="stylesheet" type="text/css" href="stylesheets/main/elastislide.css" />
     <link rel="stylesheet" type="text/css" href="stylesheets/main/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/main/timeline.css" />
     <style>
+      /*切版*/
       .imgGall{
         padding: 0px;
       }
@@ -37,6 +39,11 @@
         background-color:rgb(229, 78, 66);
 	      color:rgb(229, 78, 66)/* IE6 */
       }
+      .time-hr{
+        border:0; height:3px;
+        background-color:#fff;
+	      color:#fff)/* IE6 */
+      }
 
       .calendar::before{
         background-color: #fff;
@@ -51,6 +58,136 @@
         background-color: #fff;
         background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 100,100 0,100 ' style='fill:rgb(229, 78, 66)' /%3E%3C/svg%3E");
       }
+      /*公告區的style*/
+      .list-group{
+        height: 500px;
+        overflow-y: scroll;
+      }
+      .w-100{
+        width: 100%!important;
+      }
+      .d-flex {
+          display: -webkit-box!important;
+          display: -webkit-flex!important;
+          display: -ms-flexbox!important;
+          display: flex!important;
+      }
+      .justify-content-between {
+          -webkit-box-pack: justify!important;
+          -webkit-justify-content: space-between!important;
+          -ms-flex-pack: justify!important;
+          justify-content: space-between!important;
+      }
+      /*照片gallery*/
+      /* Slideshow container */
+      .slideshow-container {
+        max-width: 1000px;
+        position: relative;
+        margin: auto;
+      }
+
+      .mySlides {
+          display: none;
+      }
+
+      /* Next & previous buttons */
+      .prev, .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        margin-top: -22px;
+        padding: 16px;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+      }
+
+      /* Position the "next button" to the right */
+      .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+      }
+
+      /* On hover, add a black background color with a little bit see-through */
+      .prev:hover, .next:hover {
+        background-color: rgba(0,0,0,0.8);
+      }
+
+      /* Caption text */
+      .text {
+        color: #f2f2f2;
+        font-size: 15px;
+        padding: 8px 12px;
+        position: absolute;
+        bottom: 8px;
+        width: 100%;
+        text-align: center;
+      }
+
+      /* Number text (1/3 etc) */
+      .numbertext {
+        color: #f2f2f2;
+        font-size: 12px;
+        padding: 8px 12px;
+        position: absolute;
+        top: 0;
+      }
+
+      /* The dots/bullets/indicators */
+      .dot {
+        cursor:pointer;
+        height: 13px;
+        width: 13px;
+        margin: 0 2px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.6s ease;
+      }
+
+      .active, .dot:hover {
+        background-color: #717171;
+      }
+
+      /* Fading animation */
+      .fade {
+        -webkit-animation-name: fade;
+        -webkit-animation-duration: 1.5s;
+        animation-name: fade;
+        animation-duration: 1.5s;
+      }
+
+      @-webkit-keyframes fade {
+        from {opacity: .4}
+        to {opacity: 1}
+      }
+
+      @keyframes fade {
+        from {opacity: .4}
+        to {opacity: 1}
+      }
+      /*top btn*/
+      #topBtn {
+        display: none; /* Hidden by default */
+        position: fixed; /* Fixed/sticky position */
+        bottom: 20px; /* Place the button at the bottom of the page */
+        right: 30px; /* Place the button 30px from the right */
+        z-index: 99; /* Make sure it does not overlap */
+        border: none; /* Remove borders */
+        outline: none; /* Remove outline */
+        background-color: red; /* Set a background color */
+        color: white; /* Text color */
+        cursor: pointer; /* Add a mouse pointer on hover */
+        padding: 15px; /* Some padding */
+        border-radius: 10px; /* Rounded corners */
+    }
+
+    #topBtn:hover {
+        background-color: #555; /* Add a dark-grey background on hover */
+    }
 
     </style>
 </head>
@@ -96,39 +233,196 @@
                 <hr class="news-hr" width="10%">
               </div>
               <div class="row">
-                <div class="news-table col-md-4 col-md-offset-2">
+                <div class="news-table col-md-5 col-md-offset-1">
                   <div class="list-group">
-                  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
-                    <div class="d-flex w-100 justify-content-between">
-                      <h5 class="mb-1">List group item heading</h5>
-                      <small>3 days ago</small>
-                    </div>
-                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                    <small>Donec id elit non mi porta.</small>
-                  </a>
-                  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                      <h5 class="mb-1">List group item heading</h5>
-                      <small class="text-muted">3 days ago</small>
-                    </div>
-                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                    <small class="text-muted">Donec id elit non mi porta.</small>
-                  </a>
-                  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                      <h5 class="mb-1">List group item heading</h5>
-                      <small class="text-muted">3 days ago</small>
-                    </div>
-                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                    <small class="text-muted">Donec id elit non mi porta.</small>
-                  </a>
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h4 class="mb-1">List group item heading</h4>
+                        <small class="text-muted">3 days ago</small>
+                      </div>
+                      <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h4 class="mb-1">List group item heading</h4>
+                        <small class="text-muted">3 days ago</small>
+                      </div>
+                      <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h4 class="mb-1">List group item heading</h4>
+                        <small class="text-muted">3 days ago</small>
+                      </div>
+                      <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h4 class="mb-1">List group item heading</h4>
+                        <small class="text-muted">3 days ago</small>
+                      </div>
+                      <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                    </a>
+
+                  </div>
                 </div>
+                <div class="col-md-5">
+                  <div class="slideshow-container">
+                    <div class="mySlides">
+                      <div class="numbertext">1 / 3</div>
+                      <img src="images/main/1.jpeg" style="width:100%">
+                    </div>
+
+                    <div class="mySlides">
+                      <div class="numbertext">2 / 3</div>
+                      <img src="images/main/2.jpg" style="width:100%">
+                    </div>
+
+                    <div class="mySlides">
+                      <div class="numbertext">3 / 3</div>
+                      <img src="images/main/4.jpg" style="width:100%">
+                    </div>
+
+                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                  </div>
+                  <br>
+
+                  <div style="text-align:center">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="calendar container-fluid wrapper">
               <div class="calendar-word">
                 <h1>近期重要時程</h1>
+                <h4>我  們  將  會  隨  時  提  醒  你  重  要  時  程！</h4>
+                <hr class="time-hr" width="10%">
+              </div>
+              <div class="timeline">
+                <section class="cd-horizontal-timeline">
+                	<div class="timeline">
+                		<div class="events-wrapper">
+                			<div class="events">
+                				<ol>
+                					<li><a href="#0" data-date="16/01/2014">16 Jan</a></li>
+                					<li><a href="#0" data-date="28/02/2014">28 Feb</a></li>
+                					<li><a href="#0" data-date="20/04/2014">20 Mar</a></li>
+                					<li><a href="#0" data-date="20/05/2014">20 May</a></li>
+                					<li><a href="#0" data-date="09/07/2014">09 Jul</a></li>
+                					<li><a href="#0" data-date="30/08/2014">30 Aug</a></li>
+                					<li><a href="#0" data-date="15/09/2014">15 Sep</a></li>
+                					<li><a href="#0" data-date="01/11/2014">01 Nov</a></li>
+                					<li><a href="#0" data-date="10/12/2014">10 Dec</a></li>
+                					<li><a href="#0" data-date="19/01/2015">29 Jan</a></li>
+                					<li><a href="#0" data-date="03/03/2015" class="selected">3 Mar</a></li>
+                				</ol>
+
+                				<span class="filling-line" aria-hidden="true"></span>
+                			</div> <!-- .events -->
+                		</div> <!-- .events-wrapper -->
+
+                		<ul class="cd-timeline-navigation">
+                			<li><a href="#0" class="prev inactive">pre</a></li>
+                			<li><a href="#0" class="next">next</a></li>
+                		</ul> <!-- .cd-timeline-navigation -->
+                	</div> <!-- .timeline -->
+
+                	<div class="events-content">
+                		<ol>
+                			<li data-date="16/01/2014">
+                				<h2>Horizontal Timeline</h2>
+                				<em>January 16th, 2014</em>
+                				<p>
+                					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
+                				</p>
+                			</li>
+
+                			<li data-date="28/02/2014">
+                				<h2>Event title here</h2>
+                				<em>February 28th, 2014</em>
+                				<p>
+                					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
+                				</p>
+                			</li>
+
+                			<li data-date="20/04/2014">
+                				<h2>Event title here</h2>
+                				<em>March 20th, 2014</em>
+                				<p>
+                					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
+                				</p>
+                			</li>
+
+                			<li data-date="20/05/2014">
+                				<h2>Event title here</h2>
+                				<em>May 20th, 2014</em>
+                				<p>
+                					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
+                				</p>
+                			</li>
+
+                			<li data-date="09/07/2014">
+                				<h2>Event title here</h2>
+                				<em>July 9th, 2014</em>
+                				<p>
+                					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
+                				</p>
+                			</li>
+
+                			<li data-date="30/08/2014">
+                				<h2>Event title here</h2>
+                				<em>August 30th, 2014</em>
+                				<p>
+                					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
+                				</p>
+                			</li>
+
+                			<li data-date="15/09/2014">
+                				<h2>Event title here</h2>
+                				<em>September 15th, 2014</em>
+                				<p>
+                					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
+                				</p>
+                			</li>
+
+                			<li data-date="01/11/2014">
+                				<h2>Event title here</h2>
+                				<em>November 1st, 2014</em>
+                				<p>
+                					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
+                				</p>
+                			</li>
+
+                			<li data-date="10/12/2014">
+                				<h2>Event title here</h2>
+                				<em>December 10th, 2014</em>
+                				<p>
+                					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
+                				</p>
+                			</li>
+
+                			<li data-date="19/01/2015">
+                				<h2>Event title here</h2>
+                				<em>January 19th, 2015</em>
+                				<p>
+                					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
+                				</p>
+                			</li>
+
+                			<li  class="selected" data-date="03/03/2015">
+                				<h2>Event title here</h2>
+                				<em>March 3rd, 2015</em>
+                				<p>
+                					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
+                				</p>
+                			</li>
+                		</ol>
+                	</div> <!-- .events-content -->
+                </section>
               </div>
             </div>
             <div class="dj container-fluid wrapper">
@@ -136,6 +430,8 @@
                 <h1>松濤電台</h1>
               </div>
             </div>
+            <button onclick="topFunction()" id="topBtn" title="Go to top"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+
         </div>
 
 
@@ -150,12 +446,53 @@
         <% include ../layouts/js %>
         <script type="text/javascript" src="javascript/main/modernizr.custom.17475.js"></script>
         <script type="text/javascript" src="javascript/main/jquery.elastislide.js"></script>
+        <script type="text/javascript" src="javascript/main/modernizr.js"></script>
+        <script type="text/javascript" src="javascript/main/timeline.js"></script>
         <script type="text/javascript">
-
     			$( '#carousel' ).elastislide( {
-    				minItems : 5
+    				minItems : 2
     			} );
+          var slideIndex = 1;
+          showSlides(slideIndex);
 
+          function plusSlides(n) {
+            showSlides(slideIndex += n);
+          }
+
+          function currentSlide(n) {
+            showSlides(slideIndex = n);
+          }
+
+          function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("dot");
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex-1].style.display = "block";
+            dots[slideIndex-1].className += " active";
+          }
+          window.onscroll = function() {scrollFunction()};
+
+          function scrollFunction() {
+              if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                  document.getElementById("topBtn").style.display = "block";
+              } else {
+                  document.getElementById("topBtn").style.display = "none";
+              }
+          }
+
+          // When the user clicks on the button, scroll to the top of the document
+          function topFunction() {
+              document.body.scrollTop = 0; // For Chrome, Safari and Opera
+              document.documentElement.scrollTop = 0; // For IE and Firefox
+          }
     		</script>
 
 </body>
