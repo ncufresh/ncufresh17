@@ -24,7 +24,7 @@
 
 }
 
-.game{
+#game{
     height: 700px;
     display: none;
 }
@@ -51,7 +51,10 @@
     color:rgba(103, 51, 0, 1);
     font-weight: bold;
     font-size: 20px;
+}
 
+#menubutton , #rankbutton{
+    display: none;
 }
 
 /*BUTTON*/
@@ -70,7 +73,7 @@
 
 
 
-.box{
+#box{
     background-color: rgba(207, 169, 114, 1);
     width: 450px;
     height:610px;
@@ -108,7 +111,7 @@
 /*RULES*/
 
 /*GAME*/
-.row1{
+#row1{
     width: 700px;
     height: 200px;
     margin-left: -60px;
@@ -234,7 +237,7 @@ svg circle {
 
 /*BAR*/
 
-.row3{
+#row3{
     
     margin-top: 50px;
     
@@ -299,6 +302,8 @@ svg circle {
     
 }
 
+
+
 #total, #bonus{
     display: none;
 }
@@ -336,14 +341,37 @@ svg circle {
     </header>
 
     <main>
-      <div class="container" id="menu">
+      <div class="container" >
 
 
-        <div class="jumbotron" >
+        <div class="jumbotron" id="menu">
+
+        <!--audio-->
+        <audio id="bgm" loop="loop"><source src="/game/bensound-littleidea.mp3" type="audio/mpeg"></audio>
+        <audio id="bingo"><source src="/game/correct.mp3" type="audio/mpeg"></audio>
+        <audio id="ding"><source src="/game/wrong.mp3" type="audio/mpeg"></audio>
+        <audio id="gamestart"><source src="/game/bensound-funkyelement.mp3" type="audio/mpeg"></audio>
+        <!--audio-->
 
             <!--BUTTON-->
-            <div class="row" id="row">
-                <!--nxt pre close btn-->
+
+                <!--main-->
+                <div id="btn1"><button type="button" onclick="mute()">Mute</button></div>
+
+                <div class="button" id="menubutton">
+                    <button type="button" id="btn2" onclick="start()">遊戲開始 </br>Start </button>
+                    <button type="button" id="btn3" onclick="rules()">遊戲說明 </br>Game Rules</button>
+                    <button type="button" id="btn4" onclick="m2()">個人積分及排行榜 </br>Scores & Ranking</button>
+                </div>
+
+                <div class="button" id="rankbutton">    
+                    <button type="button" id="btn5" onclick="score()">個人積分</br> Score</button>
+                    <button type="button" id="btn6" onclick="rank()">排行榜</br> Ranking</button>
+                    <button type="button" id="btn7" onclick="back()">返回</br> Back</button>
+                </div>
+                <!--main-->
+
+                <!--BUTTON for RULES-->
                 <div class="box" id="box">
                     <img id="target" alt="rules" align="middle"/>
                     <button type="button" id="cls" onclick="cloSe()">X </button>
@@ -351,30 +379,16 @@ svg circle {
                     <button type="button" id="pre" onclick="prePic()"></button>
                     
                 </div>
-                <!--nxt pre close btn-->
+                <!--BUTTON for RULES-->
 
-                <!--main-->
-                <div class="btn1"><button type="button">Mute</button></div>
-                <div class="button">
-                    <button type="button" id="btn2" onclick="start()">遊戲開始 </br>Start </button>
-                    <button type="button" id="btn3" onclick="rules()">遊戲說明 </br>Game Rules</button>
-                    <button type="button" id="btn4" onclick="m2()">個人積分及排行榜 </br>Scores & Ranking</button>
-
-                    <button type="button" id="btn5" onclick="score()">個人積分</br> Score</button>
-                    <button type="button" id="btn6" onclick="rank()">排行榜</br> Ranking</button>
-                    <button type="button" id="btn7" onclick="back()">返回</br> Back</button>
-                </div>
-                <!--main-->
-
-            </div>
             <!--BUTTON-->
 
             
 
             <!--GAME-->
-            <div class="game">
+            <div id="game">
                 
-                <div class="row1">
+                <div id="row1">
                 <!--Player-->
                 <div class="col-xs-4" id="player"><img src="/game/player.png" alt="player"></div>
                 <!--Player-->
@@ -398,14 +412,14 @@ svg circle {
                 </div>
 
                 <!--POINT-->
-                <div class="row2">
+                <div id="row2">
                     <div class="col-xs-4" id="plyptn"></div>
                     <div class="col-xs-4" id="pcptn"></div>
                 </div>
                 <!--POINT-->
                 
                 <!--Point BAR-->
-                <div class="row3">
+                <div id="row3">
             
                     <div class="col-xs-4" id="bar1">
                         <div id="plyhealth"></div>
@@ -464,7 +478,6 @@ svg circle {
                 <!--Point BAR-->
 
                 <!--GETSCORE-->
-                <div class="getscore" id="getscore">
 
                 <div id="total">
                     <div class="col-xs-4" id="plytotal"></div>
@@ -475,18 +488,19 @@ svg circle {
                     <div class="col-xs-4" id="plybonus"></div>
                     <div class="col-xs-4" id="pcbonus"></div>
                 </div>
-               
-                </div>
                  <!--GETSCORE-->
+
+                 <div id="userscore">
+                    <img src="/game/player.png" alt="player">
+                    <div id="username">username</div>
+                    <div id="userpoint"></div>
+                    <button type="button" id="btn8" onclick="self.location.href='/smallgame'">返回遊戲主頁</br> Main Menu</button>
+                </div>
 
             </div>
             <!--GAME-->
 
-            <div id="userscore">
-                <img src="/game/player.png" alt="player">
-                <div id="username">username</div>
-                <div id="userpoint"></div>
-            </div>
+            
 
             
 
