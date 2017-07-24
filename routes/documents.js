@@ -2,18 +2,18 @@ var express = require('express');
 var router = express.Router();
 var fs = require('fs');
 var formidable = require('formidable');
-var for_freshman = require('../models/documents_for_freshman');
+var document = require('../models/document');
 var shortId = require('shortid');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  for_freshman.find({}).sort({order:1}).exec(function(err,for_freshman){
-    res.render('documents/index',{title: 'documents', for_freshman: for_freshman, user: req.user});
+  document.find({}).sort({order:1}).exec(function(err,document){
+    res.render('documents/index',{title: 'documents', document: document, user: req.user});
   });
 });
 
 router.get('/require_data/:id',function(req,res,next){
-  for_freshman.find({_id:req.params.id},function(err,data){
+  document.find({_id:req.params.id},function(err,data){
     res.send(data[0]);
   });
 });
@@ -23,10 +23,10 @@ router.get('/delete/:id',function(req,res,next){
   var total;
   var the_type;
   var the_order;
-  for_freshman.find({_id:req.params.id}).exec(function (err, results) {
+  document.find({_id:req.params.id}).exec(function (err, results) {
     the_type = results[0].type;
     the_order = results[0].order;
-    for_freshman.find({type:the_type}).exec(function (err, result) {
+    document.find({type:the_type}).exec(function (err, result) {
       total = result.length;
       console.log("有 "+total+" 個");
       console.log("順序是第 "+the_order+" 個");
@@ -36,14 +36,14 @@ router.get('/delete/:id',function(req,res,next){
       {
         var temp = ha;
         temp--;
-        for_freshman.update({order:ha,type:the_type},{
+        document.update({order:ha,type:the_type},{
           order: temp
         },function(err){
           if(err)
             console.log(err);
         });
       }
-      for_freshman.findById(req.params.id).remove().exec();
+      document.findById(req.params.id).remove().exec();
       res.redirect('/documents');
     });
   });
@@ -51,12 +51,12 @@ router.get('/delete/:id',function(req,res,next){
 
 router.post('/add',function(req,res,next){
   var temp;
-  for_freshman.find({type:req.body.type}).exec(function (err, results) {
+  document.find({type:req.body.type}).exec(function (err, results) {
     if(err) throw err;
     temp = results.length;
     temp++;
     console.log(temp);
-    var b = new for_freshman({
+    var b = new document({
       name:req.body.name,
       type:req.body.type,
       content:req.body.content,
@@ -68,9 +68,8 @@ router.post('/add',function(req,res,next){
 });
 
 router.post('/update',function(req,res,next){
-  for_freshman.update({_id:req.body.id},{
+  document.update({_id:req.body.id},{
         name:req.body.name,
-        type:req.body.type,
         content:req.body.Content
       },function(err){
         if(err)
@@ -89,17 +88,17 @@ router.post('/change_order',function(req,res,next){
   console.log(req.body.second_order);
   var first_order = req.body.first_order.toString();
   var second_order = req.body.second_order.toString();
-  for_freshman.update({type:req.body.type,order:first_order},{
+  document.update({type:req.body.type,order:first_order},{
     order:0
   },function(err){
     if(err)
       console.log(err);
-    for_freshman.update({type:req.body.type,order:second_order},{
+    document.update({type:req.body.type,order:second_order},{
       order:first_order
     },function(err){
       if(err)
         console.log(err);
-      for_freshman.update({type:req.body.type,order:0},{
+      document.update({type:req.body.type,order:0},{
         order:second_order
       },function(err){
         if(err)
@@ -146,7 +145,7 @@ router.post('/insertimg/:id',function(req,res,next) {
       var readStream = fs.createReadStream(tmpPath)
       var writeStream = fs.createWriteStream(targetPath);
       readStream.on("end",function(){
-        for_freshman.update({_id:req.params.id},{
+        document.update({_id:req.params.id},{
           img_path:'/documents/' + fileName
         },function(err){
           if(err)
