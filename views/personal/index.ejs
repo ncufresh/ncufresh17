@@ -14,11 +14,26 @@
         <div class="jumbotron row" style="overflow:auto; background-color: #00BFFF !important;">
             <div class="col-md-6" style="padding-left:50px; padding-right:50px;">
                 <h1 style="font-family:Microsoft JhengHei; color:white;">個人專區</h1>
-                <div style="width:200px; margin-left:200px">
-                    <div class="well" id="profile" style="width:150px; height:150px; float:left; margin-top:20px; margin-left:6px; padding: 5px 0 0 7px;">
+                
+                <div style="float:left;">
+                    <p style="margin: 70px 0 0 20px;">
+                        <% if(user) { %>
+                        姓名: <%=user.local.name%>
+                        <% } %>
+                    </p>
+                    <p style="margin: 25px 0 0 20px;">
+                        <% if(user) { %>
+                        身份: <%=user.local.accountType%>
+                        <% } %>
+                    </p>
+                </div>
+                
+                <div style="width:200px; margin-left:220px">
+                    <span id="img_title" style="margin-left:33px;"><font size="6">大頭貼</font></span>
+                    <div id="profile" style="width:150px; height:150px; margin-left:6px;">
 
-                        <img id="img" style="width: 142px; height: 142px;" src="/personal/profile.png">
-                        <!---->
+                        <img class="img-thumbnail" id="img" style="width:150px; height:150px;"src="/personal/profile.png">
+                        
                         <!-- Modal -->
                         <div class="modal fade" id="myModal" role="dialog">
                             <div class="modal-dialog">
@@ -44,12 +59,11 @@
                             
                             </div>
                         </div>
-                        <!---->
-                        <!--<span id="img_title"><font size="6">大頭貼</font></span>-->
+                        <!--////////-->
 
                     </div>
 
-                    <input accept="image/*" id="uploadImage" type="file">
+                    <input accept="image/*" id="uploadImage" type="file" style="margin-top:10px;">
 
                 </div>
 
@@ -126,6 +140,7 @@
                                     <h3 class="modal-title" id="tt"></h3>
                                 </div>
                                 
+                                <div id="qesField" class="modal-body">blahblahblahblah~~</div>
                                 <div id="ansField" class="modal-body"></div>
                                 
                                 <div class="modal-footer">

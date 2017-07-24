@@ -3,13 +3,13 @@
 <head>
     <% include ../layouts/head %>
 </head>
-<body style="background-image: url('background.png'); background-size: contain; background-repeat: no-repeat; ">
+<body>
     <header>
         <% include ../layouts/navbar %>
     </header>
 
-    <ul id="navi" style="height:34%;">
-        <img src="/about/logo.png" style="width:95px; height:58px; margin: 5px 5px 5px 7px;">
+    <ul id="navi" style="height:100%; margin-top: 10px;">
+        <a href="/about"><img src="/about/logo.png" style="width:130px; height:75px; margin: 5px 5px 5px 12px;"></a>
         <li><a href="/about/markting" style="background-image: url('markting.png');"></a></li>
         <li><a href="/about/programming" style="background-image: url('programming.png');"></a></li>
         <li><a href="/about/ceo" style="background-image: url('ceo.png');"></a></li>
@@ -17,24 +17,24 @@
         <li><a href="/about/video" style="background-image: url('video.png');"></a></li>
     </ul>
 
-    <div class="container">
-        <div style="height:580px; overflow-y: scroll;">
-            <h2>關於我們</h2>
+    <main style="background-image: url('background.png'); background-size: cover; background-repeat: no-repeat;">
+        <div class="container" style="height:600px; margin-top: 20px; margin-left:150px;">
+            <h2><b>關於我們</b></h2>
             <hr>
             <img src="/about/IMG_9281.jpg" alt="photo died!!!!!!" style="width:100%;height:240px;">
-            <ul style="margin-top:30px;">
-                <li style="padding-left:14px;">為了迎接大學新鮮人，我們提供了各項新生需要的服務</li>
-                <li><span><a href="/documents"><b>新生必讀</b></a></span>提供了到大學需要注意的事項</li>
-                <li><span><a href="/QnA" style="padding-right:14px;"><b>新生Q&A</b></a></span>透過問與答，解決新生的各種問題</li>
-                <li><span><a href="/campus"><b>校園導覽</b></a></span>讓新生對校園有更進一步的認識</li>
-                <li><span><a href="/groups"><b>系所社團</b></a></span>輕鬆掌握在中央的食衣住行育樂</li>
-                <li><span><a href="/video"><b>影音專區</b></a></span>由影片帶領新生搶先體驗中大生活</li>
-                <li><span><a href="/personal"><b>個人專區</b></a></span>在知訊網中開拓一片屬於自己的地盤吧！</li>
+            <ul id="content" style="margin-top:30px;">
+                <li style="padding-left:14px; font-size:30px;"><b>為了迎接大學新鮮人，我們提供了各項新生需要的服務</b></li>
+                <li style="margin-top:8px;"><span><a href="/documents"><b>「新生必讀」</b></a></span>提供了到大學需要注意的事項</li>
+                <li><span><a href="/QnA" style="padding-right:14px;"><b>「新生Q&A」</b></a></span>透過問與答，解決新生的各種問題</li>
+                <li><span><a href="/campus"><b>「校園導覽」</b></a></span>讓新生對校園有更進一步的認識</li>
+                <li><span><a href="/groups"><b>「系所社團」</b></a></span>輕鬆掌握在中央的食衣住行育樂</li>
+                <li><span><a href="/video"><b>「影音專區」</b></a></span>由影片帶領新生搶先體驗中大生活</li>
+                <li><span><a href="/personal"><b>「個人專區」</b></a></span>在知訊網中開拓一片屬於自己的地盤吧！</li>
             </ul>
         </div>
       </div>
 
-    </div>
+    </main>
 
     <footer>
         <% include ../layouts/footer %>
@@ -57,28 +57,38 @@
         overflow: auto;
     }
 
-    a {
+    #navi li a {
+        width: 144px;
+        height: 50px;
+        background-size: contain;
+    }
+
+    #navi a ,#content a {
         background-repeat: no-repeat; 
         background-size: contain;
         height: 36px;
     }
 
-    li a {
+    #navi li a, #content li a {
         display: block;
         color: #000;
         padding: 8px 16px;
         text-decoration: none;
-        height: 36px;
     }
 
-    li a.active {
+    #navi li a.active {
         background-color: #4CAF50;
         color: white;
     }
 
-    li a:hover:not(.active) {
+    #navi li a:hover:not(.active), #content li a:hover:not(.active) {
         background-color: #555;
         color: white;
+    }
+
+    #content li {
+        font-size: 20px;
+        background: rgba(204, 229, 255, 0.3);
     }
 
     span {
