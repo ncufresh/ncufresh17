@@ -3,9 +3,49 @@
 <head>
     <% include ../layouts/head %>
 <style>
-p.subtitle{
-    font-size: 47px;
-    font-family: "CSong3HK Medium", Georgia, Serif;
+.title{
+    cursor:pointer;
+    margin-bottom:0.5vw;
+    background-image: url("cafe.png");
+    background-position: left top;
+    background-size: 13vw 6.5vw;
+    width:13vw;
+    height:6.5vw;
+}
+.title-text{
+  padding-top:25px;
+  padding-left:40px;
+  color: #392681;
+  font-size: 28px;
+  font-weight: bold;
+  font-family: "漢儀新蒂唐朝體", Georgia, Serif;
+}
+.subtitle{
+  display:none;
+  background-image: url("backpic.png");
+  background-position: left top;
+  background-size: 35vw 30vw;
+  width:35vw;
+  height:30vw;
+}
+.subtitle-text{
+
+  padding-top:20px;
+  color: #3d288b;
+  font-size: 47px;
+  font-weight: bold;
+  font-family: "CSong3HK Medium", Georgia, Serif;
+  text-align: center;
+}
+content{
+  background-color: #9fc8e3;
+  background-position: left top;
+  background-size: 35vw 30vw;
+  width:35vw;
+  height:30vw;
+}
+content-text{
+
 }
 </style>
 </head>
@@ -21,23 +61,27 @@ p.subtitle{
           </div>
           <hr size="8px" align="center" width="100%">
           <div class="row container" id="food">
-            <div class="col-xs-4">
+            <div class="col-xs-3">
               <% for (var i in life){ %>
                   <% if ( life[i].type == "food"){ %>
-                    <img id="<%=life[i].id%>" src="cafe.png" height="100" width="200">
-                    <p><%= life[i].name %></p>
+                    <div class="btntitle" target_id="<%=life[i].id%>">
+                      <div class="title">
+                        <p class="title-text"><%= life[i].name %></p>
+                      </div>
+                    </div>
                   <%}%>
               <%}%>
             </div>
             <div class="col-xs-5">
               <% for (var i in life){ %>
                   <% if ( life[i].type == "food"){ %>
-                    <img src="backpic.png" height="500" width="500">
-                    <p id="subtitle"><%= life[i].name %></p>
+                    <div id="subtitle<%=life[i].id%>"class="subtitle">
+                      <p class="subtitle-text"><%= life[i].name %></p>
+                    </div>
                   <%}%>
               <%}%>
             </div>
-            <div class="col-xs-3"></div>
+            <div class="col-xs-4"></div>
           </div>
       </div>
     </main>
@@ -45,7 +89,17 @@ p.subtitle{
     <footer>
         <% include ../layouts/footer %>
     </footer>
-        <% include js %>
+
         <% include ../layouts/js %>
+        <% include js %>
+        <script>
+          $(function(){
+            $('.btntitle').on('click',function(){
+              var id = $(this).attr('target_id');
+              $('.subtitle').hide();
+              $('#subtitle'+id).fadeIn();
+            });
+          })
+        </script>
 </body>
 </html>
