@@ -48,10 +48,10 @@ $(document).ready(function(){
     $('#change_order_id').change(function(){
         $('#first_order').html("");
         $('#second_order').html("");
-        <%for (var i in for_freshman){%>
-            if($(this).find(':selected').text()=="<%-for_freshman[i].type%>"){
-                $('#first_order').html($('#first_order').html()+'<option value="<%-for_freshman[i].order%>"><%-for_freshman[i].order%></option>');
-                $('#second_order').html($('#second_order').html()+'<option value="<%-for_freshman[i].order%>"><%-for_freshman[i].order%></option>');
+        <%for (var i in document){%>
+            if($(this).find(':selected').text()=="<%-document[i].type%>"){
+                $('#first_order').html($('#first_order').html()+'<option value="<%-document[i].order%>"><%-document[i].order%></option>');
+                $('#second_order').html($('#second_order').html()+'<option value="<%-document[i].order%>"><%-document[i].order%></option>');
             }
         <%}%>
 
@@ -119,48 +119,48 @@ $(document).ready(function(){
                 padding:'2vh'
             }, 200);
     });
-    <% for (var i in for_freshman){%>
-        $("#<%- for_freshman[i].id%>").mouseenter(function(){
-            if ("<%-for_freshman[i].type%>"!="常用連結"){
+    <% for (var i in document){%>
+        $("#<%- document[i].id%>").mouseenter(function(){
+            if ("<%-document[i].type%>"!="常用連結"){
 		        $(this).animate({
 		            padding:'0px'
 		        }, 200);
             }else{
-                if ($("#<%- for_freshman[i].id+"link"%>").is(':hover')){
+                if ($("#<%- document[i].id+"link"%>").is(':hover')){
 
                 }else{
                     $(this).animate({
                         opacity: '0.4'
                     }, { duration: 200, queue: false });
-                    $("#<%- for_freshman[i].id+"link"%>").animate({
+                    $("#<%- document[i].id+"link"%>").animate({
                         opacity: '1'
                     }, { duration: 200, queue: false });
                     console.log("mouseover");
                 }
             }
 		});
-		$("#<%- for_freshman[i].id%>").mouseleave(function(){
-            if ("<%-for_freshman[i].type%>"!="常用連結"){
+		$("#<%- document[i].id%>").mouseleave(function(){
+            if ("<%-document[i].type%>"!="常用連結"){
 		        $(this).animate({
 		            padding:'2vw'
 		        }, 200);
             }else{
-                if ($("#<%- for_freshman[i].id+"link"%>").is(':hover')){
+                if ($("#<%- document[i].id+"link"%>").is(':hover')){
 
                 }else{
                     $(this).animate({
                         opacity: '1'
                     }, { duration: 200, queue: false });
-                    $("#<%- for_freshman[i].id+"link"%>").animate({
+                    $("#<%- document[i].id+"link"%>").animate({
                         opacity: '0'
                     }, { duration: 200, queue: false });
                     console.log("mouseout");
                 }
             }
 		});
-        $("#<%- for_freshman[i].id+"link"%>").mouseover(function(){
-            $("#<%- for_freshman[i].id%>").css({"opacity":"0.4"});
-            $("#<%- for_freshman[i].id+"link"%>").css({"opacity":"1"});
+        $("#<%- document[i].id+"link"%>").mouseover(function(){
+            $("#<%- document[i].id%>").css({"opacity":"0.4"});
+            $("#<%- document[i].id+"link"%>").css({"opacity":"1"});
         });
     <%}%>
     $("#freshmen-source").click(function(){

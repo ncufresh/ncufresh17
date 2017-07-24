@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var shortId = require('shortid');
 
-var for_freshman = mongoose.Schema({
+var document = mongoose.Schema({
     _id: {
     type: String,
     unique: true,
@@ -14,4 +14,4 @@ var for_freshman = mongoose.Schema({
     order : Number
 });
 
-module.exports = mongoose.model( 'for_freshman', for_freshman );
+module.exports = mongoose.model( 'document', document );
