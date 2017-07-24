@@ -14,12 +14,12 @@
 }
 
 .jumbotron{
-    background-image: url("/game/gamebg.png") ;
+    background-image: url("/game/gamebg.gif") ;
     background-color: rgba(133, 82, 30, 1);
     background-size: contain;
-    width:700px;
-    height:700px;
-    margin: auto;
+    width:800px;
+    height:600px;
+    margin: 20px auto;
     position:relative;
 
 }
@@ -32,23 +32,30 @@
 /*BUTTON*/
 
 
-.btn1{
+#mute{
     float:left;
+    font-size: 40px;
 }
 
-.button{
-    margin-top: 400px;
-    width:150px;
-    margin-left: 190px;
+#music{
+    float:left;
+    font-size: 40px;
+    display: none;
+}
 
+
+.button{
+    margin-top: 290px;
+    width:150px;
+    margin-left: 230px;
 }
 
 .button button{
     margin-top: 10px;
     width:200px;
-    border:3px solid rgba(103, 51, 0, 1);
-    background-color: rgba(207, 169, 114, 1);
-    color:rgba(103, 51, 0, 1);
+    border:5px solid #003567;
+    border-radius: 10px;
+    background-color: #FFF799;
     font-weight: bold;
     font-size: 20px;
 }
@@ -62,24 +69,20 @@
 /*RULES*/
 #target{
     position: absolute;
-    width:450px;
+    width:400px;
     height:auto;
     margin:auto;
-    top:0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+
 }
 
-
-
 #box{
-    background-color: rgba(207, 169, 114, 1);
-    width: 450px;
-    height:610px;
-    position: relative;
-    margin-left:80px;
-    border:3px solid rgba(103, 51, 0, 1);
+    background-color: #7ECEF4;
+    width: 410px;
+    height:550px;
+    position: absolute;
+    margin-left:150px;
+    border:5px solid #004986;
+    border-radius:10px;
     display:none;
 }
 
@@ -90,53 +93,70 @@
 }
 
 #nxt{
-    position: absolute;
-    bottom:0;
-    right:0;
+    position: relative;
+    top:480px;
+    left:290px;
     background-image: url("/game/nxt.png") ;
-    width: 113px;
-    height: 57px;
+    width: 90px;
+    height: 46px;
     background-size: contain;
 }
 
+#nxt:hover{
+    background-image: url("/game/nxt02.png") ;
+}
+
+
 #pre{
     position: absolute;
-    bottom:0;
-    left:0;
+    top:480px;
+    left:20px;
     background-image: url("/game/pre.png") ;
-    width: 113px;
-    height: 57px;
+    width: 90px;
+    height: 46px;
     background-size: contain;
+}
+
+#pre:hover{
+    background-image: url("/game/pre02.png") ;
 }
 /*RULES*/
 
 /*GAME*/
 #row1{
-    width: 700px;
-    height: 200px;
-    margin-left: -60px;
+    height: 180px;
     padding:0;
+    margin-top: -15px;
+}
+
+#row2{
+    margin-top: -20px;
 }
 /*GAME*/
 
 /*頭像*/
 #player{
-    float:left;
-    margin-right: 40px;
+    height:auto;
+    width:auto;
+    left:35px;
+    position: absolute;
+
 }
 
 #pc{
-    float:right;
-    width:180px;
+    position: absolute;
+    height:auto;
+    width:auto;
+    right:25px;
+
 }
 /*頭像*/
 
 /*CLOCK*/
 #countdown {
-    
   position: relative;
-  margin: auto;
-  margin-top: 10px;
+  margin-left: 280px;
+  margin-top: -10px;
   padding-top: 18px;
   padding-left: 35px;
   height: 140px;
@@ -166,8 +186,8 @@ svg circle {
   stroke-dashoffset: 0px;
   stroke-linecap: round;
   stroke-width: 8px;
-  stroke: black;
-  fill: none;
+  stroke: #00479D;
+  fill:none;
   animation: countdown 10s linear infinite forwards;
 }
 
@@ -183,17 +203,22 @@ svg circle {
 
 /*ROUND NO.*/
 .round-number{
-    margin-top: 10px;
+    margin-top: 20px;
     font-size: 25px;
+    background-color: #FFF799;
+    border:5px solid #00479D;
+    border-radius: 10px;
+    width:150px;
+    margin-left: -30px;
 }
 /*ROUND NO.*/
 
 /*POINT*/
 
 #plyptn{
-    border:3px solid black;
-    margin-left: -40px;
-    float:left;
+    border-radius: 10px;
+    background-color: #FFF799;
+    left:0;
     width: 120px;
     height:50px;
     font-size: 30px;
@@ -201,9 +226,9 @@ svg circle {
 }
 
 #pcptn{
-    border:3px solid black;
-    float: right;
-    margin-right: -40px;
+    border-radius: 10px;
+    background-color: #FFF799;
+    left:460px;
     width: 120px;
     height:50px;
     font-size: 30px;
@@ -213,127 +238,287 @@ svg circle {
 
 /*Q*/
 #question{
-    width:400px;
     height:350px;
-    margin:0px 53px;
+    margin-left:70px;
     padding: 0px;
 }
 
 .Q{
-    border:3px solid black;
+    border:5px solid #003567;
+    border-radius: 10px;
     width:400px;
     height:100px;
-    background-color: rgba(207, 169, 114, 1);
+    background-color: #FFF799;
+}
+
+.Q p{
+    text-align: left;
+    margin:10px 20px;
 }
 
 .A button{
-    border:3px solid black;
+    border:5px solid #003567;
+    border-radius: 10px;
     width:400px;
-    margin-top: 20px;
+    margin-top: 10px;
     height:50px;
-    background-color: rgba(207, 169, 114, 1);
+    background-color: #FFF799;
+}
+
+.A p{
+    margin-top: 4px;
+    margin-left:50px;
+    margin-right:50px;
 }
 /*Q*/
 
 /*BAR*/
 
 #row3{
-    
     margin-top: 50px;
-    
 }
 
 #bar1 {
-  border: 3px solid #000;
-  background-color: #d66838;
+    border-radius:10px;
+  border: 5px solid #FFF;
+  background-color: #00479D;
   height: 300px;
   width:15px;
-  float:left;
+  margin-left:40px;
   margin-top: 50px;
 }
 
 
 #pchealth, #plyhealth{
+    border-radius:3px;
     position :relative;
     background-color: #e4cf62;
     margin-left: -15px;
     width:30px;
+    animation:mymove 20s linear forwards;
+    animation-play-state: paused;
     }
 
 @keyframes mymove {
     0%   {height: 100%;}
-    100% {height: 85%;}
+    100% {height: 0%;}
 }
 
 #bar2 {
-  border: 3px solid #000;
-  background-color: #d66838;
+border-radius:10px;
+  border: 5px solid #FFF;
+  background-color: #00479D;
   height: 300px;
   width:15px;
-  float:right;
+  margin-left:240px;
   margin-top: 50px;
+
 }
 
 /*BAR*/
 
 /*ANSWER*/
-.wrong{
-    width:auto;
-    height:50px;
+.glyphicon.glyphicon-ok,.glyphicon.glyphicon-remove  {
+    font-size: 40px;
+    color:red green;
     display: none;
 }
 
-.correct{
-    width:auto;
-    height:50px;
-    display: none;
+.glyphicon.glyphicon-ok { 
+    color:green;
+}
+
+.glyphicon.glyphicon-remove { 
+    color:red;
 }
 /*ANSWER*/
 
 /*SCORE*/
 #vs{
-    margin: 0;
     display: none;
 }
 #vs p{
-    margin: 0;
+    margin-left: 300px;
+    color:#FFF;
+    font-weight: bold;
     font-size: 50px;
     padding-top: 50px;
     
 }
 
-
-
-#total, #bonus{
+#score{
     display: none;
+}
+
+#plyscore{
+    background-image: url("/game/結算一玩家.png") ;
+    width: 400px;
+    height:417px;
+    bottom:0;
+    left:0px;
+    position:absolute;
+    background-size: contain;
+}
+
+#pcscore{
+    background-image: url("/game/結算一電腦.png") ;
+    width: 400px;
+    height:417px;
+    bottom:0;
+    right:0;
+    position:absolute;
+    background-size: contain;
 }
 
 #plytotal, #plybonus{
     height:50px;
     width: 200px;
     float:left;
-    border:3px solid black
+    
 }
 
 #pctotal, #pcbonus{
     height:50px;
     width: 200px;
     float:right;
-    border:3px solid black
 }
 
-#userscore{
-    margin-left:190px;
-    display: none;
+
+
+#total01{
+    margin-top: 30px;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    width:100px;
+}
+#total02{
+    margin-top: 30px;
+    font-size: 25px;
+    font-weight: bold;
+    float:right;
+    text-align: center;
+    width:100px;
 }
 
-#userpoint, #username{
-    height:50px;
-    width:200px;
-    margin-top: 20px;
-    border:3px solid black;
+#point01{
+    margin-top: -20px;
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: 170px;
+}
+
+#point02{
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 100px;
+    margin-left: -30px;
+}
+
+#totalpnt01{
+    margin-top: -80px;
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: 270px;
+}
+
+#totalpnt02{
+    margin-top: -85px;
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: -180px;
+}
+
+#bonus01{
+    text-align: center;
+    margin-top: 140px;
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: 22px;
+    width:100px;
+}
+
+#bonus02{
+    text-align: center;
+    margin-top: 140px;
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: 55px;
+    width:100px;
+}
+
+#bonusptn01{
+    margin-top: -50px;
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: 190px;
+}
+
+#bonusptn02{
+    margin-top: -50px;
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: -40px;
+}
+
+#totalbonus01{
+    margin-top: -80px;
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: 280px;
+}
+
+#totalbonus02{
+    margin-top: -80px;
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: -190px;
 }
 /*SCORE*/
+
+/*GAMEOVER*/
+#userscore{
+    display: none;
+    background-image: url("/game/結算三.png") ;
+    background-size: contain;
+    width:700px;
+    height:494px;
+}
+
+#last{
+    margin-top: 220px;
+    margin-left: 130px;
+}
+
+#userpoint{
+    height:50px;
+    width:200px;
+    margin-top: 50px;
+    margin-left: 380px;
+} 
+
+#username{
+    height:50px;
+    width:200px;
+    margin-top: -200px;
+    margin-left: 380px;
+}
+
+#btn8{
+    margin-top: 200px;
+    margin-left: 250px;
+    background-color: #8C97CB;
+    color:black;
+    width:150px;
+    border:3px solid #003567;
+    border-radius: 5px;
+    font-size: 20px;
+}
+#btn8:hover{
+    background-color: #004986;
+    color:white;
+}
+/*GAMEOVER*/
 
 </style>
 
@@ -356,24 +541,27 @@ svg circle {
             <!--BUTTON-->
 
                 <!--main-->
-                <div id="btn1"><button type="button" onclick="mute()">Mute</button></div>
+                <div>
+                <span class="glyphicon glyphicon-volume-off" onclick="mute()" id="mute"></span>
+                <span class="glyphicon glyphicon-music" onclick="musicon()" id="music"></span>
+                </div>
 
                 <div class="button" id="menubutton">
-                    <button type="button" id="btn2" onclick="start()">遊戲開始 </br>Start </button>
-                    <button type="button" id="btn3" onclick="rules()">遊戲說明 </br>Game Rules</button>
-                    <button type="button" id="btn4" onclick="m2()">個人積分及排行榜 </br>Scores & Ranking</button>
+                    <button type="button" id="btn2" onclick="start()">遊戲開始</button>
+                    <button type="button" id="btn3" onclick="rules()">遊戲說明</button>
+                    <button type="button" id="btn4" onclick="m2()">個人積分及排行榜</button>
                 </div>
 
                 <div class="button" id="rankbutton">    
-                    <button type="button" id="btn5" onclick="score()">個人積分</br> Score</button>
-                    <button type="button" id="btn6" onclick="rank()">排行榜</br> Ranking</button>
-                    <button type="button" id="btn7" onclick="back()">返回</br> Back</button>
+                    <button type="button" id="btn5" onclick="score()">個人積分</button>
+                    <button type="button" id="btn6" data-toggle="modal" data-target="#rank">排行榜</button>
+                    <button type="button" id="btn7" onclick="back()">返回</button>
                 </div>
                 <!--main-->
 
                 <!--BUTTON for RULES-->
                 <div class="box" id="box">
-                    <img id="target" alt="rules" align="middle"/>
+                    <img id="target" alt="rules"/>
                     <button type="button" id="cls" onclick="cloSe()">X </button>
                     <button type="button" id="nxt" onclick="nextPic()" ></button>
                     <button type="button" id="pre" onclick="prePic()"></button>
@@ -389,27 +577,27 @@ svg circle {
             <div id="game">
                 
                 <div id="row1">
-                <!--Player-->
-                <div class="col-xs-4" id="player"><img src="/game/player.png" alt="player"></div>
-                <!--Player-->
+                    <!--Player-->
+                    <div class="col-xs-4" id="player"><img src="/game/player.png" alt="player"></div>
+                    <!--Player-->
 
-                <div class="col-xs-4" id="vs"><p>VS</p></div>
+                    <div class="col-xs-4" id="vs"><p>V.S.</p></div>
 
-                <!--CLOCK & ROUND NO.-->
+                    <!--CLOCK & ROUND NO.-->
+                    <div class="col-xs-4" id="countdown">
+                        <div class="countdown-number"></div>
+                        <svg>
+                        <circle r="69.85699" cx="81" cy="81"></circle>
+                        </svg>
+                        <div class="round-number"></div>
+                    </div>
+                    <!--CLOCK & ROUND NO.-->
 
-                <div class="col-xs-4" id="countdown">
-                    <div class="countdown-number"></div>
-                    <svg>
-                    <circle r="69.85699" cx="81" cy="81"></circle>
-                    </svg>
-                    <div class="round-number"></div>
+                    <!--PC-->
+                    <div class="col-xs-4" id="pc"><img src="/game/pc.png" alt="pc"></div>
+                    <!--PC-->
                 </div>
-                <!--CLOCK & ROUND NO.-->
 
-                <!--PC-->
-                <div class="col-xs-4" id="pc"><img src="/game/pc.png" alt="pc"></div>
-                <!--PC-->
-                </div>
 
                 <!--POINT-->
                 <div id="row2">
@@ -431,39 +619,37 @@ svg circle {
                         <div class="Q" ><p id="q"></p></div>
                         <div class="A" >
                             <div><button type="button" onclick="answer1()">
-                                    <img src="/game/select.png" class="correct" id="correct01" alt="correct" />
-                                    <img src="/game/wrong.png" class="wrong" id="wrong01" alt="wrong" />
-                                    <img src="/game/select.png" class="correct" id="correct001" alt="correct" />
-                                    <img src="/game/wrong.png" class="wrong" id="wrong001" alt="wrong" />
+                                    <span class="glyphicon glyphicon-ok" id="correct01"></span>
+                                    <span class="glyphicon glyphicon-remove" id="wrong01"></span>
+                                    <span class="glyphicon glyphicon-ok" id="correct001"></span>
+                                    <span class="glyphicon glyphicon-remove" id="wrong001"></span>
                                     <p id="ans1"></p>
-                                    
-                            </button></div>
+                                    </button>
+                            </div>
                             <div><button type="button" onclick="answer2()">
-                                    <img src="/game/select.png" class="correct" id="correct02" alt="correct" />
-                                    <img src="/game/wrong.png" class="wrong" id="wrong02" alt="wrong" />
-                                    <img src="/game/select.png" class="correct" id="correct002" alt="correct" />
-                                    <img src="/game/wrong.png" class="wrong" id="wrong002" alt="wrong" />
+                                    <span class="glyphicon glyphicon-ok" id="correct02"></span>
+                                    <span class="glyphicon glyphicon-remove" id="wrong02"></span>
+                                    <span class="glyphicon glyphicon-ok" id="correct002"></span>
+                                    <span class="glyphicon glyphicon-remove" id="wrong002"></span>
                                     <p id="ans2"></p>
-                                    
-                                    
-                            </button></div>
+                                    </button>
+                            </div>
                             <div><button type="button" onclick="answer3()">
-                                    <img src="/game/select.png" class="correct" id="correct03" alt="correct" />
-                                    <img src="/game/wrong.png" class="wrong" id="wrong03" alt="wrong" />
-                                    <img src="/game/select.png" class="correct" id="correct003" alt="correct" />
-                                    <img src="/game/wrong.png" class="wrong" id="wrong003" alt="wrong" />
-                                    <p id="ans3"></p>
-                                    
-                                    
-                            </button></div>
+                                    <span class="glyphicon glyphicon-ok" id="correct03"></span>
+                                    <span class="glyphicon glyphicon-remove" id="wrong03"></span>
+                                    <span class="glyphicon glyphicon-ok" id="correct003"></span>
+                                    <span class="glyphicon glyphicon-remove" id="wrong003"></span>
+                                    <p id="ans3"></p>   
+                                    </button>
+                            </div>
                             <div><button type="button" onclick="answer4()">
-                                    <img src="/game/select.png" class="correct" id="correct04" alt="correct" />
-                                    <img src="/game/wrong.png" class="wrong" id="wrong04" alt="wrong" />
-                                    <img src="/game/select.png" class="correct" id="correct004" alt="correct" />
-                                    <img src="/game/wrong.png" class="wrong" id="wrong004" alt="wrong" />
+                                    <span class="glyphicon glyphicon-ok" id="correct04"></span>
+                                    <span class="glyphicon glyphicon-remove" id="wrong04"></span>
+                                    <span class="glyphicon glyphicon-ok" id="correct004"></span>
+                                    <span class="glyphicon glyphicon-remove" id="wrong004"></span>
                                     <p id="ans4"></p>
-                                    
-                            </button></div>
+                                    </button>
+                            </div>
                         </div>
                     </div>
                 <!--Q&A-->
@@ -478,29 +664,44 @@ svg circle {
                 <!--Point BAR-->
 
                 <!--GETSCORE-->
+                <div id="score">
+                    <div class="col-xs-4" id="plyscore">
+                        <div class="col-xs-4" id="plytotal"></div>
+                        <div class="col-xs-4" id="plybonus"></div>
+                    </div>
 
-                <div id="total">
-                    <div class="col-xs-4" id="plytotal"></div>
-                    <div class="col-xs-4" id="pctotal"></div>
+                    <div class="col-xs-4" id="pcscore">
+                        <div class="col-xs-4" id="pctotal"></div>
+                        <div class="col-xs-4" id="pcbonus"></div>
+                    </div>
                 </div>
-
-                <div id="bonus">
-                    <div class="col-xs-4" id="plybonus"></div>
-                    <div class="col-xs-4" id="pcbonus"></div>
-                </div>
-                 <!--GETSCORE-->
 
                  <div id="userscore">
-                    <img src="/game/player.png" alt="player">
+                    <img src="/game/player.png" alt="player" id="last">
                     <div id="username">username</div>
                     <div id="userpoint"></div>
-                    <button type="button" id="btn8" onclick="self.location.href='/smallgame'">返回遊戲主頁</br> Main Menu</button>
+                    <button type="button" id="btn8" onclick="self.location.href='/smallgame'">返回遊戲主頁</button>
                 </div>
+                <!--GETSCORE-->
 
             </div>
             <!--GAME-->
 
-            
+            <!--RANK-->
+            <div class="modal fade" id="rank" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+        
+                    <div class="modal-body">
+                        <p>Some text in the modal.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <!--RANK-->
 
             
 
@@ -514,8 +715,9 @@ svg circle {
     <footer>
         <% include ../layouts/footer %>
     </footer>
-        <% include js %>
         <% include ../layouts/js %>
+        <% include js %>
+
 </body>
 </html>
 

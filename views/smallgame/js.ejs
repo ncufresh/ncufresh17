@@ -1,8 +1,7 @@
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 
+    
 <script>
 //audio
 var bingo = document.getElementById("bingo");
@@ -11,7 +10,16 @@ var bgm = document.getElementById("bgm");
 var gamestart = document.getElementById("gamestart");
 //audio
 
+function musicon(){
+    $('#mute,#music').toggle();
+    bgm.muted = false;
+    gamestart.muted = false;
+    bingo.muted = false;
+    ding.muted = false;
+}
+
 function mute(){
+    $('#mute,#music').toggle();
     bgm.muted = true;
     gamestart.muted = true;
     bingo.muted = true;
@@ -39,7 +47,7 @@ $(document).ready(function() {
     
 //when rules button click
 function rules() {
-        $('#box,#btn1,#menubutton').toggle();
+        $('#box,#mute,#menubutton').toggle();
         $('#pre').hide();
         $('#nxt').show();
         target.src = myPictures[counter];
@@ -69,7 +77,7 @@ function prePic() {
 
 function cloSe() {
         counter = 0;
-        $('#box,#btn1,#menubutton').toggle();
+        $('#box,#mute,#menubutton').toggle();
     }
 //RULES
 
@@ -100,8 +108,8 @@ function start() {
         gamestart.play();
 
         $('#game').toggle(); //toggle all buttons
-        $('#menubutton,#btn1').toggle(); //toggle all buttons
-        $('.jumbotron').css("background-image", "none");
+        $('#menubutton,#mute').toggle(); //toggle all buttons
+        $('.jumbotron').css("background-image","url('/game/背景.png')");
 
         $("#q").append(question_temp[qid].q);
         $("#ans1").append(question_temp[qid].o[0]);
@@ -306,6 +314,7 @@ var countdown ;
 var round = 1;
 //for clock 
 
+//for game
   var question_temp=quiz; // get question frm data
   
   var qid = 0; //question id
@@ -321,6 +330,9 @@ var round = 1;
   var plybonusend = 0; //player bonus at the end
   var pcbonus = 0; //pc bonus
   var pcbonusend = 0; //player bonus at the end
+
+  var a ; //calc pc bonus
+  var b ; // calc player bonus
 
   var clock; //COUNTDOWN interval
   var cLr; //SVG interval
@@ -338,54 +350,58 @@ var round = 1;
     }
 
     if( pcans == question_temp[qid].correctIndex && pcans == 0){
+        $("#pchealth").css({"animation-play-state": "running"});
         pcpoint += 100;
             $("#pcptn").empty();
             $("#pcptn").append(pcpoint);
-            $("#ans1").parent().css({"color": "green", "border": "2px solid green"});
+            $("#ans1").parent().css({"background-color": "#80C269"});
             $("#correct001").css({"display": "initial", "float": "right"});
     }
 
     else if( pcans == question_temp[qid].correctIndex && pcans == 1){
+        $("#pchealth").css({"animation-play-state": "running"});
         pcpoint += 100;
             $("#pcptn").empty();
             $("#pcptn").append(pcpoint);
-            $("#ans2").parent().css({"color": "green", "border": "2px solid green"});
+            $("#ans2").parent().css({"background-color": "#80C269"});
             $("#correct002").css({"display": "initial", "float": "right"});
     }
 
     else if( pcans == question_temp[qid].correctIndex && pcans == 2){
+        $("#pchealth").css({"animation-play-state": "running"});
         pcpoint += 100;
             $("#pcptn").empty();
             $("#pcptn").append(pcpoint);
-            $("#ans3").parent().css({"color": "green", "border": "2px solid green"});
+            $("#ans3").parent().css({"background-color": "#80C269"});
             $("#correct003").css({"display": "initial", "float": "right"});
     }
 
     else if( pcans == question_temp[qid].correctIndex && pcans == 3){
+        $("#pchealth").css({"animation-play-state": "running"});
         pcpoint += 100;
             $("#pcptn").empty();
             $("#pcptn").append(pcpoint);
-            $("#ans4").parent().css({"color": "green", "border": "2px solid green"});
+            $("#ans4").parent().css({"background-color": "#80C269"});
             $("#correct004").css({"display": "initial", "float": "right"});
     }
 
     else if( pcans != question_temp[qid].correctIndex && pcans == 0){
-            $("#ans1").parent().css({"color": "red", "border": "2px solid red"});
+            $("#ans1").parent().css({"background-color": "#F29C9F"});
             $("#wrong001").css({"display": "initial", "float": "right"});
     }
 
     else if( pcans != question_temp[qid].correctIndex && pcans == 1){
-            $("#ans2").parent().css({"color": "red", "border": "2px solid red"});
+            $("#ans2").parent().css({"background-color": "#F29C9F"});
             $("#wrong002").css({"display": "initial", "float": "right"});
     }
 
     else if( pcans != question_temp[qid].correctIndex && pcans == 2){
-            $("#ans3").parent().css({"color": "red", "border": "2px solid red"});
+            $("#ans3").parent().css({"background-color": "#F29C9F"});
             $("#wrong003").css({"display": "initial", "float": "right"});
     }
 
     else if( pcans != question_temp[qid].correctIndex && pcans == 3){
-            $("#ans4").parent().css({"color": "red", "border": "2px solid red"});
+            $("#ans4").parent().css({"background-color": "#F29C9F"});
             $("#wrong004").css({"display": "initial", "float": "right"});
     }
   }
@@ -418,6 +434,7 @@ function clr() {
 //rounds
 function r() {
     $("#correct01,#correct02,#correct03,#correct04,#wrong01,#wrong02,#wrong03,#wrong04,#correct001,#correct002,#correct003,#correct004,#wrong001,#wrong002,#wrong003,#wrong004").css({"display": "none"});
+    $("#plyhealth,#pchealth").css({"animation-play-state": "paused"});
     $('button').disable(false);
     round++;
     $('svg circle').css("animation", "none");
@@ -441,11 +458,12 @@ function r() {
     clk();
 
     if(round == 21){
+            clearInterval(clock);
             $('#row2, #row3, #countdown,#vs').toggle();
             showscore();
         }
             
-    $("#ans1,#ans2,#ans3,#ans4").parent().css({"color": "black", "border": "2px solid black"});
+    $("#ans1,#ans2,#ans3,#ans4").parent().css({"background-color": "#FFF799"});
             
     roundNumber.textContent = "第" + round + "題";
     qid++;
@@ -492,32 +510,33 @@ jQuery.fn.extend({
         clearInterval(clock);
         $('svg circle').css("animation-play-state", "paused");
         if( yrans == question_temp[qid].correctIndex){
-            bingo.play();
+            $("#plyhealth").css({"animation-play-state": "running"});
+                bingo.play();
                 plypoint += 100;
                 $("#plyptn").empty();
                 $("#plyptn").append(plypoint);
-                $("#ans1").parent().css({"color": "green", "border": "2px solid green"});
+                $("#ans1").parent().css({"background-color": "#80C269"});
                 $("#correct01").css({"display": "initial", "float": "left"});
             }
 
         else if( 1 == question_temp[qid].correctIndex){
             ding.play();
-            $("#ans1").parent().css({"color": "red", "border": "2px solid red"});
-            $("#ans2").parent().css({"color": "green", "border": "2px solid green"});
+            $("#ans1").parent().css({"background-color": "#F29C9F"});
+            $("#ans2").parent().css({"background-color": "#80C269"});
             $("#wrong01").css({"display": "initial", "float": "left"});
             }
 
         else if( 2 == question_temp[qid].correctIndex){
             ding.play();
-            $("#ans1").parent().css({"color": "red", "border": "2px solid red"});
-            $("#ans3").parent().css({"color": "green", "border": "2px solid green"});
+            $("#ans1").parent().css({"background-color": "#F29C9F"});
+            $("#ans3").parent().css({"background-color": "#80C269"});
             $("#wrong01").css({"display": "initial", "float": "left"});
             }
 
         else if( 3 == question_temp[qid].correctIndex){
             ding.play();
-            $("#ans1").parent().css({"color": "red", "border": "2px solid red"});
-            $("#ans4").parent().css({"color": "green", "border": "2px solid green"});
+            $("#ans1").parent().css({"background-color": "#F29C9F"});
+            $("#ans4").parent().css({"background-color": "#80C269"});
             $("#wrong01").css({"display": "initial", "float": "left"});
             }
         setTimeout(r, 1000);
@@ -525,7 +544,7 @@ jQuery.fn.extend({
 
     function answer2() {
         pc();
-    $('button').disable(true);   
+        $('button').disable(true);   
         yrans = 1;
         calcpc(); 
         calcply();
@@ -533,73 +552,75 @@ jQuery.fn.extend({
         $('svg circle').css("animation-play-state", "paused");
 
         if( yrans == question_temp[qid].correctIndex){
+            $("#plyhealth").css({"animation-play-state": "running"});
             bingo.play();
                 plypoint += 100;
                 $("#plyptn").empty();
                 $("#plyptn").append(plypoint);
-                $("#ans2").parent().css({"color": "green", "border": "2px solid green"});
+                $("#ans2").parent().css({"background-color": "#80C269"});
                 $("#correct02").css({"display": "initial", "float": "left"});
             }
 
         else if( 0 == question_temp[qid].correctIndex){
             ding.play();
             $("#wrong02").css({"display": "initial", "float": "left"});
-            $("#ans2").parent().css({"color": "red", "border": "2px solid red"});
-            $("#ans1").parent().css({"color": "green", "border": "2px solid green"});
+            $("#ans2").parent().css({"background-color": "#F29C9F"});
+            $("#ans1").parent().css({"background-color": "#80C269"});
             }
 
         else if( 2 == question_temp[qid].correctIndex){
             ding.play();
             $("#wrong02").css({"display": "initial", "float": "left"});
-            $("#ans2").parent().css({"color": "red", "border": "2px solid red"});
-            $("#ans3").parent().css({"color": "green", "border": "2px solid green"});
+            $("#ans2").parent().css({"background-color": "#F29C9F"});
+            $("#ans3").parent().css({"background-color": "#80C269"});
             }
 
         else if( 3 == question_temp[qid].correctIndex){
             ding.play();
             $("#wrong02").css({"display": "initial", "float": "left"});
-            $("#ans2").parent().css({"color": "red", "border": "2px solid red"});
-            $("#ans4").parent().css({"color": "green", "border": "2px solid green"});
+            $("#ans2").parent().css({"background-color": "#F29C9F"});
+            $("#ans4").parent().css({"background-color": "#80C269"});
             }
         setTimeout(r, 1000);
     }  
 
     function answer3() {
         pc();
-    $('button').disable(true);   
+        $('button').disable(true);   
         yrans = 2;
         calcpc(); 
         calcply();  
         clearInterval(clock);
         $('svg circle').css("animation-play-state", "paused");
         if( yrans == question_temp[qid].correctIndex){
+            $("#plyhealth").css({"animation-play-state": "running"});
                 bingo.play();
                 plypoint += 100;
                 $("#plyptn").empty();
                 $("#plyptn").append(plypoint);
                 $("#correct03").css({"display": "initial", "float": "left"});
-                $("#ans3").parent().css({"color": "green", "border": "2px solid green"});
+                $("#ans3").parent().css({"background-color": "#80C269"});
             }
 
         else if( 1 == question_temp[qid].correctIndex){
             ding.play();
             $("#wrong03").css({"display": "initial", "float": "left"});
-            $("#ans3").parent().css({"color": "red", "border": "2px solid red"});
-            $("#ans2").parent().css({"color": "green", "border": "2px solid green"});
+            $("#ans3").parent().css({"background-color": "#F29C9F"});
+            $("#ans2").parent().css({"background-color": "#80C269"});
             }
 
         else if( 0 == question_temp[qid].correctIndex){
             ding.play();
             $("#wrong03").css({"display": "initial", "float": "left"});
-            $("#ans3").parent().css({"color": "red", "border": "2px solid red"});
-            $("#ans1").parent().css({"color": "green", "border": "2px solid green"});
+            $("#ans3").parent().css({"background-color": "#F29C9F"});
+            $("#ans1").parent().css({"background-color": "#80C269"});
             }
 
         else if( 3 == question_temp[qid].correctIndex){
             ding.play();
             $("#wrong03").css({"display": "initial", "float": "left"});
-            $("#ans3").parent().css({"color": "red", "border": "2px solid red"});
-            $("#ans4").parent().css({"color": "green", "border": "2px solid green"});
+            $("#ans3").parent().css({"background-color": "#F29C9F"});
+            $("#ans4").parent().css({"background-color": "#80C269"});
             }
         setTimeout(r, 1000);
     } 
@@ -614,32 +635,33 @@ jQuery.fn.extend({
         $('svg circle').css("animation-play-state", "paused");
 
         if( yrans == question_temp[qid].correctIndex){
+            $("#plyhealth").css({"animation-play-state": "running"});
             bingo.play();
                 plypoint += 100;
                 $("#plyptn").empty();
                 $("#plyptn").append(plypoint);
-                $("#ans4").parent().css({"color": "green", "border": "2px solid green"});
+               $("#ans4").parent().css({"background-color": "#80C269"});
                 $("#correct04").css({"display": "initial", "float": "left"});
             }
         else if( 1 == question_temp[qid].correctIndex){
             ding.play();
             $("#wrong04").css({"display": "initial", "float": "left"});
-            $("#ans4").parent().css({"color": "red", "border": "2px solid red"});
-            $("#ans2").parent().css({"color": "green", "border": "2px solid green"});
+            $("#ans4").parent().css({"background-color": "#F29C9F"});
+            $("#ans2").parent().css({"background-color": "#80C269"});
             }
 
         else if( 2 == question_temp[qid].correctIndex){
             ding.play();
             $("#wrong04").css({"display": "initial", "float": "left"});
-            $("#ans4").parent().css({"color": "red", "border": "2px solid red"});
-            $("#ans3").parent().css({"color": "green", "border": "2px solid green"});
+            $("#ans4").parent().css({"background-color": "#F29C9F"});
+            $("#ans3").parent().css({"background-color": "#80C269"});
             }
 
         else if( 0 == question_temp[qid].correctIndex){
             ding.play();
             $("#wrong04").css({"display": "initial", "float": "left"});
-            $("#ans4").parent().css({"color": "red", "border": "2px solid red"});
-            $("#ans1").parent().css({"color": "green", "border": "2px solid green"});
+            $("#ans4").parent().css({"background-color": "#F29C9F"});
+            $("#ans1").parent().css({"background-color": "#80C269"});
             }
         setTimeout(r, 1000);
 
@@ -652,19 +674,19 @@ jQuery.fn.extend({
         calcply() ;
         $('button').disable(true);
         if( 0 == question_temp[qid].correctIndex){
-            $("#ans1").parent().css({"color": "green", "border": "2px solid green"});
+            $("#ans1").parent().css({"background-color": "#80C269"});
             }
 
         else if( 1 == question_temp[qid].correctIndex){
-            $("#ans2").parent().css({"color": "green", "border": "2px solid green"});
+            $("#ans2").parent().css({"background-color": "#80C269"});
             }
 
         else if( 2 == question_temp[qid].correctIndex){
-            $("#ans3").parent().css({"color": "green", "border": "2px solid green"});
+            $("#ans3").parent().css({"background-color": "#80C269"});
             }
 
         else if( 3 == question_temp[qid].correctIndex){
-            $("#ans4").parent().css({"color": "green", "border": "2px solid green"});
+            $("#ans4").parent().css({"background-color": "#80C269"});
             }
         setTimeout(r, 1000);
        } 
@@ -696,58 +718,80 @@ function calcpc(){
 function calcbonus(){
     if(pcbonusend>4 && pcbonusend<11){
         pctotal = pcpoint+10;
+        a = 10;
     }
     else if(pcbonusend>10 && pcbonusend<16){
         pctotal = pcpoint+15;
+        a = 15;
     }
     else if(pcbonusend>15 && pcbonusend<19){
         pctotal = pcpoint+20;
+        a = 20;
     }
     else if(pcbonusend==19){
         pctotal = pcpoint+30;
+        a = 30;
     }
     else if(pcbonusend==20){
         pctotal = pcpoint+50;
+        a = 50;
     }
     else{
         pctotal = pcpoint;
+        a = 0;
     }
 
     if(plybonusend>4 && plybonusend<11){
         plytotal = plypoint+10;
+        b = 10;
     }
     else if(plybonusend>10 && plybonusend<16){
         plytotal = plypoint+15;
+        b = 15;
     }
     else if(plybonusend>15 && plybonusend<19){
         plytotal = plypoint+20;
+        b = 20;
     }
     else if(plybonusend==19){
         plytotal = plypoint+30;
+        b = 30;
     }
     else if(plybonusend==20){
         plytotal = plypoint+50;
+        b = 50;
     }
     else{
         plytotal = plypoint;
+        b = 0;
     }
 }
 //BONUS
 
 //GET SCORE
 function showscore(){
-    $('#total, #bonus').toggle();
-    $("#plytotal").append("總共答對題數：" + plypoint/100 + "題");
-    $("#pctotal").append("總共答對題數：" + pcpoint/100 + "題");
-    $("#plybonus").append("連續答題：" + plybonusend + "題");
-    $("#pcbonus").append("連續答題："  + pcbonusend + "題");
-
     calcbonus();
+    $('#score').toggle();
+    $("#plytotal").append('<p id="total01">總共<br>答對題數</p>' + '<p id="point01">' + plypoint/100 + '</p>' + '<p id="totalpnt01"> +' + plypoint + '</p>');
+    $("#pctotal").append('<p id="total02">總共<br>答對題數</p>' + '<p id="point02">' + pcpoint/100 + '</p>' + '<p id="totalpnt02"> +' + pcpoint + '</p>');
+    $("#plybonus").append('<p id="bonus01">連續答題<img id="pcbg" src="/game/額外加分.png" /></p>' + '<p id="bonusptn01">' + plybonusend + '</p>' +  '<p id="totalbonus01"> +' + b + '</p>');
+    $("#pcbonus").append('<p id="bonus02">連續答題<img id="pcbg" src="/game/額外加分.png" /></p>' + '<p id="bonusptn02">' + pcbonusend + '</p>' + '<p id="totalbonus02"> +' + a + '</p>');
+
+    
 
     setTimeout(function(){ 
-        $("#plytotal,#pctotal,#plybonus,#pcbonus").empty(); 
-        $("#plytotal").append( plytotal + "分");
-        $("#pctotal").append( pctotal + "分");
+        $("#plytotal,#pctotal,#plybonus,#pcbonus").empty();
+        $("#plytotal").append('<p id="total01">總共<br>答對題數</p>' + '<p id="point01">' + plypoint/100 + '</p>' + '<p id="totalpnt01">' + plytotal + '分</p>');
+        $("#pctotal").append('<p id="total02">總共<br>答對題數</p>' + '<p id="point02">' + pcpoint/100 + '</p>' + '<p id="totalpnt02">' + pctotal + '分</p>');
+        $("#point01").css({"margin-top":"-50px", "margin-left":"160px"}); 
+        $("#totalpnt01").css({"margin-top":"80px", "margin-left":"120px","width":"150px"});
+        $("#total02").css({"float":"none", "margin-left":"40px"}); 
+        $("#point02").css({"margin-top":"-50px", "margin-left":"-40px"}); 
+        $("#totalpnt02").css({"margin-top":"80px", "margin-left":"-20px","width":"150px"});
+        $("#plyscore").css({"background-image":"url('/game/結算二玩家.png')", "width":"385px"}); 
+        $("#pcscore").css("background-image", "url('/game/結算二電腦.png')" ); 
+        $("#plybonus").css({"margin-top":"220px", "margin-left":"200px","color":"white","font-size":"20px"});
+        $("#pcbonus").css({"margin-top":"265px", "margin-left":"60px","color":"white","font-size":"20px","float":"none"});
         if(plytotal>pctotal){
             $("#plybonus").append("WIN");
             $("#pcbonus").append("LOSE");
@@ -768,7 +812,7 @@ function showscore(){
 
 function last(){
     setTimeout(function(){ 
-        $('#userscore, #row1, #total, #bonus').toggle();
+        $('#userscore, #row1, #score').toggle();
 
         if(plytotal>pctotal){
             $("#userpoint").append("答對題數"+ plypoint/100 + "題*1.5=" + Math.round((plypoint/100)*1.5) + "積分" );
