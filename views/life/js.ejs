@@ -5,13 +5,22 @@
 
     <script src="/javascript/ckeditor/ckeditor.js"></script>
     <script type="text/javascript">
-      CKEDITOR.replace('content',{
+      CKEDITOR.replace('introduction',{
         filebrowserUploadUrl: '/uploader',
       });
       CKEDITOR.editorConfig = function (config){
           config.enterMode = CKEDITOR.ENTER_BR;
           config.autoParagraph = false;
       };
+    </script>
+    <script type="text/javascript">
+    //for (var i in life){
+    //  if ( life[i].type == "food"){
+    //    $("#life[i].id").onclick(function(){
+    //      $("#life[i].id").css({"display":"block"})..animate({opacity: '1'}, 200;
+    //    });
+    //  }
+    //}
     </script>
     <script type="text/javascript">
     var foodtoggle = dormtoggle = traffictoggle = studytoggle = entertainmenttoggle = true;

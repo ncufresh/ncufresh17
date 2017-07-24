@@ -2,28 +2,43 @@
 <html lang="en">
 <head>
     <% include ../layouts/head %>
+<style>
+p.subtitle{
+    font-size: 47px;
+    font-family: "CSong3HK Medium", Georgia, Serif;
+}
+</style>
 </head>
 <body>
     <header>
         <% include ../layouts/navbar %>
     </header>
 
-    <main>
+    <main style="background-color: #EBF2D2">
       <div class="container">
-        <div class="jumbotron" style="min-height:80vw">
           <div>
-              <h1 class="text-center" style="margin-bottom: 8vw">中大生活</h1>
+              <h1 class="text-center">中大生活</h1>
           </div>
           <hr size="8px" align="center" width="100%">
           <div class="row container" id="food">
+            <div class="col-xs-4">
               <% for (var i in life){ %>
-                  <% if ( life[i].type === "food"){ %>
-
-
+                  <% if ( life[i].type == "food"){ %>
+                    <img id="<%=life[i].id%>" src="cafe.png" height="100" width="200">
+                    <p><%= life[i].name %></p>
                   <%}%>
               <%}%>
+            </div>
+            <div class="col-xs-5">
+              <% for (var i in life){ %>
+                  <% if ( life[i].type == "food"){ %>
+                    <img src="backpic.png" height="500" width="500">
+                    <p id="subtitle"><%= life[i].name %></p>
+                  <%}%>
+              <%}%>
+            </div>
+            <div class="col-xs-3"></div>
           </div>
-        </div>
       </div>
     </main>
 
