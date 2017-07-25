@@ -6,10 +6,10 @@ var userSchema = mongoose.Schema({
     email: String,
     password: String,
     created: Date,
-    updated: {type: Date, default: Date.now},
+    updated: {type: Date, default: Date.now },
     accountType: String,
-    name:String
-
+    name:String,
+    img: { data: Buffer, contentType: String }
   },
 });
 
