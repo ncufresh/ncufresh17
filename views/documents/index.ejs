@@ -7,8 +7,8 @@
     <header style="min-width: 100vw;">
         <% include ../layouts/navbar %>
     </header>
-    <p style="background-color: #00BFFF !important; font-family: Georgia, Garamond, serif; color:white; padding-bottom: 5vh; margin-bottom: 0px; font-size: 10vw; word-spacing: 0.2em; width:auto;" class="text-center container">Welcome to here.</p>
-    <main  style=" background-color: #00BFFF !important; min-width: 100vw; max-width:100vw">
+    <p style="background-color: #00BFFF !important; font-family: Georgia, Garamond, serif; color:white; padding-bottom: 5vh; margin-bottom: 0px; font-size: 10vw; word-spacing: 0.2em; width:auto; padding-top: 13vh !important;" class="text-center container">Welcome to here.</p>
+    <main  style=" background-color: #00BFFF !important; margin-top: 0px !important; min-width: 100vw; max-width:100vw">
 
         <div class="container" style="margin-bottom: 50vh;">
             <div class="row container">
@@ -154,20 +154,20 @@
             </div>
         </div>
 
-        <% for (var i in for_freshman){%>
+        <% for (var i in document){%>
             <!-- 顯示model -->
-            <div class="modal fade" id="<%=for_freshman[i].id+"insertimg"%>" role="dialog">
+            <div class="modal fade" id="<%=document[i].id+"insertimg"%>" role="dialog">
                 <div class="modal-dialog modal-lg">
                     <!-- Modal content-->
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title"><%- for_freshman[i].name+" 新增或更新圖片" %></h4>
+                            <h4 class="modal-title"><%- document[i].name+" 新增或更新圖片" %></h4>
                         </div>
                         <div class="modal-body">
-                            <form method="post" enctype="multipart/form-data" action="<%="/documents/insertimg/"+for_freshman[i].id%>">
+                            <form method="post" enctype="multipart/form-data" action="<%="/documents/insertimg/"+document[i].id%>">
                                 <input type="hidden" id="imgid" name="imgid">
-                                <label for="<%=for_freshman[i].id+"uploadingImg"%>" class="input-group">
+                                <label for="<%=document[i].id+"uploadingImg"%>" class="input-group">
                                     <input type="text" class="form-control" id="img_path" name="img_path">
                                     <div class="input-group-btn">
                                         <span class="btn btn-default">
@@ -175,7 +175,7 @@
                                         </span>
                                     </div>
                                 </label>
-                                <input class="form-control" id="<%=for_freshman[i].id+"uploadingImg"%>" type="file" name="uploadingImg" style="display: none;" accept="image/*" onchange="
+                                <input class="form-control" id="<%=document[i].id+"uploadingImg"%>" type="file" name="uploadingImg" style="display: none;" accept="image/*" onchange="
         this.form.img_path.value=this.value.substr(this.value.lastIndexOf('\\')+1);">
                                 <input type="submit">
                             </form>
@@ -189,22 +189,22 @@
             </div>
 
             <!-- 編輯model -->
-            <%if (for_freshman[i].type!="常用連結"){%>
-                <div class="modal fade" id="<%=for_freshman[i].id+"for_freshman"%>" role="dialog">
+            <%if (document[i].type!="常用連結"){%>
+                <div class="modal fade" id="<%=document[i].id+"document"%>" role="dialog">
                     <div class="modal-dialog modal-lg">
                         <!-- Modal content-->
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title"><%- for_freshman[i].name %></h4>
+                                <h4 class="modal-title"><%- document[i].name %></h4>
                             </div>
                             <div class="modal-body">
-                                <p><%- for_freshman[i].content %></p>
+                                <p><%- document[i].content %></p>
                             </div>
                             <div class="modal-footer">
-                                <button class="btn btn-danger btn-xs edit_data" value="<%- for_freshman[i].id%>" data-dismiss="modal"><i class="fa fa-apple fa-lg"></i>編輯</button>
-                                <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#<%- for_freshman[i].id+"insertimg"%>" data-dismiss="modal"><i class="fa fa-apple fa-lg"></i> 新增或更新圖片</button>
-                                <button class="btn btn-danger btn-xs delete_data" value="<%= for_freshman[i].id%>" data-dismiss="modal"><i class="fa fa-trash-o fa-lg"></i>刪除</button>
+                                <button class="btn btn-danger btn-xs edit_data" value="<%- document[i].id%>" data-dismiss="modal"><i class="fa fa-apple fa-lg"></i>編輯</button>
+                                <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#<%- document[i].id+"insertimg"%>" data-dismiss="modal"><i class="fa fa-apple fa-lg"></i> 新增或更新圖片</button>
+                                <button class="btn btn-danger btn-xs delete_data" value="<%= document[i].id%>" data-dismiss="modal"><i class="fa fa-trash-o fa-lg"></i>刪除</button>
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             </div>
                         </div>
@@ -223,31 +223,31 @@
                 <li role="presentation" class="text-center under-3-source"><a href="#under-3">共同課程及門檻</a></li>
             </ul>
             <div class="row container" id="under-1">
-                <%var temp=0; for (var i in for_freshman){%>
-                    <% if ( for_freshman[i].type == "大一新生—註冊報到"){ %>
+                <%var temp=0; for (var i in document){%>
+                    <% if ( document[i].type == "大一新生—註冊報到"){ %>
                         <%temp++%>
                         <%if(temp==4){%><div class="row container"><%}%>
-                            <img style="display:inline-block; padding: 2vw !important;" class="img-responsive col-xs-3" id="<%- for_freshman[i].id%>" alt="<%- for_freshman[i].name %>" data-toggle="modal" data-target="#<%- for_freshman[i].id+"for_freshman"%>" src="<%-for_freshman[i].img_path%>" />
+                            <img style="display:inline-block; padding: 2vw !important;" class="img-responsive col-xs-3" id="<%- document[i].id%>" alt="<%- document[i].name %>" data-toggle="modal" data-target="#<%- document[i].id+"document"%>" src="<%-document[i].img_path%>" />
                         <%if(temp==4){%></div><%}%>
                     <%}%>
                 <%}%>
             </div>
             <div class="row container" id="under-2" style="display: none;">
-                <%var temp=0; for (var i in for_freshman){%>
-                    <% if ( for_freshman[i].type == "大一新生—新生週活動"){ %>
+                <%var temp=0; for (var i in document){%>
+                    <% if ( document[i].type == "大一新生—新生週活動"){ %>
                         <%temp++%>
                         <%if(temp==4){%><div class="row container"><%}%>
-                        <img style="display:inline-block;  padding: 2vw !important;" class="img-responsive col-xs-3" id="<%- for_freshman[i].id%>" alt="<%- for_freshman[i].name %>" data-toggle="modal" data-target="#<%- for_freshman[i].id+"for_freshman"%>" src="<%-for_freshman[i].img_path%>" />
+                        <img style="display:inline-block;  padding: 2vw !important;" class="img-responsive col-xs-3" id="<%- document[i].id%>" alt="<%- document[i].name %>" data-toggle="modal" data-target="#<%- document[i].id+"document"%>" src="<%-document[i].img_path%>" />
                         <%if(temp==4){%></div><%}%>
                     <%}%>
                 <%}%>
             </div>
             <div class="row container" id="under-3" style="display: none;">
-                <%var temp=0; for (var i in for_freshman){%>
-                    <% if ( for_freshman[i].type == "大一新生—共同課程及門檻"){ %>
+                <%var temp=0; for (var i in document){%>
+                    <% if ( document[i].type == "大一新生—共同課程及門檻"){ %>
                         <%temp++%>
                         <%if(temp==4){%><div class="row container"><%}%>
-                        <img style="display:inline-block;  padding: 2vw !important;" class="img-responsive col-xs-3" id="<%- for_freshman[i].id%>" alt="<%- for_freshman[i].name %>" data-toggle="modal" data-target="#<%- for_freshman[i].id+"for_freshman"%>" src="<%-for_freshman[i].img_path%>" />
+                        <img style="display:inline-block;  padding: 2vw !important;" class="img-responsive col-xs-3" id="<%- document[i].id%>" alt="<%- document[i].name %>" data-toggle="modal" data-target="#<%- document[i].id+"document"%>" src="<%-document[i].img_path%>" />
                         <%if(temp==4){%></div><%}%>
                     <%}%>
                 <%}%>
@@ -264,21 +264,21 @@
                 <li role="presentation" class="text-center under-5-source"><a href="#under-5">新生週活動</a></li>
             </ul>
             <div class="row container" id="under-4">
-                <%var temp=0; for (var i in for_freshman){%>
-                    <% if ( for_freshman[i].type == "碩一新生—註冊報到"){ %>
+                <%var temp=0; for (var i in document){%>
+                    <% if ( document[i].type == "碩一新生—註冊報到"){ %>
                         <%temp++%>
                         <%if(temp==4){%><div class="row container"><%}%>
-                        <img style="display:inline-block;  padding: 2vw !important;" class="img-responsive col-xs-3" id="<%- for_freshman[i].id%>" alt="<%- for_freshman[i].name %>" data-toggle="modal" data-target="#<%- for_freshman[i].id+"for_freshman"%>" src="<%-for_freshman[i].img_path%>" />
+                        <img style="display:inline-block;  padding: 2vw !important;" class="img-responsive col-xs-3" id="<%- document[i].id%>" alt="<%- document[i].name %>" data-toggle="modal" data-target="#<%- document[i].id+"document"%>" src="<%-document[i].img_path%>" />
                         <%if(temp==4){%></div><%}%>
                     <%}%>
                 <%}%>
             </div>
             <div class="row container" id="under-5" style="display: none;">
-                <%var temp=0; for (var i in for_freshman){%>
-                    <% if ( for_freshman[i].type == "碩一新生—新生週活動"){ %>
+                <%var temp=0; for (var i in document){%>
+                    <% if ( document[i].type == "碩一新生—新生週活動"){ %>
                         <%temp++%>
                         <%if(temp==4){%><div class="row container"><%}%>
-                        <img style="display:inline-block;  padding: 2vw !important;" class="img-responsive col-xs-3" id="<%- for_freshman[i].id%>" alt="<%- for_freshman[i].name %>" data-toggle="modal" data-target="#<%- for_freshman[i].id+"for_freshman"%>" src="<%-for_freshman[i].img_path%>" />
+                        <img style="display:inline-block;  padding: 2vw !important;" class="img-responsive col-xs-3" id="<%- document[i].id%>" alt="<%- document[i].name %>" data-toggle="modal" data-target="#<%- document[i].id+"document"%>" src="<%-document[i].img_path%>" />
                         <%if(temp==4){%></div><%}%>
                     <%}%>
                 <%}%>
@@ -289,20 +289,20 @@
         <!--常用連結 start-->
         <section class="container" id="often-link-distaination" style="display:none; margin: 0px; padding-left: 2vw; padding-right: 2vw;">
             <h1 class="text-center" style="width: 96vw">常用連結</h1>
-            <% for (var i in for_freshman){%>
-                <% if ( for_freshman[i].type == "常用連結"){ %>
-                    <button style="width: 96vw" type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#<%- for_freshman[i].id+"insertimg"%>"><%-"上傳 "+for_freshman[i].name+" 的圖片"%></button>
-                    <button style="width: 96vw" class="btn btn-danger btn-lg btn-block edit_data" value="<%- for_freshman[i].id%>"><i class="fa fa-apple fa-lg"></i><%-"編輯 "+for_freshman[i].name%></button>
-                    <button style="width: 96vw" class="btn btn-success btn-lg btn-block delete_data" value="<%= for_freshman[i].id%>" data-dismiss="modal"><i class="fa fa-trash-o fa-lg"></i><%-"刪除 "+for_freshman[i].name%></button>
+            <% for (var i in document){%>
+                <% if ( document[i].type == "常用連結"){ %>
+                    <button style="width: 96vw" type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#<%- document[i].id+"insertimg"%>"><%-"上傳 "+document[i].name+" 的圖片"%></button>
+                    <button style="width: 96vw" class="btn btn-danger btn-lg btn-block edit_data" value="<%- document[i].id%>"><i class="fa fa-apple fa-lg"></i><%-"編輯 "+document[i].name%></button>
+                    <button style="width: 96vw" class="btn btn-success btn-lg btn-block delete_data" value="<%= document[i].id%>" data-dismiss="modal"><i class="fa fa-trash-o fa-lg"></i><%-"刪除 "+document[i].name%></button>
                 <%}%>
             <%}%>
             <div class="row container" style="width: 96vw;">
-                <% for (var i in for_freshman){%>
-                    <% if ( for_freshman[i].type == "常用連結"){ %>
+                <% for (var i in document){%>
+                    <% if ( document[i].type == "常用連結"){ %>
                         <div class="thumbnail col-xs-3" style=" position:relative; border-width: 0px !important; background-color: rgba(0%, 0%, 0%, 0)">
-                            <a href="<%-for_freshman[i].content%>">
-                                <img style="display:inline-block;" id="<%- for_freshman[i].id%>" alt="<%- for_freshman[i].name %>" src="<%- for_freshman[i].img_path%>" />
-                                <p  id="<%- for_freshman[i].id+"link"%>" style="font-size: 2vw; top:9vw; left:8vw; position: absolute; opacity: 0;">按我前往</p>
+                            <a href="<%-document[i].content%>">
+                                <img style="display:inline-block;" id="<%- document[i].id%>" alt="<%- document[i].name %>" src="<%- document[i].img_path%>" />
+                                <p  id="<%- document[i].id+"link"%>" style="font-size: 2vw; top:9vw; left:8vw; position: absolute; opacity: 0;">按我前往</p>
                             </a>
                         </div>
                     <%}%>
