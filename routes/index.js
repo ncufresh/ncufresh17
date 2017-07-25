@@ -4,14 +4,10 @@ var router = express.Router();
 var async = require('async');
 var Todo = require('../models/Todo');
 var User = require('../models/user');
-<<<<<<< HEAD
 var Galimg = require('../models/Galimg');
 var Main_new = require('../models/Main_new');
 var Newsimg = require('../models/Newsimg');
 
-=======
-var Galimg = require('../models/galimg');
->>>>>>> 004d891bd641ebde6ccb31277a3255c2f0608618
 var url = require('url');
 var request = require('request');
 var formidable = require('formidable');
@@ -240,33 +236,21 @@ module.exports = function(passport) {
     var form = new formidable.IncomingForm();
     form.parse(req, function(err, fields, files) {
       if (err) {
-<<<<<<< HEAD
 				console.log(err);
 			}
 			// console.log('received fields: ');
 			// console.log(fields);
       // console.log('received files: ');
 			// console.log(files);
-=======
-        console.log(err);
-      }
-      console.log('received fields: ');
-      console.log(fields);
-      console.log('received files: ');
-      console.log(files);
->>>>>>> 004d891bd641ebde6ccb31277a3255c2f0608618
+
 
       var uploadedFile = files.input_img;
       var tmpPath = uploadedFile.path;
       var fileName = shortId.generate() + uploadedFile.name.substr(uploadedFile.name.lastIndexOf('.'));
       var targetPath = './public/images/main/galimg/' + fileName;
-<<<<<<< HEAD
 			// console.log(tmpPath);
 			// console.log(targetPath);
-=======
-      console.log(tmpPath);
-      console.log(targetPath);
->>>>>>> 004d891bd641ebde6ccb31277a3255c2f0608618
+
 
       var readStream = fs.createReadStream(tmpPath)
       var writeStream = fs.createWriteStream(targetPath);
@@ -286,17 +270,11 @@ module.exports = function(passport) {
     });
   });
   //刪除gal
-<<<<<<< HEAD
   router.post('/manageMain/delGal/:id',isAdmin, function(req, res){
     Galimg.findById( req.params.id, function ( err, galimg ){
       galimg.remove( function ( err, galimg ){
         fs.unlink("./public/images/main/galimg/"+galimg.imgurl,function(err){
-=======
-  router.post('/manageMain/delGal/:id', function(req, res) {
-    Galimg.findById(req.params.id, function(err, galimg) {
-      galimg.remove(function(err, galimg) {
-        fs.unlink("./public/images/main/galimg/" + galimg.imgurl, function(err) {
->>>>>>> 004d891bd641ebde6ccb31277a3255c2f0608618
+
           console.log(err);
           res.redirect('/manageMain');
         });
