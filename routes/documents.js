@@ -26,6 +26,10 @@ router.get('/delete/:id',function(req,res,next){
   document.find({_id:req.params.id}).exec(function (err, results) {
     the_type = results[0].type;
     the_order = results[0].order;
+    fs.unlink("./public"+results[0].img_path,function(err){
+      if(err)
+        console.log(err);
+    });
     document.find({type:the_type}).exec(function (err, result) {
       total = result.length;
       console.log("有 "+total+" 個");
@@ -150,6 +154,7 @@ router.post('/insertimg/:id',function(req,res,next) {
         },function(err){
           if(err)
             console.log(err);
+          res.redirect('/documents');
         });
         console.log(fields.imgid);
       })
@@ -160,7 +165,6 @@ router.post('/insertimg/:id',function(req,res,next) {
         });
       });
   });
-  res.redirect('/documents');
 })
 
 module.exports = router;

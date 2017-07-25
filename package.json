@@ -34,5 +34,17 @@
   },
   "devDependencies": {
     "nodemon": "^1.11.0"
-  }
+  },
+  "description": "* 測試網址： http://ncufresh17.tk/",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/ncufresh/ncufresh17.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/ncufresh/ncufresh17/issues"
+  },
+  "homepage": "https://gitlab.com/ncufresh/ncufresh17#README"
 }
