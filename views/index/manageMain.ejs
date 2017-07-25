@@ -2,7 +2,31 @@
 <html lang="en">
 <head>
     <% include ../layouts/head %>
-
+    <style>
+      /*公告區的style*/
+      .list-group{
+        height: 500px;
+        overflow-y: scroll;
+      }
+      .w-100{
+        width: 100%!important;
+      }
+      .d-flex {
+          display: -webkit-box!important;
+          display: -webkit-flex!important;
+          display: -ms-flexbox!important;
+          display: flex!important;
+      }
+      .justify-content-between {
+          -webkit-box-pack: justify!important;
+          -webkit-justify-content: space-between!important;
+          -ms-flex-pack: justify!important;
+          justify-content: space-between!important;
+      }
+      .news_ul:hover{
+        background-color: aliceblue;
+      }
+    </style>
 </head>
 <body>
     <header>
@@ -16,11 +40,11 @@
               <form class="" enctype="multipart/form-data" action="/manageMain/addGal" method="post">
                    <div class="form-group">
                       <label for="name">名稱:</label>
-                      <input type="text" class="name"  name="name" style="width:50%" required>
+                      <input type="text" class="name"  name="name" style="width:30%" required>
                    </div>
                    <div class="form-group">
                       <label for="url">連結:</label>
-                      <input type="text" class="name"  name="videourl" style="width:50%" required>
+                      <input type="text" class="name"  name="videourl" style="width:30%" required>
                    </div>
                    <div class="form-group">
                      <label for="input_img">上傳圖片:</label>
@@ -33,38 +57,251 @@
                    </div>
              </form>
            </div>
-           <% galimgs.forEach(function(galimg){ %>
-           <div class="col col-md-2">
-               <img id="blah" src="/images/main/galimg/<%= galimg.imgurl %>" alt="<%= galimg.name %>">
-               <form method="post" action="/manageMain/delGal/<%= galimg.id %>">
-                  <button type="submit" class="btn btn-warning">刪除</button>
-               </form>
+           <div class="" style="overflow-y:scroll">
+             <h3>已新增圖片</h3>
+             <% galimgs.forEach(function(galimg){ %>
+             <div class="col col-md-2">
+                 <img id="blah" src="/images/main/galimg/<%= galimg.imgurl %>" alt="<%= galimg.name %>">
+                 <form method="post" action="/manageMain/delGal/<%= galimg.id %>">
+                    <button type="submit" class="btn btn-warning">刪除</button>
+                 </form>
+             </div>
+             <% }); %>
            </div>
-           <% }); %>
 
         </div>
         <div class="manageNews container jumbotron">
           <h2>管理最新消息 </h2>
-          <form class="" action="/manageMain/addNews" method="post">
-            <div class="form-group">
-               <label for="title">標題:</label>
-               <input type="text"  name="title" style="width:50%" required>
+          <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#addNewsModal">新增消息</button>
+
+
+          <div class="">
+            <h3>已新增消息 <small>按標題可以開啟完整內容</small></h3>
+            <div class="list-group">
+              <% main_news_top.forEach(function(main_new_top){ %>
+                <ul class="news_ul list-group-item list-group-item-action flex-column align-items-start">
+                  <li class="d-flex w-100 justify-content-between" data-toggle="modal" data-target="#news_<%= main_new_top.id %>">
+                    <h3 class="mb-1"><i class="fa fa-bullhorn" aria-hidden="true"></i> <%= main_new_top.title %></h3>
+                    <small class="text-muted"><%= main_new_top.date %></small>
+                  </li>
+                  <li class="d-flex w-100 justify-content-between">
+                    <p class="mb-1"><%= main_new_top.subtitle %>...</p>
+                    <p>
+                      <button class="btn btn-default" data-toggle="modal" data-target="#edit_news_<%= main_new_top.id %>">編輯</button>
+                      <button class="btn btn-danger">刪除</button>
+                    </p>
+
+                  </li>
+                </ul>
+                <div id="news_<%= main_new_top.id %>" class="modal fade" role="dialog">
+                  <div class="modal-dialog modal-lg">
+
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h2 class="modal-title"><%= main_new_top.title %></h2>
+                      </div>
+                      <div class="modal-body content_<%=main_new_top.id%>">
+                          <%- main_new_top.content %>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="edit_news_<%= main_new_top.id %>" class="modal fade" role="dialog">
+                  <div class="modal-dialog modal-lg">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <form class="" action="/manageMain/editNews/<%= main_new_top.id %>" method="post">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h2 class="modal-title">編輯消息</h2>
+                      </div>
+                      <div class="modal-body">
+                          <div class="form-group">
+                             <label for="title">標題:</label>
+                             <input type="text"  name="title" style="" value="<%= main_new_top.title %>" required>
+                          </div>
+                          <div class="form-group">
+                             <label for="news_date">日期:</label>
+                             <input type="date"  name="news_date" style="" value="<%= main_new_top.date %>" required>
+                          </div>
+                          <div class="form-group">
+                            <input type="checkbox" name="to_top" value="true" checked>
+                            <label for="to_top">置頂</label>
+                          </div>
+                          <div class="form-group">
+                             <label for="subtitle">小標題:</label><small>（會出現在list裡的）</small>
+                             <input type="text"  name="subtitle" style="" value="<%= main_new_top.subtitle %>" required>
+                          </div>
+                          <div class="form-group">
+                             <label for="news_date">內容:</label><small>（會出現在modal裡的）</small>
+                             <textarea name="news_content" id="news_content_<%= main_new_top.id %>" rows="8" cols="80"></textarea>
+                          </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">確定</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+                      </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+
+              <% }); %>
+              <% main_news.forEach(function(main_new){ %>
+                <ul class="news_ul list-group-item list-group-item-action flex-column align-items-start">
+                  <li class="d-flex w-100 justify-content-between" data-toggle="modal" data-target="#news_<%= main_new.id %>">
+                    <h3 class="mb-1"> <%= main_new.title %></h3>
+                    <small class="text-muted"><%= main_new.date %></small>
+                  </li>
+                  <li class="d-flex w-100 justify-content-between">
+                    <p class="mb-1"><%= main_new.subtitle %>...</p>
+                    <p>
+                      <button class="btn btn-default" data-toggle="modal" data-target="#edit_news_<%= main_new.id %>">編輯</button>
+                      <button class="btn btn-danger">刪除</button>
+                    </p>
+
+                  </li>
+                </ul>
+                <div id="news_<%= main_new.id %>" class="modal fade" role="dialog">
+                  <div class="modal-dialog modal-lg">
+
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h2 class="modal-title"><%= main_new.title %></h2>
+                      </div>
+                      <div class="modal-body content_<%=main_new.id%>">
+                          <%- main_new.content %>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="edit_news_<%= main_new.id %>" class="modal fade" role="dialog">
+                  <div class="modal-dialog modal-lg">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <form class="" action="/manageMain/editNews/<%= main_new.id %>" method="post">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h2 class="modal-title">編輯消息</h2>
+                      </div>
+                      <div class="modal-body">
+                          <div class="form-group">
+                             <label for="title">標題:</label>
+                             <input type="text"  name="title" style="" value="<%= main_new.title %>" required>
+                          </div>
+                          <div class="form-group">
+                             <label for="news_date">日期:</label>
+                             <input type="date"  name="news_date" style="" value="<%= main_new.date %>" required>
+                          </div>
+                          <div class="form-group">
+                            <input type="checkbox" name="to_top" value="true">
+                            <label for="to_top">置頂</label>
+                          </div>
+                          <div class="form-group">
+                             <label for="subtitle">小標題:</label><small>（會出現在list裡的）</small>
+                             <input type="text"  name="subtitle" style="" value="<%= main_new.subtitle %>" required>
+                          </div>
+                          <div class="form-group">
+                             <label for="news_date">內容:</label><small>（會出現在modal裡的）</small>
+                             <textarea name="news_content" id="news_content_<%= main_new.id %>" rows="8" cols="80"></textarea>
+                          </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">確定</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+                      </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+
+              <% }); %>
+
+
             </div>
-            <div class="form-group">
-               <label for="news_date">日期:</label>
-               <input type="date"  name="news_date" style="width:50%" required>
-            </div>
-            <div class="form-group">
-               <label for="news_date">內容:</label>
-               <textarea name="news_content" rows="8" cols="80"></textarea>
-            </div>
-          </form>
+          </div>
+        </div>
+
+        <div class="manageNewsImg container jumbotron">
+          <div class="">
+            <h2>最新消息右邊的圖片 <small>請傳1:1的照片</small></h2>
+              <form class="" enctype="multipart/form-data" action="/manageMain/addNewsImg" method="post">
+
+                   <div class="form-group">
+                     <label for="input_img">上傳圖片:</label>
+                     <input name="input_img" type="file" class="newsimgInp" >
+                   </div>
+                       <small>預覽圖片</small>
+                       <img id="news_blah" src="" >
+                   <div>
+                     <button type="submit" class="btn btn-primary">確定</button>
+                   </div>
+             </form>
+           </div>
+           <div class="" style="overflow-y:scroll">
+             <h3>已新增圖片</h3>
+             <% newsimgs.forEach(function(newsimg){ %>
+             <div class="col col-md-2">
+                 <img id="blah" src="/images/main/newsimg/<%= newsimg.imgurl %>" alt="no found">
+                 <form method="post" action="/manageMain/delNewsImg/<%= newsimg.id %>">
+                    <button type="submit" class="btn btn-warning">刪除</button>
+                 </form>
+             </div>
+             <% }); %>
+           </div>
+
         </div>
 
 
-
-
     </main>
+    <%#News Modal %>
+    <div id="addNewsModal" class="modal fade" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <form class="" action="/manageMain/addNews" method="post">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h2 class="modal-title">新增消息</h2>
+          </div>
+          <div class="modal-body">
+              <div class="form-group">
+                 <label for="title">標題:</label>
+                 <input type="text"  name="title" style="" required>
+              </div>
+              <div class="form-group">
+                 <label for="news_date">日期:</label>
+                 <input type="date"  name="news_date" style="" required>
+              </div>
+              <div class="form-group">
+                <input type="checkbox" name="to_top" value="true">
+                <label for="to_top">置頂</label>
+              </div>
+              <div class="form-group">
+                 <label for="subtitle">小標題:</label><small>（會出現在list裡的）</small>
+                 <input type="text"  name="subtitle" style="" required>
+              </div>
+              <div class="form-group">
+                 <label for="news_date">內容:</label><small>（會出現在modal裡的）</small>
+                 <textarea name="news_content" id="news_contentt"  rows="8" cols="80"></textarea>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">確定</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
 
     <footer>
         <% include ../layouts/footer %>
@@ -86,7 +323,33 @@
     $(".imgInp").change(function(){
         readURL(this,'#blah');
     });
+    $(".newsimgInp").change(function(){
+        readURL(this,'#news_blah');
+    });
+    CKEDITOR.replace('news_contentt',{
+      filebrowserUploadUrl: '/uploader',
+    });
+    CKEDITOR.editorConfig = function (config){
+        config.enterMode = CKEDITOR.ENTER_BR;
+        config.autoParagraph = false;
+    };
     </script>
+    <% main_news_top.forEach(function(main_new_top){ %>
+      <script>
+      CKEDITOR.replace('news_content_<%= main_new_top.id%>',{
+        filebrowserUploadUrl: '/uploader',
+      });
+      CKEDITOR.instances['news_content_<%= main_new_top.id%>'].setData($('.content_<%=main_new_top.id%>').html());
+      </script>
+    <% }); %>
+    <% main_news.forEach(function(main_new){ %>
+      <script>
+      CKEDITOR.replace('news_content_<%= main_new.id%>',{
+        filebrowserUploadUrl: '/uploader',
+      });
+      CKEDITOR.instances['news_content_<%= main_new.id%>'].setData($('.content_<%=main_new.id%>').html());
+      </script>
+    <% }); %>
 
 </body>
 </html>

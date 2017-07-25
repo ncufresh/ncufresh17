@@ -5,6 +5,9 @@ var async = require('async');
 var Todo = require('../models/Todo');
 var User = require('../models/user');
 var Galimg = require('../models/Galimg');
+var Main_new = require('../models/Main_new');
+var Newsimg = require('../models/Newsimg');
+
 var url = require('url');
 var request = require('request');
 var formidable = require('formidable');
@@ -24,6 +27,21 @@ module.exports = function(passport) {
             cb(null, com);
           });
         },
+        main_news: function(cb){
+          Main_new.find({'to_top':'false'}).sort({date: -1}).exec(function(err, com){
+            cb(null, com);
+          });
+        },
+        main_news_top: function(cb){
+          Main_new.find({'to_top':'true'}).sort({date: -1}).exec(function(err, com){
+            cb(null, com);
+          });
+        },
+        newsimgs: function(cb){
+          Newsimg.find().exec(function(err, com){
+            cb(null, com);
+          });
+        },
 
       },
       function(err ,result){
@@ -31,6 +49,9 @@ module.exports = function(passport) {
           title: '首頁 ｜ 新生知訊網',
           user: req.user,
           galimgs: result.galimgs,
+          main_news: result.main_news,
+          main_news_top: result.main_news_top,
+          newsimgs: result.newsimgs,
         });
       }
     );
@@ -178,6 +199,21 @@ module.exports = function(passport) {
             cb(null, com);
           });
         },
+        main_news: function(cb){
+          Main_new.find({'to_top':'false'}).sort({date: -1}).exec(function(err, com){
+            cb(null, com);
+          });
+        },
+        main_news_top: function(cb){
+          Main_new.find({'to_top':'true'}).sort({date: -1}).exec(function(err, com){
+            cb(null, com);
+          });
+        },
+        newsimgs: function(cb){
+          Newsimg.find().exec(function(err, com){
+            cb(null, com);
+          });
+        },
 
       },
       function(err ,result){
@@ -185,6 +221,9 @@ module.exports = function(passport) {
           title: '管理首頁',
           user: req.user,
           galimgs: result.galimgs,
+          main_news: result.main_news,
+          main_news_top: result.main_news_top,
+          newsimgs: result.newsimgs,
         });
       }
     );
@@ -197,17 +236,17 @@ module.exports = function(passport) {
       if (err) {
 				console.log(err);
 			}
-			console.log('received fields: ');
-			console.log(fields);
-      console.log('received files: ');
-			console.log(files);
+			// console.log('received fields: ');
+			// console.log(fields);
+      // console.log('received files: ');
+			// console.log(files);
 
       var uploadedFile = files.input_img;
       var tmpPath = uploadedFile.path;
 			var fileName = shortId.generate() + uploadedFile.name.substr(uploadedFile.name.lastIndexOf('.'));
       var targetPath = './public/images/main/galimg/' + fileName;
-			console.log(tmpPath);
-			console.log(targetPath);
+			// console.log(tmpPath);
+			// console.log(targetPath);
 
       var readStream = fs.createReadStream(tmpPath)
 			var writeStream = fs.createWriteStream(targetPath);
@@ -227,7 +266,7 @@ module.exports = function(passport) {
     });
   });
   //刪除gal
-  router.post('/manageMain/delGal/:id', function(req, res){
+  router.post('/manageMain/delGal/:id',isAdmin, function(req, res){
     Galimg.findById( req.params.id, function ( err, galimg ){
       galimg.remove( function ( err, galimg ){
         fs.unlink("./public/images/main/galimg/"+galimg.imgurl,function(err){
@@ -237,7 +276,72 @@ module.exports = function(passport) {
       });
     });
   });
+  //新增消息
+  router.post('/manageMain/addNews',isAdmin, function(req, res){
+    new Main_new({
+      title      : req.body.title,
+      date       : req.body.news_date,
+      content    : req.body.news_content,
+      subtitle   : req.body.subtitle,
+      to_top     : req.body.to_top,
+      updated_at : Date.now(),
+    }).save(function(){
+      res.redirect( '/manageMain' );
+    });
+  });
+  router.post('/manageMain/editNews/:id',isAdmin, function(req, res){
+    console.log(req.body);
+    Main_new.findById( req.params.id, function ( err, main_new ){
+      main_new.title    = req.body.title;
+      main_new.date     = req.body.news_date;
+      main_new.content  = req.body.news_content;
+      main_new.subtitle = req.body.subtitle;
+      if(req.body.to_top){
+        main_new.to_top   = true;
+      }else{
+        main_new.to_top   = false;
+      }
+      main_new.updated_at = Date.now();
+      main_new.save( function ( err, todo, count ){
+        res.redirect( '/manageMain' );
+      });
+    });
+  });
 
+  //最上面的照片
+  router.post('/manageMain/addNewsImg',isAdmin,function(req,res,next){
+    var form = new formidable.IncomingForm();
+    form.parse(req, function (err, fields, files) {
+      if (err) {
+				console.log(err);
+			}
+			// console.log('received fields: ');
+			// console.log(fields);
+      // console.log('received files: ');
+			// console.log(files);
+
+      var uploadedFile = files.input_img;
+      var tmpPath = uploadedFile.path;
+			var fileName = shortId.generate() + uploadedFile.name.substr(uploadedFile.name.lastIndexOf('.'));
+      var targetPath = './public/images/main/newsimg/' + fileName;
+			// console.log(tmpPath);
+			// console.log(targetPath);
+
+      var readStream = fs.createReadStream(tmpPath)
+			var writeStream = fs.createWriteStream(targetPath);
+
+      new Galimg({
+        imgurl: fileName,
+      }).save(function(){
+        res.redirect('/manageMain');
+      });
+      readStream.on("end", function () {
+        console.log(readStream);
+        fs.unlink(tmpPath);
+      }).pipe(writeStream);
+
+    });
+  });
 
   // router.get('/auth/provider', passport.authenticate('provider',{ scope: 'user.info.basic.read' }));
   //

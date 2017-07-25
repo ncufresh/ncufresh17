@@ -77,6 +77,9 @@
           -ms-flex-pack: justify!important;
           justify-content: space-between!important;
       }
+      .news_ul:hover{
+        background-color: aliceblue;
+      }
       /*照片gallery*/
       /* Slideshow container */
       .slideshow-container {
@@ -151,23 +154,7 @@
         background-color: #717171;
       }
 
-      /* Fading animation */
-      .fade {
-        -webkit-animation-name: fade;
-        -webkit-animation-duration: 1.5s;
-        animation-name: fade;
-        animation-duration: 1.5s;
-      }
 
-      @-webkit-keyframes fade {
-        from {opacity: .4}
-        to {opacity: 1}
-      }
-
-      @keyframes fade {
-        from {opacity: .4}
-        to {opacity: 1}
-      }
       /*top btn*/
       #topBtn {
         display: none; /* Hidden by default */
@@ -213,34 +200,59 @@
               <div class="row">
                 <div class="news-table col-md-5 col-md-offset-1">
                   <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                      <div class="d-flex w-100 justify-content-between">
-                        <h4 class="mb-1">List group item heading</h4>
-                        <small class="text-muted">3 days ago</small>
+                    <% main_news_top.forEach(function(main_new_top){ %>
+                      <ul class="news_ul list-group-item list-group-item-action flex-column align-items-start" data-toggle="modal" data-target="#news_<%= main_new_top.id %>">
+                        <li class="d-flex w-100 justify-content-between">
+                          <h3 class="mb-1"><i class="fa fa-bullhorn" aria-hidden="true"></i> <%= main_new_top.title %></h3>
+                          <small class="text-muted"><%= main_new_top.date %></small>
+                        </li>
+                        <p class="mb-1"><%= main_new_top.subtitle %>...</p>
+                      </ul>
+                      <div id="news_<%= main_new_top.id %>" class="modal fade" role="dialog">
+                        <div class="modal-dialog modal-lg">
+
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h2 class="modal-title"><%= main_new_top.title %></h2>
+                            </div>
+                            <div class="modal-body">
+                                <%- main_new_top.content %>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                      <div class="d-flex w-100 justify-content-between">
-                        <h4 class="mb-1">List group item heading</h4>
-                        <small class="text-muted">3 days ago</small>
+                    <% }); %>
+                    <% main_news.forEach(function(main_new){ %>
+                      <ul class="news_ul list-group-item list-group-item-action flex-column align-items-start" data-toggle="modal" data-target="#news_<%= main_new.id %>">
+                        <li class="d-flex w-100 justify-content-between">
+                          <h3 class="mb-1"><%= main_new.title %></h3>
+                          <small class="text-muted"><%= main_new.date %></small>
+                        </li>
+                        <p class="mb-1"><%= main_new.subtitle %>...</p>
+                      </ul>
+                      <div id="news_<%= main_new.id %>" class="modal fade" role="dialog">
+                        <div class="modal-dialog modal-lg">
+
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h2 class="modal-title"><%= main_new.title %></h2>
+                            </div>
+                            <div class="modal-body">
+                                <%- main_new.content %>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                      <div class="d-flex w-100 justify-content-between">
-                        <h4 class="mb-1">List group item heading</h4>
-                        <small class="text-muted">3 days ago</small>
-                      </div>
-                      <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                      <div class="d-flex w-100 justify-content-between">
-                        <h4 class="mb-1">List group item heading</h4>
-                        <small class="text-muted">3 days ago</small>
-                      </div>
-                      <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                    </a>
+                    <% }); %>
+
 
                   </div>
                 </div>
