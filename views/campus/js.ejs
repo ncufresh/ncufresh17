@@ -5,6 +5,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" type="text/javascript"></script>
 <script>
 $(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
     $('select').css({
         'padding' : '0px'
     });
@@ -76,6 +77,22 @@ $(document).ready(function(){
             left: $(this).parentsUntil('tr').siblings('.build_x').text()+"%",
             top:$(this).parentsUntil('tr').siblings('.build_y').text()+"%"
         });
+        if($(this).parentsUntil('tr').siblings('.build_SOS').text()==="true"){
+            $('#SOSimg').css({
+                height:"auto",
+                display:"block",
+                left: $(this).parentsUntil('tr').siblings('.build_SOSx').text()+"%",
+                top:$(this).parentsUntil('tr').siblings('.build_SOSy').text()+"%"
+            });
+        }
+        if($(this).parentsUntil('tr').siblings('.build_AED').text()==="true"){
+            $('#AEDimg').css({
+                height:"auto",
+                display:"block",
+                left: $(this).parentsUntil('tr').siblings('.build_AEDx').text()+"%",
+                top:$(this).parentsUntil('tr').siblings('.build_AEDy').text()+"%"
+            });
+        }
         $('#mapObj_id').val(id);
         $('#mapObj_title').text("編輯"+$(this).parentsUntil('tr').siblings('.build_name').text());
         $('#x-position').val( $(this).parentsUntil('tr').siblings('.build_x').text());
@@ -149,12 +166,38 @@ $(document).ready(function(){
             padding:'1vh'
         }, 100);
     });
-    $(".draggable").draggable({
+    $(".map-animate").mouseenter(function(){
+        $(this).animate({
+            padding:'0vh'
+        },100);
+    });
+    $(".map-animate").mouseleave(function(){
+        $(this).animate({
+            padding:'0.5vh'
+        },100);
+    });
+    $("#building_img").draggable({
         stop: function(){
             var x=$("#building_img").css("left").substring(0,$("#building_img").css("left").length-2)/$("#editmap").width()*100;
             var y=$("#building_img").css("top").substring(0,$("#building_img").css("top").length-2)/$("#editmap").height()*100;
             $('#x-position').val(x);
             $('#y-position').val(y);
+        }
+    });
+    $("#SOSimg").draggable({
+        stop: function(){
+            var x=$("#SOSimg").css("left").substring(0,$("#SOSimg").css("left").length-2)/$("#editmap").width()*100;
+            var y=$("#SOSimg").css("top").substring(0,$("#SOSimg").css("top").length-2)/$("#editmap").height()*100;
+            $('#SOSx').val(x);
+            $('#SOSy').val(y);
+        }
+    });
+    $("#AEDimg").draggable({
+        stop: function(){
+            var x=$("#AEDimg").css("left").substring(0,$("#AEDimg").css("left").length-2)/$("#editmap").width()*100;
+            var y=$("#AEDimg").css("top").substring(0,$("#AEDimg").css("top").length-2)/$("#editmap").height()*100;
+            $('#AEDx').val(x);
+            $('#AEDy').val(y);
         }
     });
     $("#size,#x-position,#y-position").change(function(){
@@ -176,6 +219,7 @@ $(document).ready(function(){
         $(".map-build."+now).css("display","block").animate({
             opacity:1
         },200);
+        $(".map-build."+now).tooltip("show");
         $(".map-build").not("."+now).animate({
             opacity:0
         },200,function(){
@@ -189,10 +233,12 @@ $(document).ready(function(){
         $(".map-build").not("."+now).css("display","block").animate({
             opacity:1
         },200);
+        $(".map-build."+now).tooltip("hide");
     })
     $(".type-menu").click(function(){
         var now=$(this).attr("alt");
         $(".type-menu").addClass("no-animate");
+        $('[data-toggle="tooltip"]').tooltip("hide");
         $(".type-menu, #type-title").stop(false,true);
         $(".type-menu").fadeOut(300);  
         $("#type-title").attr("src",$(this).attr("src"))
@@ -239,17 +285,30 @@ $(document).ready(function(){
     });
     $(".build-name").mouseenter(function(){
         console.log($(this).attr("value"));
-         $("#mapimg"+$(this).attr("value")).animate({
+        $("#mapimg"+$(this).attr("value")).animate({
             padding:'0vh'
         }, 100);
+        $("#mapimg"+$(this).attr("value")).tooltip("show");
     })
     $(".build-name").mouseleave(function(){
         console.log($(this).attr("value"));
-         $("#mapimg"+$(this).attr("value")).animate({
-            padding:'1vh'
+        $("#mapimg"+$(this).attr("value")).animate({
+            padding:'0.5vh'
         }, 100);
+        $("#mapimg"+$(this).attr("value")).tooltip("hide");
     })
-
+    $(".help-menu").mouseenter(function(){
+        $("."+$(this).attr("alt")).animate({
+            padding:'0vh'
+        }, 100);
+        $("."+$(this).attr("alt")).tooltip("show");
+    })
+    $(".help-menu").mouseleave(function(){
+        $("."+$(this).attr("alt")).animate({
+            padding:'0.5vh'
+        }, 100);
+        $("."+$(this).attr("alt")).tooltip("hide");
+    })
 })
 </script>
 
