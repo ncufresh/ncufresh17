@@ -4,18 +4,37 @@ var router = express.Router();
 var async = require('async');
 var Todo = require('../models/Todo');
 var User = require('../models/user');
+var Galimg = require('../models/Galimg');
 var url = require('url');
 var request = require('request');
+var formidable = require('formidable');
+var shortId = require('shortid');
+var fs = require('fs');
+
+
 
 module.exports = function(passport) {
 
   /* GET home page. */
   router.get('/', function(req, res, next) {
-    res.render('index/index',
-    {
-       title: 'NCUfresh17',
-       user: req.user,
-     });
+    async.parallel(
+      {
+        galimgs: function(cb){
+          Galimg.find().exec(function(err, com){
+            cb(null, com);
+          });
+        },
+
+      },
+      function(err ,result){
+        res.render('index/index', {
+          title: '首頁 ｜ 新生知訊網',
+          user: req.user,
+          galimgs: result.galimgs,
+        });
+      }
+    );
+
   });
 
   // 登入驗證
@@ -150,6 +169,74 @@ module.exports = function(passport) {
     });
 
   })
+  //管理首頁
+  router.get('/manageMain',isAdmin,function(req, res, next){
+    async.parallel(
+      {
+        galimgs: function(cb){
+          Galimg.find().exec(function(err, com){
+            cb(null, com);
+          });
+        },
+
+      },
+      function(err ,result){
+        res.render('index/manageMain', {
+          title: '管理首頁',
+          user: req.user,
+          galimgs: result.galimgs,
+        });
+      }
+    );
+
+  });
+  //最上面的照片
+  router.post('/manageMain/addGal',isAdmin,function(req,res,next){
+    var form = new formidable.IncomingForm();
+    form.parse(req, function (err, fields, files) {
+      if (err) {
+				console.log(err);
+			}
+			console.log('received fields: ');
+			console.log(fields);
+      console.log('received files: ');
+			console.log(files);
+
+      var uploadedFile = files.input_img;
+      var tmpPath = uploadedFile.path;
+			var fileName = shortId.generate() + uploadedFile.name.substr(uploadedFile.name.lastIndexOf('.'));
+      var targetPath = './public/images/main/galimg/' + fileName;
+			console.log(tmpPath);
+			console.log(targetPath);
+
+      var readStream = fs.createReadStream(tmpPath)
+			var writeStream = fs.createWriteStream(targetPath);
+
+      new Galimg({
+        videourl: fields.videourl,
+        name: fields.name,
+        imgurl: fileName,
+      }).save(function(){
+        res.redirect('/manageMain');
+      });
+      readStream.on("end", function () {
+        console.log(readStream);
+        fs.unlink(tmpPath);
+      }).pipe(writeStream);
+
+    });
+  });
+  //刪除gal
+  router.post('/manageMain/delGal/:id', function(req, res){
+    Galimg.findById( req.params.id, function ( err, galimg ){
+      galimg.remove( function ( err, galimg ){
+        fs.unlink("./public/images/main/galimg/"+galimg.imgurl,function(err){
+          console.log(err);
+          res.redirect( '/manageMain' );
+        });
+      });
+    });
+  });
 
 
   // router.get('/auth/provider', passport.authenticate('provider',{ scope: 'user.info.basic.read' }));
@@ -161,7 +248,7 @@ module.exports = function(passport) {
   //                                     });
 
   //Todo test
-  router.get('/todo', function(req, res, next) {
+  router.get('/todo',isAdmin, function(req, res, next) {
     async.parallel(
       {
         todos: function(cb){
@@ -229,4 +316,13 @@ function isLoggedIn(req, res, next) {
     res.redirect('/');
 
   return next();
+}
+function isAdmin(req, res, next){
+  if (req.isAuthenticated()){
+    console.log('log:'+req.user.local);
+    if(req.user.local.accountType==='admin'){
+      return next();
+    }
+  }
+  res.redirect('/');
 }

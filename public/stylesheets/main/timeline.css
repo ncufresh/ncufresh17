@@ -37,8 +37,8 @@ Main Components
 .cd-horizontal-timeline .timeline {
   position: relative;
   height: 100px;
-  width: 90%;
-  max-width: 800px;
+  width: 100%;
+  max-width: 1100px;
   margin: 0 auto;
 }
 .cd-horizontal-timeline .events-wrapper {
@@ -58,12 +58,12 @@ Main Components
 }
 .cd-horizontal-timeline .events-wrapper::before {
   left: 0;
-  background-color: green;
+  background-color: navy;
   width: 5px;
 }
 .cd-horizontal-timeline .events-wrapper::after {
   right: 0;
-  background-color: green;
+  background-color: navy;
   width: 5px;
 }
 .cd-horizontal-timeline .events {
@@ -80,14 +80,14 @@ Main Components
   transition: transform 0.4s;
 }
 .cd-horizontal-timeline .filling-line {
-  /* this is used to create the green line filling the timeline */
+  /* this is used to create the navy line filling the timeline */
   position: absolute;
   z-index: 1;
   left: 0;
   top: 0;
   height: 100%;
   width: 100%;
-  background-color: green;
+  background-color: navy;
   -webkit-transform: scaleX(0);
   -moz-transform: scaleX(0);
   -ms-transform: scaleX(0);
@@ -139,18 +139,18 @@ Main Components
   transition: background-color 0.3s, border-color 0.3s;
 }
 .no-touch .cd-horizontal-timeline .events a:hover::after {
-  background-color: #7b9d6f;
-  border-color: #7b9d6f;
+  background-color: navy;
+  border-color: navy;
 }
 .cd-horizontal-timeline .events a.selected {
   pointer-events: none;
 }
 .cd-horizontal-timeline .events a.selected::after {
-  background-color: #7b9d6f;
-  border-color: #7b9d6f;
+  background-color: navy;
+  border-color: navy;
 }
 .cd-horizontal-timeline .events a.older-event::after {
-  border-color: #7b9d6f;
+  border-color: #5353fd;
 }
 @media only screen and (min-width: 1100px) {
   .cd-horizontal-timeline {
@@ -176,7 +176,7 @@ Main Components
   height: 34px;
   width: 34px;
   border-radius: 50%;
-  border: 2px solid green;
+  border: 2px solid navy;
   /* replace text with an icon */
   overflow: hidden;
   color: transparent;
@@ -215,7 +215,7 @@ Main Components
   right: 0;
 }
 .no-touch .cd-timeline-navigation a:hover {
-  border-color: #7b9d6f;
+  border-color: #5353fd;
 }
 .cd-timeline-navigation a.inactive {
   cursor: not-allowed;
@@ -232,7 +232,7 @@ Main Components
   position: relative;
   width: 100%;
   margin: 2em 0;
-  overflow: hidden;
+  overflow: scroll;
   -webkit-transition: height 0.4s;
   -moz-transition: height 0.4s;
   transition: height 0.4s;
@@ -304,7 +304,7 @@ Main Components
 }
 .cd-horizontal-timeline .events-content p {
   font-size: 1.4rem;
-  color: #959595;
+  color: #000;
 }
 .cd-horizontal-timeline .events-content em, .cd-horizontal-timeline .events-content p {
   line-height: 1.6;

@@ -137,7 +137,7 @@ router.post('/newMapObj', function (req, res, next) {
 			//   if (err){
 			//     console.log(err);
 			//   }
-			//   else{ 
+			//   else{
 			//     fs.unlink(tmpPath, function() {
 			//       console.log('File Uploaded to ' + targetPath + ' - ' + uploadedFile.size + ' bytes');
 			//     });
@@ -204,7 +204,7 @@ router.post('/imgUpload', function (req, res, next) {
 		//   if (err){
 		//     console.log(err);
 		//   }
-		//   else{ 
+		//   else{
 		//     fs.unlink(tmpPath, function() {
 		//       console.log('File Uploaded to ' + targetPath + ' - ' + uploadedFile.size + ' bytes');
 		//     });

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../layouts/head %>
+
+</head>
+<body>
+    <header>
+        <% include ../layouts/navbar %>
+    </header>
+    <main>
+        <br>
+        <div class="manageGallery container jumbotron">
+          <div class="">
+            <h2>首頁最上面圖片 <small>請傳1:1的照片</small></h2>
+              <form class="" enctype="multipart/form-data" action="/manageMain/addGal" method="post">
+                   <div class="form-group">
+                      <label for="name">名稱:</label>
+                      <input type="text" class="name"  name="name" style="width:50%" required>
+                   </div>
+                   <div class="form-group">
+                      <label for="url">連結:</label>
+                      <input type="text" class="name"  name="videourl" style="width:50%" required>
+                   </div>
+                   <div class="form-group">
+                     <label for="input_img">上傳圖片:</label>
+                     <input name="input_img" type="file" class="imgInp" >
+                   </div>
+                       <small>預覽圖片</small>
+                       <img id="blah" src="" >
+                   <div>
+                     <button type="submit" class="btn btn-primary">確定</button>
+                   </div>
+             </form>
+           </div>
+           <% galimgs.forEach(function(galimg){ %>
+           <div class="col col-md-2">
+               <img id="blah" src="/images/main/galimg/<%= galimg.imgurl %>" alt="<%= galimg.name %>">
+               <form method="post" action="/manageMain/delGal/<%= galimg.id %>">
+                  <button type="submit" class="btn btn-warning">刪除</button>
+               </form>
+           </div>
+           <% }); %>
+
+        </div>
+        <div class="manageNews container jumbotron">
+          <h2>管理最新消息 </h2>
+          <form class="" action="/manageMain/addNews" method="post">
+            <div class="form-group">
+               <label for="title">標題:</label>
+               <input type="text"  name="title" style="width:50%" required>
+            </div>
+            <div class="form-group">
+               <label for="news_date">日期:</label>
+               <input type="date"  name="news_date" style="width:50%" required>
+            </div>
+            <div class="form-group">
+               <label for="news_date">內容:</label>
+               <textarea name="news_content" rows="8" cols="80"></textarea>
+            </div>
+          </form>
+        </div>
+
+
+
+
+    </main>
+
+    <footer>
+        <% include ../layouts/footer %>
+    </footer>
+        <% include js %>
+        <% include ../layouts/js %>
+    <script>
+    function readURL(input,target) {
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+              $(target).attr('src', e.target.result);
+          }
+
+          reader.readAsDataURL(input.files[0]);
+      }
+    }
+    $(".imgInp").change(function(){
+        readURL(this,'#blah');
+    });
+    </script>
+
+</body>
+</html>
