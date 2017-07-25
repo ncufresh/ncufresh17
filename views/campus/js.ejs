@@ -140,14 +140,14 @@ $(document).ready(function(){
     })
 
     $(".mouse-animate").mouseenter(function(){
-            $(this).animate({
-                padding:'0vh'
-            }, 100);
+        $(this).animate({
+            padding:'0vh'
+        }, 100);
     });
     $(".mouse-animate").mouseleave(function(){
-            $(this).animate({
-                padding:'1vh'
-            }, 100);
+        $(this).animate({
+            padding:'1vh'
+        }, 100);
     });
     $(".draggable").draggable({
         stop: function(){
@@ -170,6 +170,7 @@ $(document).ready(function(){
         "margin-bottom": "0px"
     });
     $(".type-menu").mouseenter(function(){
+        if($(this).hasClass("no-animate")) return;
         var now=$(this).attr("alt");
         $(".map-build").stop(false,true);
         $(".map-build."+now).css("display","block").animate({
@@ -182,7 +183,7 @@ $(document).ready(function(){
         });
     });
     $(".type-menu").mouseleave(function(){
-        if($(this).hasClass("no-animate"))return;
+        if($(this).hasClass("no-animate")) return;
         var now=$(this).attr("alt");
         $(".map-build").stop(false,true);
         $(".map-build").not("."+now).css("display","block").animate({
@@ -190,22 +191,63 @@ $(document).ready(function(){
         },200);
     })
     $(".type-menu").click(function(){
+        var now=$(this).attr("alt");
         $(".type-menu").addClass("no-animate");
         $(".type-menu, #type-title").stop(false,true);
         $(".type-menu").fadeOut(300);  
         $("#type-title").attr("src",$(this).attr("src"))
-                        .attr("alt",$(this).attr("alt")).fadeIn(1000);
+                        .attr("alt",now).fadeIn(1000);
+        $("#map-left").animate({
+            "width":"20%",
+        },500,function(){
+            $("#"+now).slideDown(500);
+        });
+        $("#main-map").animate({
+            "margin-top":"3%",
+            "width":"65%",
+            "padding-bottom":"36.4%"
+        },500);
+        $("#map-right").animate({
+            "width":"15%",
+        },500);
     });
     $("#type-title").click(function(){
-        $(".type-menu").removeClass("no-animate");
-        $(".type-menu, #type-title").stop(false,true);
-        $("#type-title").fadeOut(300);
-        $(".type-menu").fadeIn(300);
         var now=$(this).attr("alt");
-        $(".map-build").stop(false,true);
-        $(".map-build").not("."+now).css("display","block").animate({
-            opacity:1
-        },200);
+        $("*").stop(false,true);
+        $("#"+now).slideUp(500,function(){
+            $("#type-title").fadeOut(300);
+            $("#map-left").animate({
+                "width":"10%",
+            },500,function(){
+                $(".type-menu").fadeIn(300);
+                $(".type-menu").removeClass("no-animate");
+            });
+            $("#main-map").animate({
+                "margin-top":"0%",
+                "width":"80%",
+                "padding-bottom":"44.8%"
+            },500);
+            $("#map-right").animate({
+                "width":"10%",
+            },500);
+            $(".map-build").stop(false,true);
+            $(".map-build").not("."+now).css("display","block").animate({
+                opacity:1
+            },300);
+        });
+        
+    });
+    $(".build-name").mouseenter(function(){
+        console.log($(this).attr("value"));
+         $("#mapimg"+$(this).attr("value")).animate({
+            padding:'0vh'
+        }, 100);
+    })
+    $(".build-name").mouseleave(function(){
+        console.log($(this).attr("value"));
+         $("#mapimg"+$(this).attr("value")).animate({
+            padding:'1vh'
+        }, 100);
     })
 
 })

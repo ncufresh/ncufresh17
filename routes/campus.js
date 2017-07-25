@@ -14,11 +14,34 @@ router.get('/', function (req, res, next) {
 
 router.get('/guide', function (req, res, next) {
 	map_obj.find({}).exec(function(err,map_objs){
-		res.render('campus/guide', {
-			user: req.user,
-			title: '校園地圖' ,
-			map_objs: map_objs
-		});
+		building.find({}).sort({ type: 1 }).exec(function(err,buildings){
+			var dep=[],work=[],sport=[],point=[],food=[],home=[];
+			for(var i=0;i<buildings.length;i++){
+				if(buildings[i].type==="系館")
+					dep[dep.length]=buildings[i];
+				else if(buildings[i].type==="行政")
+					work[work.length]=buildings[i];
+				else if(buildings[i].type==="運動")
+					sport[sport.length]=buildings[i];
+				else if(buildings[i].type==="中大景點")
+					point[point.length]=buildings[i];
+				else if(buildings[i].type==="飲食")
+					food[food.length]=buildings[i];
+				else if(buildings[i].type==="住宿")
+					home[home.length]=buildings[i];
+			}
+			res.render('campus/guide', {
+				user: req.user,
+				title: '校園地圖' ,
+				map_objs: map_objs,
+				dep: dep,
+				work: work,
+				sport: sport,
+				point: point,
+				food: food,
+				home: home
+			});
+		})
 	})
 });
 
