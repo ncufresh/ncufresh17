@@ -4,10 +4,14 @@ var router = express.Router();
 var async = require('async');
 var Todo = require('../models/Todo');
 var User = require('../models/user');
+<<<<<<< HEAD
 var Galimg = require('../models/Galimg');
 var Main_new = require('../models/Main_new');
 var Newsimg = require('../models/Newsimg');
 
+=======
+var Galimg = require('../models/galimg');
+>>>>>>> 004d891bd641ebde6ccb31277a3255c2f0608618
 var url = require('url');
 var request = require('request');
 var formidable = require('formidable');
@@ -20,10 +24,9 @@ module.exports = function(passport) {
 
   /* GET home page. */
   router.get('/', function(req, res, next) {
-    async.parallel(
-      {
-        galimgs: function(cb){
-          Galimg.find().exec(function(err, com){
+    async.parallel({
+        galimgs: function(cb) {
+          Galimg.find().exec(function(err, com) {
             cb(null, com);
           });
         },
@@ -44,7 +47,7 @@ module.exports = function(passport) {
         },
 
       },
-      function(err ,result){
+      function(err, result) {
         res.render('index/index', {
           title: '首頁 ｜ 新生知訊網',
           user: req.user,
@@ -76,12 +79,11 @@ module.exports = function(passport) {
 
 
   //登入頁
-  router.get('/login',isLoggedIn, function(req, res, next) {
-    res.render('index/login',
-    {
-       title: '登入頁',
-       user: req.user,
-       message: req.flash('loginMessage')
+  router.get('/login', isLoggedIn, function(req, res, next) {
+    res.render('index/login', {
+      title: '登入頁',
+      user: req.user,
+      message: req.flash('loginMessage')
     });
   });
   router.post('/login', isLoggedIn, passport.authenticate('local-login', {
@@ -99,103 +101,107 @@ module.exports = function(passport) {
   });
 
   //portal 登入
-  router.get('/auth/provider', isLoggedIn, function(req, res, next){
+  router.get('/auth/provider', isLoggedIn, function(req, res, next) {
     var root = 'https://api.cc.ncu.edu.tw/oauth';
     var client_id = 'NjVlNTZjMjktYWViZC00M2YyLTk0NTctNDk3NTY5NjQ0NmM5';
     var scope = 'user.info.basic.read';
     var urll = root + '/oauth/authorize?response_type=code&scope=' + scope + '&client_id=' + client_id;
     res.redirect(urll);
-  } );
+  });
 
-  router.get('/auth/provider/callback',isLoggedIn, function(req, res, next){
-    var url_parts = url.parse(req.url, true);
-  	var query = url_parts.query;
-    //decline
-    if(!req.query.code){
-      res.redirect('/login');
-    }
-    // api get accessToken
-    var root = 'https://api.cc.ncu.edu.tw/oauth';
-    var client_id = process.env.PORTAL_CLIENT_ID;
-    var client_secret = process.env.PORTAL_CLIENT_SECRET;
-    var urll = root + '/oauth/token';
-
-    request.post({url:urll, form: {
-        'grant_type': 'authorization_code',
-        'code': req.query.code,
-        'client_id': client_id,
-        'client_secret': client_secret
-      }}, function Callback(err, httpResponse, token) {
-      if (err) {
-        return console.error('failed:', err);
+  router.get('/auth/provider/callback', isLoggedIn, function(req, res, next) {
+      var url_parts = url.parse(req.url, true);
+      var query = url_parts.query;
+      //decline
+      if (!req.query.code) {
         res.redirect('/login');
       }
-    if(!httpResponse.statusCode===200){
-      console.log('response error!');
-      res.redirect('/login');
-    }
-      // api get personal information
-      root = 'https://api.cc.ncu.edu.tw';
-      urll = root + '/personnel/v1/info';
-      // console.log('req:'+req);
-      obj = JSON.parse(token);
-      console.log('access_token:'+obj.access_token);
-      request({url:urll,headers:{
-        'Authorization': 'Bearer' + obj.access_token,
-      }},function Callback(err, httpResponse, body) {
+      // api get accessToken
+      var root = 'https://api.cc.ncu.edu.tw/oauth';
+      var client_id = process.env.PORTAL_CLIENT_ID;
+      var client_secret = process.env.PORTAL_CLIENT_SECRET;
+      var urll = root + '/oauth/token';
+
+      request.post({
+        url: urll,
+        form: {
+          'grant_type': 'authorization_code',
+          'code': req.query.code,
+          'client_id': client_id,
+          'client_secret': client_secret
+        }
+      }, function Callback(err, httpResponse, token) {
         if (err) {
           return console.error('failed:', err);
           res.redirect('/login');
         }
-        if(!httpResponse.statusCode===200){
+        if (!httpResponse.statusCode === 200) {
           console.log('response error!');
           res.redirect('/login');
         }
-        console.log('body:'+body);
-        personalObj = JSON.parse(body);
-        // find user using id(學號)
-        User.findOne({'local.email': personalObj.id+'@cc.ncu.edu.tw'},function(err,obj) {
-          if(obj){
-            req.login(obj, function(err){
-              if(!err){
-                res.redirect('/');
-              }
-            });
-          }else{
-            var newUser = new User();
-            newUser.local.name = personalObj.name;
-            newUser.local.email = personalObj.id+'@cc.ncu.edu.tw';
-            newUser.local.password = "";
-            newUser.local.accountType = personalObj.type;
-            newUser.local.created = new Date();
-
-            newUser.save(function(err) {
-              if (err) {
-                console.log('err:'+err);
-                res.redirect('/login');
-              } else {
-                req.login(newUser, function(err){
-                  if(!err){
-                    res.redirect('/');
-                  }
-                });
-
-              }
-            });
+        // api get personal information
+        root = 'https://api.cc.ncu.edu.tw';
+        urll = root + '/personnel/v1/info';
+        // console.log('req:'+req);
+        obj = JSON.parse(token);
+        console.log('access_token:' + obj.access_token);
+        request({
+          url: urll,
+          headers: {
+            'Authorization': 'Bearer' + obj.access_token,
           }
+        }, function Callback(err, httpResponse, body) {
+          if (err) {
+            return console.error('failed:', err);
+            res.redirect('/login');
+          }
+          if (!httpResponse.statusCode === 200) {
+            console.log('response error!');
+            res.redirect('/login');
+          }
+          console.log('body:' + body);
+          personalObj = JSON.parse(body);
+          // find user using id(學號)
+          User.findOne({ 'local.email': personalObj.id + '@cc.ncu.edu.tw' }, function(err, obj) {
+            if (obj) {
+              req.login(obj, function(err) {
+                if (!err) {
+                  res.redirect('/');
+                }
+              });
+            } else {
+              var newUser = new User();
+              newUser.local.name = personalObj.name;
+              newUser.local.email = personalObj.id + '@cc.ncu.edu.tw';
+              newUser.local.password = "";
+              newUser.local.accountType = personalObj.type;
+              newUser.local.created = new Date();
 
+              newUser.save(function(err) {
+                if (err) {
+                  console.log('err:' + err);
+                  res.redirect('/login');
+                } else {
+                  req.login(newUser, function(err) {
+                    if (!err) {
+                      res.redirect('/');
+                    }
+                  });
+
+                }
+              });
+            }
+
+          });
         });
-      }
-      );
-    });
+      });
 
-  })
-  //管理首頁
-  router.get('/manageMain',isAdmin,function(req, res, next){
-    async.parallel(
-      {
-        galimgs: function(cb){
-          Galimg.find().exec(function(err, com){
+    })
+    //管理首頁
+  router.get('/manageMain', isAdmin, function(req, res, next) {
+    async.parallel({
+        galimgs: function(cb) {
+          Galimg.find().exec(function(err, com) {
             cb(null, com);
           });
         },
@@ -216,7 +222,7 @@ module.exports = function(passport) {
         },
 
       },
-      function(err ,result){
+      function(err, result) {
         res.render('index/manageMain', {
           title: '管理首頁',
           user: req.user,
@@ -230,35 +236,49 @@ module.exports = function(passport) {
 
   });
   //最上面的照片
-  router.post('/manageMain/addGal',isAdmin,function(req,res,next){
+  router.post('/manageMain/addGal', isAdmin, function(req, res, next) {
     var form = new formidable.IncomingForm();
-    form.parse(req, function (err, fields, files) {
+    form.parse(req, function(err, fields, files) {
       if (err) {
+<<<<<<< HEAD
 				console.log(err);
 			}
 			// console.log('received fields: ');
 			// console.log(fields);
       // console.log('received files: ');
 			// console.log(files);
+=======
+        console.log(err);
+      }
+      console.log('received fields: ');
+      console.log(fields);
+      console.log('received files: ');
+      console.log(files);
+>>>>>>> 004d891bd641ebde6ccb31277a3255c2f0608618
 
       var uploadedFile = files.input_img;
       var tmpPath = uploadedFile.path;
-			var fileName = shortId.generate() + uploadedFile.name.substr(uploadedFile.name.lastIndexOf('.'));
+      var fileName = shortId.generate() + uploadedFile.name.substr(uploadedFile.name.lastIndexOf('.'));
       var targetPath = './public/images/main/galimg/' + fileName;
+<<<<<<< HEAD
 			// console.log(tmpPath);
 			// console.log(targetPath);
+=======
+      console.log(tmpPath);
+      console.log(targetPath);
+>>>>>>> 004d891bd641ebde6ccb31277a3255c2f0608618
 
       var readStream = fs.createReadStream(tmpPath)
-			var writeStream = fs.createWriteStream(targetPath);
+      var writeStream = fs.createWriteStream(targetPath);
 
       new Galimg({
         videourl: fields.videourl,
         name: fields.name,
         imgurl: fileName,
-      }).save(function(){
+      }).save(function() {
         res.redirect('/manageMain');
       });
-      readStream.on("end", function () {
+      readStream.on("end", function() {
         console.log(readStream);
         fs.unlink(tmpPath);
       }).pipe(writeStream);
@@ -266,12 +286,19 @@ module.exports = function(passport) {
     });
   });
   //刪除gal
+<<<<<<< HEAD
   router.post('/manageMain/delGal/:id',isAdmin, function(req, res){
     Galimg.findById( req.params.id, function ( err, galimg ){
       galimg.remove( function ( err, galimg ){
         fs.unlink("./public/images/main/galimg/"+galimg.imgurl,function(err){
+=======
+  router.post('/manageMain/delGal/:id', function(req, res) {
+    Galimg.findById(req.params.id, function(err, galimg) {
+      galimg.remove(function(err, galimg) {
+        fs.unlink("./public/images/main/galimg/" + galimg.imgurl, function(err) {
+>>>>>>> 004d891bd641ebde6ccb31277a3255c2f0608618
           console.log(err);
-          res.redirect( '/manageMain' );
+          res.redirect('/manageMain');
         });
       });
     });
@@ -352,16 +379,15 @@ module.exports = function(passport) {
   //                                     });
 
   //Todo test
-  router.get('/todo',isAdmin, function(req, res, next) {
-    async.parallel(
-      {
-        todos: function(cb){
+  router.get('/todo', isAdmin, function(req, res, next) {
+    async.parallel({
+        todos: function(cb) {
           Todo.find().exec(function(err, com) {
             cb(null, com);
           });
         },
       },
-      function(err, result){
+      function(err, result) {
         res.render('index', {
           title: 'Todo',
           todos: result.todos,
@@ -378,36 +404,36 @@ module.exports = function(passport) {
   //       });
   //     });
   // });
-  router.post('/new',function(req, res){
+  router.post('/new', function(req, res) {
     new Todo({
-      content    : req.body.content,
-      updated_at : Date.now()
-    }).save( function( err, todo, count ){
-      res.redirect( '/Todo' );
+      content: req.body.content,
+      updated_at: Date.now()
+    }).save(function(err, todo, count) {
+      res.redirect('/Todo');
     });
   });
-  router.get('/destroy/:id', function(req, res){
-    Todo.findById( req.params.id, function ( err, todo ){
-      todo.remove( function ( err, todo ){
-        res.redirect( '/Todo' );
+  router.get('/destroy/:id', function(req, res) {
+    Todo.findById(req.params.id, function(err, todo) {
+      todo.remove(function(err, todo) {
+        res.redirect('/Todo');
       });
     });
   });
-  router.get('/edit/:id', function(req, res){
-    Todo.find( function ( err, todos ){
-      res.render( 'edit', {
-          title   : 'Express Todo Example',
-          todos   : todos,
-          current : req.params.id
+  router.get('/edit/:id', function(req, res) {
+    Todo.find(function(err, todos) {
+      res.render('edit', {
+        title: 'Express Todo Example',
+        todos: todos,
+        current: req.params.id
       });
     });
   });
-  router.post( '/update/:id', function(req, res){
-    Todo.findById( req.params.id, function ( err, todo ){
-      todo.content    = req.body.content;
+  router.post('/update/:id', function(req, res) {
+    Todo.findById(req.params.id, function(err, todo) {
+      todo.content = req.body.content;
       todo.updated_at = Date.now();
-      todo.save( function ( err, todo, count ){
-        res.redirect( '/Todo' );
+      todo.save(function(err, todo, count) {
+        res.redirect('/Todo');
       });
     });
   });
@@ -421,10 +447,11 @@ function isLoggedIn(req, res, next) {
 
   return next();
 }
-function isAdmin(req, res, next){
-  if (req.isAuthenticated()){
-    console.log('log:'+req.user.local);
-    if(req.user.local.accountType==='admin'){
+
+function isAdmin(req, res, next) {
+  if (req.isAuthenticated()) {
+    console.log('log:' + req.user.local);
+    if (req.user.local.accountType === 'admin') {
       return next();
     }
   }
