@@ -10,9 +10,6 @@
 
     <main style="background: #cce8f7;">
         <div class="container-fluid">
-
-            <!--介紹modal  -->
-
             <div style="margin-left:25px;margin-right:25px;">
                 <img src="/campus/default/guide1.png" alt="" width="100%" >
                 <a href="/campus/editMap"><button class="btn btn-success new_building">編輯地圖物件</button></a>
@@ -57,11 +54,10 @@
                     <div id="main-map" style="position:relative;padding:0px;padding-bottom:44.8%;width:80%;float:left; position:relative;">
                         <img src="/campus/default/back2.png"style="position:absolute;" width="100%" alt="">  
                         <%for(var i in map_objs){%>
-                            
-                            <img class="mouse-animate map-build <%= map_objs[i].build_type%>"id="<%= 'mapimg'+ map_objs[i].build_id%>" src="<%= map_objs[i].path%>" alt="<%= map_objs[i].build_name%>" value="<%=map_objs[i].build_id%>" style="
+                            <img class="map-animate map-build <%= map_objs[i].build_type%>"id="<%= 'mapimg'+ map_objs[i].build_id%>" src="<%= map_objs[i].path%>" alt="<%= map_objs[i].build_name%>" value="<%=map_objs[i].build_id%>"  data-toggle="tooltip" title="<%= map_objs[i].build_name%>" data-placement="top" style="
                                 cursor: pointer;
                                 position:absolute;
-                                padding:1vh;
+                                padding:0.5vh;
                                 height:auto;
                                 width:<%= map_objs[i].size+'%'%>;
                                 top:<%= map_objs[i].y_position+'%'%>;

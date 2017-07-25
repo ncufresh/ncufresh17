@@ -8,14 +8,58 @@
         <% include ../layouts/navbar %>
     </header>
 
-    <main>
-      <div class="container">
-
-
-        <div class="jumbotron">
-            <h1>This page is QQ <%= title  %></h1>
-            <p>Welcome to templating using EJS</p>
-        </div>
+    <main style="background: #cce8f7;">
+        <div class="container-fluid">
+            <div style="margin-left:25px;margin-right:25px;">
+                <img src="/campus/default/help1.png" alt="" width="100%" >
+                <a href="/campus/editMap"><button class="btn btn-success new_building">編輯地圖物件</button></a>
+                <div class="row">
+                    <div class="col-xs-6 text-center">
+                        <img class="mouse-animate help-menu" src="/campus/default/help2.png" style="cursor:pointer; padding:1vh; vertical-align: middle;" width="60%" alt="SOS">
+                    </div>
+                    <div class="col-xs-6 text-center">
+                        <img class="mouse-animate help-menu" src="/campus/default/help3.png" style="cursor:pointer; padding:1vh; vertical-align: middle;" width="60%" alt="AED">
+                    </div>
+                </div>
+                <div class="row" style="position:relative;">
+                    <div id="main-map" style="position:relative;padding:0px;padding-bottom:50.4%;width:90%;left:5%;float:left; position:relative;">
+                        <img src="/campus/default/back2.png"style="position:absolute;" width="100%" alt="">  
+                        <%for(var i in map_objs){%>
+                            <img class="map-animate map-build <%= map_objs[i].SOS?'SOS':''%> <%= map_objs[i].AED?'AED':''%>"id="<%= 'mapimg'+ map_objs[i].build_id%>" src="<%= map_objs[i].path%>" alt="<%= map_objs[i].build_name%>" value="<%=map_objs[i].build_id%>"  data-toggle="tooltip" title="<%= map_objs[i].build_name%>" data-placement="top" style="
+                                cursor: pointer;
+                                position:absolute;
+                                padding:0.5vh;
+                                height:auto;
+                                width:<%= map_objs[i].size+'%'%>;
+                                top:<%= map_objs[i].y_position+'%'%>;
+                                left:<%= map_objs[i].x_position+'%'%>;
+                            ">
+                            <%if(map_objs[i].SOS===true){%>
+                                <img class="map-animate map-build SOS" src="/campus/default/SOS1.png" alt="緊急電話" data-toggle="tooltip" title="緊急電話" data-placement="top" style="
+                                    cursor: pointer;
+                                    position:absolute;
+                                    padding:0.5vh;
+                                    height:auto;
+                                    width:3%;
+                                    top:<%= map_objs[i].SOSy+'%'%>;
+                                    left:<%= map_objs[i].SOSx+'%'%>;
+                                ">
+                            <%}%>
+                            <%if(map_objs[i].AED===true){%>
+                                <img class="map-animate map-build AED" src="/campus/default/AED1.png" alt="AED" data-toggle="tooltip" title="AED" data-placement="top" style="
+                                    cursor: pointer;
+                                    position:absolute;
+                                    padding:0.5vh;
+                                    height:auto;
+                                    width:3%;
+                                    top:<%= map_objs[i].AEDy+'%'%>;
+                                    left:<%= map_objs[i].AEDx+'%'%>;
+                                ">
+                            <%}%>
+                        <%}%>
+                    </div>
+                </div>
+            </div>       
         </div>
     </main>
 

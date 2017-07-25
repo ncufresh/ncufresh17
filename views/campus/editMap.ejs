@@ -95,9 +95,15 @@
                                     </div>
                                     <div style="position:relative;width:100%;padding-bottom:56%">
                                         <img src="/campus/default/back2.png" id="editmap" width="100%" alt="" style="position:absolute;">
-                                        <img class="draggable" src="" alt="" id="building_img" style="position:absolute; padding:1vh">
+                                        <img class="draggable" src="" alt="" id="building_img" style="position:absolute; padding:0.5vh">
+                                        <img class="draggable" src="/campus/default/SOS1.png" alt="" id="SOSimg" style="display:none;position:absolute;width:3%;">
+                                        <img class="draggable" src="/campus/default/AED1.png" alt="" id="AEDimg" style="display:none;position:absolute;width:3%;">
                                     </div>
                                     <input type="hidden" name="mapObj_id" id="mapObj_id">
+                                    <input type="hidden" name="SOSx" id="SOSx">
+                                    <input type="hidden" name="SOSy" id="SOSy">
+                                    <input type="hidden" name="AEDx" id="AEDx">
+                                    <input type="hidden" name="AEDy" id="AEDy">
                                     <button type="submit" name="button" value="edit" class="btn btn-primary" >送出</button>
                                 </form>
                             </div>
@@ -110,7 +116,7 @@
 
                 <h1><%= title  %></h1>
                 <button class="btn btn-success" data-toggle="modal" data-target="#add_mapObj_modal">新增地圖物件</button>
-                <a href="/campus/guide"><button class="btn btn-success">回前頁</button></a>
+                <button class="btn btn-success" onclick="history.back()">回前頁</button>
 
                 <table class="table table-hover">
                     <thead>
@@ -127,18 +133,30 @@
 
                     <tbody>
                     <% for(var i in map_objs){ %>
-                        <tr class = "mapObj_table" value="<%= map_objs[i]._id %>" id="<%='mapObj'+ map_objs[i]._id %>">
-                            <td></td>
-                            <td class="build_name"><p><%= map_objs[i].build_name %></p></td>
-                            <td class="build_img"><img src="<%= map_objs[i].path %>" width="100%"></img></td>
-                            <td class="build_x"><p><%= map_objs[i].x_position %></p></td>
-                            <td class="build_y"><p><%= map_objs[i].y_position %></p></td>
-                            <td class="build_size"><p><%= map_objs[i].size %></p></td>
-                            <td>
-                                <button class="btn btn-default btn-xs edit_mapObj" value="<%= map_objs[i].id%>">編輯</button>
-                                <button class="btn btn-danger btn-xs delete_mapObj" value="<%= map_objs[i].id%>"><i class="fa fa-trash-o fa-lg"></i> 刪除</button>
-                            </td>
-                        </tr>
+                        <%if(map_objs[i].build_type!="SOS"&&map_objs[i].build_type!="AED"){%>
+                            <tr class = "mapObj_table" value="<%= map_objs[i]._id %>" id="<%='mapObj'+ map_objs[i]._id %>">
+                                <td></td>
+                                <td class="build_name"><p><%= map_objs[i].build_name %></p></td>
+                                <td class="build_img"><img src="<%= map_objs[i].path %>" width="100%"></img></td>
+                                <td class="build_x"><p><%= map_objs[i].x_position %></p></td>
+                                <td class="build_y"><p><%= map_objs[i].y_position %></p></td>
+                                <td class="build_size"><p><%= map_objs[i].size %></p></td>
+                                <td class="build_SOS" style="display:none"><%= map_objs[i].SOS %></td>
+                                <td class="build_AED" style="display:none"><%= map_objs[i].AED %></td>
+                                <%if(map_objs[i].SOS){%>
+                                    <td class="build_SOSx" style="display:none"><%= map_objs[i].SOSx %></td>
+                                    <td class="build_SOSy" style="display:none"><%= map_objs[i].SOSy %></td>
+                                <%}%>
+                                <%if(map_objs[i].AED){%>
+                                    <td class="build_AEDx" style="display:none"><%= map_objs[i].AEDx %></td>
+                                    <td class="build_AEDy" style="display:none"><%= map_objs[i].AEDy %></td>
+                                <%}%>
+                                <td>
+                                    <button class="btn btn-default btn-xs edit_mapObj" value="<%= map_objs[i].id%>">編輯</button>
+                                    <button class="btn btn-danger btn-xs delete_mapObj" value="<%= map_objs[i].id%>"><i class="fa fa-trash-o fa-lg"></i> 刪除</button>
+                                </td>
+                            </tr>
+                        <%}%>
                     <% } %>
                     </tbody>
                 </table>

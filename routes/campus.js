@@ -46,7 +46,36 @@ router.get('/guide', function (req, res, next) {
 });
 
 router.get('/help', function (req, res, next) {
-	res.render('campus/help', { user: req.user, title: '校園防災' });
+	map_obj.find({}).exec(function(err,map_objs){
+		building.find({}).sort({ type: 1 }).exec(function(err,buildings){
+			var dep=[],work=[],sport=[],point=[],food=[],home=[];
+			for(var i=0;i<buildings.length;i++){
+				if(buildings[i].type==="系館")
+					dep[dep.length]=buildings[i];
+				else if(buildings[i].type==="行政")
+					work[work.length]=buildings[i];
+				else if(buildings[i].type==="運動")
+					sport[sport.length]=buildings[i];
+				else if(buildings[i].type==="中大景點")
+					point[point.length]=buildings[i];
+				else if(buildings[i].type==="飲食")
+					food[food.length]=buildings[i];
+				else if(buildings[i].type==="住宿")
+					home[home.length]=buildings[i];
+			}
+			res.render('campus/help', {
+				user: req.user,
+				title: '校園地圖' ,
+				map_objs: map_objs,
+				dep: dep,
+				work: work,
+				sport: sport,
+				point: point,
+				food: food,
+				home: home
+			});
+		})
+	})
 });
 
 router.get('/newData', function (req, res, next) {
@@ -99,13 +128,19 @@ router.get('/delete_img/:id', function (req, res, next) {
 router.get('/delete_mapObj/:id', function (req, res, next) {
 	console.log(req.params.id);
 	map_obj.findById(req.params.id, function (err, data) {
-		fs.unlink('./public/campus/' + data.fileName, function (e) {
-			if (e) console.log(e);
-			else {
-				map_obj.findById(req.params.id).remove().exec();
-			}
+		if(data.build_type==="SOS"||data.build_type==="AED"){
+			map_obj.findById(req.params.id).remove().exec();
 			res.redirect('/campus/editMap');
-		});
+		}
+		else{
+			fs.unlink('./public/campus/' + data.fileName, function (e) {
+				if (e) console.log(e);
+				else {
+					map_obj.findById(req.params.id).remove().exec();
+				}
+				res.redirect('/campus/editMap');
+			});
+		}
 	});
 });
 
@@ -176,6 +211,8 @@ router.post('/newMapObj', function (req, res, next) {
 					build_name: data.name,
 					build_type: data.type,
 					build_id: fields.map_obj_id,
+					SOS: data.SOS,
+					AED: data.AED,
 					path: '/campus/' + fileName,
 					fileName: fileName,
 					x_position: fields.x_position,
@@ -193,14 +230,42 @@ router.post('/newMapObj', function (req, res, next) {
 		});
 	}
 	else{
-		map_obj.update({_id:req.body.mapObj_id},{
-			x_position: req.body.x_position,
-			y_position: req.body.y_position,
-			size: req.body.size
-		},function(e){
-			if(e) console.log(e);
-			res.redirect('/campus/editMap');
-		});
+		map_obj.findById(req.body.mapObj_id,function(err,data){
+			building.findById(data.build_id,function(err,build){
+				map_obj.update({_id:req.body.mapObj_id},{
+					$set: {
+						x_position: req.body.x_position,
+						y_position: req.body.y_position,
+						size: req.body.size,
+						SOS: build.SOS,
+						AED: build.AED
+					}
+				},function(e){
+					if(e) console.log(e);
+				});
+				if(data.SOS===true){
+					map_obj.update({_id:req.body.mapObj_id},{
+						$set: {
+							SOSx: req.body.SOSx,
+							SOSy: req.body.SOSy,
+						}
+					},function(e){
+						if(e) console.log(e);
+					});
+				}
+				if(data.AED===true){
+					map_obj.update({_id:req.body.mapObj_id},{
+						$set: {
+							AEDx: req.body.AEDx,
+							AEDy: req.body.AEDy,
+						}
+					},function(e){
+						if(e) console.log(e);
+					});
+				}
+			})
+		})
+		res.redirect('/campus/editMap');
 	}
 });
 
