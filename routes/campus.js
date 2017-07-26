@@ -217,7 +217,7 @@ router.post('/newMapObj', function (req, res, next) {
 					fileName: fileName,
 					x_position: fields.x_position,
 					y_position: fields.y_position,
-					size: 1
+					size: 8
 				}).save(function(){
 					res.redirect('/campus/editMap');
 				});
