@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 });
 router.get('/life', function(req, res, next) {
 	video.find({}).exec(function(err,video){
-		var foodURL,housingURL,transportationURL,educationURL,entertainmentURL;
+		var foodURL,housingURL,transportationURL,educationURL,entertainmentURL,l1,l2,l3,l4,l5;
 		for (var i in video){
 			if(video[i].type=="food"){
     			foodURL=video[i].insert
@@ -29,6 +29,21 @@ router.get('/life', function(req, res, next) {
 			else if(video[i].type=="entertainment"){
     			entertainmentURL=video[i].insert
 			}
+			else if(video[i].type=="l1"){
+				l1=video[i].insert
+			}
+			else if(video[i].type=="l2"){
+				l2=video[i].insert
+			}
+			else if(video[i].type=="l3"){
+				l3=video[i].insert
+			}
+			else if(video[i].type=="l4"){
+				l4=video[i].insert
+			}
+			else if(video[i].type=="l5"){
+				l5=video[i].insert
+			}
 		}
 		res.render('video/life', 
 		{
@@ -39,7 +54,12 @@ router.get('/life', function(req, res, next) {
 			housingURL: housingURL,
 			transportationURL: transportationURL,
 			educationURL: educationURL,
-			entertainmentURL: entertainmentURL
+			entertainmentURL: entertainmentURL,
+			l1: l1,
+			l2: l2,
+			l3: l3,
+			l4: l4,
+			l5: l5
 		});
 	});
 });
