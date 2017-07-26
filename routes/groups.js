@@ -53,6 +53,11 @@ router.get('/all_club', function(req, res, next) {
 });
 });
 
+router.get('/delete_de/:id', function (req, res, next) {
+	department.findById(req.params.id).remove().exec();
+	res.redirect('/groups/all_department');
+});
+
 router.post('/add_de', function(req, res, next) {
 	department({
 		type:req.body.type,
@@ -75,8 +80,32 @@ router.post('/add_club', function(req, res, next) {
 		introduction:req.body.introduction
 	}).save(function(err, doc){
 		if(err)res.json(err);
-		else   res.redirect('/groups/all_club');;
+		else   res.redirect('/groups/all_club');
 	});
+});
+
+router.post('/edit_de',function(req,res,next){
+  department.update({_id:req.body.id},{
+  	type:req.body.type,
+  	name:req.body.name,
+    introduction:req.body.introduction,
+    organization:req.body.organization,
+    activity:req.body.activity,
+    team:req.body.team,
+    course:req.body.course
+      },function(err){
+        if(err)
+          console.log(err);
+      });
+  console.log(req.body.id);
+  console.log(req.body.type);
+  console.log(req.body.name);
+  console.log(req.body.introduction);
+  console.log(req.body.organization);
+  console.log(req.body.activity);
+  console.log(req.body.team);
+  console.log(req.body.course);
+  res.redirect('/groups/all_department');
 });
 
 

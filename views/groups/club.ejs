@@ -8,12 +8,9 @@
         <% include ../layouts/navbar %>
     </header>
 
-    <main>
+    <main style="background-color:rgb(225,192,0)">
       <div class="container">
-
-
-        <div class="jumbotron">
-            <h1>社團</h1>
+            <h1 style="font-size: 100px;">社團</h1>
             <hr size="8px" align="center" width="100%">
             <ul class="breadcrumb">
               <li><a href="/groups">系所社團</a> <span class="divider"></span></li>
@@ -62,10 +59,10 @@
               </div> 
             </div>
 
-            <button type="button" style="position:relative;left:130px" onclick="self.location.href='/groups/all_club?club=learn'"><img src="e1.png"></button>
-            <button type="button" style="position:relative;left:180px" onclick="self.location.href='/groups/all_club?club=play'"><img src="e2.png"></button>
-            <button type="button" style="position:relative;left:230px" onclick="self.location.href='/groups/all_club?club=love'"><img src="e3.png"></button>
-            <button type="button" style="position:relative;left:280px" onclick="self.location.href='/groups/all_club?club=service'"><img src="e4.png"></button>
+            <a href="/groups/all_club?club=learn" style="position:relative;left:130px;padding:4vh"><img src="e1.png"></a>
+            <a href="/groups/all_club?club=play" style="position:relative;left:130px;padding:4vh"><img src="e2.png"></a>
+            <a href="/groups/all_club?club=love" style="position:relative;left:130px;padding:4vh"><img src="e3.png"></a>
+            <a href="/groups/all_club?club=service" style="position:relative;left:130px;padding:4vh"><img src="e4.png"></a>
             </div>
         </div>
     </main>
