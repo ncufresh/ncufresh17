@@ -14,120 +14,48 @@
       };
     </script>
     <script type="text/javascript">
-    //for (var i in life){
-    //  if ( life[i].type == "food"){
-    //    $("#life[i].id").onclick(function(){
-    //      $("#subtitle").css({"display":"block"}).animate({opacity: '1'}, 200;
-    //    });
-    //  }
-    //}
-    </script>
-    <script type="text/javascript">
-    var foodtoggle = dormtoggle = traffictoggle = studytoggle = entertainmenttoggle = true;
     $(document).ready(function(){
-    //  $("#life-navigate-1,#life-navigate-2,#life-navigate-3,#life-navigate-4,#life-navigate-5").mouseover(function(){
-    //      $(this).animate({padding: '0px'}, 300);
+      $('.edit_life').click(function(){
+          var id = $(this).val();
+          $.ajax({
+              url:  "/life/"+id,
+              error: function(e){
+                  console.log("ERR  :"+e);
+              },
+              success: function(data){
+                  $("#name").val(data.name);
+                  $("#type").val(data.type);
+                  CKEDITOR.instances['introduction'].setData(data.introduction);
+                  $("#btn_save").val("update");
+                  $("#add_life").modal("show");
+              }
+
+          });
+      });
+    //  $('.delete_build').click(function(){
+    //      if(confirm("確定要刪除?")){
+    //          var id = $(this).val();
+    //          $.ajax({
+    //              url:    '/campus/delete/'+ id,
+    //              type:   'GET',
+    //              error: function(e){
+    //                  console.log("ERR  :"+e);
+    //              },
+    //              success: function(data){
+    //                  $('#b'+ id).remove();
+    //              }
+    //          });
+    //      }
     //  });
-    //  $("#life-navigate-1,#life-navigate-2,#life-navigate-3,#life-navigate-4,#life-navigate-5").mouseout(function(){
-    //      $(this).animate({padding: '2vw'}, 300);
-    //  });
+
       $("#life-navigate-1").click(function(){
-        //if(foodtoggle == true){
-        //    foodtoggle = -foodtoggle;
-      //      dormtoggle = traffic = studytoggle = entertainmenttoggle = true;
-        //    $("#food-video").css({"display":"block"});
-      //      $("#dorm-video").css({"display":"none"});
-      //      $("#traffic-video").css({"display":"none"});
-      //      $("#study-video").css({"display":"none"});
-      //      $("#entertainment-video").css({"display":"none"});
-      //      $("#food-video").html('<iframe src="https://www.youtube.com/embed/3DEkF2uvPoc?ecver=2" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe>');
-      //      $("#life-navigate-2,#life-navigate-3,#life-navigate-4,#life-navigate-5").animate({opacity: '0.3'}, 200);
-      //      $("#life-navigate-1,#life-navigate-back").animate({opacity: '1.0'}, 200);
-      //      $("#food-mainpan").slideToggle(1200);
-      //      $("#food-mainpan").css({"display":"block"});
-      //      $("#dorm-mainpan,#traffic-mainpan,#study-mainpan,#entertainment-mainpan").slideUp(10000).css({"display":"none"});
-      //  }
-      //  else{
-      //      foodtoggle = -foodtoggle;
-      //      $("#food-video").css({"display":"none"});
-      //      $("#life-navigate-1,#life-navigate-2,#life-navigate-3,#life-navigate-4,#life-navigate-5").animate({opacity: '1'}, 200);
-      //      $("#life-navigate-back").animate({opacity: '0.0'}, 200);
-      //      $("#food-mainpan").slideToggle(1200);
-      //      $("#food-pan1,#food-pan2,#food-pan3,#food-pan4,#food-pan5,#food-pan6,#food-pan7").css({"opacity":"0.3"});
-      //}
     });
       $("#life-navigate-2").click(function(){
-        if(dormtoggle == true){
-            dormtoggle = -dormtoggle;
-            foodtoggle = traffictoggle = studytoggle = entertainmenttoggle = true;
-            $("#food-video").css({"display":"none"});
-            $("#dorm-video").css({"display":"block"});
-            $("#traffic-video").css({"display":"none"});
-            $("#study-video").css({"display":"none"});
-            $("#entertainment-video").css({"display":"none"});
-            $("#dorm-video").html('<iframe src="https://www.youtube.com/embed/ZZ5LpwO-An4?ecver=2" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe>');
-            $("#life-navigate-1,#life-navigate-3,#life-navigate-4,#life-navigate-5").animate({opacity: '0.3'}, 200);
-            $("#life-navigate-2,#life-navigate-back").animate({opacity: '1.0'}, 200);
-            $("#dorm-mainpan").slideToggle(1200);
-            $("#dorm-mainpan").css({"display":"block"});
-            $("#food-mainpan,#traffic-mainpan,#study-mainpan,#entertainment-mainpan").slideUp(10000).css({"display":"none"});
-        }
-        else{
-            dormtoggle = -dormtoggle;
-            $("#dorm-video").css({"display":"none"});
-            $("#life-navigate-1,#life-navigate-2,#life-navigate-3,#life-navigate-4,#life-navigate-5").animate({opacity: '1'}, 200);
-            $("#life-navigate-back").animate({opacity: '0.0'}, 200);
-            $("#dorm-mainpan").slideToggle(1200);
-        }
-        });
+    });
       $("#life-navigate-3").click(function(){
-        if(traffictoggle == true){
-            traffictoggle = -traffictoggle;
-            foodtoggle = dormtoggle = studytoggle = entertainmenttoggle = true;
-            $("#food-video").css({"display":"none"});
-            $("#dorm-video").css({"display":"none"});
-            $("#traffic-video").css({"display":"block"});
-            $("#study-video").css({"display":"none"});
-            $("#entertainment-video").css({"display":"none"});
-            $("#traffic-video").html('<iframe src="https://www.youtube.com/embed/miomuSGoPzI?ecver=2" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe>');
-            $("#life-navigate-1,#life-navigate-2,#life-navigate-4,#life-navigate-5").animate({opacity: '0.3'}, 200);
-            $("#life-navigate-3,#life-navigate-back").animate({opacity: '1.0'}, 200);
-            $("#food-mainpan,#dorm-mainpan,#study-mainpan,#entertainment-mainpan").slideUp(10000).css({"display":"none"});
-            $("#traffic-mainpan").slideToggle(1200);
-            $("#traffic-mainpan").css({"display":"block"});
-        }
-        else{
-            traffictoggle = -traffictoggle;
-            $("#traffic-video").css({"display":"none"});
-            $("#life-navigate-1,#life-navigate-2,#life-navigate-3,#life-navigate-4,#life-navigate-5").animate({opacity: '1'}, 200);
-            $("#life-navigate-back").animate({opacity: '0.0'}, 200);
-            $("#traffic-mainpan").slideToggle(3000);
-        }
-      });
+    });
       $("#life-navigate-4").click(function(){
-        if(studytoggle == true){
-            studytoggle = -studytoggle;
-            foodtoggle = dormtoggle = traffictoggle = entertainmenttoggle = true;
-            $("#food-video").css({"display":"none"});
-            $("#dorm-video").css({"display":"none"});
-            $("#traffic-video").css({"display":"none"});
-            $("#study-video").css({"display":"block"});
-            $("#entertainment-video").css({"display":"none"});
-            $("#traffic-video").html('<iframe src="https://www.youtube.com/embed/FM7MFYoylVs?ecver=2" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe>');
-            $("#life-navigate-1,#life-navigate-2,#life-navigate-3,#life-navigate-5").animate({opacity: '0.3'}, 200);
-            $("#life-navigate-4,#life-navigate-back").animate({opacity: '1.0'}, 200);
-            $("#food-mainpan,#dorm-mainpan,#traffic-mainpan,#entertainment-mainpan").slideUp(10000).css({"display":"none"});
-            $("#study-mainpan").slideToggle(1200);
-            $("#study-mainpan").css({"display":"block"});
-        }
-        else{
-            studytoggle = -studytoggle;
-            $("#study-video").css({"display":"none"});
-            $("#life-navigate-1,#life-navigate-2,#life-navigate-3,#life-navigate-4,#life-navigate-5").animate({opacity: '1'}, 200);
-            $("#life-navigate-back").animate({opacity: '0.0'}, 200);
-            $("#study-mainpan").slideToggle(3000);
-        }
-      });
+    });
       $("#life-navigate-5").click(function(){
         if(entertainmenttoggle == true){
             entertainmenttoggle = -entertainmenttoggle;
@@ -151,159 +79,6 @@
             $("#life-navigate-back").animate({opacity: '0.0'}, 200);
             $("#entertainment-mainpan").slideToggle(1200);
         }
-      });
-      $("#life-navigate-back").click(function(){
-        $("#food-video").css({"display":"none"});
-        $("#dorm-video").css({"display":"none"});
-        $("#traffic-video").css({"display":"none"});
-        $("#study-video").css({"display":"none"});
-        $("#entertainment-video").css({"display":"none"});
-        $("#life-navigate-1,#life-navigate-2,#life-navigate-3,#life-navigate-4,#life-navigate-5").animate({opacity: '1'}, 200);
-        $("#life-navigate-back").animate({opacity: '0.0'}, 200);
-        $("#food-mainpan,#dorm-mainpan,#traffic-mainpan,#study-mainpan,#entertainment-mainpan").slideUp(2000).css({"display":"none"});
-      });
-      $("#food-pan1").mouseover(function(){
-        $("#food-pan1").css({"opacity":"0.7"});
-      });
-      $("#food-pan2").mouseover(function(){
-        $("#food-pan2").css({"opacity":"0.7"});
-      });
-      $("#food-pan3").mouseover(function(){
-        $("#food-pan3").css({"opacity":"0.7"});
-      });
-      $("#food-pan4").mouseover(function(){
-        $("#food-pan4").css({"opacity":"0.7"});
-      });
-      $("#food-pan5").mouseover(function(){
-        $("#food-pan5").css({"opacity":"0.7"});
-      });
-      $("#food-pan6").mouseover(function(){
-        $("#food-pan6").css({"opacity":"0.7"});
-      });
-      $("#food-pan7").mouseover(function(){
-        $("#food-pan7").css({"opacity":"0.7"});
-      });
-    //  $("#food-pan1,#food-pan2,#food-pan3,#food-pan4,#food-pan5,#food-pan6,#food-pan7").mouseout(function(){
-      //    $(this).css({"opacity":"0.3"});
-    //  });
-      $("#food-pan1").click(function(){
-        $("#food-video").css({"display":"none"});
-        $("#food-pan1").css({"opacity":"1.0"});
-        $("#food-pan2").css({"opacity":"0.3"});
-        $("#food-pan3").css({"opacity":"0.3"});
-        $("#food-pan4").css({"opacity":"0.3"});
-        $("#food-pan5").css({"opacity":"0.3"});
-        $("#food-pan6").css({"opacity":"0.3"});
-        $("#food-pan7").css({"opacity":"0.3"});
-        $("#food-pan1-info").css({"display":"block"});
-        $("#food-pan2-info").css({"display":"none"});
-        $("#food-pan3-info").css({"display":"none"});
-        $("#food-pan4-info").css({"display":"none"});
-        $("#food-pan5-info").css({"display":"none"});
-        $("#food-pan6-info").css({"display":"none"});
-        $("#food-pan7-info").css({"display":"none"});
-      });
-      $("#food-pan2").click(function(){
-        $("#food-video").css({"display":"none"});
-        $("#food-pan1").css({"opacity":"0.3"});
-        $("#food-pan2").css({"opacity":"1.0"});
-        $("#food-pan3").css({"opacity":"0.3"});
-        $("#food-pan4").css({"opacity":"0.3"});
-        $("#food-pan5").css({"opacity":"0.3"});
-        $("#food-pan6").css({"opacity":"0.3"});
-        $("#food-pan7").css({"opacity":"0.3"});
-        $("#food-pan1-info").css({"display":"none"});
-        $("#food-pan2-info").css({"display":"block"});
-        $("#food-pan3-info").css({"display":"none"});
-        $("#food-pan4-info").css({"display":"none"});
-        $("#food-pan5-info").css({"display":"none"});
-        $("#food-pan6-info").css({"display":"none"});
-        $("#food-pan7-info").css({"display":"none"});
-      });
-      $("#food-pan3").click(function(){
-        $("#food-video").css({"display":"none"});
-        $("#food-pan1").css({"opacity":"0.3"});
-        $("#food-pan2").css({"opacity":"0.3"});
-        $("#food-pan3").css({"opacity":"1.0"});
-        $("#food-pan4").css({"opacity":"0.3"});
-        $("#food-pan5").css({"opacity":"0.3"});
-        $("#food-pan6").css({"opacity":"0.3"});
-        $("#food-pan7").css({"opacity":"0.3"});
-        $("#food-pan1-info").css({"display":"none"});
-        $("#food-pan2-info").css({"display":"none"});
-        $("#food-pan3-info").css({"display":"block"});
-        $("#food-pan4-info").css({"display":"none"});
-        $("#food-pan5-info").css({"display":"none"});
-        $("#food-pan6-info").css({"display":"none"});
-        $("#food-pan7-info").css({"display":"none"});
-      });
-      $("#food-pan4").click(function(){
-        $("#food-video").css({"display":"none"});
-        $("#food-pan1").css({"opacity":"0.3"});
-        $("#food-pan2").css({"opacity":"0.3"});
-        $("#food-pan3").css({"opacity":"0.3"});
-        $("#food-pan4").css({"opacity":"1.0"});
-        $("#food-pan5").css({"opacity":"0.3"});
-        $("#food-pan6").css({"opacity":"0.3"});
-        $("#food-pan7").css({"opacity":"0.3"});
-        $("#food-pan1-info").css({"display":"none"});
-        $("#food-pan2-info").css({"display":"none"});
-        $("#food-pan3-info").css({"display":"none"});
-        $("#food-pan4-info").css({"display":"block"});
-        $("#food-pan5-info").css({"display":"none"});
-        $("#food-pan6-info").css({"display":"none"});
-        $("#food-pan7-info").css({"display":"none"});
-      });
-      $("#food-pan5").click(function(){
-        $("#food-video").css({"display":"none"});
-        $("#food-pan1").css({"opacity":"0.3"});
-        $("#food-pan2").css({"opacity":"0.3"});
-        $("#food-pan3").css({"opacity":"0.3"});
-        $("#food-pan4").css({"opacity":"0.3"});
-        $("#food-pan5").css({"opacity":"1.0"});
-        $("#food-pan6").css({"opacity":"0.3"});
-        $("#food-pan7").css({"opacity":"0.3"});
-        $("#food-pan1-info").css({"display":"none"});
-        $("#food-pan2-info").css({"display":"none"});
-        $("#food-pan3-info").css({"display":"none"});
-        $("#food-pan4-info").css({"display":"none"});
-        $("#food-pan5-info").css({"display":"block"});
-        $("#food-pan6-info").css({"display":"none"});
-        $("#food-pan7-info").css({"display":"none"});
-      });
-      $("#food-pan6").click(function(){
-        $("#food-video").css({"display":"none"});
-        $("#food-pan1").css({"opacity":"0.3"});
-        $("#food-pan2").css({"opacity":"0.3"});
-        $("#food-pan3").css({"opacity":"0.3"});
-        $("#food-pan4").css({"opacity":"0.3"});
-        $("#food-pan5").css({"opacity":"0.3"});
-        $("#food-pan6").css({"opacity":"1.0"});
-        $("#food-pan7").css({"opacity":"0.3"});
-        $("#food-pan1-info").css({"display":"none"});
-        $("#food-pan2-info").css({"display":"none"});
-        $("#food-pan3-info").css({"display":"none"});
-        $("#food-pan4-info").css({"display":"none"});
-        $("#food-pan5-info").css({"display":"none"});
-        $("#food-pan6-info").css({"display":"block"});
-        $("#food-pan7-info").css({"display":"none"});
-      });
-      $("#food-pan7").click(function(){
-        $("#food-video").css({"display":"none"});
-        $("#food-pan1").css({"opacity":"0.3"});
-        $("#food-pan2").css({"opacity":"0.3"});
-        $("#food-pan3").css({"opacity":"0.3"});
-        $("#food-pan4").css({"opacity":"0.3"});
-        $("#food-pan5").css({"opacity":"0.3"});
-        $("#food-pan6").css({"opacity":"0.3"});
-        $("#food-pan7").css({"opacity":"1.0"});
-        $("#food-pan1-info").css({"display":"none"});
-        $("#food-pan2-info").css({"display":"none"});
-        $("#food-pan3-info").css({"display":"none"});
-        $("#food-pan4-info").css({"display":"none"});
-        $("#food-pan5-info").css({"display":"none"});
-        $("#food-pan6-info").css({"display":"none"});
-        $("#food-pan7-info").css({"display":"block"});
       });
     });
     </script>

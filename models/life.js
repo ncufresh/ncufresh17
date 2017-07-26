@@ -10,6 +10,12 @@ var life = mongoose.Schema({
     name        : String,
     type        : String,
     introduction: String,
+    img_path1   : String,
+    fileName1   : String,
+    img_path2   : String,
+    fileName2   : String,
+    img_path3   : String,
+    fileName3   : String
 });
 
 module.exports = mongoose.model( 'life', life );

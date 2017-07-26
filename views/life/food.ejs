@@ -36,6 +36,11 @@
   font-family: "CSong3HK Medium", Georgia, Serif;
   text-align: center;
 }
+.img-view{
+  display:none;
+  width:35vw;
+  height:40vw;
+}
 content{
   background-color: #9fc8e3;
   background-position: left top;
@@ -55,33 +60,43 @@ content-text{
 
     <main style="background-color: #EBF2D2">
       <div class="container">
-          <div>
-              <h1 class="text-center">中大生活</h1>
-          </div>
-          <hr size="8px" align="center" width="100%">
-          <div class="row container" id="food">
-            <div class="col-xs-3">
-              <% for (var i in life){ %>
-                  <% if ( life[i].type == "food"){ %>
-                    <div class="btntitle" target_id="<%=life[i].id%>">
-                      <div class="title">
-                        <p class="title-text"><%= life[i].name %></p>
-                      </div>
+        <div>
+          <h1 class="text-center">中大生活</h1>
+        </div>
+        <ul class="breadcrumb" style="background-color: #EBF2D2">
+          <li><a href="/life">中大生活</a> <span class="divider"></span></li>
+          <li class="active">食</li>
+        </ul>
+        <hr size="8px" align="center" width="100%">
+        <div class="row container" id="food">
+          <div class="col-xs-3">
+            <% for (var i in life){ %>
+                <% if ( life[i].type == "food"){ %>
+                  <div class="btntitle" target_id="<%=life[i].id%>">
+                    <div class="title">
+                      <p class="title-text"><%= life[i].name %></p>
                     </div>
-                  <%}%>
-              <%}%>
-            </div>
-            <div class="col-xs-5">
-              <% for (var i in life){ %>
-                  <% if ( life[i].type == "food"){ %>
-                    <div id="subtitle<%=life[i].id%>"class="subtitle">
-                      <p class="subtitle-text"><%= life[i].name %></p>
-                    </div>
-                  <%}%>
-              <%}%>
-            </div>
-            <div class="col-xs-4"></div>
+                  </div>
+                <%}%>
+            <%}%>
           </div>
+          <div class="col-xs-5">
+            <% for (var i in life){ %>
+                <% if ( life[i].type == "food"){ %>
+                  <div id="subtitle<%=life[i].id%>" class="subtitle">
+                    <p class="subtitle-text"><%= life[i].name %></p>
+                  </div>
+                  <div id="img-view<%=life[i].id%>" class="img-view">
+                  <img src="<%= life[i].img_path1 %>"></img>
+                  <img src="<%= life[i].img_path2 %>"></img>
+                  <img src="<%= life[i].img_path3 %>"></img>
+                  </div>
+                <%}%>
+            <%}%>
+          </div>
+          <div class="col-xs-4">
+          </div>
+        </div>
       </div>
     </main>
 
@@ -96,7 +111,9 @@ content-text{
             $('.btntitle').on('click',function(){
               var id = $(this).attr('target_id');
               $('.subtitle').hide();
+              $('.img-view').hide();
               $('#subtitle'+id).fadeIn();
+              $('#img-view'+id).fadeIn();
             });
           })
         </script>

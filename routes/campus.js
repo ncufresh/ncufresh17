@@ -299,7 +299,7 @@ router.post('/imgUpload', function (req, res, next) {
 		//   }
 		// });
 
-		var readStream = fs.createReadStream(tmpPath)
+		var readStream = fs.createReadStream(tmpPath);
 		var writeStream = fs.createWriteStream(targetPath);
 		var a = new img_list({
 			build_id: fields.imgid,
