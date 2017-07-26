@@ -2,6 +2,11 @@
 <html lang="en">
 <head>
     <% include ../layouts/head %>
+    <style>
+    h1 {font-size: 50px;}
+    h4 {font-size: 30px;}
+    h5 {font-size: 20px;}
+    </style>
 </head>
 <body>
     <header>
@@ -10,7 +15,7 @@
     <main>
         <div class="container">
           <br>
-          <div class="jumbotron">
+          
               <div class="container">
 
                 <ul id="de_tabs" class="nav nav-tabs">
@@ -25,6 +30,67 @@
                   <li><a data-toggle="tab" href="#space">太空及遙測學位中心</a></li>
                 </ul>
 
+                  <!-- edit model -->
+                  <div class="modal fade" id="edit_de" role="dialog">
+                    <div class="modal-dialog modal-lg">
+
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h4 style="color:red;">修改系所</h4>
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                          <form action="/groups/edit_de" method="post" accept-charset="utf-8">
+                            <div class="form-group">
+                              <label for="type" class="form-control">系所學院</label>
+                              <select name="type" id="type" class="form-control">
+                                          <option value="literature">文學院</option>
+                                          <option value="science">理學院</option>
+                                          <option value="management">管理學院</option>
+                                          <option value="engineering">工學院</option>
+                                          <option value="ceecs">資訊電機學院</option>
+                                          <option value="earth">地球科學學院</option>
+                                          <option value="hikka">客家學院</option>
+                                          <option value="chst">生醫理工學院</option>
+                                          <option value="space">太空及遙測學位中心</option>
+                              </select>
+                            </div>
+                            <div class="form-group">
+                              <label for="name" class="form-control">系所名稱</label>
+                              <input type="text" class="form-control" id="name" name="name" placeholder="資訊管理學系">
+                            </div>
+                            <div class="form-group">
+                              <label for="introduction" class="form-control">系所介紹</label>
+                              <textarea name="introduction" id="introduction"></textarea></br>
+                            </div>
+                            <div class="form-group">
+                              <label for="organization" class="form-control">系學會</label>
+                              <textarea name="organization" id="organization"></textarea></br>
+                            </div>
+                            <div class="form-group">
+                              <label for="activity" class="form-control">系所活動</label>
+                              <textarea name="activity" id="activity"></textarea></br>
+                            </div>
+                            <div class="form-group">
+                              <label for="team" class="form-control">系隊</label>
+                              <textarea name="team" id="team"></textarea></br>
+                            </div>
+                            <div class="form-group">
+                              <label for="course" class="form-control">系上課程</label>
+                              <textarea name="course" id="course"></textarea></br>
+                            </div>
+                            <button type="submit" class="btn btn-default btn-success btn-block" style="width:100px;height:30px;text-align:center;">update</button>
+                          </form>
+                        </div>
+
+                        <div class="modal-footer">
+                          <button type="submit" class="btn btn-default" data-dismiss="modal" style="width:120px;height:30px;text-align:left;">cancel</button>
+                        </div>
+                      </div>
+                  </div> 
+                </div>
+
                   <div class="tab-content">
                   <div id="literature" class="tab-pane fade">
                   <ul class="breadcrumb">
@@ -38,28 +104,56 @@
                         <% for (var i in department){%>
                             <% if ( department[i].type == "literature"){ %>
                                     <img data-toggle="modal" data-target="#<%- department[i].id%>" src="01文圖標.png"/>
-                                    <p><%= department[i].name %></p>
+                                    <h5><%- department[i].name %></h5>
                                       <!-- Modal -->
-                                      <div class="modal fade" id="<%=department[i].id%>" role="dialog">
-                                        <div class="modal-dialog">
+                                      <div class="modal fade" id="<%-department[i].id%>" role="dialog">
+                                        <div class="modal-dialog modal-lg">
                                         <!-- Modal content-->
                                           <div class="modal-content">
                                             <div class="modal-header">
                                               <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                              <h1 class="modal-title"><%= department[i].name %></h1>
+                                              <h1 class="modal-title"><%- department[i].name %></h1>
                                             </div>
                                             <div class="modal-body">
-                                              <p>系所介紹:<%= department[i].introduction %></p>
-                                              <p>系學會:<%= department[i].organization %></p>
-                                              <p>系所活動:<%= department[i].activity %></p>
-                                              <p>系隊:<%= department[i].team %></p>
-                                              <p>系上課程:<%= department[i].course %></p>
-                                            </div>
+                                              <div class="container">
+                                              <ul class="nav nav-pills nav-stacked col-md-2">
+                                                <li class="active"><a href="#tab_a" data-toggle="pill">系所介紹</a></li>
+                                                <li><a href="#tab_b" data-toggle="pill">系學會</a></li>
+                                                <li><a href="#tab_c" data-toggle="pill">系所活動</a></li>
+                                                <li><a href="#tab_d" data-toggle="pill">系隊</a></li>
+                                                <li><a href="#tab_e" data-toggle="pill">系上課程</a></li>
+                                              </ul>
+                                              <div class="tab-content col-md-10">
+                                                      <div class="tab-pane active" id="tab_a">
+                                                          <h4>系所介紹</h4>
+                                                          <p><%- department[i].introduction %></p>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_b">
+                                                          <h4>系學會</h4>
+                                                          <p><%- department[i].organization %></p>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_c">
+                                                          <h4>系所活動</h4>
+                                                          <p><%- department[i].activity %></p>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_d">
+                                                          <h4>系隊</h4>
+                                                          <p><%- department[i].team %></p>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_e">
+                                                          <h4>系上課程</h4>
+                                                          <p><%- department[i].course %></p>
+                                                      </div>
+                                              </div><!-- tab content -->
+                                              </div><!-- end of container -->
+                                            </div><!-- body -->
+                                              
                                             <div class="modal-footer">
+                                             <button class="btn btn-default edit_de" value="<%= department[i].id%>" data-toggle="modal">編輯</button>
+                                             <button class="btn btn-default btn-xs delete_de" value="<%= department[i].id%>" data-target="#edit_de" data-dismiss="modal"> 刪除</button>
                                               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                             </div>
                                           </div>
-
                                         </div>
                                       </div>
                             <%}%>
@@ -78,28 +172,56 @@
                         <% for (var i in department){%>
                             <% if ( department[i].type == "science"){ %>
                                     <img data-toggle="modal" data-target="#<%- department[i].id%>" src="02理圖標.png"/>
-                                    <p><%= department[i].name %></p>
+                                    <h5><%- department[i].name %></h5>
                                       <!-- Modal -->
                                       <div class="modal fade" id="<%=department[i].id%>" role="dialog">
-                                        <div class="modal-dialog">
+                                        <div class="modal-dialog modal-lg">
                                         <!-- Modal content-->
                                           <div class="modal-content">
                                             <div class="modal-header">
                                               <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                              <h1 class="modal-title"><%= department[i].name %></h1>
+                                              <h1 class="modal-title"><%- department[i].name %></h1>
                                             </div>
                                             <div class="modal-body">
-                                              <p>系所介紹:<%= department[i].introduction %></p>
-                                              <p>系學會:<%= department[i].organization %></p>
-                                              <p>系所活動:<%= department[i].activity %></p>
-                                              <p>系隊:<%= department[i].team %></p>
-                                              <p>系上課程:<%= department[i].course %></p>
-                                            </div>
+                                              <div class="container">
+                                              <ul class="nav nav-pills nav-stacked col-md-2">
+                                                <li class="active"><a href="#tab_a" data-toggle="pill">系所介紹</a></li>
+                                                <li><a href="#tab_b" data-toggle="pill">系學會</a></li>
+                                                <li><a href="#tab_c" data-toggle="pill">系所活動</a></li>
+                                                <li><a href="#tab_d" data-toggle="pill">系隊</a></li>
+                                                <li><a href="#tab_e" data-toggle="pill">系上課程</a></li>
+                                              </ul>
+                                              <div class="tab-content col-md-10">
+                                                      <div class="tab-pane active" id="tab_a">
+                                                          <h4>系所介紹</h4>
+                                                          <p><%- department[i].introduction %></p>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_b">
+                                                          <h4>系學會</h4>
+                                                          <p><%- department[i].organization %></p>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_c">
+                                                          <h4>系所活動</h4>
+                                                          <p><%- department[i].activity %></p>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_d">
+                                                          <h4>系隊</h4>
+                                                          <p><%- department[i].team %></p>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_e">
+                                                          <h4>系上課程</h4>
+                                                          <p><%- department[i].course %></p>
+                                                      </div>
+                                              </div><!-- tab content -->
+                                              </div><!-- end of container -->
+                                            </div><!-- body -->
+                                          
                                             <div class="modal-footer">
+                                              <button class="btn btn-default edit_de" value="<%= department[i].id%>">編輯</button>
+                                              <button class="btn btn-default btn-xs delete_de" value="<%= department[i].id%>" data-dismiss="modal"> 刪除</button>
                                               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                             </div>
                                           </div>
-
                                         </div>
                                       </div>
                             <%}%>
@@ -118,28 +240,56 @@
                         <% for (var i in department){%>
                             <% if ( department[i].type == "engineering"){ %>
                                     <img data-toggle="modal" data-target="#<%- department[i].id%>" src="03工圖標.png"/>
-                                    <p><%= department[i].name %></p>
+                                    <h5><%- department[i].name %></h5>
                                       <!-- Modal -->
                                       <div class="modal fade" id="<%=department[i].id%>" role="dialog">
-                                        <div class="modal-dialog">
+                                        <div class="modal-dialog modal-lg">
                                         <!-- Modal content-->
                                           <div class="modal-content">
                                             <div class="modal-header">
                                               <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                              <h1 class="modal-title"><%= department[i].name %></h1>
+                                              <h1 class="modal-title"><%- department[i].name %></h1>
                                             </div>
                                             <div class="modal-body">
-                                              <p>系所介紹:<%= department[i].introduction %></p>
-                                              <p>系學會:<%= department[i].organization %></p>
-                                              <p>系所活動:<%= department[i].activity %></p>
-                                              <p>系隊:<%= department[i].team %></p>
-                                              <p>系上課程:<%= department[i].course %></p>
-                                            </div>
+                                              <div class="container">
+                                              <ul class="nav nav-pills nav-stacked col-md-2">
+                                                <li class="active"><a href="#tab_a" data-toggle="pill">系所介紹</a></li>
+                                                <li><a href="#tab_b" data-toggle="pill">系學會</a></li>
+                                                <li><a href="#tab_c" data-toggle="pill">系所活動</a></li>
+                                                <li><a href="#tab_d" data-toggle="pill">系隊</a></li>
+                                                <li><a href="#tab_e" data-toggle="pill">系上課程</a></li>
+                                              </ul>
+                                              <div class="tab-content col-md-10">
+                                                      <div class="tab-pane active" id="tab_a">
+                                                          <h4>系所介紹</h4>
+                                                          <p><%- department[i].introduction %></p>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_b">
+                                                          <h4>系學會</h4>
+                                                          <p><%- department[i].organization %></p>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_c">
+                                                          <h4>系所活動</h4>
+                                                          <p><%- department[i].activity %></p>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_d">
+                                                          <h4>系隊</h4>
+                                                          <p><%- department[i].team %></p>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_e">
+                                                          <h4>系上課程</h4>
+                                                          <p><%- department[i].course %></p>
+                                                      </div>
+                                              </div><!-- tab content -->
+                                              </div><!-- end of container -->
+                                            </div><!-- body -->   
+                                              
                                             <div class="modal-footer">
+                                              <button class="btn btn-default edit_de" value="<%= department[i].id%>">編輯</button>
+                                              <button class="btn btn-default btn-xs delete_de" value="<%= department[i].id%>" data-dismiss="modal"> 刪除</button>
                                               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                             </div>
                                           </div>
-
                                         </div>
                                       </div>
                             <%}%>
@@ -158,10 +308,10 @@
                         <% for (var i in department){%>
                             <% if ( department[i].type == "management"){ %>
                                     <img data-toggle="modal" data-target="#<%- department[i].id%>" src="04管理圖標.png"/>
-                                    <p><%= department[i].name %></p>
+                                    <h5><%= department[i].name %></h5>
                                       <!-- Modal -->
                                       <div class="modal fade" id="<%=department[i].id%>" role="dialog">
-                                        <div class="modal-dialog">
+                                        <div class="modal-dialog modal-lg">
                                         <!-- Modal content-->
                                           <div class="modal-content">
                                             <div class="modal-header">
@@ -169,17 +319,45 @@
                                               <h1 class="modal-title"><%= department[i].name %></h1>
                                             </div>
                                             <div class="modal-body">
-                                              <p>系所介紹:<%= department[i].introduction %></p>
-                                              <p>系學會:<%= department[i].organization %></p>
-                                              <p>系所活動:<%= department[i].activity %></p>
-                                              <p>系隊:<%= department[i].team %></p>
-                                              <p>系上課程:<%= department[i].course %></p>
-                                            </div>
+                                              <div class="container">
+                                              <ul class="nav nav-pills nav-stacked col-md-2">
+                                                <li class="active"><a href="#tab_a" data-toggle="pill">系所介紹</a></li>
+                                                <li><a href="#tab_b" data-toggle="pill">系學會</a></li>
+                                                <li><a href="#tab_c" data-toggle="pill">系所活動</a></li>
+                                                <li><a href="#tab_d" data-toggle="pill">系隊</a></li>
+                                                <li><a href="#tab_e" data-toggle="pill">系上課程</a></li>
+                                              </ul>
+                                              <div class="tab-content col-md-10">
+                                                      <div class="tab-pane active" id="tab_a">
+                                                          <h4>系所介紹</h4>
+                                                          <p><%- department[i].introduction %></p>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_b">
+                                                          <h4>系學會</h4>
+                                                          <p><%- department[i].organization %></p>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_c">
+                                                          <h4>系所活動</h4>
+                                                          <p><%- department[i].activity %></p>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_d">
+                                                          <h4>系隊</h4>
+                                                          <p><%- department[i].team %></p>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_e">
+                                                          <h4>系上課程</h4>
+                                                          <p><%- department[i].course %></p>
+                                                      </div>
+                                              </div><!-- tab content -->
+                                              </div><!-- end of container -->
+                                            </div><!-- body -->    
+                                              
                                             <div class="modal-footer">
+                                              <button class="btn btn-default edit_de" value="<%= department[i].id%>">編輯</button>
+                                              <button class="btn btn-default btn-xs delete_de" value="<%= department[i].id%>" data-dismiss="modal"> 刪除</button>
                                               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                             </div>
                                           </div>
-
                                         </div>
                                       </div>
                             <%}%>
@@ -198,10 +376,10 @@
                         <% for (var i in department){%>
                             <% if ( department[i].type == "ceecs"){ %>
                                     <img data-toggle="modal" data-target="#<%- department[i].id%>" src="05資電圖標.png"/>
-                                    <p><%= department[i].name %></p>
+                                    <h5><%= department[i].name %></h5>
                                       <!-- Modal -->
                                       <div class="modal fade" id="<%=department[i].id%>" role="dialog">
-                                        <div class="modal-dialog">
+                                        <div class="modal-dialog modal-lg">
                                         <!-- Modal content-->
                                           <div class="modal-content">
                                             <div class="modal-header">
@@ -209,17 +387,45 @@
                                               <h1 class="modal-title"><%= department[i].name %></h1>
                                             </div>
                                             <div class="modal-body">
-                                              <p>系所介紹:<%= department[i].introduction %></p>
-                                              <p>系學會:<%= department[i].organization %></p>
-                                              <p>系所活動:<%= department[i].activity %></p>
-                                              <p>系隊:<%= department[i].team %></p>
-                                              <p>系上課程:<%= department[i].course %></p>
-                                            </div>
+                                              <div class="container">
+                                              <ul class="nav nav-pills nav-stacked col-md-2">
+                                                <li class="active"><a href="#tab_a" data-toggle="pill">系所介紹</a></li>
+                                                <li><a href="#tab_b" data-toggle="pill">系學會</a></li>
+                                                <li><a href="#tab_c" data-toggle="pill">系所活動</a></li>
+                                                <li><a href="#tab_d" data-toggle="pill">系隊</a></li>
+                                                <li><a href="#tab_e" data-toggle="pill">系上課程</a></li>
+                                              </ul>
+                                              <div class="tab-content col-md-10">
+                                                      <div class="tab-pane active" id="tab_a">
+                                                          <h4>系所介紹</h4>
+                                                          <p><%- department[i].introduction %></p>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_b">
+                                                          <h4>系學會</h4>
+                                                          <p><%- department[i].organization %></p>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_c">
+                                                          <h4>系所活動</h4>
+                                                          <p><%- department[i].activity %></p>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_d">
+                                                          <h4>系隊</h4>
+                                                          <p><%- department[i].team %></p>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_e">
+                                                          <h4>系上課程</h4>
+                                                          <p><%- department[i].course %></p>
+                                                      </div>
+                                              </div><!-- tab content -->
+                                              </div><!-- end of container -->
+                                            </div><!-- body -->
+                                              
                                             <div class="modal-footer">
+                                              <button class="btn btn-default edit_de" value="<%= department[i].id%>">編輯</button>
+                                              <button class="btn btn-default btn-xs delete_de" value="<%= department[i].id%>" data-dismiss="modal"> 刪除</button>
                                               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                             </div>
                                           </div>
-
                                         </div>
                                       </div>
                             <%}%>
@@ -238,10 +444,10 @@
                         <% for (var i in department){%>
                             <% if ( department[i].type == "earth"){ %>
                                     <img data-toggle="modal" data-target="#<%- department[i].id%>" src="06地科圖標.png"/>
-                                    <p><%= department[i].name %></p>
+                                    <h5><%= department[i].name %></h5>
                                       <!-- Modal -->
                                       <div class="modal fade" id="<%=department[i].id%>" role="dialog">
-                                        <div class="modal-dialog">
+                                        <div class="modal-dialog modal-lg">
                                         <!-- Modal content-->
                                           <div class="modal-content">
                                             <div class="modal-header">
@@ -249,17 +455,45 @@
                                               <h1 class="modal-title"><%= department[i].name %></h1>
                                             </div>
                                             <div class="modal-body">
-                                              <p>系所介紹:<%= department[i].introduction %></p>
-                                              <p>系學會:<%= department[i].organization %></p>
-                                              <p>系所活動:<%= department[i].activity %></p>
-                                              <p>系隊:<%= department[i].team %></p>
-                                              <p>系上課程:<%= department[i].course %></p>
-                                            </div>
+                                              <div class="container">
+                                              <ul class="nav nav-pills nav-stacked col-md-2">
+                                                <li class="active"><a href="#tab_a" data-toggle="pill">系所介紹</a></li>
+                                                <li><a href="#tab_b" data-toggle="pill">系學會</a></li>
+                                                <li><a href="#tab_c" data-toggle="pill">系所活動</a></li>
+                                                <li><a href="#tab_d" data-toggle="pill">系隊</a></li>
+                                                <li><a href="#tab_e" data-toggle="pill">系上課程</a></li>
+                                              </ul>
+                                              <div class="tab-content col-md-10">
+                                                      <div class="tab-pane active" id="tab_a">
+                                                          <h4>系所介紹</h4>
+                                                          <p><%- department[i].introduction %></p>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_b">
+                                                          <h4>系學會</h4>
+                                                          <p><%- department[i].organization %></p>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_c">
+                                                          <h4>系所活動</h4>
+                                                          <p><%- department[i].activity %></p>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_d">
+                                                          <h4>系隊</h4>
+                                                          <p><%- department[i].team %></p>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_e">
+                                                          <h4>系上課程</h4>
+                                                          <p><%- department[i].course %></p>
+                                                      </div>
+                                              </div><!-- tab content -->
+                                              </div><!-- end of container -->
+                                            </div><!-- body -->
+                                              
                                             <div class="modal-footer">
+                                              <button class="btn btn-default edit_de" value="<%= department[i].id%>">編輯</button>
+                                              <button class="btn btn-default btn-xs delete_de" value="<%= department[i].id%>" data-dismiss="modal"> 刪除</button>
                                               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                             </div>
                                           </div>
-
                                         </div>
                                       </div>
                             <%}%>
@@ -278,24 +512,53 @@
                         <% for (var i in department){%>
                             <% if ( department[i].type == "hikka"){ %>
                                     <img data-toggle="modal" data-target="#<%- department[i].id%>" src="07客家圖標.png"/>
-                                    <p><%= department[i].name %></p>
+                                    <h5><%= department[i].name %></h5>
                                       <!-- Modal -->
                                       <div class="modal fade" id="<%=department[i].id%>" role="dialog">
-                                        <div class="modal-dialog">
-                                        <!-- Modal content-->
-                                          <div class="modal-content">
-                                            <div class="modal-header">
-                                              <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                              <h1 class="modal-title"><%= department[i].name %></h1>
-                                            </div>
-                                            <div class="modal-body">
-                                              <p>系所介紹:<%= department[i].introduction %></p>
-                                              <p>系學會:<%= department[i].organization %></p>
-                                              <p>系所活動:<%= department[i].activity %></p>
-                                              <p>系隊:<%= department[i].team %></p>
-                                              <p>系上課程:<%= department[i].course %></p>
-                                            </div>
+                                      <div class="modal-dialog modal-lg">
+                                      <!-- Modal content-->
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h1 class="modal-title"><%= department[i].name %></h1>
+                                          </div>
+                                          <div class="modal-body">
+                                            <div class="container">
+                                            <ul class="nav nav-pills nav-stacked col-md-2">
+                                              <li class="active"><a href="#tab_a" data-toggle="pill">系所介紹</a></li>
+                                              <li><a href="#tab_b" data-toggle="pill">系學會</a></li>
+                                              <li><a href="#tab_c" data-toggle="pill">系所活動</a></li>
+                                              <li><a href="#tab_d" data-toggle="pill">系隊</a></li>
+                                              <li><a href="#tab_e" data-toggle="pill">系上課程</a></li>
+                                            </ul>
+                                            <div class="tab-content col-md-10">
+                                                    <div class="tab-pane active" id="tab_a">
+                                                        <h4>系所介紹</h4>
+                                                        <p><%- department[i].introduction %></p>
+                                                    </div>
+                                                    <div class="tab-pane" id="tab_b">
+                                                        <h4>系學會</h4>
+                                                        <p><%- department[i].organization %></p>
+                                                    </div>
+                                                    <div class="tab-pane" id="tab_c">
+                                                        <h4>系所活動</h4>
+                                                        <p><%- department[i].activity %></p>
+                                                    </div>
+                                                    <div class="tab-pane" id="tab_d">
+                                                        <h4>系隊</h4>
+                                                        <p><%- department[i].team %></p>
+                                                    </div>
+                                                    <div class="tab-pane" id="tab_e">
+                                                        <h4>系上課程</h4>
+                                                        <p><%- department[i].course %></p>
+                                                    </div>
+                                              </div><!-- tab content -->
+                                              </div><!-- end of container -->
+                                            </div><!-- body -->  
+                              
                                             <div class="modal-footer">
+                                              <button class="btn btn-default edit_de" value="<%= department[i].id%>">編輯</button>
+                                              <button class="btn btn-default btn-xs delete_de" value="<%= department[i].id%>" data-dismiss="modal"> 刪除</button>
                                               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                             </div>
                                           </div>
@@ -318,10 +581,10 @@
                         <% for (var i in department){%>
                             <% if ( department[i].type == "chst"){ %>
                                     <img data-toggle="modal" data-target="#<%- department[i].id%>" src="08生醫圖標.png"/>
-                                    <p><%= department[i].name %></p>
+                                    <h5><%= department[i].name %></h5>
                                       <!-- Modal -->
                                       <div class="modal fade" id="<%=department[i].id%>" role="dialog">
-                                        <div class="modal-dialog">
+                                        <div class="modal-dialog modal-lg">
                                         <!-- Modal content-->
                                           <div class="modal-content">
                                             <div class="modal-header">
@@ -329,13 +592,42 @@
                                               <h1 class="modal-title"><%= department[i].name %></h1>
                                             </div>
                                             <div class="modal-body">
-                                              <p>系所介紹:<%= department[i].introduction %></p>
-                                              <p>系學會:<%= department[i].organization %></p>
-                                              <p>系所活動:<%= department[i].activity %></p>
-                                              <p>系隊:<%= department[i].team %></p>
-                                              <p>系上課程:<%= department[i].course %></p>
-                                            </div>
+                                              <div class="container">
+                                              <ul class="nav nav-pills nav-stacked col-md-2">
+                                                <li class="active"><a href="#tab_a" data-toggle="pill">系所介紹</a></li>
+                                                <li><a href="#tab_b" data-toggle="pill">系學會</a></li>
+                                                <li><a href="#tab_c" data-toggle="pill">系所活動</a></li>
+                                                <li><a href="#tab_d" data-toggle="pill">系隊</a></li>
+                                                <li><a href="#tab_e" data-toggle="pill">系上課程</a></li>
+                                              </ul>
+                                              <div class="tab-content col-md-10">
+                                                      <div class="tab-pane active" id="tab_a">
+                                                          <h4>系所介紹</h4>
+                                                          <p><%- department[i].introduction %></p>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_b">
+                                                          <h4>系學會</h4>
+                                                          <p><%- department[i].organization %></p>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_c">
+                                                          <h4>系所活動</h4>
+                                                          <p><%- department[i].activity %></p>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_d">
+                                                          <h4>系隊</h4>
+                                                          <p><%- department[i].team %></p>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_e">
+                                                          <h4>系上課程</h4>
+                                                          <p><%- department[i].course %></p>
+                                                      </div>
+                                              </div><!-- tab content -->
+                                              </div><!-- end of container -->
+                                            </div><!-- body -->
+                                              
                                             <div class="modal-footer">
+                                              <button class="btn btn-default edit_de" value="<%= department[i].id%>">編輯</button>
+                                              <button class="btn btn-default btn-xs delete_de" value="<%= department[i].id%>" data-dismiss="modal"> 刪除</button>
                                               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                             </div>
                                           </div>
@@ -358,10 +650,10 @@
                         <% for (var i in department){%>
                             <% if ( department[i].type == "space"){ %>
                                     <img data-toggle="modal" data-target="#<%- department[i].id%>" src="09太空中心圖標.png"/>
-                                    <p><%= department[i].name %></p>
+                                    <h5><%= department[i].name %></h5>
                                       <!-- Modal -->
                                       <div class="modal fade" id="<%=department[i].id%>" role="dialog">
-                                        <div class="modal-dialog">
+                                        <div class="modal-dialog modal-lg">
                                         <!-- Modal content-->
                                           <div class="modal-content">
                                             <div class="modal-header">
@@ -369,13 +661,41 @@
                                               <h1 class="modal-title"><%= department[i].name %></h1>
                                             </div>
                                             <div class="modal-body">
-                                              <p>系所介紹:<%= department[i].introduction %></p>
-                                              <p>系學會:<%= department[i].organization %></p>
-                                              <p>系所活動:<%= department[i].activity %></p>
-                                              <p>系隊:<%= department[i].team %></p>
-                                              <p>系上課程:<%= department[i].course %></p>
-                                            </div>
+                                              <div class="container">
+                                              <ul class="nav nav-pills nav-stacked col-md-2">
+                                                <li class="active"><a href="#tab_a" data-toggle="pill">系所介紹</a></li>
+                                                <li><a href="#tab_b" data-toggle="pill">系學會</a></li>
+                                                <li><a href="#tab_c" data-toggle="pill">系所活動</a></li>
+                                                <li><a href="#tab_d" data-toggle="pill">系隊</a></li>
+                                                <li><a href="#tab_e" data-toggle="pill">系上課程</a></li>
+                                              </ul>
+                                              <div class="tab-content col-md-10">
+                                                      <div class="tab-pane active" id="tab_a">
+                                                          <h4>系所介紹</h4>
+                                                          <p><%- department[i].introduction %></p>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_b">
+                                                          <h4>系學會</h4>
+                                                          <p><%- department[i].organization %></p>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_c">
+                                                          <h4>系所活動</h4>
+                                                          <p><%- department[i].activity %></p>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_d">
+                                                          <h4>系隊</h4>
+                                                          <p><%- department[i].team %></p>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_e">
+                                                          <h4>系上課程</h4>
+                                                          <p><%- department[i].course %></p>
+                                                      </div>
+                                              </div><!-- tab content -->
+                                              </div><!-- end of container -->
+                                            </div><!-- body -->
                                             <div class="modal-footer">
+                                              <button class="btn btn-default edit_de" value="<%= department[i].id%>">編輯</button>
+                                              <button class="btn btn-default btn-xs delete_de" value="<%= department[i].id%>" data-dismiss="modal"> 刪除</button>
                                               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                             </div>
                                           </div>

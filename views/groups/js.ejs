@@ -3,3 +3,47 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     
     <script src="/javascript/ckeditor/ckeditor.js"></script>
+
+    
+  
+  <script>
+  $(document).ready(function(){
+      $('.delete_de').click(function(){
+          if(confirm("確定要刪除?")){
+              var id = $(this).val();
+              $.ajax({
+                  url:    '/groups/delete_de/'+ id,
+                  type:   'GET',
+                  error: function(e){
+                      console.log("ERR  :"+e);
+                  },
+                  success: function(data){
+                      $('#'+ id).remove();
+                  }
+              });
+          }
+      })
+      $('.edit_de').click(function(){
+        var id = $(this).val();
+        $.ajax({
+            url:    "/groups/edit_de/"+ id,
+            error: function(e){
+                console.log("ERR  :"+e);
+            },
+            success: function(data){
+                $("#bid").val(data._id);
+                $("#name").val(data.name);
+                $("#type").val(data.type);
+                $("#introduction").val(data.introduction);
+                $("#organization").val(data.organization);
+                $("#activity").val(data.activity);
+                $("#team").val(data.team);
+                $("#course").val(data.course);
+                $("#edit_de").val("update");
+                $("#edit_de").modal("show");
+            }
+
+        });
+    })
+  })
+  </script>

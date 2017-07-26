@@ -8,10 +8,9 @@
         <% include ../layouts/navbar %>
     </header>
 
-    <main>
+    <main style="background-color:skyblue;")>
       <div class="container">
-        <div class="jumbotron">
-            <h1>系所</h1>
+            <h1 style="font-size: 100px;">系所</h1>
             <hr size="8px" align="center" width="100%">
             <ul class="breadcrumb">
               <li><a href="/groups">系所社團</a> <span class="divider"></span></li>
@@ -80,16 +79,17 @@
               </div> 
             </div>
 
-            <button type="button" id="literature" style="position:relative;left:30px" onclick="self.location.href='/groups/all_department?dep=literature'"><img src="d1.png"></button>
-            <button type="button" id="science" style="position:relative;left:60px" onclick="self.location.href='/groups/all_department?dep=science'"><img src="d2.png"></button>
-            <button type="button" id="engineering" style="position:relative;left:90px" onclick="self.location.href='/groups/all_department?dep=engineering'"><img src="d3.png"></button>
-            <button type="button" id="management" style="position:relative;left:120px" onclick="self.location.href='/groups/all_department?dep=management'"><img src="d4.png"></button>
-            <button type="button" id="ceecs" style="position:relative;left:150px" onclick="self.location.href='/groups/all_department?dep=ceecs'"><img src="d5.png"></button></br></br></br>
-            <button type="button" id="earth" style="position:relative;left:100px" onclick="self.location.href='/groups/all_department?dep=earth'"><img src="d6.png"></button>
-            <button type="button" id="hikka" style="position:relative;left:150px" onclick="self.location.href='/groups/all_department?dep=hikka'"><img src="d7.png"></button>
-            <button type="button" id="chst" style="position:relative;left:200px" onclick="self.location.href='/groups/all_department?dep=chst'"><img src="d8.png"></button>
-            <button type="button" id="space" style="position:relative;left:250px" onclick="self.location.href='/groups/all_department?dep=space'"><img src="d9.png"></button>
-        </div>
+            <a href="/groups/all_department?dep=literature" id="literature" style="position:relative;left:60px;padding:4vh"><img src="d1.png"></a>
+            <a href="/groups/all_department?dep=science" id="science" style="position:relative;left:60px;padding:4vh"><img src="d2.png"></a>
+            <a href="/groups/all_department?dep=engineering" id="engineering" style="position:relative;left:60px;padding:4vh"><img src="d3.png"></a>
+            <a href="/groups/all_department?dep=management" id="management" style="position:relative;left:60px;padding:4vh"><img src="d4.png"></a>
+            <a href="/groups/all_department?dep=ceecs" id="ceecs" style="position:relative;left:60px;padding:4vh"><img src="d5.png"></a></br></br></br>
+            <a href="/groups/all_department?dep=earth" id="earth" style="position:relative;left:150px;padding:4vh"><img src="d6.png"></a>
+            <a href="/groups/all_department?dep=hikka" id="hikka" style="position:relative;left:150px;padding:4vh"><img src="d7.png"></a>
+            <a href="/groups/all_department?dep=chst" id="chst" style="position:relative;left:150px;padding:4vh"><img src="d8.png"></a>
+            <a href="/groups/all_department?dep=space" id="space" style="position:relative;left:150px;padding:4vh"><img src="d9.png"></a>
+
+
         </div>
     </main>
 
