@@ -6,6 +6,7 @@ var Todo = require('../models/Todo');
 var User = require('../models/user');
 var Galimg = require('../models/Galimg');
 var Main_new = require('../models/Main_new');
+var Main_event = require('../models/Main_event');
 var Newsimg = require('../models/Newsimg');
 
 var url = require('url');
@@ -41,6 +42,11 @@ module.exports = function(passport) {
             cb(null, com);
           });
         },
+        main_events: function(cb){
+          Main_event.find().sort({date: -1}).exec(function(err, com){
+            cb(null, com);
+          });
+        },
 
       },
       function(err, result) {
@@ -52,6 +58,7 @@ module.exports = function(passport) {
           main_news: result.main_news,
           main_news_top: result.main_news_top,
           newsimgs: result.newsimgs,
+          main_events: result.main_events,
         });
       }
     );
@@ -217,6 +224,12 @@ module.exports = function(passport) {
             cb(null, com);
           });
         },
+        main_events: function(cb){
+          Main_event.find().sort({date: -1}).exec(function(err, com){
+            cb(null, com);
+          });
+        },
+
 
       },
       function(err, result) {
@@ -227,6 +240,7 @@ module.exports = function(passport) {
           main_news: result.main_news,
           main_news_top: result.main_news_top,
           newsimgs: result.newsimgs,
+          main_events: result.main_events,
         });
       }
     );
@@ -310,6 +324,14 @@ module.exports = function(passport) {
       main_new.updated_at = Date.now();
       main_new.save( function ( err, todo, count ){
         res.redirect( '/manageMain' );
+      });
+    });
+  });
+  //刪除news
+  router.post('/manageMain/delNews/:id',isAdmin, function(req, res){
+    Main_new.findById( req.params.id, function ( err, main_new ){
+      main_new.remove( function ( err, main_new ){
+        res.redirect('/manageMain');
       });
     });
   });

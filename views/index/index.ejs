@@ -57,6 +57,9 @@
         background-color: #fff;
         background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 100,100 0,100 ' style='fill:#4dc0c7' /%3E%3C/svg%3E");
       }
+      .navbar{
+        box-shadow: none;
+      }
       /*公告區的style*/
       .list-group{
         height: 500px;
@@ -193,7 +196,7 @@
             </div>
             <div class="news container-fluid wrapper">
               <div class="news-word">
-                <h1>最新消息</h1>
+                <h1><strong>最新消息</strong></h1>
                 <h4>我  們  將  會  定  期  更  新  最  新  資  訊！</h4>
                 <hr class="news-hr" width="10%">
               </div>
@@ -274,7 +277,7 @@
 
                   <div style="text-align:center">
                     <% for(var i=1; i<=newsimgs.length; i++) {%>
-                      <span class="dot" onclick="currentSlide(<%=i%>)"></span>                      
+                      <span class="dot" onclick="currentSlide(<%=i%>)"></span>
                     <% } %>
                   </div>
                 </div>
@@ -282,7 +285,7 @@
             </div>
             <div class="calendar container-fluid wrapper">
               <div class="calendar-word">
-                <h1>近期重要時程</h1>
+                <h1><strong>近期重要時程</strong></h1>
                 <h4>我  們  將  會  隨  時  提  醒  你  重  要  時  程！</h4>
                 <hr class="time-hr" width="10%">
               </div>

@@ -15,7 +15,7 @@ main {
     -o-background-size: cover;
     -moz-background-size: cover;
     -webkit-background-size: cover;
-    margin-top: 50px;
+    margin-top: 80px;
 
 }
 
@@ -51,15 +51,26 @@ footer {
 }*/
 /* 主要設定區 背景色 白字 */
 .navbar .container{
-  width: 100%;
+  /*width: 100%;*/
 }
+
 .navbar{
-  pedding-button:200px;
-}
-nav{
   background-color: #4dc0c7;
-  box-shadow: none;
+  height: 80px;
 }
+.navbar-brand{
+  padding: 0px;
+  font-size: x-large;
+}
+#navbar{
+  font-size: 18px;
+  margin-top: 10px;
+  background-color: #4dc0c7;
+}
+@media (min-width: 992px) {
+
+}
+
 /****************************************************/
 
 /*footer*/
