@@ -26,6 +26,15 @@
       .news_ul:hover{
         background-color: aliceblue;
       }
+      .galimg{
+        border-radius: 10px;
+        border: none;
+        height: 140px;
+        width: 150px;
+      }
+      .newsimg{
+        width: 100%;
+      }
     </style>
 </head>
 <body>
@@ -61,7 +70,7 @@
              <h3>已新增圖片</h3>
              <% galimgs.forEach(function(galimg){ %>
              <div class="col col-md-2">
-                 <img id="blah" src="/images/main/galimg/<%= galimg.imgurl %>" alt="<%= galimg.name %>">
+                 <img class="galimg" src="/images/main/galimg/<%= galimg.imgurl %>" alt="<%= galimg.name %>">
                  <form method="post" action="/manageMain/delGal/<%= galimg.id %>">
                     <button type="submit" class="btn btn-warning">刪除</button>
                  </form>
@@ -232,7 +241,7 @@
 
         <div class="manageNewsImg container jumbotron">
           <div class="">
-            <h2>最新消息右邊的圖片 <small>請傳1:1的照片</small></h2>
+            <h2>最新消息右邊的圖片 <small>請傳一樣比例的照片</small></h2>
               <form class="" enctype="multipart/form-data" action="/manageMain/addNewsImg" method="post">
 
                    <div class="form-group">
@@ -250,7 +259,7 @@
              <h3>已新增圖片</h3>
              <% newsimgs.forEach(function(newsimg){ %>
              <div class="col col-md-2">
-                 <img id="blah" src="/images/main/newsimg/<%= newsimg.imgurl %>" alt="no found">
+                 <img id="blah" class="newsimg" src="/images/main/newsimg/<%= newsimg.imgurl %>" alt="no found">
                  <form method="post" action="/manageMain/delNewsImg/<%= newsimg.id %>">
                     <button type="submit" class="btn btn-warning">刪除</button>
                  </form>

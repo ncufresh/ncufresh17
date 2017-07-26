@@ -257,21 +257,15 @@
                   </div>
                 </div>
                 <div class="col-md-5">
+
                   <div class="slideshow-container">
-                    <div class="mySlides">
-                      <div class="numbertext">1 / 3</div>
-                      <img src="images/main/1.jpeg" style="width:100%">
-                    </div>
+                    <% for(var i=1; i<=newsimgs.length; i++) {%>
+                      <div class="mySlides">
+                        <div class="numbertext"><%=i%> / <%=newsimgs.length%></div>
+                        <img src="/images/main/newsimg/<%= newsimgs[i-1].imgurl %>" style="width:100%">
+                      </div>
+                    <% } %>
 
-                    <div class="mySlides">
-                      <div class="numbertext">2 / 3</div>
-                      <img src="images/main/2.jpg" style="width:100%">
-                    </div>
-
-                    <div class="mySlides">
-                      <div class="numbertext">3 / 3</div>
-                      <img src="images/main/4.jpg" style="width:100%">
-                    </div>
 
                     <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                     <a class="next" onclick="plusSlides(1)">&#10095;</a>
@@ -279,9 +273,9 @@
                   <br>
 
                   <div style="text-align:center">
-                    <span class="dot" onclick="currentSlide(1)"></span>
-                    <span class="dot" onclick="currentSlide(2)"></span>
-                    <span class="dot" onclick="currentSlide(3)"></span>
+                    <% for(var i=1; i<=newsimgs.length; i++) {%>
+                      <span class="dot" onclick="currentSlide(<%=i%>)"></span>                      
+                    <% } %>
                   </div>
                 </div>
               </div>

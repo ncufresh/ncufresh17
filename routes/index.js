@@ -44,6 +44,7 @@ module.exports = function(passport) {
 
       },
       function(err, result) {
+        console.log(result.newsimgs);
         res.render('index/index', {
           title: '首頁 ｜ 新生知訊網',
           user: req.user,
@@ -335,7 +336,7 @@ module.exports = function(passport) {
       var readStream = fs.createReadStream(tmpPath)
 			var writeStream = fs.createWriteStream(targetPath);
 
-      new Galimg({
+      new Newsimg({
         imgurl: fileName,
       }).save(function(){
         res.redirect('/manageMain');
@@ -345,6 +346,18 @@ module.exports = function(passport) {
         fs.unlink(tmpPath);
       }).pipe(writeStream);
 
+    });
+  });
+  //刪除newsimg
+  router.post('/manageMain/delNewsImg/:id',isAdmin, function(req, res){
+    Newsimg.findById( req.params.id, function ( err, newsimg ){
+      newsimg.remove( function ( err, newsimg ){
+        fs.unlink("./public/images/main/newsimg/"+newsimg.imgurl,function(err){
+
+          console.log(err);
+          res.redirect('/manageMain');
+        });
+      });
     });
   });
 
