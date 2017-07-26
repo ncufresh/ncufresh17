@@ -388,132 +388,107 @@ border-radius:10px;
 
 #score{
     display: none;
-}
-
-#plyscore{
-    background-image: url("/game/結算一玩家.png") ;
-    width: 400px;
-    height:417px;
-    bottom:0;
-    left:0px;
-    position:absolute;
+    background-image: url("/game/結算一_2.png") ;
+    width: 790px;
+    height: 403px;
     background-size: contain;
+    margin-left:-55px;
+    bottom:5px;
 }
 
-#pcscore{
-    background-image: url("/game/結算一電腦.png") ;
-    width: 400px;
-    height:417px;
-    bottom:0;
-    right:0;
-    position:absolute;
-    background-size: contain;
+#score p{
+    font-size: 25px;
+    font-weight: bold;
 }
 
-#plytotal, #plybonus{
-    height:50px;
-    width: 200px;
-    float:left;
+#total01{ /*總共答對題數 player*/ 
+    margin-top: 30px;
+    margin-left: -120px;
+    text-align: center;
+}
+#total02{ /*總共答對題數 pc*/
+    margin-top: 30px;
+    margin-right:-120px;
+    text-align: center;
+}
+
+#point01{ /*答對題數number plyer*/  
+    margin-top: -10px;
+    margin-left: 110px;
+    position: absolute;
+}
+
+#point02{ /*答對題數number pc*/ 
+    margin-top: -5px;
+    margin-left:-150px;
+    position: absolute;
+}
+
+#totalpnt01{ /*總分 plyer*/
+    margin-top: -30px;
+    position: absolute;
+    margin-left: 205px;
+}
+
+#totalpnt02{ /*總分 pc*/ 
+    margin-top: -30px;
+    margin-left: -290px;
+    position: absolute;
+}
+
+#bonus01{ /*連續答題 plyer*/ 
+    text-align: center;
+    margin-top: 190px;
+    margin-left: -245px;
+    width:110px;
     
 }
 
-#pctotal, #pcbonus{
-    height:50px;
-    width: 200px;
-    float:right;
-}
-
-
-
-#total01{
-    margin-top: 30px;
-    font-size: 25px;
-    font-weight: bold;
+#bonus02{ /*連續答題 pc*/ 
     text-align: center;
-    width:100px;
-}
-#total02{
-    margin-top: 30px;
-    font-size: 25px;
-    font-weight: bold;
-    float:right;
-    text-align: center;
-    width:100px;
+    margin-top: 70px;
+    margin-left: 100px;
+    width:110px;
 }
 
-#point01{
-    margin-top: -20px;
-    font-size: 25px;
-    font-weight: bold;
-    margin-left: 170px;
+#bonusptn01{ /*連續答題 number plyer*/
+    margin-top: -10px;
+    margin-left: 70px;
+    position: absolute;
 }
 
-#point02{
-    font-size: 25px;
-    font-weight: bold;
-    margin-top: 100px;
-    margin-left: -30px;
-}
-
-#totalpnt01{
-    margin-top: -80px;
-    font-size: 25px;
-    font-weight: bold;
-    margin-left: 270px;
-}
-
-#totalpnt02{
-    margin-top: -85px;
-    font-size: 25px;
-    font-weight: bold;
+#bonusptn02{ /*連續答題 number pc*/ 
+    margin-top: -10px;
     margin-left: -180px;
+    position: absolute;
 }
 
-#bonus01{
-    text-align: center;
-    margin-top: 140px;
-    font-size: 25px;
-    font-weight: bold;
-    margin-left: 22px;
-    width:100px;
+#totalbonus01{ /*連續答題加分 plyer*/
+    margin-top: -40px;
+    margin-left: 170px;
+    position: absolute;
 }
 
-#bonus02{
-    text-align: center;
-    margin-top: 140px;
-    font-size: 25px;
-    font-weight: bold;
-    margin-left: 55px;
-    width:100px;
+#totalbonus02{ /*連續答題加分 pc*/
+    margin-top: -35px;
+    margin-left: -310px;
+    position: absolute;
 }
 
-#bonusptn01{
-    margin-top: -50px;
-    font-size: 25px;
-    font-weight: bold;
-    margin-left: 190px;
+.gend{
+    margin-top: 70px;
+    margin-left: 320px;
+    background-color: #004986;
+    color:white;
+    width:150px;
+    border-radius: 5px;
+    font-size: 20px;
 }
 
-#bonusptn02{
-    margin-top: -50px;
-    font-size: 25px;
-    font-weight: bold;
-    margin-left: -40px;
+.gend:hover{
+    background-color: rgb(143,130,188);
 }
 
-#totalbonus01{
-    margin-top: -80px;
-    font-size: 25px;
-    font-weight: bold;
-    margin-left: 280px;
-}
-
-#totalbonus02{
-    margin-top: -80px;
-    font-size: 25px;
-    font-weight: bold;
-    margin-left: -190px;
-}
 /*SCORE*/
 
 /*GAMEOVER*/
@@ -532,7 +507,7 @@ border-radius:10px;
 
 #userpoint{
     height:50px;
-    width:220px;
+    width:250px;
     margin-top: 50px;
     margin-left: 380px;
     font-size: 20px;
@@ -662,7 +637,8 @@ tr:nth-child(odd) {background: #0075a9}
         <audio id="bgm" loop="loop"><source src="/game/bensound-littleidea.mp3" type="audio/mpeg"></audio>
         <audio id="bingo"><source src="/game/correct.mp3" type="audio/mpeg"></audio>
         <audio id="ding"><source src="/game/wrong.mp3" type="audio/mpeg"></audio>
-        <audio id="gamestart"><source src="/game/bensound-funkyelement.mp3" type="audio/mpeg"></audio>
+        <audio id="gamestart" loop="loop"><source src="/game/bensound-funkyelement.mp3" type="audio/mpeg"></audio>
+        <audio id="gameend"><source src="/game/bensound-ukulele.mp3" type="audio/mpeg"></audio>
         <!--audio-->
 
             <!--BUTTON-->
@@ -792,15 +768,16 @@ tr:nth-child(odd) {background: #0075a9}
 
                 <!--GETSCORE-->
                 <div id="score">
-                    <div class="col-xs-4" id="plyscore">
+                    
                         <div class="col-xs-4" id="plytotal"></div>
                         <div class="col-xs-4" id="plybonus"></div>
-                    </div>
-
-                    <div class="col-xs-4" id="pcscore">
+                    
                         <div class="col-xs-4" id="pctotal"></div>
                         <div class="col-xs-4" id="pcbonus"></div>
-                    </div>
+                   
+                    <button type="button" class="gend" id="end01">NEXT</button>
+                    <button type="button" class="gend" id="end02">NEXT</button>
+
                 
                 </div>
 
