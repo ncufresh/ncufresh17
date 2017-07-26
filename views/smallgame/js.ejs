@@ -4,10 +4,11 @@
     
 <script>
 //audio
-var bingo = document.getElementById("bingo");
-var ding = document.getElementById("ding");
-var bgm = document.getElementById("bgm");
-var gamestart = document.getElementById("gamestart");
+var bingo = document.getElementById("bingo"); //ans correct
+var ding = document.getElementById("ding"); // ans wrong
+var bgm = document.getElementById("bgm"); //bgm
+var gamestart = document.getElementById("gamestart"); //gamestart
+var gameend = document.getElementById("gameend"); //gameend
 //audio
 
 function musicon(){
@@ -16,6 +17,7 @@ function musicon(){
     gamestart.muted = false;
     bingo.muted = false;
     ding.muted = false;
+    gameend.muted = false;
 }
 
 function mute(){
@@ -24,6 +26,7 @@ function mute(){
     gamestart.muted = true;
     bingo.muted = true;
     ding.muted = true;
+    gameend.muted = true;
 }
 
 //beginning
@@ -390,6 +393,7 @@ function r() {
     if(round == 21){
             clearInterval(clock);
             $('#row2, #row3, #countdown,#vs').toggle();
+            gamestart.pause();
             showscore();
         }
             
@@ -398,11 +402,11 @@ function r() {
     roundNumber.textContent = "第" + round + "題";
     qid++;
     $("#q,#ans1,#ans2,#ans3,#ans4").empty();
-    $("#q").append(question_temp[qid].q); 
-    $("#ans1").append(question_temp[qid].o[0]);
-    $("#ans2").append(question_temp[qid].o[1]);
-    $("#ans3").append(question_temp[qid].o[2]);
-    $("#ans4").append(question_temp[qid].o[3]); 
+    $("#q").append(question_temp[qid].q).hide().fadeIn(1000); 
+    $("#ans1").append(question_temp[qid].o[0]).hide().fadeIn(1000);
+    $("#ans2").append(question_temp[qid].o[1]).hide().fadeIn(1000);
+    $("#ans3").append(question_temp[qid].o[2]).hide().fadeIn(1000);
+    $("#ans4").append(question_temp[qid].o[3]).hide().fadeIn(1000); 
 
 }
 
@@ -815,27 +819,31 @@ function calcbonus(){
 
 //GET SCORE
 function showscore(){
+    gameend.play();
     calcbonus();
+    $('#end02').hide();
     $('#score').toggle();
-    $('<p id="total01">總共<br>答對題數</p>' + '<p id="point01">' + plypoint/100 + '</p>' + '<p id="totalpnt01"> +' + plypoint + '</p>').appendTo("#plytotal").hide().fadeIn(3000);
-    $('<p id="total02">總共<br>答對題數</p>' + '<p id="point02">' + pcpoint/100 + '</p>' + '<p id="totalpnt02"> +' + pcpoint + '</p>').appendTo("#pctotal").hide().fadeIn(3000);
-    $('<p id="bonus01">連續答題<img id="pcbg" src="/game/額外加分.png" /></p>' + '<p id="bonusptn01">' + plybonusend + '</p>' +  '<p id="totalbonus01"> +' + b + '</p>').appendTo("#plybonus").hide().fadeIn(6000);
-    $('<p id="bonus02">連續答題<img id="pcbg" src="/game/額外加分.png" /></p>' + '<p id="bonusptn02">' + pcbonusend + '</p>' + '<p id="totalbonus02"> +' + a + '</p>').appendTo("#pcbonus").hide().fadeIn(6000);
-    
+    $('<p id="total01">總共<br>答對題數</br>' + '<span id="point01">' + plypoint/100 + '</span>' + '<span id="totalpnt01"> +' + plypoint + '</span></p>').appendTo("#plytotal").hide().fadeIn(3000);
+    $('<p id="total02">總共<br>答對題數</br>' + '<span id="point02">' + pcpoint/100 + '</span>' + '<span id="totalpnt02"> +' + pcpoint + '</span></p>').appendTo("#pctotal").hide().fadeIn(3000);
+    $('<p id="bonus01">連續答題<img src="/game/額外加分.png" />' + '<span id="bonusptn01">' + plybonusend + '</span>' +  '<span id="totalbonus01"> +' + b + '</span></p>').appendTo("#plybonus").hide().fadeIn(6000);
+    $('<p id="bonus02">連續答題<img src="/game/額外加分.png" />' + '<span id="bonusptn02">' + pcbonusend + '</span>' + '<span id="totalbonus02"> +' + a + '</span></p>').appendTo("#pcbonus").hide().fadeIn(6000);
+}
 
-    setTimeout(function(){
+$( "#end01" ).click(function(){
+    $('#end01').hide();
+    $('#end02').show();
+        $("#score").css({"background-image":"url('/game/結算二_2.png')","-webkit-animation": "fadein 1s","-moz-animation": "fadein 1s","-ms-animation": "fadein 1s","-o-animation": "fadein 1s","animation": "fadein 1s"});
         $("#plytotal,#pctotal,#plybonus,#pcbonus").empty();
-        $("#plytotal").append('<p id="total01">總共<br>答對題數</p>' + '<p id="point01">' + plypoint/100 + '</p>' + '<p id="totalpnt01">' + plytotal + '分</p>');
-        $("#pctotal").append('<p id="total02">總共<br>答對題數</p>' + '<p id="point02">' + pcpoint/100 + '</p>' + '<p id="totalpnt02">' + pctotal + '分</p>');
-        $("#point01").css({"margin-top":"-50px", "margin-left":"160px","-webkit-animation": "fadein 2s","-moz-animation": "fadein 2s","-ms-animation": "fadein 2s","-o-animation": "fadein 2s","animation": "fadein 2s"}); 
-        $("#totalpnt01").css({"margin-top":"80px", "margin-left":"120px","width":"150px","-webkit-animation": "fadein 2s","-moz-animation": "fadein 2s","-ms-animation": "fadein 2s","-o-animation": "fadein 2s","animation": "fadein 2s"});
-        $("#total02").css({"float":"none", "margin-left":"40px","-webkit-animation": "fadein 2s","-moz-animation": "fadein 2s","-ms-animation": "fadein 2s","-o-animation": "fadein 2s","animation": "fadein 2s"}); 
-        $("#point02").css({"margin-top":"-50px", "margin-left":"-40px","-webkit-animation": "fadein 2s","-moz-animation": "fadein 2s","-ms-animation": "fadein 2s","-o-animation": "fadein 2s","animation": "fadein 2s"}); 
-        $("#totalpnt02").css({"margin-top":"80px", "margin-left":"-20px","width":"150px","-webkit-animation": "fadein 2s","-moz-animation": "fadein 2s","-ms-animation": "fadein 2s","-o-animation": "fadein 2s","animation": "fadein 2s"});
-        $("#plyscore").css({"background-image":"url('/game/結算二玩家.png')", "width":"385px","-webkit-animation": "fadein 2s","-moz-animation": "fadein 2s","-ms-animation": "fadein 2s","-o-animation": "fadein 2s","animation": "fadein 2s"}); 
-        $("#pcscore").css({"background-image":"url('/game/結算二電腦.png')" ,"-webkit-animation": "fadein 2s","-moz-animation": "fadein 2s","-ms-animation": "fadein 2s","-o-animation": "fadein 2s","animation": "fadein 2s"}); 
-        $("#plybonus").css({"margin-top":"220px", "margin-left":"200px","color":"white","font-size":"20px"});
-        $("#pcbonus").css({"margin-top":"265px", "margin-left":"60px","color":"white","font-size":"20px","float":"none"});
+        $("#plytotal").append('<p id="total01">總共<br>答對題數' + '<span id="point01">' + plypoint/100 + '</span>' + '<span id="totalpnt01">' + plytotal + '分</span></p>');
+        $("#pctotal").append('<p id="total02">總共<br>答對題數' + '<span id="point02">' + pcpoint/100 + '</span>' + '<span id="totalpnt02">' + pctotal + '分</span></p>');
+        $("#total01").css({"margin-left":"-70px"});
+        $("#point01").css({"margin-top":"-10px", "margin-left":"60px"}); 
+        $("#totalpnt01").css({"margin-top":"100px", "margin-left":"10px"});
+        $("#total02").css({"margin-left":"0px"}); 
+        $("#point02").css({"margin-top":"-10px", "margin-left":"-180px"}); 
+        $("#totalpnt02").css({"margin-top":"100px", "margin-left":"-160px"});
+        $("#plybonus").css({"margin-top":"260px", "margin-left":"-35px","color":"white","font-size":"20px","-webkit-animation": "fadein 4s","-moz-animation": "fadein 4s","-ms-animation": "fadein 4s","-o-animation": "fadein 4s","animation": "fadein 4s"});
+        $("#pcbonus").css({"margin-top":"140px", "margin-left":"-20px","color":"white","font-size":"20px","-webkit-animation": "fadein 4s","-moz-animation": "fadein 4s","-ms-animation": "fadein 4s","-o-animation": "fadein 4s","animation": "fadein 4s"});
         
 
         if(plytotal>pctotal){
@@ -850,14 +858,9 @@ function showscore(){
             $("#plybonus").append("LOSE");
             $("#pcbonus").append("WIN");
         }
-        last();
-    },10000);
+});
 
-    
-}
-
-function last(){
-    setTimeout(function(){ 
+$( "#end02" ).click(function(){ 
         $('#userscore, #row1, #score').toggle();
 
         if(plytotal>pctotal){
@@ -874,9 +877,8 @@ function last(){
         }
 
 
-    }, 15000);
+    });
 
-}
 
 //GET SCORE
 
