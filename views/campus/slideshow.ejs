@@ -1,0 +1,132 @@
+<style>
+    .abgne_product_arrow_silder {
+		width: 50%;
+		padding-bottom: 37.5%;
+		position: absolute;
+		overflow: hidden;
+    }
+    .abgne_product_arrow_silder ul, .abgne_product_arrow_silder ul li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    .abgne_product_arrow_silder ul li {
+        position: absolute;
+        z-index: 1;
+    }
+    .abgne_product_arrow_silder ul li.selected {
+        z-index: 2;
+    }
+    .prev {
+        position: absolute;
+        z-index: 3;
+		cursor: pointer;
+    }
+    .next {
+        position: absolute;
+        z-index:3;
+		cursor: pointer;
+    }
+	.arrow:hover{
+		background-color:rgba(255,255,255,0.33);
+	}
+	p{
+		margin-bottom: 15px;
+		font-size: 21px;
+		font-weight: 200;
+	}
+    </style>
+<!-- <body>
+	<div class="abgne_product_arrow_silder">
+		<ul>
+			<li class="selected"><img src="m01.jpg" /></li>
+			<li><img src="m02.jpg" /></li>
+			<li><img src="m03.jpg" /></li>
+			<li><img src="m04.jpg" /></li>
+			<li><img src="m05.jpg" /></li>
+		</ul>
+	</div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+
+<script>    
+$(function(){
+	// 先取得必要的元素並用 jQuery 包裝
+	var $silder = $('.abgne_product_arrow_silder'), 
+		$li = $('ul li', $silder).not(':first').css('opacity', 0).end(),
+		fadeSpeed = 400,
+		$arrows= $('.arrow');
+ 
+	// 把箭頭超連結加到 $silder 中
+	// 並幫 $silder 加上 hover 事件
+	$silder.append($arrows).hover(function(){
+		var no = $li.filter('.selected').index();
+	});
+ 
+	// 當滑鼠點擊左右箭頭時
+	$arrows.click(function(){
+		// 先取出目前顯示的 li 及其排行
+		var $selected = $li.filter('.selected'),
+			no = $selected.index();
+        $li.eq(no).stop();
+		// 判斷是要上一張還是下一張
+        no = this.className=='prev' ? no - 1 : no + 1;
+        no=(no+$li.length)%$li.length;
+		console.log($li.length);
+		$li.eq(no).stop().fadeTo(fadeSpeed + 100, 1).addClass('selected').siblings().fadeTo(fadeSpeed, 0).removeClass('selected');
+ 
+		return false;
+	}).focus(function(){
+		this.blur();
+	});
+	
+	$(".map-build").click(function(){
+        $("#img-list").empty();
+        var id=$(this).attr("value");
+        console.log(id);
+        $.ajax({
+            url:    "/campus/get_img/"+id,
+            error: function(e){
+                console.log("ERR  :"+e);
+            },
+            success: function(data){
+                console.log(data)
+                for(var i in data){
+                    $("#img-list").append('<li id="li'+ i +'"><img width="100%" src="'+data[i].img_path+'" /></li>');
+                }
+                $("#li0").addClass("selected");
+				$li = $('ul li', $silder).not(':first').css('opacity', 0).end();
+            }
+        })
+		$.ajax({
+            url:    "/campus/get_img/"+id,
+            error: function(e){
+                console.log("ERR  :"+e);
+            },
+            success: function(data){
+                for(var i in data){
+                    $("#img-list").append('<li id="li'+ i +'"><img width="100%" src="'+data[i].img_path+'" /></li>');
+                }
+                $("#li0").addClass("selected");
+				$li = $('ul li', $silder).not(':first').css('opacity', 0).end();
+
+				$.ajax({
+					url:    "/campus/newData/"+id,
+					error: function(e){
+						console.log("ERR  :"+e);
+					},
+					success: function(data){
+						console.log(data);
+						$("#detail-content").empty();
+						$("#detail-name").text(data.name);
+						$("#detail-content").append("<br><br><br><br>"+data.content+"<br><br><br><br>");
+						$("#detail_modal").modal("show");
+					}
+				});
+
+            }
+        })
+    })
+ 
+});
+</script>

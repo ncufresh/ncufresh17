@@ -7,11 +7,40 @@
     <header>
         <% include ../layouts/navbar %>
     </header>
+    <!--簡介modal  -->
+    <div class="modal fade" id="detail_modal" role="dialog">
+        <div class="modal-dialog modal-lg" style="width: 80vw;">
+            <!-- Modal content-->
+            <div class="modal-content" style="background-color:#f3ea82">
+                <div class="modal-body" style="overflow: hidden; padding:0">
+                    <button type="button" style="opacity:1; position:absolute; right:1%; top:1%;" class="close" data-dismiss="modal"><img src="/campus/default/close.png" alt="" width="50px"></button>
+
+                    <div style="height:44vw;width:44vw;background-color:#ebf2d2;position: relative;clip-path:circle(50% at 47% 50%);top:-3%;left:-5%; overflow-y:scroll; overflow-x:hidden;">
+                        <div style="position:relative; width:inherit; height:inherit;">
+                            <div id="detail-content" style="position:absolute;left:15%;width: 75%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="abgne_product_arrow_silder" style="right:-5%;top:15%;clip-path:circle(42% at center);background-color:#ebf2d2">
+                        <ul id="img-list">
+                        </ul>
+                        <img src="/campus/default/up.png" class="prev arrow" width="15%" style="left:42.5%;top:0%;"></img>
+                        <img src="/campus/default/down.png" class="next arrow" width="15%" style="left:42.5%;bottom:0%;"></img>
+                    </div>
+                    <div style="position:absolute;left: 55%; top:50%;transform: translate(-50%, -50%);">
+                        <p id="detail-name" style="background-color:rgba(0,0,0,0);color:#26669b;border: 1px solid #26669b;z-index:5; font-size:50px; letter-spacing: 5px;">測試測試</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
     <main style="background: #cce8f7;">
         <div class="container-fluid">
             <div style="margin-left:25px;margin-right:25px;">
-                <img src="/campus/default/guide1.png" alt="" width="100%" >
+                <img src="/campus/default/guide1.png" alt="" width="100%">
+                <img class="mouse-animate" src="/campus/default/goback.png" alt="" style="position:absolute;right:5%;top:70px;width:10%;padding:0.5vh;cursor:pointer;" onclick="javascript:location.href='/campus'">
                 <a href="/campus/editMap"><button class="btn btn-success new_building">編輯地圖物件</button></a>
                 <div class="row" style="position:relative;">
                     <div id="map-left" style="padding:0px;padding-bottom:44.8%;width:10%;float:left; position:relative;">
@@ -54,7 +83,7 @@
                     <div id="main-map" style="position:relative;padding:0px;padding-bottom:44.8%;width:80%;float:left; position:relative;">
                         <img src="/campus/default/back2.png"style="position:absolute;" width="100%" alt="">  
                         <%for(var i in map_objs){%>
-                            <img class="map-animate map-build <%= map_objs[i].build_type%>"id="<%= 'mapimg'+ map_objs[i].build_id%>" src="<%= map_objs[i].path%>" alt="<%= map_objs[i].build_name%>" value="<%=map_objs[i].build_id%>"  data-toggle="tooltip" title="<%= map_objs[i].build_name%>" data-placement="top" style="
+                            <img class="map-animate map-build <%= map_objs[i].build_type%> <%= 'mapimg'+ map_objs[i].build_id%>" src="<%= map_objs[i].path%>" alt="<%= map_objs[i].build_name%>" value="<%=map_objs[i].build_id%>"  data-toggle="tooltip" title="<%= map_objs[i].build_name%>" data-placement="top" style="
                                 cursor: pointer;
                                 position:absolute;
                                 padding:0.5vh;
@@ -78,6 +107,7 @@
     <footer>
         <% include ../layouts/footer %>
     </footer>
+        <% include slideShow %>
         <% include js %>
         <% include ../layouts/js %>
 </body>

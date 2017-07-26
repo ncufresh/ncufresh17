@@ -285,17 +285,17 @@ $(document).ready(function(){
     });
     $(".build-name").mouseenter(function(){
         console.log($(this).attr("value"));
-        $("#mapimg"+$(this).attr("value")).animate({
+        $(".mapimg"+$(this).attr("value")).animate({
             padding:'0vh'
         }, 100);
-        $("#mapimg"+$(this).attr("value")).tooltip("show");
+        $(".mapimg"+$(this).attr("value")).tooltip("show");
     })
     $(".build-name").mouseleave(function(){
         console.log($(this).attr("value"));
-        $("#mapimg"+$(this).attr("value")).animate({
+        $(".mapimg"+$(this).attr("value")).animate({
             padding:'0.5vh'
         }, 100);
-        $("#mapimg"+$(this).attr("value")).tooltip("hide");
+        $(".mapimg"+$(this).attr("value")).tooltip("hide");
     })
     $(".help-menu").mouseenter(function(){
         $("."+$(this).attr("alt")).animate({
@@ -309,6 +309,19 @@ $(document).ready(function(){
         }, 100);
         $("."+$(this).attr("alt")).tooltip("hide");
     })
+     $(".help-menu").click(function(){
+        var now=$(this).attr("alt");
+        $(".map-build").stop(false,true);
+        $(".map-build."+now).css("display","block").animate({
+            opacity:1
+        },200);
+        $(".map-build."+now).tooltip("show");
+        $(".map-build").not("."+now).animate({
+            opacity:0
+        },200,function(){
+            $(".map-build").not("."+now).css("display","none")
+        });
+    });
 })
 </script>
 
