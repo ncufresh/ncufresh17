@@ -34,7 +34,7 @@
                         <h4 class="modal-title">新增</h4>
                     </div>
                     <div class="modal-body">
-                        <form action="/documents/add" method="post" accept-charset="utf-8">
+                        <form action="/documents/add" enctype="multipart/form-data" method="post" accept-charset="utf-8">
 
                             <div class="form-group">
                                 <label for="name" class="control-label">新增名稱</label>
@@ -61,6 +61,16 @@
                                 <input id="commonly_used_link_textarea" name="content" type="text" style="visibility:hidden;" value="http://"></input><br>
                             </div>
 
+                            <input for="img_path" type="hidden" id="imgid" name="imgid">
+                            <label for="uploadingImg" class="input-group">
+                                <input type="text" class="form-control" id="img_path" name="img_path">
+                                <div class="input-group-btn">
+                                    <span class="btn btn-default">
+                                        <i class="fa fa-file" aria-hidden="true"></i> 上傳
+                                    </span>
+                                </div>
+                            </label>
+                            <input class="form-control" id="uploadingImg" type="file" name="uploadingImg" style="display: none;" accept="image/*" onchange="this.form.img_path.value=this.value.substr(this.value.lastIndexOf('\\')+1);">
                             <button type="submit" name="button" class="btn btn-primary">送出</button>
                         </form>
                     </div>
@@ -158,7 +168,7 @@
         </div>
 
         <% for (var i in document){%>
-            <!-- 顯示model -->
+            <!--  圖片model -->
             <div class="modal fade" id="<%=document[i].id+"insertimg"%>" role="dialog">
                 <div class="modal-dialog modal-lg">
                     <!-- Modal content-->
