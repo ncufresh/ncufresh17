@@ -85,6 +85,8 @@ $(document).ready(function(){
                 left: $(this).parentsUntil('tr').siblings('.build_SOSx').text()+"%",
                 top:$(this).parentsUntil('tr').siblings('.build_SOSy').text()+"%"
             });
+            $("#SOSx").val($(this).parentsUntil('tr').siblings('.build_SOSx').text());
+            $("#SOSy").val($(this).parentsUntil('tr').siblings('.build_SOSy').text());
         }
         if($(this).parentsUntil('tr').siblings('.build_AED').text()==="true"){
             $('#AEDimg').css({
@@ -93,6 +95,8 @@ $(document).ready(function(){
                 left: $(this).parentsUntil('tr').siblings('.build_AEDx').text()+"%",
                 top:$(this).parentsUntil('tr').siblings('.build_AEDy').text()+"%"
             });
+            $("#AEDx").val($(this).parentsUntil('tr').siblings('.build_AEDx').text());
+            $("#AEDy").val($(this).parentsUntil('tr').siblings('.build_AEDy').text());
         }
         $('#mapObj_id').val(id);
         $('#mapObj_title').text("編輯"+$(this).parentsUntil('tr').siblings('.build_name').text());
@@ -178,9 +182,7 @@ $(document).ready(function(){
             padding:'0.5vh'
         },100);
     });
-    $("#building_img").css({
-        cursor:'move'
-    }).draggable({
+    $("#building_img").draggable({
         stop: function(){
             var x=$("#building_img").css("left").substring(0,$("#building_img").css("left").length-2)/$("#editmap").width()*100;
             var y=$("#building_img").css("top").substring(0,$("#building_img").css("top").length-2)/$("#editmap").height()*100;
@@ -341,3 +343,9 @@ $(document).ready(function(){
       config.autoParagraph = false;
   };
 </script>
+
+<style>
+    .draggable{
+        cursor: move ;
+    }
+</style>
