@@ -80,24 +80,10 @@ $(function(){
 		this.blur();
 	});
 	
-	$(".map-build").click(function(){
+	$(".map-build , .build-name").click(function(){
         $("#img-list").empty();
         var id=$(this).attr("value");
         console.log(id);
-        $.ajax({
-            url:    "/campus/get_img/"+id,
-            error: function(e){
-                console.log("ERR  :"+e);
-            },
-            success: function(data){
-                console.log(data)
-                for(var i in data){
-                    $("#img-list").append('<li id="li'+ i +'"><img width="100%" src="'+data[i].img_path+'" /></li>');
-                }
-                $("#li0").addClass("selected");
-				$li = $('ul li', $silder).not(':first').css('opacity', 0).end();
-            }
-        })
 		$.ajax({
             url:    "/campus/get_img/"+id,
             error: function(e){

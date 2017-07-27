@@ -27,7 +27,6 @@
                                     <div class="form-group">
                                         <label for="map_obj_id" class="control-label"><p>物件名稱</p></label>
                                         <select name="map_obj_id" class="form-control">
-                                            <option value="" selected="selected"></option>
                                             <%for(var i in buildings){ %>
                                                 <option value="<%=buildings[i]._id%>"><%=buildings[i].name%></option>
                                             <%}%>
@@ -53,7 +52,7 @@
                                             </span>
                                         </div>
                                     </label>
-                                    <input class="form-control" id="uploadMapImg" type="file" name="uploadMapImg" style="display: none;" accept="image/*" onchange="
+                                    <input class="form-control" required id="uploadMapImg" type="file" name="uploadMapImg" style="display: none;" accept="image/*" onchange="
                                     this.form.img_path.value=this.value.substr(this.value.lastIndexOf('\\')+1);">
                                     <button type="submit" name="button" class="btn btn-primary">送出</button>
                                 </form>
