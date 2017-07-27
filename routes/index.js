@@ -4,10 +4,10 @@ var router = express.Router();
 var async = require('async');
 var Todo = require('../models/Todo');
 var User = require('../models/user');
-var Galimg = require('../models/Galimg');
-var Main_new = require('../models/Main_new');
-var Main_event = require('../models/Main_event');
-var Newsimg = require('../models/Newsimg');
+var Galimg = require('../models/galimg');
+var Main_new = require('../models/main_new');
+var Main_event = require('../models/main_event');
+var Newsimg = require('../models/newsimg');
 
 var url = require('url');
 var request = require('request');
@@ -50,7 +50,7 @@ module.exports = function(passport) {
 
       },
       function(err, result) {
-        console.log(result.newsimgs);
+        // console.log(result.newsimgs);
         res.render('index/index', {
           title: '首頁 ｜ 新生知訊網',
           user: req.user,
@@ -148,7 +148,7 @@ module.exports = function(passport) {
         urll = root + '/personnel/v1/info';
         // console.log('req:'+req);
         obj = JSON.parse(token);
-        console.log('access_token:' + obj.access_token);
+        // console.log('access_token:' + obj.access_token);
         request({
           url: urll,
           headers: {
@@ -163,7 +163,7 @@ module.exports = function(passport) {
             console.log('response error!');
             res.redirect('/login');
           }
-          console.log('body:' + body);
+          // console.log('body:' + body);
           personalObj = JSON.parse(body);
           // find user using id(學號)
           User.findOne({ 'local.email': personalObj.id + '@cc.ncu.edu.tw' }, function(err, obj) {
@@ -278,7 +278,7 @@ module.exports = function(passport) {
         res.redirect('/manageMain');
       });
       readStream.on("end", function() {
-        console.log(readStream);
+        // console.log(readStream);
         fs.unlink(tmpPath);
       }).pipe(writeStream);
 
@@ -310,7 +310,7 @@ module.exports = function(passport) {
     });
   });
   router.post('/manageMain/editNews/:id',isAdmin, function(req, res){
-    console.log(req.body);
+    // console.log(req.body);
     Main_new.findById( req.params.id, function ( err, main_new ){
       main_new.title    = req.body.title;
       main_new.date     = req.body.news_date;
@@ -364,7 +364,7 @@ module.exports = function(passport) {
         res.redirect('/manageMain');
       });
       readStream.on("end", function () {
-        console.log(readStream);
+        // console.log(readStream);
         fs.unlink(tmpPath);
       }).pipe(writeStream);
 
@@ -382,7 +382,19 @@ module.exports = function(passport) {
       });
     });
   });
-
+  //新增時程
+  router.post('/manageMain/addEvent',isAdmin, function(req, res){
+    console.log(req);
+    new Main_event({
+      title      : req.body.title,
+      date       : req.body.news_date,
+      content    : req.body.news_event,
+      subtitle   : req.body.subtitle,
+      updated_at : Date.now(),
+    }).save(function(){
+      res.redirect( '/manageMain' );
+    });
+  });
   // router.get('/auth/provider', passport.authenticate('provider',{ scope: 'user.info.basic.read' }));
   //
   // router.get('/auth/provider/callback',
@@ -463,7 +475,7 @@ function isLoggedIn(req, res, next) {
 
 function isAdmin(req, res, next) {
   if (req.isAuthenticated()) {
-    console.log('log:' + req.user.local);
+    // console.log('log:' + req.user.local);
     if (req.user.local.accountType === 'admin') {
       return next();
     }
