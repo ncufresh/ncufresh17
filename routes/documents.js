@@ -66,50 +66,53 @@ router.post('/add',function(req,res,next){
       // console.log('received files: ');
       // console.log(files);
 
-      var uploadedFile = files.uploadingImg;
-      var tmpPath = uploadedFile.path;
       var tempId = shortId.generate();
-      var fileName = tempId + uploadedFile.name.substr(uploadedFile.name.lastIndexOf('.'));
-      var targetPath = './public/documents/' + fileName;
-      console.log(tmpPath);
-      console.log(targetPath);
-      // 跨分區會error
-      // fs.rename(tmpPath, targetPath, function(err) {
-      //   if (err){
-      //     console.log(err);
-      //   }
-      //   else{ 
-      //     fs.unlink(tmpPath, function() {
-      //       console.log('File Uploaded to ' + targetPath + ' - ' + uploadedFile.size + ' bytes');
-      //     });
-      //   }
-      // });
+      var fileName = "";
+      if(files.uploadingImg.name!="")
+      {
+        var uploadedFile = files.uploadingImg;
+        var tmpPath = uploadedFile.path;
+        fileName = tempId + uploadedFile.name.substr(uploadedFile.name.lastIndexOf('.'));
+        var targetPath = './public/documents/' + fileName;
+        console.log(tmpPath);
+        console.log(targetPath);
+        // 跨分區會error
+        // fs.rename(tmpPath, targetPath, function(err) {
+        //   if (err){
+        //     console.log(err);
+        //   }
+        //   else{ 
+        //     fs.unlink(tmpPath, function() {
+        //       console.log('File Uploaded to ' + targetPath + ' - ' + uploadedFile.size + ' bytes');
+        //     });
+        //   }
+        // });
 
-      var readStream = fs.createReadStream(tmpPath)
-      var writeStream = fs.createWriteStream(targetPath);
-      readStream.on("end",function(){
-
-        document.find({type:fields.type}).exec(function (err, results) {
-          if(err) throw err;
-          var temp = results.length;
-          temp++;
-          console.log(temp);
-          var b = new document({
-            _id: tempId,
-            name:fields.name,
-            type:fields.type,
-            content:fields.content,
-            img_path:'/documents/' + fileName,
-            order: temp
-          }).save();
+        var readStream = fs.createReadStream(tmpPath)
+        var writeStream = fs.createWriteStream(targetPath);
+        readStream.on("end",function(){        
+        })
+        .pipe(writeStream,function(){
+          fs.unlink(tmpPath, function(err) {
+            if(err)console.log("刪除暫存err")
+            console.log('File Uploaded to ' + targetPath + ' - ' + uploadedFile.size + ' bytes');
+          });
         });
+      } 
+      document.find({type:fields.type}).exec(function (err, results) {
+        if(err) throw err;
+        var temp = results.length;
+        temp++;
+        console.log(temp);
+        var b = new document({
+          _id: tempId,
+          name:fields.name,
+          type:fields.type,
+          content:fields.content,
+          img_path:'/documents/' + fileName,
+          order: temp
+        }).save();
         res.redirect('/documents');
-      })
-      .pipe(writeStream,function(){
-        fs.unlink(tmpPath, function(err) {
-          if(err)console.log("刪除暫存err")
-          console.log('File Uploaded to ' + targetPath + ' - ' + uploadedFile.size + ' bytes');
-        });
       });
   });
 });
