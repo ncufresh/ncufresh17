@@ -163,7 +163,7 @@ module.exports = function(passport) {
             console.log('response error!');
             res.redirect('/login');
           }
-          // console.log('body:' + body);
+          console.log('body:' + body);
           personalObj = JSON.parse(body);
           // find user using id(學號)
           User.findOne({ 'local.email': personalObj.id + '@cc.ncu.edu.tw' }, function(err, obj) {
