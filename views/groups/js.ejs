@@ -26,20 +26,20 @@
       $('.edit_de').click(function(){
         var id = $(this).val();
         $.ajax({
+        	type: "get",
             url:    "/groups/edit_de/"+ id,
             error: function(e){
                 console.log("ERR  :"+e);
             },
             success: function(data){
-                $("#bid").val(data._id);
-                $("#name").val(data.name);
-                $("#type").val(data.type);
-                $("#introduction").val(data.introduction);
-                $("#organization").val(data.organization);
-                $("#activity").val(data.activity);
-                $("#team").val(data.team);
-                $("#course").val(data.course);
-                $("#edit_de").val("update");
+                $("#edit_id").val(data._id);
+                $("#edit_name").val(data.name);
+                $("#edit_type").val(data.type);
+                CKEDITOR.instances['edit_introduction'].setData(data.introduction);
+                CKEDITOR.instances['edit_organization'].setData(data.organization);
+                CKEDITOR.instances['edit_activity'].setData(data.activity);
+                CKEDITOR.instances['edit_team'].setData(data.team);
+                CKEDITOR.instances['edit_course'].setData(data.course);
                 $("#edit_de").modal("show");
             }
 
