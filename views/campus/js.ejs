@@ -46,7 +46,8 @@ $(document).ready(function(){
     })
 
     $('.edit_img').click(function(){
-         $("#img_body").empty();
+        $("#img_path").val("");
+        $("#img_body").empty();
         var id=$(this).val();
         $("#imgid").val(id);        
         $.ajax({
@@ -84,6 +85,8 @@ $(document).ready(function(){
                 left: $(this).parentsUntil('tr').siblings('.build_SOSx').text()+"%",
                 top:$(this).parentsUntil('tr').siblings('.build_SOSy').text()+"%"
             });
+            $("#SOSx").val($(this).parentsUntil('tr').siblings('.build_SOSx').text());
+            $("#SOSy").val($(this).parentsUntil('tr').siblings('.build_SOSy').text());
         }
         if($(this).parentsUntil('tr').siblings('.build_AED').text()==="true"){
             $('#AEDimg').css({
@@ -92,6 +95,8 @@ $(document).ready(function(){
                 left: $(this).parentsUntil('tr').siblings('.build_AEDx').text()+"%",
                 top:$(this).parentsUntil('tr').siblings('.build_AEDy').text()+"%"
             });
+            $("#AEDx").val($(this).parentsUntil('tr').siblings('.build_AEDx').text());
+            $("#AEDy").val($(this).parentsUntil('tr').siblings('.build_AEDy').text());
         }
         $('#mapObj_id').val(id);
         $('#mapObj_title').text("編輯"+$(this).parentsUntil('tr').siblings('.build_name').text());
@@ -134,6 +139,7 @@ $(document).ready(function(){
     })
 
     $('#uploadImg').click(function(){
+        if($("#imgpath").text()=="")return;
         var formData = new FormData($("#img_form")[0]);
         $.ajax({
             url: "/campus/imgUpload",
@@ -239,14 +245,14 @@ $(document).ready(function(){
         var now=$(this).attr("alt");
         $(".type-menu").addClass("no-animate");
         $('[data-toggle="tooltip"]').tooltip("hide");
-        $(".type-menu, #type-title").stop(false,true);
+        $("*").stop(false,true);
         $(".type-menu").fadeOut(300);  
         $("#type-title").attr("src",$(this).attr("src"))
                         .attr("alt",now).fadeIn(1000);
         $("#map-left").animate({
             "width":"20%",
         },500,function(){
-            $("#"+now).slideDown(500);
+            $(".s"+now).slideDown(500);
         });
         $("#main-map").animate({
             "margin-top":"3%",
@@ -260,7 +266,7 @@ $(document).ready(function(){
     $("#type-title").click(function(){
         var now=$(this).attr("alt");
         $("*").stop(false,true);
-        $("#"+now).slideUp(500,function(){
+        $(".s"+now).slideUp(500,function(){
             $("#type-title").fadeOut(300);
             $("#map-left").animate({
                 "width":"10%",
@@ -337,3 +343,9 @@ $(document).ready(function(){
       config.autoParagraph = false;
   };
 </script>
+
+<style>
+    .draggable{
+        cursor: move ;
+    }
+</style>

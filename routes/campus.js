@@ -234,6 +234,8 @@ router.post('/newMapObj', function (req, res, next) {
 			building.findById(data.build_id,function(err,build){
 				map_obj.update({_id:req.body.mapObj_id},{
 					$set: {
+						build_name: build.name,
+						build_type: build.type,
 						x_position: req.body.x_position,
 						y_position: req.body.y_position,
 						size: req.body.size,

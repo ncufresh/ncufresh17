@@ -106,7 +106,8 @@
                             <form method="post" enctype="multipart/form-data" action="/campus/imgUpload" id="img_form">
                                 <input type="hidden" id="imgid" name="imgid">
                                 <label for="uploadingImg" class="input-group">
-                                    <input type="text" class="form-control" id="img_path" name="img_path">
+                                    <p>上傳圖片(一定要4:3!!!)</p>
+                                    <input type="text" required readonly class="form-control" id="img_path" name="img_path">
                                     <div class="input-group-btn">
                                         <span class="btn btn-default">
                                             <i class="fa fa-file" aria-hidden="true"></i> 上傳
@@ -115,12 +116,9 @@
                                 </label>
                                 <input class="form-control" id="uploadingImg" type="file" name="uploadingImg" style="display: none;" accept="image/*" onchange="
         this.form.img_path.value=this.value.substr(this.value.lastIndexOf('\\')+1);">
-                                <input type="button" id="uploadImg" value="送出">
+                                <input class="btn btn-success" type="button" id="uploadImg" value="送出">
                             </form>
 
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
 

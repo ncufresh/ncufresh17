@@ -40,7 +40,7 @@
         <div class="container-fluid">
             <div style="margin-left:25px;margin-right:25px;">
                 <img src="/campus/default/guide1.png" alt="" width="100%">
-                <img class="mouse-animate" src="/campus/default/goback.png" alt="" style="position:absolute;right:5%;top:70px;width:10%;padding:0.5vh;cursor:pointer;" onclick="javascript:location.href='/campus'">
+                <img class="mouse-animate" src="/campus/default/goback.png" alt="" style="position:absolute;right:5%;top:90px;width:10%;padding:0.5vh;cursor:pointer;" onclick="javascript:location.href='/campus'">
                 <a href="/campus/editMap"><button class="btn btn-success new_building">編輯地圖物件</button></a>
                 <div class="row" style="position:relative;">
                     <div id="map-left" style="padding:0px;padding-bottom:44.8%;width:10%;float:left; position:relative;">
@@ -49,34 +49,40 @@
                         <img class="mouse-animate type-menu" src="/campus/default/2.png" width="100%" alt="行政" style="padding:1vh; cursor: pointer; position:absolute; top:40%">
                         <img class="mouse-animate type-menu" src="/campus/default/3.png" width="100%" alt="運動" style="padding:1vh; cursor: pointer; position:absolute; top:70%">
                         
-                        <div class="list-group" id="系館" style="border: 1px solid #26669b;display:none;position:absolute;width:80%;left:10%;top:20%;box-shadow:0px 0px;">
+                        <div class="list-group s系館" style="border: 1px solid #26669b;display:none;position:absolute;width:80%;left:10%;top:20%;box-shadow:0px 0px;">
                             <%for(var i in dep){%>
-                                <a href="javascript:void(0)" class="list-group-item build-name" style="color:#26669b;border: 0px;background-color:rgba(0,0,0,0)" onMouseOver="this.style.backgroundColor='rgba(255,255,255,0.2)'" onMouseOut="this.style.backgroundColor='rgba(0,0,0,0)'" value="<%=dep[i]._id%>"><%=dep[i].name%></a>
+                                <%if(i>=8) break;%>
+                                <a href="javascript:void(0)" class="list-group-item build-name" style="font-size:18px; color:#26669b;border: 0px;background-color:rgba(0,0,0,0)" onMouseOver="this.style.backgroundColor='rgba(255,255,255,0.2)'" onMouseOut="this.style.backgroundColor='rgba(0,0,0,0)'" value="<%=dep[i]._id%>"><%=dep[i].name%></a>
                             <%}%>
                         </div>
-                        <div class="list-group" id="行政" style="border: 1px solid #26669b;display:none;position:absolute;width:80%;left:10%;top:20%;box-shadow:0px 0px;">
+                        <div class="list-group s行政" style="border: 1px solid #26669b;display:none;position:absolute;width:80%;left:10%;top:20%;box-shadow:0px 0px;">
                             <%for(var i in work){%> 
-                                <a href="javascript:void(0)" class="list-group-item build-name" style="color:#26669b;border: 0px;background-color:rgba(0,0,0,0)" onMouseOver="this.style.backgroundColor='rgba(255,255,255,0.2)'" onMouseOut="this.style.backgroundColor='rgba(0,0,0,0)'" value="<%=work[i]._id%>"><%=work[i].name%></a>
+                                <%if(i>=8) break;%>
+                                <a href="javascript:void(0)" class="list-group-item build-name" style="font-size:18px; color:#26669b;border: 0px;background-color:rgba(0,0,0,0)" onMouseOver="this.style.backgroundColor='rgba(255,255,255,0.2)'" onMouseOut="this.style.backgroundColor='rgba(0,0,0,0)'" value="<%=work[i]._id%>"><%=work[i].name%></a>
                             <%}%>
                         </div>
-                        <div class="list-group" id="運動" style="border: 1px solid #26669b;display:none;position:absolute;width:80%;left:10%;top:20%;box-shadow:0px 0px;">
+                        <div class="list-group s運動" style="border: 1px solid #26669b;display:none;position:absolute;width:80%;left:10%;top:20%;box-shadow:0px 0px;">
                             <%for(var i in sport){%> 
-                                <a href="javascript:void(0)" class="list-group-item build-name" style="color:#26669b;border: 0px;background-color:rgba(0,0,0,0)" onMouseOver="this.style.backgroundColor='rgba(255,255,255,0.2)'" onMouseOut="this.style.backgroundColor='rgba(0,0,0,0)'" value="<%=sport[i]._id%>"><%=sport[i].name%></a>
+                                <%if(i>=8) break;%>
+                                <a href="javascript:void(0)" class="list-group-item build-name" style="font-size:18px; color:#26669b;border: 0px;background-color:rgba(0,0,0,0)" onMouseOver="this.style.backgroundColor='rgba(255,255,255,0.2)'" onMouseOut="this.style.backgroundColor='rgba(0,0,0,0)'" value="<%=sport[i]._id%>"><%=sport[i].name%></a>
                             <%}%>
                         </div>
-                        <div class="list-group" id="中大景點" style="border: 1px solid #26669b;display:none;position:absolute;width:80%;left:10%;top:20%;box-shadow:0px 0px;">
+                        <div class="list-group s中大景點" style="border: 1px solid #26669b;display:none;position:absolute;width:80%;left:10%;top:20%;box-shadow:0px 0px;">
                             <%for(var i in point){%> 
-                                <a href="javascript:void(0)" class="list-group-item build-name" style="color:#26669b;border: 0px;background-color:rgba(0,0,0,0)" onMouseOver="this.style.backgroundColor='rgba(255,255,255,0.2)'" onMouseOut="this.style.backgroundColor='rgba(0,0,0,0)'" value="<%=point[i]._id%>"><%=point[i].name%></a>
+                                <%if(i>=8) break;%>
+                                <a href="javascript:void(0)" class="list-group-item build-name" style="font-size:18px; color:#26669b;border: 0px;background-color:rgba(0,0,0,0)" onMouseOver="this.style.backgroundColor='rgba(255,255,255,0.2)'" onMouseOut="this.style.backgroundColor='rgba(0,0,0,0)'" value="<%=point[i]._id%>"><%=point[i].name%></a>
                             <%}%>
                         </div>
-                        <div class="list-group" id="飲食" style="border: 1px solid #26669b;display:none;position:absolute;width:80%;left:10%;top:20%;box-shadow:0px 0px;">
+                        <div class="list-group s飲食" style="border: 1px solid #26669b;display:none;position:absolute;width:80%;left:10%;top:20%;box-shadow:0px 0px;">
                             <%for(var i in food){%> 
-                                <a href="javascript:void(0)" class="list-group-item build-name" style="color:#26669b;border: 0px;background-color:rgba(0,0,0,0)" onMouseOver="this.style.backgroundColor='rgba(255,255,255,0.2)'" onMouseOut="this.style.backgroundColor='rgba(0,0,0,0)'" value="<%=food[i]._id%>"><%=food[i].name%></a>
+                                <%if(i>=8) break;%>
+                                <a href="javascript:void(0)" class="list-group-item build-name" style="font-size:18px; color:#26669b;border: 0px;background-color:rgba(0,0,0,0)" onMouseOver="this.style.backgroundColor='rgba(255,255,255,0.2)'" onMouseOut="this.style.backgroundColor='rgba(0,0,0,0)'" value="<%=food[i]._id%>"><%=food[i].name%></a>
                             <%}%>
                         </div>
-                        <div class="list-group" id="住宿" style="border: 1px solid #26669b;display:none;position:absolute;width:80%;left:10%;top:20%;box-shadow:0px 0px;">
+                        <div class="list-group s住宿" style="border: 1px solid #26669b;display:none;position:absolute;width:80%;left:10%;top:20%;box-shadow:0px 0px;">
                             <%for(var i in home){%> 
-                                <a href="javascript:void(0)" class="list-group-item build-name" style="color:#26669b;border: 0px;background-color:rgba(0,0,0,0)" onMouseOver="this.style.backgroundColor='rgba(255,255,255,0.2)'" onMouseOut="this.style.backgroundColor='rgba(0,0,0,0)'" value="<%=home[i]._id%>"><%=home[i].name%></a>
+                                <%if(i>=8) break;%>
+                                <a href="javascript:void(0)" class="list-group-item build-name" style="font-size:18px; color:#26669b;border: 0px;background-color:rgba(0,0,0,0)" onMouseOver="this.style.backgroundColor='rgba(255,255,255,0.2)'" onMouseOut="this.style.backgroundColor='rgba(0,0,0,0)'" value="<%=home[i]._id%>"><%=home[i].name%></a>
                             <%}%>
                         </div>
                     </div>
@@ -98,6 +104,38 @@
                         <img class="mouse-animate type-menu" src="/campus/default/4.png" width="100%" alt="中大景點" style="padding:1vh; cursor: pointer; position:absolute; top:10%">
                         <img class="mouse-animate type-menu" src="/campus/default/5.png" width="100%" alt="飲食" style="padding:1vh; cursor: pointer; position:absolute; top:40%">
                         <img class="mouse-animate type-menu" src="/campus/default/6.png" width="100%" alt="住宿" style="padding:1vh; cursor: pointer; position:absolute; top:70%">
+
+                        <div class="list-group s系館" style="border: 1px solid #26669b;display:none;position:absolute;width:80%;left:10%;top:10%;box-shadow:0px 0px;">
+                            <%for(var i=8;i<dep.length;i++){%>
+                                <a href="javascript:void(0)" class="list-group-item build-name" style="font-size:18px; color:#26669b;border: 0px;background-color:rgba(0,0,0,0)" onMouseOver="this.style.backgroundColor='rgba(255,255,255,0.2)'" onMouseOut="this.style.backgroundColor='rgba(0,0,0,0)'" value="<%=dep[i]._id%>"><%=dep[i].name%></a>
+                            <%}%>
+                        </div>
+                        <div class="list-group s行政" style="border: 1px solid #26669b;display:none;position:absolute;width:80%;left:10%;top:10%;box-shadow:0px 0px;">
+                            <%for(var i=8;i<work.length;i++){%> 
+                                <a href="javascript:void(0)" class="list-group-item build-name" style="font-size:18px; color:#26669b;border: 0px;background-color:rgba(0,0,0,0)" onMouseOver="this.style.backgroundColor='rgba(255,255,255,0.2)'" onMouseOut="this.style.backgroundColor='rgba(0,0,0,0)'" value="<%=work[i]._id%>"><%=work[i].name%></a>
+                            <%}%>
+                        </div>
+                        <div class="list-group s運動" style="border: 1px solid #26669b;display:none;position:absolute;width:80%;left:10%;top:10%;box-shadow:0px 0px;">
+                            <%for(var i=8;i<sport.length;i++){%> 
+                                <a href="javascript:void(0)" class="list-group-item build-name" style="font-size:18px; color:#26669b;border: 0px;background-color:rgba(0,0,0,0)" onMouseOver="this.style.backgroundColor='rgba(255,255,255,0.2)'" onMouseOut="this.style.backgroundColor='rgba(0,0,0,0)'" value="<%=sport[i]._id%>"><%=sport[i].name%></a>
+                            <%}%>
+                        </div>
+                        <div class="list-group s中大景點" style="border: 1px solid #26669b;display:none;position:absolute;width:80%;left:10%;top:10%;box-shadow:0px 0px;">
+                            <%for(var i=8;i<point.length;i++){%> 
+                                <a href="javascript:void(0)" class="list-group-item build-name" style="font-size:18px; color:#26669b;border: 0px;background-color:rgba(0,0,0,0)" onMouseOver="this.style.backgroundColor='rgba(255,255,255,0.2)'" onMouseOut="this.style.backgroundColor='rgba(0,0,0,0)'" value="<%=point[i]._id%>"><%=point[i].name%></a>
+                            <%}%>
+                        </div>
+                        <div class="list-group s飲食" style="border: 1px solid #26669b;display:none;position:absolute;width:80%;left:10%;top:10%;box-shadow:0px 0px;">
+                            <%for(var i=8;i<food.length;i++){%> 
+                                <a href="javascript:void(0)" class="list-group-item build-name" style="font-size:18px; color:#26669b;border: 0px;background-color:rgba(0,0,0,0)" onMouseOver="this.style.backgroundColor='rgba(255,255,255,0.2)'" onMouseOut="this.style.backgroundColor='rgba(0,0,0,0)'" value="<%=food[i]._id%>"><%=food[i].name%></a>
+                            <%}%>
+                        </div>
+                        <div class="list-group s住宿" style="border: 1px solid #26669b;display:none;position:absolute;width:80%;left:10%;top:10%;box-shadow:0px 0px;">
+                            <%for(var i=8;i<home.length;i++){%> 
+                                <a href="javascript:void(0)" class="list-group-item build-name" style="font-size:18px; color:#26669b;border: 0px;background-color:rgba(0,0,0,0)" onMouseOver="this.style.backgroundColor='rgba(255,255,255,0.2)'" onMouseOut="this.style.backgroundColor='rgba(0,0,0,0)'" value="<%=home[i]._id%>"><%=home[i].name%></a>
+                            <%}%>
+                        </div>
+
                     </div>
                 </div>
             </div>       
