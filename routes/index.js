@@ -395,6 +395,21 @@ module.exports = function(passport) {
       res.redirect( '/manageMain' );
     });
   });
+  // 編輯時程
+  router.post('/manageMain/editEvent/:id',isAdmin, function(req, res){
+    // console.log(req.body);
+    Main_event.findById( req.params.id, function ( err, main_new ){
+      main_new.title    = req.body.title;
+      main_new.date     = req.body.news_date;
+      main_new.content  = req.body.news_content;
+      main_new.subtitle = req.body.subtitle;
+
+      main_new.updated_at = Date.now();
+      main_new.save( function ( err, todo, count ){
+        res.redirect( '/manageMain' );
+      });
+    });
+  });
   // router.get('/auth/provider', passport.authenticate('provider',{ scope: 'user.info.basic.read' }));
   //
   // router.get('/auth/provider/callback',

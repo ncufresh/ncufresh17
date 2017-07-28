@@ -326,17 +326,14 @@
                              <label for="news_date">日期:</label>
                              <input type="date"  name="news_date" style="" value="<%= main_event.date %>" required>
                           </div>
-                          <div class="form-group">
-                            <input type="checkbox" name="to_top" value="true" checked>
-                            <label for="to_top">置頂</label>
-                          </div>
+
                           <div class="form-group">
                              <label for="subtitle">小標題:</label><small>（會出現在list裡的）</small>
                              <input type="text"  name="subtitle" style="" value="<%= main_event.subtitle %>" required>
                           </div>
                           <div class="form-group">
-                             <label for="news_date">內容:</label><small>（會出現在modal裡的）</small>
-                             <textarea name="news_content" id="event_content_<%= main_event.id %>" rows="8" cols="80"></textarea>
+                             <label for="news_content">內容:</label><small>（會出現在modal裡的）</small>
+                             <textarea name="news_content"  ><%= main_event.content %></textarea>
                           </div>
                       </div>
                       <div class="modal-footer">
