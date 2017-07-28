@@ -295,13 +295,14 @@
                 		<div class="events-wrapper">
                 			<div class="events">
                 				<ol>
-                          <% main_events.forEach(function(main_event){ %>
+                          <% for(var i=0; i<main_events.length; i++) {%>
                             <%
-                              var date = new Date(main_event.date);
-                              var str = '0'+(date.getDate()) + '/' + '0' +(date.getMonth()+1) + '/' +  date.getFullYear();
+                              var date = new Date(main_events[i].date);
+                              var str = (date.getDate()) + '/' +(date.getMonth()+1) + '/' +  date.getFullYear();
                             %>
-                					       <li><a href="#0" data-date="<%=str%>" data-toggle="tooltip" title="<%=main_event.subtitle%>" data-placement="bottom"><%=main_event.date%></a></li>
-                          <% }); %>
+                                 <li><a href="#0" data-date="<%=str%>" data-toggle="tooltip" title="<%=main_events[i].subtitle%>" data-placement="bottom" class="<%if(i===(main_events.length-1)){%>selected<%}%>"><%=main_events[i].date%></a></li>
+                          <% } %>
+
                           <%# <li><a href="#0" data-date="16/01/2014">1/16</a></li>
                 					<li><a href="#0" data-date="28/02/2014">2/28</a></li>
                 					<li><a href="#0" data-date="20/04/2014">3/20</a></li>
@@ -327,22 +328,22 @@
 
                 	<div class="events-content">
                 		<ol>
+
                       <% for(var i=0; i<main_events.length; i++) {%>
                         <%
                           var date = new Date(main_events[i].date);
-                          var str = '0'+(date.getDate()) + '/' + '0' +(date.getMonth()+1) + '/' +  date.getFullYear();
+                          var str = (date.getDate()) + '/'+(date.getMonth()+1) + '/' +  date.getFullYear();
                         %>
-                        <li data-date="<%=str%>" >
+                        <li data-date="<%=str%>" class="<%if(i===(main_events.length-1)){%>selected<%}%>">
 
-                  				<h2><%=main_events[i].title%></h2>
-                  				<em><%=str%></em>
-                  				<p>
+                          <h2><%=main_events[i].title%></h2>
+                          <em><%=main_events[i].date%></em>
+                          <p>
                             <%=main_events[i].content%>
                           </p>
-                  			</li>
+                        </li>
                       <% } %>
 
-                    </ol>
                 			<%# <li data-date="16/01/2014">
                 				<h2>Horizontal Timeline</h2>
                 				<em>January 16th, 2014</em>
@@ -430,7 +431,7 @@
                 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
                 				</p>
                 			</li>%>
-
+                      </ol>
                 	</div> <!-- .events-content -->
                 </section>
               </div>

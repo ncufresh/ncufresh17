@@ -43,7 +43,7 @@ module.exports = function(passport) {
           });
         },
         main_events: function(cb){
-          Main_event.find().sort({date: -1}).exec(function(err, com){
+          Main_event.find().sort({date: 1}).exec(function(err, com){
             cb(null, com);
           });
         },
@@ -407,6 +407,15 @@ module.exports = function(passport) {
       main_new.updated_at = Date.now();
       main_new.save( function ( err, todo, count ){
         res.redirect( '/manageMain' );
+      });
+    });
+  });
+
+  //刪除時程
+  router.post('/manageMain/delEvent/:id',isAdmin, function(req, res){
+    Main_event.findById( req.params.id, function ( err, main_new ){
+      main_new.remove( function ( err, main_new ){
+        res.redirect('/manageMain');
       });
     });
   });
