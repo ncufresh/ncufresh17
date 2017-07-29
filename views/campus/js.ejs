@@ -139,7 +139,7 @@ $(document).ready(function(){
     })
 
     $('#uploadImg').click(function(){
-        if($("#imgpath").text()=="")return;
+        if($("#img_path").val()=="")return;
         var formData = new FormData($("#img_form")[0]);
         $.ajax({
             url: "/campus/imgUpload",
@@ -154,7 +154,8 @@ $(document).ready(function(){
                 $("#img_body").append('<div id="'+ 'img'+ data._id +'">'+
                                             '<img src= "' +data.img_path+'"' + 'width="100%"' + '>'+'\n'+
                                             '<button class="btn delete_img btn-success" value ="'+data._id +'">'+'刪除圖片'+'</button>'+
-                                            '</div>' )
+                                            '</div>' );
+                $("#img_path").val("");
             },
             error: function(e){
                 console.log(e);
