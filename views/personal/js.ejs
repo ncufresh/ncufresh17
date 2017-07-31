@@ -1,35 +1,31 @@
 <script>
 
 /// Preview uploaded image
-    $("#uploadImage").change(function() {
+    $(".imgView").change(function() {
         readImage( this );
     });
 
     function readImage(input) {
         if ( input.files && input.files[0] ) {
-            $('#myModal').modal('show');
 
             var FR= new FileReader();
             FR.onload = function(e) {
                 //e.target.result = base64 format picture
-                $('#img').attr( "src", e.target.result );
-                $('#img2').attr( "src", e.target.result );
+                $('#imgPreview').attr( "src", e.target.result );
             };       
             FR.readAsDataURL( input.files[0] );
-
+            
         }
     }
 
 /// Confirm/Cancel upload image
 
-    function uploadPhoto() {
-        alert("confirm");
-        
+    function confirmUpload() {
+        //do nothing        
     }
 
     function cancelUpload() {
-        alert("cancel");
-        $('#img').attr( "src", "/personal/profile.png");
+        //do nothing
     }
 
 /// Q-A table action

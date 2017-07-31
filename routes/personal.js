@@ -2,14 +2,26 @@ var express = require('express');
 var router = express.Router();
 
 var User = require('../models/user');
+var Qna = require('../models/qna');
 
 var fs = require('fs');
 var shortId = require('shortid');
 var formidable = require('formidable');
 
+/* GET home page. */
+router.get('/', isLoggedIn, function(req, res, next) {
+  Qna.find({}).exec(function(err, qna) {
+    res.render('personal/index', { 
+      title: 'personal', 
+      user: req.user,
+      qna: qna
+    });
+  });
+});
+
 router.post('/uploadProfile/:id', function(req, res, next) {
     var form = new formidable.IncomingForm();
-    form.parse(req, function(err, files) {
+    form.parse(req, function(err, fields, files) {
 
       if (err) {
 				console.log(err);
@@ -36,14 +48,6 @@ router.post('/uploadProfile/:id', function(req, res, next) {
       }).pipe(writeStream);
 
     });
-});
-
-/* GET home page. */
-router.get('/', isLoggedIn, function(req, res, next) {
-  res.render('personal/index', { 
-    title: 'personal', 
-    user: req.user 
-  });
 });
 
 function isLoggedIn(req, res, next) {
