@@ -7,7 +7,7 @@
     <header style="min-width: 100vw;">
         <% include ../layouts/navbar %>
     </header>
-    <!-- <p style="background-color: #00BFFF !important; font-family: Georgia, Garamond, serif; color:white; padding-bottom: 5vh; margin-bottom: 0px; font-size: 10vw; word-spacing: 0.2em; width:auto; padding-top: 13vh !important;" class="text-center container">Welcome to here.</p> -->
+
     <main  style="margin-top: 0px !important; min-width: 100vw; max-width:100vw">
 
         <div style=" background-color: #00BFFF !important; padding-bottom: 20vh; padding-top: 25vh;">
@@ -24,10 +24,10 @@
             <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#add_model">新增</button>
             <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#change_order_model">更改順序</button>
         </div>
-        <!-- 新增model -->
+        <%//新增model%>
         <div class="modal fade" id="add_model" role="dialog">
             <div class="modal-dialog modal-lg">
-                <!-- Modal content-->
+                <%//Modal content%>
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -82,10 +82,10 @@
             </div>
         </div>
 
-        <!-- 修改排序model -->
+        <%//修改排序model%>
         <div class="modal fade" id="change_order_model" role="dialog">
             <div class="modal-dialog modal-lg">
-                <!-- Modal content-->
+                <%//Modal content%>
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -127,10 +127,10 @@
             </div>
         </div>
 
-        <!--  修改model -->
+        <%//修改model%>
         <div class="modal fade" id="edit_data_model" role="dialog">
             <div class="modal-dialog modal-lg">
-                <!-- Modal content-->
+                <%//Modal content%>
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -168,10 +168,10 @@
         </div>
 
         <% for (var i in document){%>
-            <!--  圖片model -->
+            <%//圖片model%>
             <div class="modal fade" id="<%=document[i].id+"insertimg"%>" role="dialog">
                 <div class="modal-dialog modal-lg">
-                    <!-- Modal content-->
+                    <%//Modal content%>
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -200,11 +200,11 @@
                 </div>
             </div>
 
-            <!-- 編輯model -->
+            <%//編輯model%>
             <%if (document[i].type!="常用連結"){%>
                 <div class="modal fade" id="<%=document[i].id+"document"%>" role="dialog">
                     <div class="modal-dialog modal-lg">
-                        <!-- Modal content-->
+                        <%//Modal content%>
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -226,7 +226,7 @@
             <%}%>
         <%}%>
 
-        <!--大一新生 start-->
+        <%//大一新生 start%>
         <section class="container" id="freshmen-distaination">
             <p class="text-center" style="font-size: 6vw">大一新生</p>
             <ul class="nav nav-pills nav-justified row" style="padding: 10px;">
@@ -265,10 +265,9 @@
                 <%}%>
             </div>
         </section>
-        <!--大一新生 end-->
+        <%//大一新生 end%>
 
-        <%#fjdljfdljsa%>
-        <!--碩一新生 start-->
+        <%//碩一新生 start%>
         <section class="container" id="master-freshmen-distaination" style="display:none;">
             <p class="text-center" style="font-size: 6vw">碩一新生</p>
             <ul class="nav nav-pills nav-justified row" style="padding: 10px;">
@@ -296,9 +295,9 @@
                 <%}%>
             </div>
         </section>
-        <!--碩一新生 end-->
+        <%//碩一新生 end%>
 
-        <!--常用連結 start-->
+        <%//常用連結 start%>
         <section class="container" id="often-link-distaination" style="display:none; margin: 0px; padding-left: 2vw; padding-right: 2vw;">
             <p class="text-center" style="width: 96vw; font-size: 6vw;">常用連結</p>
             <div class="row container" style="width: 96vw;">
@@ -321,10 +320,7 @@
                 <%}%>
             <%}%>
         </section>
-        <!--常用連結 end-->
-        <!-- <svg height="346.410161513775459" width="400">
-            <polygon points="100,0 0,173.205080756887729 100,346.410161513775459 300,346.410161513775459 400,173.205080756887729 300,0" style="fill:lime;stroke:purple;stroke-width:1" />
-        </svg> -->
+        <%//常用連結 end%>
     </main>
     <style type="text/css">
 
