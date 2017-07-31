@@ -1,84 +1,51 @@
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="/javascript/ckeditor/ckeditor.js"></script>
 
-    <script src="/javascript/ckeditor/ckeditor.js"></script>
-    <script type="text/javascript">
-      CKEDITOR.replace('introduction',{
-        filebrowserUploadUrl: '/uploader',
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.edit_life').click(function(){
+      var id = $(this).val();
+      $.ajax({
+          url:  "/life/food/"+id,
+          error: function(e){
+              console.log("ERR  :"+e);
+          },
+          success: function(data){
+              $("#bid").val(data._id);
+              $("#name").val(data.name);
+              $("#type").val(data.type);
+              CKEDITOR.instances['introduction'].setData(data.introduction);
+              $("#btn_save").val("update");
+              $("#add_life").modal("show");
+          }
       });
-      CKEDITOR.editorConfig = function (config){
-          config.enterMode = CKEDITOR.ENTER_BR;
-          config.autoParagraph = false;
-      };
-    </script>
-    <script type="text/javascript">
-    $(document).ready(function(){
-      $('.edit_life').click(function(){
+  });
+  $(document).on('click','.delete_life',function(){
+      if(confirm("確定要刪除?")){
           var id = $(this).val();
           $.ajax({
-              url:  "/life/"+id,
+              url:    '/life/delete_life/'+ id,
+              type:   'GET',
               error: function(e){
                   console.log("ERR  :"+e);
               },
               success: function(data){
-                  $("#name").val(data.name);
-                  $("#type").val(data.type);
-                  CKEDITOR.instances['introduction'].setData(data.introduction);
-                  $("#btn_save").val("update");
-                  $("#add_life").modal("show");
-              }
-
+                $('#b'+id).remove();
+                $('#subtitle'+id).remove();
+                $('#img-view'+id).remove();
+                $('#content-text'+id).remove();
+              },
           });
-      });
-    //  $('.delete_build').click(function(){
-    //      if(confirm("確定要刪除?")){
-    //          var id = $(this).val();
-    //          $.ajax({
-    //              url:    '/campus/delete/'+ id,
-    //              type:   'GET',
-    //              error: function(e){
-    //                  console.log("ERR  :"+e);
-    //              },
-    //              success: function(data){
-    //                  $('#b'+ id).remove();
-    //              }
-    //          });
-    //      }
-    //  });
-
-      $("#life-navigate-1").click(function(){
-    });
-      $("#life-navigate-2").click(function(){
-    });
-      $("#life-navigate-3").click(function(){
-    });
-      $("#life-navigate-4").click(function(){
-    });
-      $("#life-navigate-5").click(function(){
-        if(entertainmenttoggle == true){
-            entertainmenttoggle = -entertainmenttoggle;
-            foodtoggle = dormtoggle = traffictoggle = studytoggle = true;
-            $("#food-video").css({"display":"none"});
-            $("#dorm-video").css({"display":"none"});
-            $("#traffic-video").css({"display":"none"});
-            $("#study-video").css({"display":"none"});
-            $("#entertainment-video").css({"display":"block"});
-            $("#traffic-video").html('<iframe src="https://www.youtube.com/embed/ZcoqR9Bwx1Y?ecver=2" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe>');
-            $("#life-navigate-1,#life-navigate-2,#life-navigate-3,#life-navigate-4").animate({opacity: '0.3'}, 200);
-            $("#life-navigate-5,#life-navigate-back").animate({opacity: '1.0'}, 200);
-            $("#food-mainpan,#dorm-mainpan,#traffic-mainpan,#study-mainpan").slideUp(10000).css({"display":"none"});
-            $("#entertainment-mainpan").slideToggle(1200);
-            $("#entertainment-mainpan").css({"display":"block"});
-        }
-        else{
-            entertainmenttoggle = -entertainmenttoggle;
-            $("#entertainment-video").css({"display":"none"});
-            $("#life-navigate-1,#life-navigate-2,#life-navigate-3,#life-navigate-4,#life-navigate-5").animate({opacity: '1'}, 200);
-            $("#life-navigate-back").animate({opacity: '0.0'}, 200);
-            $("#entertainment-mainpan").slideToggle(1200);
-        }
-      });
-    });
-    </script>
+      }
+  });
+});
+CKEDITOR.replace('introduction',{
+  filebrowserUploadUrl: '/uploader',
+});
+CKEDITOR.editorConfig = function (config){
+    config.enterMode = CKEDITOR.ENTER_BR;
+    config.autoParagraph = false;
+};
+</script>
