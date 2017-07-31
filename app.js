@@ -4,13 +4,13 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-require('dotenv').config()
+require('dotenv').config();
 
 var mongoose = require('mongoose');
 var multipart = require('connect-multiparty');
 var multipartMiddleware = multipart();
-var session  = require('express-session');
-var flash    = require('connect-flash');
+var session = require('express-session');
+var flash = require('connect-flash');
 var passport = require('passport');
 
 var app = express();
@@ -28,9 +28,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
-	secret:'ThisIsNcuFreshAndWeAreTheBest',
-	resave: true,
-	saveUninitialized: false
+  secret: 'ThisIsNcuFreshAndWeAreTheBest',
+  resave: true,
+  saveUninitialized: false
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -39,7 +39,7 @@ app.use(flash());
 // database config
 var configDB = require('./config/database');
 mongoose.Promise = global.Promise;
-mongoose.connect(configDB.url,{useMongoClient: true});
+mongoose.connect(configDB.url, { useMongoClient: true });
 
 // passport 認證
 require('./config/passport')(passport);
@@ -85,44 +85,44 @@ app.use('/aboutweb', aboutweb);
 
 // ckeditor uploader
 app.post('/uploader', multipartMiddleware, function(req, res) {
-	var fs = require('fs');
+  var fs = require('fs');
 
-	fs.readFile(req.files.upload.path, function (err, data) {
-		var newPath = __dirname + '/public/uploads/' + req.files.upload.name;
-		fs.writeFile(newPath, data, function (err) {
-			if (err) console.log({err: err});
-			else {
-				html = "";
-				html += "<script type='text/javascript'>";
-				html += "    var funcNum = " + req.query.CKEditorFuncNum + ";";
-				html += "    var url     = \"/uploads/" + req.files.upload.name + "\";";
-				html += "    var message = \"Uploaded file successfully\";";
-				html += "";
-				html += "    window.parent.CKEDITOR.tools.callFunction(funcNum, url, message);";
-				html += "</script>";
+  fs.readFile(req.files.upload.path, function(err, data) {
+    var newPath = __dirname + '/public/uploads/' + req.files.upload.name;
+    fs.writeFile(newPath, data, function(err) {
+      if (err) console.log({ err: err });
+      else {
+        html = "";
+        html += "<script type='text/javascript'>";
+        html += "    var funcNum = " + req.query.CKEditorFuncNum + ";";
+        html += "    var url     = \"/uploads/" + req.files.upload.name + "\";";
+        html += "    var message = \"Uploaded file successfully\";";
+        html += "";
+        html += "    window.parent.CKEDITOR.tools.callFunction(funcNum, url, message);";
+        html += "</script>";
 
-				res.send(html);
-			}
-		});
-	});
+        res.send(html);
+      }
+    });
+  });
 });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-	var err = new Error('Not Found');
-	err.status = 404;
-	next(err);
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
 
 // error handler
 app.use(function(err, req, res, next) {
-	// set locals, only providing error in development
-	res.locals.message = err.message;
-	res.locals.error = req.app.get('env') === 'development' ? err : {};
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-	// render the error page
-	res.status(err.status || 500);
-	res.render('error');
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
 });
 
 module.exports = app;
