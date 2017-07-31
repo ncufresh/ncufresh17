@@ -34,7 +34,22 @@ on Windows
 
 `git push --set-upstream origin <YourBranchName>`
 
+# user
+```
+{ _id: 597e9646d7a9922d5d81f494,
+  __v: 0,
+  local: 
+   { created: 2017-07-31T02:30:30.660Z,
+     accountType: 'STUDENT',
+     password: '',
+     email: '104502005@cc.ncu.edu.tw',
+     name: '卓鈺翔',
+     img: 'profile.png',
+     updated: 2017-07-31T02:30:30.657Z
+   }
+}
 
+```
 
 
 # ckeditor編輯器用法
