@@ -35,6 +35,7 @@
       .newsimg{
         width: 100%;
       }
+
     </style>
 </head>
 <body>
@@ -56,6 +57,10 @@
                       <input type="text" class="name"  name="videourl" style="width:30%" required>
                    </div>
                    <div class="form-group">
+                      <label for="url">上映日期:</label>
+                      <input type="date" class="name"  name="up_date" style="width:30%" required>
+                   </div>
+                   <div class="form-group">
                      <label for="input_img">上傳圖片:</label>
                      <input name="input_img" type="file" class="imgInp" >
                    </div>
@@ -69,7 +74,7 @@
            <div class="" style="overflow-y:scroll">
              <h3>已新增圖片</h3>
              <% galimgs.forEach(function(galimg){ %>
-             <div class="col col-md-2">
+             <div class="col col-md-2" style="position:relative">
                  <img class="galimg" src="/images/main/galimg/<%= galimg.imgurl %>" alt="<%= galimg.name %>">
                  <form method="post" action="/manageMain/delGal/<%= galimg.id %>">
                     <button type="submit" class="btn btn-warning">刪除</button>

@@ -23,7 +23,7 @@ module.exports = function(passport) {
   router.get('/', function(req, res, next) {
     async.parallel({
         galimgs: function(cb) {
-          Galimg.find().exec(function(err, com) {
+          Galimg.find().sort({up_date: 1}).exec(function(err, com) {
             cb(null, com);
           });
         },
@@ -205,7 +205,7 @@ module.exports = function(passport) {
   router.get('/manageMain', isAdmin, function(req, res, next) {
     async.parallel({
         galimgs: function(cb) {
-          Galimg.find().exec(function(err, com) {
+          Galimg.find().sort({up_date: 1}).exec(function(err, com) {
             cb(null, com);
           });
         },
@@ -274,6 +274,7 @@ module.exports = function(passport) {
         videourl: fields.videourl,
         name: fields.name,
         imgurl: fileName,
+        up_date: fields.up_date
       }).save(function() {
         res.redirect('/manageMain');
       });

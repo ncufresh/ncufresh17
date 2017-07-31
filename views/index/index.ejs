@@ -172,8 +172,22 @@
         cursor: pointer; /* Add a mouse pointer on hover */
         padding: 15px; /* Some padding */
         /*border-radius: 10px; /* Rounded corners */*/
-    }
+      }
 
+      .gal:hover{
+        background-color: rgba(255, 255, 255, 0.1);
+        opacity: 0.2;
+        filter: alpha(opacity=20); /* For IE8 and earlier */
+        /*background-image: url();*/
+      }
+      .galspan{
+        position:absolute;
+        font-size: 50px;
+        left: 18%;
+        top: 5%;
+        z-index:-1;
+        text-align: center;
+      }
 
     </style>
 </head>
@@ -184,11 +198,15 @@
     <main>
         <div class="">
 
-            <div class="imgGall container-fluid gallery ">
+            <div class="imgGall container-fluid gallery">
               <!-- Elastislide Carousel -->
     					<ul id="carousel" class="elastislide-list">
                 <% galimgs.forEach(function(galimg){ %>
-                  <li><a href="<%= galimg.videourl %>"><img src="/images/main/galimg/<%= galimg.imgurl %>" alt="<%= galimg.name %>" /></a></li>
+                  <%
+                    var date = galimg.up_date;
+                    var str =  + (date.getMonth()+1) + '/' +  (date.getDate());
+                  %>
+                  <li style="position:relative"><%if(date>new Date()){%><span class="galspan"><%=str%><br>上映</span><%}else{%><span class="galspan">現已<br>上映</span><%}%><a  class="gal" href="<%= galimg.videourl %>"><img src="/images/main/galimg/<%= galimg.imgurl %>" alt="<%= galimg.name %>" /></a></li>
                 <% }); %>
 
     					</ul>
@@ -303,18 +321,7 @@
                                  <li><a href="#0" data-date="<%=str%>" data-toggle="tooltip" title="<%=main_events[i].subtitle%>" data-placement="bottom" class="<%if(i===(main_events.length-1)){%>selected<%}%>"><%=main_events[i].date%></a></li>
                           <% } %>
 
-                          <%# <li><a href="#0" data-date="16/01/2014">1/16</a></li>
-                					<li><a href="#0" data-date="28/02/2014">2/28</a></li>
-                					<li><a href="#0" data-date="20/04/2014">3/20</a></li>
-                					<li><a href="#0" data-date="20/05/2014">5/20</a></li>
-                					<li><a href="#0" data-date="09/07/2014">7/09</a></li>
-                					<li><a href="#0" data-date="30/08/2014">8/30</a></li>
-                					<li><a href="#0" data-date="15/09/2014">9/15</a></li>
-                					<li><a href="#0" data-date="01/11/2014">11/01</a></li>
-                					<li><a href="#0" data-date="10/12/2014">12/10</a></li>
-                					<li><a href="#0" data-date="19/01/2015" data-toggle="tooltip" title="Hooray!" data-placement="bottom">1/29</a></li>
-                					<li class="new"><a href="#0" data-date="03/03/2015" class="selected">3/3</a></li>%>
-                				</ol>
+                        </ol>
 
                 				<span class="filling-line" aria-hidden="true"></span>
                 			</div> <!-- .events -->
@@ -344,93 +351,6 @@
                         </li>
                       <% } %>
 
-                			<%# <li data-date="16/01/2014">
-                				<h2>Horizontal Timeline</h2>
-                				<em>January 16th, 2014</em>
-                				<p>
-                					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
-                				</p>
-                			</li>
-
-                			<li data-date="28/02/2014">
-                				<h2>Event title here</h2>
-                				<em>February 28th, 2014</em>
-                				<p>
-                					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
-                				</p>
-                			</li>
-
-                			<li data-date="20/04/2014">
-                				<h2>Event title here</h2>
-                				<em>March 20th, 2014</em>
-                				<p>
-                					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
-                				</p>
-                			</li>
-
-                			<li data-date="20/05/2014">
-                				<h2>Event title here</h2>
-                				<em>May 20th, 2014</em>
-                				<p>
-                					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
-                				</p>
-                			</li>
-
-                			<li data-date="09/07/2014">
-                				<h2>Event title here</h2>
-                				<em>July 9th, 2014</em>
-                				<p>
-                					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
-                				</p>
-                			</li>
-
-                			<li data-date="30/08/2014">
-                				<h2>Event title here</h2>
-                				<em>August 30th, 2014</em>
-                				<p>
-                					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
-                				</p>
-                			</li>
-
-                			<li data-date="15/09/2014">
-                				<h2>Event title here</h2>
-                				<em>September 15th, 2014</em>
-                				<p>
-                					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
-                				</p>
-                			</li>
-
-                			<li data-date="01/11/2014">
-                				<h2>Event title here</h2>
-                				<em>November 1st, 2014</em>
-                				<p>
-                					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
-                				</p>
-                			</li>
-
-                			<li data-date="10/12/2014">
-                				<h2>Event title here</h2>
-                				<em>December 10th, 2014</em>
-                				<p>
-                					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
-                				</p>
-                			</li>
-
-                			<li data-date="19/01/2015">
-                				<h2>Event title here</h2>
-                				<em>January 19th, 2015</em>
-                				<p>
-                					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
-                				</p>
-                			</li>
-
-                			<li data-date="03/03/2015" class="selected">
-                				<h2>Event title here</h2>
-                				<em>March 3rd, 2015</em>
-                				<p>
-                					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
-                				</p>
-                			</li>%>
                       </ol>
                 	</div> <!-- .events-content -->
                 </section>
