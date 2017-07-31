@@ -9,7 +9,9 @@
       /*切版*/
       .imgGall{
         padding: 0px;
+        box-shadow:  0 -1px 0 0 #000, 0 1px 0 0 #000;
       }
+
       .news,.calendar,.dj{
         /*background-color: #000;*/
         padding: 0px;
@@ -29,9 +31,18 @@
   			/*position: absolute;*/
   			width: 100%;
   		}
+
+
       .news::before{
         background-color: #fff;
         background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,100 100,0 0,0' style='fill:#4dc0c7' /%3E%3C/svg%3E");
+
+      }
+      .news::before{
+        box-shadow: none;
+      }
+      .news::after{
+        box-shadow: none;
       }
       .news-hr{
         border:0; height:3px;
@@ -48,14 +59,30 @@
         background-color: #fff;
         background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 100,100 0,100 ' style='fill:#acccfc' /%3E%3C/svg%3E");
       }
+      .calendar::before{
+        box-shadow: none;
+      }
+      .calendar::after{
+        box-shadow: none;
+      }
       .dj::before{
         background-color: #acccfc;
         background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 100,100 0,100 ' style='fill:#fff' /%3E%3C/svg%3E");
+      }
+
+      .dj::before{
+        box-shadow: none;
+      }
+      .dj::after{
+        box-shadow: none;
       }
       footer::before{
         padding: 0px;
         background-color: #fff;
         background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 100,100 0,100 ' style='fill:#4dc0c7' /%3E%3C/svg%3E");
+      }
+      footer::before{
+        box-shadow: none;
       }
       .navbar{
         box-shadow: none;
@@ -188,6 +215,7 @@
         z-index:-1;
         text-align: center;
       }
+      
 
     </style>
 </head>
@@ -198,7 +226,7 @@
     <main>
         <div class="">
 
-            <div class="imgGall container-fluid gallery">
+            <div class="imgGall container-fluid gallery ">
               <!-- Elastislide Carousel -->
     					<ul id="carousel" class="elastislide-list">
                 <% galimgs.forEach(function(galimg){ %>
