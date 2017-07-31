@@ -2,37 +2,31 @@
 <html lang="en">
 <head>
     <style type="text/css">
-        .cc2:hover{
-             box-shadow: 0 0 1px 1px rgba(0,0,0,1);
+        .cc{
+            padding: 4vh; 
         }
-        .cc3:hover{
-             padding: 10vh ;
+        .cc:hover {
+            padding: 0px;
         }
+        .cc2{
+            max-width: 14vh; 
+        }
+        .cc2:hover {
+            max-width: 22vh;
+            box-shadow: 0 0 1px 1px rgba(0,0,0,1);
+        }
+        #slidedown{
+            max-width: 14vh;
+        }
+        #slidedown:hover {
+            max-width: 22vh;
+        }
+        
     </style>
     <% include ../layouts/head %>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function(){
-        $(".cc").mouseenter(function(){
-                $(this).animate({
-                    padding:'0px'
-                }, 200);
-        });
-        $(".cc").mouseleave(function(){
-                $(this).animate({
-                    padding:'2vh'
-                }, 200);
-        });
-        $(".cc2").mouseenter(function(){
-                $(this).animate({
-                    padding:'1vh'
-                }, 200);
-        });
-        $(".cc2").mouseleave(function(){
-                $(this).animate({
-                    padding:'6vh'
-                }, 200);
-        });
         $(".g1").click(function(){
             $("#videofood").html("")
         });
@@ -99,7 +93,7 @@
         $("#slidedown").click(function(){
             console.log("ok");
             $('html,body').animate({
-                scrollTop: $("#slidepoint").offset().top-50
+                scrollTop: $("#slidepoint").offset().top+20
             }, 1000);
         });
         return false;
@@ -112,42 +106,42 @@
     </header>
 
     <main style="background-image: url(/video/背景2.png);">
-        <div class="container">
+        <div class="container">           
             <div class="row">
                 <div class="col-md-4"><img src=""/></div>
-                <div class="col-md-4"><img style="max-width: 25vw" src="/video/生活區.png" id="gf" class="img-responsive"/></div>
+                <div class="col-md-4"><img style="max-width: 25vw;margin-bottom: 100px" src="/video/生活區.png" id="gf" class="img-responsive"/></div>
                 <div class="col-md-4"><img src=""/></div>
             </div>
-            <div class="row">
-                <div class="col-md-4"><img style="display:inline-block; padding: 6vh;" id="dr1" class="cc2 img-responsive" alt="長片" src="/video/video5.png"  data-toggle="modal" data-target="#a1" /></div>
-                <div class="col-md-4"><img style="display:inline-block; padding: 6vh;" id="dr2" class="cc2 img-responsive" alt="長片" src="/video/video5.png"  data-toggle="modal" data-target="#a2" /></div>
-                <div class="col-md-4"><img style="display:inline-block; padding: 6vh;" id="dr3" class="cc2 img-responsive" alt="長片" src="/video/video5.png"  data-toggle="modal" data-target="#a3" /></div>
+            <div class="row" style="height: 10vw;">
+                <div class="col-md-2"><img style="display:inline-block;" id="dr1" class="cc2 img-responsive" alt="長片" src="/video/0000.png"  data-toggle="modal" data-target="#a1" /></div>
+                <div class="col-md-2"><img style="display:inline-block;" id="dr1" class="cc2 img-responsive" alt="長片" src="/video/0000.png"  data-toggle="modal" data-target="#a1" /></div>
+                <div class="col-md-2"><img style="display:inline-block;" id="dr2" class="cc2 img-responsive" alt="長片" src="/video/0000.png"  data-toggle="modal" data-target="#a2" /></div>
+                <div class="col-md-2"><img style="display:inline-block;" id="dr3" class="cc2 img-responsive" alt="長片" src="/video/0000.png"  data-toggle="modal" data-target="#a3" /></div>
+                <div class="col-md-2"><img style="display:inline-block;" id="dr4" class="cc2 img-responsive" alt="長片" src="/video/0000.png"  data-toggle="modal" data-target="#a4" /></div>
+                <div class="col-md-2"><img style="display:inline-block;" id="dr5" class="cc2 img-responsive" alt="長片" src="/video/0000.png"  data-toggle="modal" data-target="#a5" /></div>
             </div>
-            <div class="row">
-                <div class="col-md-4"><img style="display:inline-block; padding: 6vh;" id="dr4" class="cc2 img-responsive" alt="長片" src="/video/video5.png"  data-toggle="modal" data-target="#a4" /></div>
-                <div class="col-md-4"><img style="display:inline-block; padding: 6vh;" id="dr5" class="cc2 img-responsive" alt="長片" src="/video/video5.png"  data-toggle="modal" data-target="#a5" /></div>
-                <div class="col-md-4"><img style="display:inline-block; padding: 16vh;" id="slidedown" class="cc3 img-responsive" alt="箭頭" src="/video/箭頭.png" /></div>
+            <div class="row" style="margin-top: 10vh;height: 10vw">
+                <div class="col-md-5"><img src=""/></div>
+                <div class="col-md-2"><img style="display:inline-block;" id="slidedown" class="img-responsive" alt="箭頭" src="/video/箭頭.png" /></div>
+                <div class="col-md-5"><img src=""/></div>
             </div>
 
 
-            <div class="row">
+            <div class="row" style="margin-top: 50vh;">
                 <div class="col-md-4"><img src=""/></div>
                 <div class="col-md-4"><img style="max-width: 25vw" src="/video/生活區.png" id="slidepoint" class="img-responsive"/></div>
                 <div class="col-md-4"><img src=""/></div>
             </div>
-            <div class="row">
-                <div class="col-xs-12"><img src=""/></div>
-            </div>
-            <div class="row">
+            <div class="row" style="margin-top: 0vh;">
                 <div class="col-xs-2"><img src=""/></div>
-                <div class="col-xs-4"><img style="padding: 2vh;" src="/video/食.png" id="f1" class="img-responsive cc" alt="food" data-toggle="modal" data-target="#5"/></div>
-                <div class="col-xs-4"><img style="padding: 2vh;" src="/video/住.png" id="f2" class="img-responsive cc" alt="housing" data-toggle="modal" data-target="#6"/></div>
+                <div class="col-xs-4"><img src="/video/食.png" id="f1" class="img-responsive cc" alt="food" data-toggle="modal" data-target="#5"/></div>
+                <div class="col-xs-4"><img src="/video/住.png" id="f2" class="img-responsive cc" alt="housing" data-toggle="modal" data-target="#6"/></div>
             </div>
 
-            <div class="row">
-                <div class="col-xs-4"><img style="padding: 2vh;" src="/video/行.png" id="f3" class="img-responsive cc" alt="transportation" data-toggle="modal" data-target="#7"/></div>
-                <div class="col-xs-4"><img style="padding: 2vh;" src="/video/育.png" id="f4" class="img-responsive cc" alt="education" data-toggle="modal" data-target="#8"/></div>
-                <div class="col-xs-4"><img style="padding: 2vh;" src="/video/樂.png" id="f5" class="img-responsive cc" alt="entertainment" data-toggle="modal" data-target="#9"/></div>
+            <div class="row" style="margin-top: 0vh;">
+                <div class="col-xs-4"><img src="/video/行.png" id="f3" class="img-responsive cc" alt="transportation" data-toggle="modal" data-target="#7"/></div>
+                <div class="col-xs-4"><img src="/video/育.png" id="f4" class="img-responsive cc" alt="education" data-toggle="modal" data-target="#8"/></div>
+                <div class="col-xs-4"><img src="/video/樂.png" id="f5" class="img-responsive cc" alt="entertainment" data-toggle="modal" data-target="#9"/></div>
             </div>
             <div class="row">
                 <div class="col-xs-4"><img src="" class="img-responsive"/></div>
