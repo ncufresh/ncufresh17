@@ -176,11 +176,13 @@
 }
 
 #playerpic{
-    height:auto;
-    width:auto;
     left:35px;
     position: absolute;
-
+}
+#playerpic img{
+    height:150px;
+    width:150px;
+    border-radius: 400px;
 }
 
 #pcpic{
@@ -535,6 +537,9 @@ svg circle {
 #last{
     margin-top: 220px;
     margin-left: 130px;
+    height: 150px;
+    width: 150px;
+    border-radius: 500px;
 }
 
 #userpoint{
@@ -616,6 +621,7 @@ tr:nth-child(odd) {background: #0075a9}
 /*RANK*/
 
 /*PERSONAL SCORE*/
+
 #score01{
     border:10px solid #004986;
     background-color: #7ECEF4;
@@ -633,7 +639,7 @@ tr:nth-child(odd) {background: #0075a9}
 
 #plypic img{
     width: 100px;
-    height: auto;
+    height: 100px;
     float: left;
     margin-right:10px;
 }
@@ -867,7 +873,7 @@ tr:nth-child(odd) {background: #0075a9}
                 <div class="modal-dialog" >
                     <div class="modal-content" id="score01">
                         <div id="plypic">
-                            <img class="img-thumbnail" id="img" src="/personal/profile/<%= user.local.img %>">
+                            <img class="img-thumbnail" src="/personal/profile/<%= user.local.img %>">
                             <p>姓名: <%=user.local.name%>
                             <br>目前總共<%if(player==0){%>0<%}else{%><%=player.score%><%}%>個積分</p>
                         </div>
