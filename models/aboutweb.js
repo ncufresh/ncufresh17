@@ -7,11 +7,12 @@ var aboutweb = mongoose.Schema({
     unique: true,
     'default': shortId.generate
     },
+    name    : String,
     x       : Number,
     y       : Number,
     size    : Number,
     link    : String,
-    img_path: String
+    type    : String
 });
 
 module.exports = mongoose.model( 'aboutweb', aboutweb );

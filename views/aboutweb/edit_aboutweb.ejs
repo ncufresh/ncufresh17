@@ -17,23 +17,27 @@
                         <h4 class="modal-title">新增</h4>
                     </div>
                     <div class="modal-body">
-                        <form action="/aboutweb/add" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+                        <form action="/aboutweb/add" method="post" accept-charset="utf-8">
+
+                            <div class='form-group'>
+                                <label for="name">在這裡輸入名稱</label>
+                                <input name="name" type="text" value=""></input><br>
+                            </div>
 
                             <div class='form-group'>
                                 <label for="content">在這裡輸入路由</label>
                                 <input name="content" type="text" value="/"></input><br>
                             </div>
 
-                            <input for="img_path" type="hidden" id="imgid" name="imgid">
-                            <label for="uploadingImg" class="input-group">
-                                <input type="text" class="form-control" id="img_path" name="img_path">
-                                <div class="input-group-btn">
-                                    <span class="btn btn-default">
-                                        <i class="fa fa-file" aria-hidden="true"></i> 上傳
-                                    </span>
-                                </div>
-                            </label>
-                            <input class="form-control" id="uploadingImg" type="file" name="uploadingImg" style="display: none;" accept="image/*" onchange="this.form.img_path.value=this.value.substr(this.value.lastIndexOf('\\')+1);">
+                            <div class="form-group">
+                                <label for="type" class="control-label">類別</label>
+                                <select name="type" id="type" class="form-control">
+                                    <option value="六角形">六角形</option>
+                                    <option value="方形">方形</option>
+                                    <option value="橢圓">橢圓</option>
+                                    <option selected="" value="">請選擇</option>
+                                </select>
+                            </div>
                             <button type="submit" name="button" class="btn btn-primary">送出</button>
                         </form>
                     </div>
@@ -46,7 +50,7 @@
         </div>
 
     <%//編輯model%>
-        <div class="modal fade" id="edit_modal" role="dialog">
+        <div class="modal fade" id="edit_model" role="dialog">
             <div class="modal-dialog modal-lg">
                 <!-- Modal content-->
                 <div class="modal-content">
@@ -60,7 +64,7 @@
 
                             <div class='form-group'>
                                 <label for="x"><p>X座標</p></label>
-                                <input type="text" name="x_position" value=0>
+                                <input type="text" name="x_position" id="x-position" value=0>
                             </div>
 
                             <div class='form-group'>
@@ -72,17 +76,17 @@
                                 <label for="size"><p>Size</p></label>
                                 <input type="text" name="size" id="size" value=0>
                             </div>
-                            <div style="position:relative;width:100%;padding-bottom:56%">
-                                <img src="/campus/default/back2.png" id="editmap" width="100%" alt="" style="position:absolute;">
-                                <img class="draggable" src="" alt="" id="building_img" style="position:absolute; padding:0.5vh">
-                                <img class="draggable" src="/campus/default/SOS1.png" alt="" id="SOSimg" style="display:none;position:absolute;width:3%;">
-                                <img class="draggable" src="/campus/default/AED1.png" alt="" id="AEDimg" style="display:none;position:absolute;width:3%;">
+
+                            <div class='form-group'>
+                                <label for="link"><p>link</p></label>
+                                <input type="text" name="link" id="link" value=0>
                             </div>
-                            <input type="hidden" name="mapObj_id" id="mapObj_id">
-                            <input type="hidden" name="SOSx" id="SOSx">
-                            <input type="hidden" name="SOSy" id="SOSy">
-                            <input type="hidden" name="AEDx" id="AEDx">
-                            <input type="hidden" name="AEDy" id="AEDy">
+
+                            <div style="height: 83vw;position:relative;margin-top: 5vh; margin-bottom: 5vw; margin-left: 5vw; margin-right: 5vw;">
+                                <img src="/aboutweb/線.png" id="underlay" style="position:absolute; width: 100%; top:10%; left:0%;">
+                                <img src="" id="the_image" style="position:absolute;cursor: move;">
+                            </div>
+
                             <button type="submit" name="button" value="edit" class="btn btn-primary" >送出</button>
                         </form>
                     </div>
@@ -93,11 +97,17 @@
             </div>
         </div>
 
-    <main style="background-image: url(/aboutweb/網頁背景.png); background-repeat: repeat; background-size: contain;background-attachment: scroll; background-size: 25%;">
-        <div style="height:123vh; position:relative;margin-top: 5vh; margin-bottom: 5vw; margin-left: 5vw; margin-right: 5vw;">
-            <img src="https://www.ledr.com/colours/white.jpg" style="position:absolute; width: 100%; top:0; left:0;">
+    <main style="position:relative; background-image: url(/aboutweb/網頁背景.png); background-repeat: repeat; background-size: contain;background-size: 25%;">
+        <div style="height: 83vw;position:relative;margin-top: 5vh; margin-bottom: 5vw; margin-left: 5vw; margin-right: 5vw;">
+            <img src="/aboutweb/線.png" style="position:absolute; width: 100%; top:10%; left:0%;">
             <% for (var i in aboutweb){%>
-                <img src="<%=aboutweb[i].img_path%>" style="position:absolute; width: <%=aboutweb[i].size+"vw"%>; top:<%=aboutweb[i].y%>; left: <%=aboutweb[i].x%>">
+                <%if(aboutweb[i].type=="六角形"){%>
+                    <img src="/aboutweb/六角形按鈕.png" class="edit" id="<%=aboutweb[i]._id%>" style="position:absolute; width: <%=aboutweb[i].size+"%"%>; top:<%=aboutweb[i].y+"%"%>; left: <%=aboutweb[i].x+"%"%>">
+                <%}else if (aboutweb[i].type=="方形"){%>
+                    <img src="/aboutweb/方形按鈕.png" class="edit" id="<%=aboutweb[i]._id%>" style="position:absolute; width: <%=aboutweb[i].size+"%"%>; top:<%=aboutweb[i].y+"%"%>; left: <%=aboutweb[i].x+"%"%>">
+                <%}else if (aboutweb[i].type=="橢圓"){%>
+                    <img src="/aboutweb/橢圓按鈕.png" class="edit" id="<%=aboutweb[i]._id%>" style="position:absolute; width: <%=aboutweb[i].size+"%"%>; top:<%=aboutweb[i].y+"%"%>; left: <%=aboutweb[i].x+"%"%>">
+                <%}%>
             <%}%>
         </div>
     </main>
@@ -107,9 +117,7 @@
     <footer>
         <% include ../layouts/footer %>
     </footer>
-        <script type="text/javascript">
-            
-        </script>
-        <% include ../layouts/js %>
+        <% include js %>
+        <% //include ../layouts/js %>
 </body>
 </html>
