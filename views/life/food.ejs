@@ -1,55 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <head>
     <% include ../layouts/head %>
 <style>
+@font-face{
+  font-family:"Hanyi Senty Tang";
+  src: url(/WebFont/SentyTang.ttf) format("truetype");
+}
+@font-face{
+  font-family:"CSong3HK Medium";
+  src: url(/WebFont/CSong3HK-Medium.otf) format("opentype");
+}
 .title{
+  position:relative;
   cursor:pointer;
   margin-bottom:0.5vw;
   background-image: url("食title.png");
-  background-position: left top;
+  background-position:left top;
   background-size: 13vw 6.5vw;
   width:13vw;
   height:6.5vw;
 }
 .title-text{
-  padding-top:25px;
-  padding-left:40px;
+  position:relative;
+  padding-top:1.5vw;
+  padding-left:1vw;
   color: #392681;
-  font-size: 28px;
-  font-weight: bold;
-  font-family: "Hanyi Senty Tang", Georgia, Serif;
+  font-size: 2vw;
+  font-family: "Hanyi Senty Tang", Georgia, sans-serif;
+}
+.fpvideo{
+  display:block;
 }
 .subtitle{
+  position:relative;
   display:none;
   background-image: url("subtitle.png");
-  background-position: left top;
-  background-size: 35vw 40vw;
-  width:35vw;
-  height:40vw;
+  background-size: 55vw 63vw;
+  background-position:left top;
+  width:55vw;
+  height:63vw;
 }
 .subtitle-text{
-  padding-top:20px;
+  position:relative;
+  padding-top:1vw;
   color: #3d288b;
-  font-size: 47px;
+  font-size: 3.5vw;
   font-weight: bold;
   font-family: "CSong3HK Medium", Georgia, Serif;
   text-align: center;
 }
 .img-view{
+  position:relative;
   display:none;
-  width:35vw;
-  height:40vw;
+  min-width:100%;
+  min-height:25vw;
+  height:25vw;
 }
-content{
-  background-color: #9fc8e3;
-  background-position: left top;
-  background-size: 35vw 30vw;
-  width:35vw;
-  height:30vw;
-}
-content-text{
+.content-text{
 
+}
+.DisplaySlide{
+  display:none;
+}
+.Demo{
+  position:relative;
+  height:5.5vw;
+  cursor:pointer;
+  width:100%;
 }
 </style>
 </head>
@@ -57,7 +76,6 @@ content-text{
     <header>
         <% include ../layouts/navbar %>
     </header>
-
     <main style="background-color: #EBF2D2">
       <div class="container">
         <div>
@@ -67,37 +85,79 @@ content-text{
           <li><a href="/life">中大生活</a> <span class="divider"></span></li>
           <li class="active">食</li>
         </ul>
-        <hr size="8px" align="center" width="100%">
-        <div class="row container" id="food">
-          <div class="col-xs-3">
-            <% for (var i in life){ %>
-                <% if ( life[i].type == "food"){ %>
-                  <div class="btntitle" target_id="<%=life[i].id%>">
-                    <div class="title">
-                      <p class="title-text"><%= life[i].name %></p>
-                    </div>
-                  </div>
-                <%}%>
-            <%}%>
-          </div>
-          <div class="col-xs-5">
-            <% for (var i in life){ %>
-                <% if ( life[i].type == "food"){ %>
-                  <div id="subtitle<%=life[i].id%>" class="subtitle">
-                    <p class="subtitle-text"><%= life[i].name %></p>
-                  </div>
-                  <div id="img-view<%=life[i].id%>" class="img-view">
-                  <img src="<%= life[i].img_path1 %>"></img>
-                  <img src="<%= life[i].img_path2 %>"></img>
-                  <img src="<%= life[i].img_path3 %>"></img>
-                  </div>
-                <%}%>
-            <%}%>
-          </div>
-          <div class="col-xs-4">
-          </div>
-        </div>
       </div>
+      <div class="row" >
+        <div class="col-md-2 col-md-offset-1">
+          <% for (var i in life){ %>
+            <% if ( life[i].type == "food"){ %>
+              <div class="btntitle" id="<%='b'+ life[i].id %>" target_id="<%=life[i].id%>">
+                <div class="title">
+                  <p class="title-text"><%= life[i].name %></p>
+                <button class="btn btn-danger btn-xs delete_life" value="<%= life[i].id%>"><i class="fa fa-trash-o"></i> 刪除</button>
+                </div>
+              </div>
+            <%}%>
+          <%}%>
+        </div>
+        <div class="col-md-7 col-md-offset-0">
+          <div class="fpvideo">
+          <iframe width="100%" height="500" src="https://www.youtube.com/embed/_hdYc7ZwAEc" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <% for (var i in life){ %>
+            <% if ( life[i].type == "food"){ %>
+              <div id="subtitle<%=life[i].id%>" class="subtitle">
+                <p class="subtitle-text"><%= life[i].name %></p>
+                <div id="img-view<%=life[i].id%>" class="img-view">
+                  <%if(life[i].img_path1!="/life/"){%>
+                    <img src="<%= life[i].img_path1 %>" class="DisplaySlide" style="width:100%;height:30vw"></img>
+                  <%}%>
+                  <%if(life[i].img_path2!="/life/"){%>
+                    <img src="<%= life[i].img_path2 %>" class="DisplaySlide" style="width:100%;height:30vw"></img>
+                  <%}%>
+                  <%if(life[i].img_path3!="/life/"){%>
+                    <img src="<%= life[i].img_path3 %>" class="DisplaySlide" style="width:100%;height:30vw"></img>
+                  <%}%>
+                </div>
+                <div style="padding-top:4vw" class="w3-row-padding w3-section">
+                  <%if(life[i].img_path3!="/life/"){%>
+                    <div class="w3-col s4">
+                      <img src="<%= life[i].img_path1 %>" class="Demo w3-opacity w3-hover-opacity-off" onclick="currentDiv(1)"></img>
+                    </div>
+                    <div class="w3-col s4">
+                      <img src="<%= life[i].img_path2 %>" class="Demo w3-opacity w3-hover-opacity-off" onclick="currentDiv(2)"></img>
+                    </div>
+                    <div class="w3-col s4">
+                      <img src="<%= life[i].img_path3 %>" class="Demo w3-opacity w3-hover-opacity-off" onclick="currentDiv(3)"></img>
+                    </div>
+                    <% } else if(life[i].img_path2!="/life/"){%>
+                    <div class="w3-col s4 col-md-offset-2">
+                      <img src="<%= life[i].img_path1 %>" class="Demo w3-opacity w3-hover-opacity-off" onclick="currentDiv(1)"></img>
+                    </div>
+                    <div class="w3-col s4">
+                      <img src="<%= life[i].img_path2 %>" class="Demo w3-opacity w3-hover-opacity-off" onclick="currentDiv(2)"></img>
+                    </div>
+                    <% } else{%>
+                    <div class="w3-col s4 col-md-offset-4">
+                      <img src="<%= life[i].img_path1 %>" class="Demo" onclick="currentDiv(1)"></img>
+                    </div>
+                  <%}%>
+                </div>
+                <div id="content-text<%=life[i].id%>" class="content-text" style="padding-left:2vw;padding-top:1vw"><%- life[i].introduction %>
+                </div>
+              </div>
+              <table id="switch<%=life[i].id%>"  class="switch" style="width:100%;display:none">
+                <tr>
+                  <th><i class="fa fa-angle-double-left fx-4x" aria-hidden="true"></i></th>
+                  <th></th>
+                  <th style="text-align:right"><i class="fa fa-angle-double-right fx-4x" aria-hidden="true"></i></th>
+                </tr>
+              </table>
+            <%}%>
+          <%}%>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+    </div>
     </main>
 
     <footer>
@@ -110,12 +170,38 @@ content-text{
           $(function(){
             $('.btntitle').on('click',function(){
               var id = $(this).attr('target_id');
+              $('.fpvideo').hide();
               $('.subtitle').hide();
               $('.img-view').hide();
+              $('.switch').fadeIn();
               $('#subtitle'+id).fadeIn();
               $('#img-view'+id).fadeIn();
+              $('#switch'+id).fadeIn();
             });
           })
+          var slideIndex = 1;
+          showDivs(slideIndex);
+          function plusDivs(n) {
+            showDivs(slideIndex += n);
+          }
+          function currentDiv(n) {
+            showDivs(slideIndex = n);
+          }
+          function showDivs(n) {
+            var i;
+            var x = document.getElementsByClassName("DisplaySlide");
+            var dots = document.getElementsByClassName("Demo");
+            if (n > x.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = x.length}
+            for (i = 0; i < x.length; i++) {
+               x[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+               dots[i].className = dots[i].className.replace(" w3-opacity-off", "");
+            }
+            x[slideIndex-1].style.display = "block";
+            dots[slideIndex-1].className += " w3-opacity-off";
+          }
         </script>
 </body>
 </html>
