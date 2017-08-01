@@ -22,7 +22,7 @@ router.post('/', function(req, res) {
   qna.title = req.body.title;
   qna.content = req.body.content;
   qna.save();
-  res.send(req.body);
+  res.redirect('/qna');
 });
 
 module.exports = router;
