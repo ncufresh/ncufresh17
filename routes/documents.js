@@ -12,13 +12,13 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.get('/require_data/:id',function(req,res,next){
+router.get('/require_data/:id',isAdmin,function(req,res,next){
   document.find({_id:req.params.id},function(err,data){
     res.send(data[0]);
   });
 });
 
-router.get('/delete/:id',function(req,res,next){
+router.get('/delete/:id',isAdmin,function(req,res,next){
   console.log("delete");
   var total;
   var the_type;
@@ -53,9 +53,7 @@ router.get('/delete/:id',function(req,res,next){
   });
 });
 
-router.post('/add',function(req,res,next){
-  
-
+router.post('/add',isAdmin,function(req,res,next){
   var form = new formidable.IncomingForm();
   form.parse(req, function(err, fields, files){
       if(err){
@@ -117,7 +115,7 @@ router.post('/add',function(req,res,next){
   });
 });
 
-router.post('/update',function(req,res,next){
+router.post('/update',isAdmin,function(req,res,next){
   document.update({_id:req.body.id},{
         name:req.body.name,
         content:req.body.Content
@@ -132,7 +130,7 @@ router.post('/update',function(req,res,next){
   res.redirect('/documents');
 });
 
-router.post('/change_order',function(req,res,next){
+router.post('/change_order',isAdmin,function(req,res,next){
   console.log(req.body.type);
   console.log(req.body.first_order);
   console.log(req.body.second_order);
@@ -161,7 +159,7 @@ router.post('/change_order',function(req,res,next){
   res.redirect('/documents');
 });
 
-router.post('/insertimg/:id',function(req,res,next) {
+router.post('/insertimg/:id',isAdmin,function(req,res,next) {
 
   var form = new formidable.IncomingForm();
   form.parse(req, function(err, fields, files){
@@ -212,5 +210,16 @@ router.post('/insertimg/:id',function(req,res,next) {
       });
   });
 })
+
+function isAdmin(req, res, next) {
+  if (req.isAuthenticated()) {
+    // console.log('log:' + req.user.local);
+    if (req.user.local.accountType === 'admin') {
+      return next();
+    }
+  }
+  res.redirect('/');
+}
+
 
 module.exports = router;

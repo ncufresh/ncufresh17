@@ -3,27 +3,31 @@
 <head>
     <% include ../layouts/head %>
 </head>
-<body">
+<body>
     <header style="min-width: 100vw;">
         <% include ../layouts/navbar %>
     </header>
 
-    <main  style="margin-top: 0px !important; min-width: 100vw; max-width:100vw">
+    <main style="margin-top: 0px !important; min-width: 100vw; max-width:100vw">
 
-        <div style=" background-color: #00BFFF !important; padding-bottom: 20vh; padding-top: 25vh;">
+        <div style=" background-color: #cce8f7 !important; padding-bottom: 20vh; padding-top: 25vh;">
             <div class="container" style="">
                 <div class="row container">
-                    <div class="col-xs-4" style="padding-right: 0px !important; padding-left: 0px !important;"><img id="freshmen-source" style="display:inline-block; padding: 2vw;" class="img-responsive" alt="大一新生" src="大學生.png" /></div>
-                    <div class="col-xs-4" style="padding-right: 0px !important; padding-left: 0px !important;"><img id="master-freshmen-source" style="display:inline-block; padding: 2vw;" class="img-responsive" alt="研究生" src="研究生.png" /></div>
-                    <div class="col-xs-4" style="padding-right: 0px !important; padding-left: 0px !important;"><img id="often-link-source" style="display:inline-block; padding: 2vw;" class="img-responsive" alt="常用連結" src="知道更多.png" /></div>
+                    <div class="col-xs-4" style="padding-right: 0px !important; padding-left: 0px !important;"><img id="freshmen-source" style="display:inline-block; padding: 2vw;cursor: pointer;" class="img-responsive" alt="大一新生" src="大學生.png" /></div>
+                    <div class="col-xs-4" style="padding-right: 0px !important; padding-left: 0px !important;"><img id="master-freshmen-source" style="display:inline-block; padding: 2vw;cursor: pointer;" class="img-responsive" alt="研究生" src="研究生.png" /></div>
+                    <div class="col-xs-4" style="padding-right: 0px !important; padding-left: 0px !important;"><img id="often-link-source" style="display:inline-block; padding: 2vw;cursor: pointer;" class="img-responsive" alt="常用連結" src="知道更多.png" /></div>
                 </div>
             </div>
         </div>
 
-        <div style=" background-image: -webkit-linear-gradient(#00bfff, #ffffff) !important; padding-top: 5vh; min-height: 20vh">
-            <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#add_model">新增</button>
-            <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#change_order_model">更改順序</button>
+        <div style=" background-image: linear-gradient(#cce8f7, #fcfffc) !important; padding-top: 5vh; min-height: 20vh">
+            <% if(user&&user.local.accountType==='admin'){%>
+                <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#add_model">新增</button>
+                <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#change_order_model">更改順序</button>
+            <%}%>
         </div>
+
+        <% if(user&&user.local.accountType==='admin'){%>
         <%//新增model%>
         <div class="modal fade" id="add_model" role="dialog">
             <div class="modal-dialog modal-lg">
@@ -166,8 +170,10 @@
 
             </div>
         </div>
+        <%}%>
 
         <% for (var i in document){%>
+            <% if(user&&user.local.accountType==='admin'){%>
             <%//圖片model%>
             <div class="modal fade" id="<%=document[i].id+"insertimg"%>" role="dialog">
                 <div class="modal-dialog modal-lg">
@@ -199,6 +205,7 @@
 
                 </div>
             </div>
+            <%}%>
 
             <%//編輯model%>
             <%if (document[i].type!="常用連結"){%>
@@ -214,9 +221,11 @@
                                 <p><%- document[i].content %></p>
                             </div>
                             <div class="modal-footer">
-                                <button class="btn btn-danger btn-xs edit_data" value="<%- document[i].id%>" data-dismiss="modal"><i class="fa fa-apple fa-lg"></i>編輯</button>
-                                <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#<%- document[i].id+"insertimg"%>" data-dismiss="modal"><i class="fa fa-apple fa-lg"></i> 新增或更新圖片</button>
-                                <button class="btn btn-danger btn-xs delete_data" value="<%= document[i].id%>" data-dismiss="modal"><i class="fa fa-trash-o fa-lg"></i>刪除</button>
+                                <% if(user&&user.local.accountType==='admin'){%>
+                                    <button class="btn btn-danger btn-xs edit_data" value="<%- document[i].id%>" data-dismiss="modal"><i class="fa fa-apple fa-lg"></i>編輯</button>
+                                    <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#<%- document[i].id+"insertimg"%>" data-dismiss="modal"><i class="fa fa-apple fa-lg"></i> 新增或更新圖片</button>
+                                    <button class="btn btn-danger btn-xs delete_data" value="<%= document[i].id%>" data-dismiss="modal"><i class="fa fa-trash-o fa-lg"></i>刪除</button>
+                                <%}%>
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             </div>
                         </div>
@@ -239,7 +248,7 @@
                     <% if ( document[i].type == "大一新生—註冊報到"){ %>
                         <%temp++%>
                         <%if(temp==1){%><div class="row container"><%}%>
-                            <img style="display:inline-block; padding: 2vw !important;" class="img-responsive col-xs-3" id="<%- document[i].id%>" alt="<%- document[i].name %>" data-toggle="modal" data-target="#<%- document[i].id+"document"%>" src="<%-document[i].img_path%>" />
+                            <img style="display:inline-block; padding: 2vw !important;cursor: pointer;" class="img-responsive col-xs-3" id="<%- document[i].id%>" alt="<%- document[i].name %>" data-toggle="modal" data-target="#<%- document[i].id+"document"%>" src="<%-document[i].img_path%>" />
                         <%if(temp==4){%></div><%}%>
                     <%}%>
                 <%}%>
@@ -249,7 +258,7 @@
                     <% if ( document[i].type == "大一新生—新生週活動"){ %>
                         <%temp++%>
                         <%if(temp==1){%><div class="row container"><%}%>
-                        <img style="display:inline-block;  padding: 2vw !important;" class="img-responsive col-xs-3" id="<%- document[i].id%>" alt="<%- document[i].name %>" data-toggle="modal" data-target="#<%- document[i].id+"document"%>" src="<%-document[i].img_path%>" />
+                        <img style="display:inline-block;  padding: 2vw !important;cursor: pointer;" class="img-responsive col-xs-3" id="<%- document[i].id%>" alt="<%- document[i].name %>" data-toggle="modal" data-target="#<%- document[i].id+"document"%>" src="<%-document[i].img_path%>" />
                         <%if(temp==4){%></div><%}%>
                     <%}%>
                 <%}%>
@@ -259,7 +268,7 @@
                     <% if ( document[i].type == "大一新生—共同課程及門檻"){ %>
                         <%temp++%>
                         <%if(temp==1){%><div class="row container"><%}%>
-                        <img style="display:inline-block;  padding: 2vw !important;" class="img-responsive col-xs-3" id="<%- document[i].id%>" alt="<%- document[i].name %>" data-toggle="modal" data-target="#<%- document[i].id+"document"%>" src="<%-document[i].img_path%>" />
+                        <img style="display:inline-block;  padding: 2vw !important;cursor: pointer;" class="img-responsive col-xs-3" id="<%- document[i].id%>" alt="<%- document[i].name %>" data-toggle="modal" data-target="#<%- document[i].id+"document"%>" src="<%-document[i].img_path%>" />
                         <%if(temp==4){%></div><%}%>
                     <%}%>
                 <%}%>
@@ -279,7 +288,7 @@
                     <% if ( document[i].type == "碩一新生—註冊報到"){ %>
                         <%temp++%>
                         <%if(temp==1){%><div class="row container"><%}%>
-                        <img style="display:inline-block;  padding: 2vw !important;" class="img-responsive col-xs-3" id="<%- document[i].id%>" alt="<%- document[i].name %>" data-toggle="modal" data-target="#<%- document[i].id+"document"%>" src="<%-document[i].img_path%>" />
+                        <img style="display:inline-block;  padding: 2vw !important;cursor: pointer;" class="img-responsive col-xs-3" id="<%- document[i].id%>" alt="<%- document[i].name %>" data-toggle="modal" data-target="#<%- document[i].id+"document"%>" src="<%-document[i].img_path%>" />
                         <%if(temp==4){%></div><%}%>
                     <%}%>
                 <%}%>
@@ -289,7 +298,7 @@
                     <% if ( document[i].type == "碩一新生—新生週活動"){ %>
                         <%temp++%>
                         <%if(temp==1){%><div class="row container"><%}%>
-                        <img style="display:inline-block;  padding: 2vw !important;" class="img-responsive col-xs-3" id="<%- document[i].id%>" alt="<%- document[i].name %>" data-toggle="modal" data-target="#<%- document[i].id+"document"%>" src="<%-document[i].img_path%>" />
+                        <img style="display:inline-block;  padding: 2vw !important;cursor: pointer;" class="img-responsive col-xs-3" id="<%- document[i].id%>" alt="<%- document[i].name %>" data-toggle="modal" data-target="#<%- document[i].id+"document"%>" src="<%-document[i].img_path%>" />
                         <%if(temp==4){%></div><%}%>
                     <%}%>
                 <%}%>
@@ -299,24 +308,26 @@
 
         <%//常用連結 start%>
         <section class="container" id="often-link-distaination" style="display:none; margin: 0px; padding-left: 2vw; padding-right: 2vw;">
-            <p class="text-center" style="width: 96vw; font-size: 6vw;">常用連結</p>
-            <div class="row container" style="width: 96vw;">
+            <p class="text-center" style="width: 96vw; font-size: 6vw;">知道更多</p>
+            <div class="row container" style="width: 80vw; margin-left: 8vw;">
                 <% for (var i in document){%>
                     <% if ( document[i].type == "常用連結"){ %>
                         <div class="thumbnail col-xs-3" style=" position:relative; border-width: 0px !important; background-color: rgba(0%, 0%, 0%, 0)">
                             <a href="<%-document[i].content%>">
                                 <img style="display:inline-block;" id="<%- document[i].id%>" alt="<%- document[i].name %>" src="<%- document[i].img_path%>" />
-                                <p  id="<%- document[i].id+"link"%>" style="font-size: 2vw; top:9vw; left:8vw; position: absolute; opacity: 0;">按我前往</p>
+                                <p  id="<%- document[i].id+"link"%>" style="font-size: 2vw; top:7vw; left:6vw; position: absolute; opacity: 0;">按我前往</p>
                             </a>
                         </div>
                     <%}%>
                 <%}%>
             </div>
-            <% for (var i in document){%>
-                <% if ( document[i].type == "常用連結"){ %>
-                    <button style="width: 96vw" type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#<%- document[i].id+"insertimg"%>"><%-"上傳 "+document[i].name+" 的圖片"%></button>
-                    <button style="width: 96vw" class="btn btn-danger btn-lg btn-block edit_data" value="<%- document[i].id%>"><i class="fa fa-apple fa-lg"></i><%-"編輯 "+document[i].name%></button>
-                    <button style="width: 96vw" class="btn btn-success btn-lg btn-block delete_data" value="<%= document[i].id%>" data-dismiss="modal"><i class="fa fa-trash-o fa-lg"></i><%-"刪除 "+document[i].name%></button>
+            <% if(user&&user.local.accountType==='admin'){%>
+                <% for (var i in document){%>
+                    <% if ( document[i].type == "常用連結"){ %>
+                        <button style="width: 96vw" type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#<%- document[i].id+"insertimg"%>"><%-"上傳 "+document[i].name+" 的圖片"%></button>
+                        <button style="width: 96vw" class="btn btn-danger btn-lg btn-block edit_data" value="<%- document[i].id%>"><i class="fa fa-apple fa-lg"></i><%-"編輯 "+document[i].name%></button>
+                        <button style="width: 96vw" class="btn btn-success btn-lg btn-block delete_data" value="<%= document[i].id%>" data-dismiss="modal"><i class="fa fa-trash-o fa-lg"></i><%-"刪除 "+document[i].name%></button>
+                    <%}%>
                 <%}%>
             <%}%>
         </section>
