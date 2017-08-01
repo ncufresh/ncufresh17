@@ -15,14 +15,32 @@ router.get('/', function(req, res, next) {
 });
 
 // 新增問題
-router.post('/', function(req, res) {
+router.post('/', isLoggedIn, function(req, res) {
   var qna = new Qna();
-  qna.userId = req.userid;
-  qna.type = req.type;
+  qna.userId = req.user._id;
+  qna.type = checkType(req.type);
   qna.title = req.body.title;
   qna.content = req.body.content;
   qna.save();
   res.redirect('/qna');
 });
+
+function checkType(type) {
+
+  if (type > 3 || type < 0) {
+    return 3;
+  }
+
+  return round(type);
+}
+
+function isLoggedIn(req, res, next) {
+
+  if (!req.isAuthenticated()) {
+    res.redirect('/login');
+  }
+
+  return next();
+}
 
 module.exports = router;
