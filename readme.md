@@ -34,6 +34,51 @@ on Windows
 
 `git push --set-upstream origin <YourBranchName>`
 
+# 加入管理員判斷
+
+## 後端
+在自己的route.js加上
+
+```
+function isAdmin(req, res, next) {
+  if (req.isAuthenticated()) {
+    // console.log('log:' + req.user.local);
+    if (req.user.local.accountType === 'admin') {
+      return next();
+    }
+  }
+  res.redirect('/');
+}
+```
+
+接著在需要判斷是否為管理員的路由上（ex:新增、刪除、編輯） 加入
+`isAdmin`
+
+範例：
+```
+router.post('/manageMain/delNews/:id',isAdmin, function(req, res){
+    Main_new.findById( req.params.id, function ( err, main_new ){
+      main_new.remove( function ( err, main_new ){
+        res.redirect('/manageMain');
+      });
+    });
+  });
+```
+
+## 前端
+
+將進入編輯畫面的按鈕隱藏
+```
+<% if(user&&user.local.accountType==='admin'){%>
+    你的按鈕
+<% } %>
+```
+## 管理員帳號
+
+目前在http://ncufresh17.tk/上有一組管理員帳號
+帳：aa@aa.com   
+密：aa
+
 # user
 ```
 { _id: 597e9646d7a9922d5d81f494,
