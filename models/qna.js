@@ -1,7 +1,10 @@
 var mongoose = require('mongoose');
 
 var qnaSchema = mongoose.Schema({
-  userId: String,
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  },
   type: { type: Number, default: 0 },
   title: String,
   content: String,

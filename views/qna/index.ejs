@@ -7,6 +7,7 @@
   <header>
     <% include ../layouts/navbar %>
     <% include css.ejs %>
+
   </header>
 
   
@@ -35,31 +36,57 @@
             <td>標題</td>
             <td>觀看人數</td>
           </tr>
+          <% qna.forEach( function ( q ){
+              var date = q.updated;
+              var day = date.getDate();
+              var monthIndex = date.getMonth();
+              var year = date.getFullYear();
+              var time = year + '/' + (monthIndex++) + '/' + day;
+              var typeToName = [
+                "校園生活",
+                "學生事務",
+                "宿舍生活",
+                "其他"
+              ];
+          %>
+            <tr>
+              <td><%= typeToName[q.type] %></td>
+              <td><%= time %></td>
+              <td><%= q.title %></td>
+              <td><%= q.view %></td>
+            </tr>
+          <% }); %>
+        </table>
+        <%# /熱門問題 %>
+        <%# 所有問題 %>
+        <h1>所有問題</h1>
+        <table class="table table-hover">
           <tr>
             <td>類別</td>
             <td>日期</td>
             <td>標題</td>
             <td>觀看人數</td>
           </tr>
-        </table>
-        <%# /熱門問題 %>
-        <%# 所有問題 %>
-        <h1>所有問題</h1>
-        <table class="table table-hover">
-          <th>
-            <td>類別</td>
-            <td>日期</td>
-            <td>標題</td>
-            <td>觀看人數</td>
-          </th>
-          <% for (var q in qna){ %>
+          <% qna.forEach( function ( q ){
+              var date = q.updated;
+              var day = date.getDate();
+              var monthIndex = date.getMonth();
+              var year = date.getFullYear();
+              var time = year + '/' + (monthIndex++) + '/' + day;
+              var typeToName = [
+                "校園生活",
+                "學生事務",
+                "宿舍生活",
+                "其他"
+              ];
+          %>
             <tr>
-              <td><%= q.type %></td>
-              <td><%= q.updated %></td>
+              <td><%= typeToName[q.type] %></td>
+              <td><%= time %></td>
               <td><%= q.title %></td>
               <td><%= q.view %></td>
             </tr>
-          <% } %>
+          <% }); %>
         </table>
       </div>
       <%# /所有問題 %>
@@ -76,11 +103,7 @@
         </ul>
       </div>
       <%# /分頁導覽 %>
-
-      <div class="test">
-        <p><%= user._id %></p>
-      </div>
-
+      <% if (user) { %>
       <%# 發問用 Modal %>
       <div class="modal fade" id="post" role="dialog">
         <div class="modal-dialog modal-lg">
@@ -93,13 +116,22 @@
 
             <div class="modal-body">
               <form method="POST" action="/qna">
+                <input id="userid" name="userid" type="hidden" value="<%= user._id %>">
                 <div class="form-group">
                   <label for="title">標題</label>
-                  <input id="title" name="title" class="form-control">
+                  <input id="title" name="title" type="text" class="form-control">
                 </div>
                 <div class="form-group">
                   <label for="content">詳細描述</label>
                   <textarea id="content" name="content" class="form-control" rows="5"></textarea>
+                </div>
+                <div>
+                  <select name="type" class="form-control">
+                    <option value="0">校園生活</option>
+                    <option value="1">學生事務</option>
+                    <option value="2">宿舍生活</option>
+                    <option value="3">其他</option>
+                  </select>
                 </div>
                 <div>
                   <button type="submit" class="btn btn-default">送出</button>
@@ -111,7 +143,7 @@
             </div><%# /Modal 內文 %>
             
           </div><%# /Modal %>
-          
+          <% } %>
         </div>
       </div>
       <%# /發問用 Modal %>

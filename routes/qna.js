@@ -16,12 +16,11 @@ router.get('/', function(req, res, next) {
 
 // 新增問題
 router.post('/', function(req, res) {
-  console.log(req);
   var qna = new Qna();
-  qna.user = req.userid;
+  qna.userId = req.userid;
+  qna.type = req.type;
   qna.title = req.body.title;
   qna.content = req.body.content;
-  qna.created = new Date();
   qna.save();
   res.send(req.body);
 });
