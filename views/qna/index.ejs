@@ -34,22 +34,10 @@
             <td>標題</td>
             <td>觀看人數</td>
           </tr>
-          <% qna.forEach( function ( q ){
-              var date = q.updated;
-              var day = date.getDate();
-              var monthIndex = date.getMonth();
-              var year = date.getFullYear();
-              var time = year + '/' + (monthIndex++) + '/' + day;
-              var typeToName = [
-                "校園生活",
-                "學生事務",
-                "宿舍生活",
-                "其他"
-              ];
-          %>
+          <% qna.forEach( function (q) { %>
             <tr>
               <td><%= typeToName[q.type] %></td>
-              <td><%= time %></td>
+              <td><%= renderTime(q.updated) %></td>
               <td><%= q.title %></td>
               <td><%= q.view %></td>
             </tr>
@@ -65,22 +53,10 @@
             <td>標題</td>
             <td>觀看人數</td>
           </tr>
-          <% qna.forEach( function ( q ){
-              var date = q.updated;
-              var day = date.getDate();
-              var monthIndex = date.getMonth();
-              var year = date.getFullYear();
-              var time = year + '/' + (++monthIndex) + '/' + day;
-              var typeToName = [
-                "校園生活",
-                "學生事務",
-                "宿舍生活",
-                "其他"
-              ];
-          %>
+          <% qna.forEach( function (q) { %>
             <tr>
               <td><%= typeToName[q.type] %></td>
-              <td><%= time %></td>
+              <td><%= renderTime(q.updated) %></td>
               <td><%= q.title %></td>
               <td><%= q.view %></td>
             </tr>

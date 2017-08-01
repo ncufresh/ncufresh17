@@ -6,9 +6,20 @@ var Qna = require('../models/qna');
 router.get('/', function(req, res, next) {
   console.log(req.user);
   Qna.find({}).sort({ view: 'desc' }).exec(function(err, qna) {
+    if (err)
+      throw err;
+
+    var typeToName = [
+      "校園生活",
+      "學生事務",
+      "宿舍生活",
+      "其他"
+    ];
     res.render('qna/index', {
       title: 'QnA',
       user: req.user,
+      typeToName: typeToName,
+      renderTime: renderTime,
       qna: qna
     });
   });
@@ -41,6 +52,14 @@ function isLoggedIn(req, res, next) {
   }
 
   return next();
+}
+
+function renderTime(date) {
+  var day = date.getDate();
+  var monthIndex = date.getMonth();
+  var year = date.getFullYear();
+  var time = year + '/' + (++monthIndex) + '/' + day;
+  return time;
 }
 
 module.exports = router;
