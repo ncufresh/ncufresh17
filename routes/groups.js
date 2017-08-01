@@ -4,6 +4,7 @@ var url = require('url');
 var fs = require('fs');
 var department = require('../models/department');
 var club = require('../models/club');
+var department = require('../models/department');
 var shortId = require('shortid');
 
 
@@ -66,7 +67,7 @@ router.post('/add_de', function(req, res, next) {
 		organization:req.body.organization,
         activity:req.body.activity,
         team:req.body.team,
-        course:req.body.course
+        course:req.body.course,
 	}).save(function(err, doc){
 		if(err)res.json(err);
 		else   res.redirect('/groups/all_department');
