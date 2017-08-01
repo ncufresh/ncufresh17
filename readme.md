@@ -75,8 +75,12 @@ router.post('/manageMain/delNews/:id',isAdmin, function(req, res){
 ```
 ## 管理員帳號
 
-目前在http://ncufresh17.tk/上有一組管理員帳號
+目前在http://ncufresh17.tk/
+
+有一組管理員帳號
+
 帳：aa@aa.com   
+
 密：aa
 
 # user
