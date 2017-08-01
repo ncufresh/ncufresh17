@@ -231,7 +231,7 @@
     					<ul id="carousel" class="elastislide-list">
                 <% galimgs.forEach(function(galimg){ %>
                   <%
-                    var date = galimg.up_date;
+                    var date = new Date(galimg.up_date);
                     var str =  + (date.getMonth()+1) + '/' +  (date.getDate());
                   %>
                   <li style="position:relative"><%if(date>new Date()){%><span class="galspan"><%=str%><br>上映</span><%}else{%><span class="galspan">現已<br>上映</span><%}%><a  class="gal" href="<%= galimg.videourl %>"><img src="/images/main/galimg/<%= galimg.imgurl %>" alt="<%= galimg.name %>" /></a></li>
