@@ -3,29 +3,30 @@
 <head>
     <style type="text/css">
         .cc{
-            padding: 4vh; 
+            padding: 2.5vw; 
         }
         .cc:hover {
-            padding: 0px;
+            padding: 0vw;
+        }
+        #homie{
+            padding: 0.5vw;
+            height: 8vw;
+        }
+        #homie:hover {
+            padding: 0vw;
+        }
+        .si{
+            font-family: "LiGothic", "FangSong",Arial,cursive;
+            font-size: 6vw;
         }
     </style>
     <% include ../layouts/head %>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function(){
-        // $(".cc").mouseenter(function(){
-        //         $(this).animate({
-        //             padding:'1vh'
-        //         }, 200);
-        // });
-        // $(".cc").mouseleave(function(){
-        //         $(this).animate({
-        //             padding:'3vh'
-        //         }, 200);
-        // });
         $(".bb").hover(function(){
             $(this).css({
-                "background-color": "rgba(73, 125, 154,0.7)"
+                "background-color": "rgba(73, 125, 154,0.6)"
             });
         },function(){
             $(this).css({
@@ -284,7 +285,7 @@
                     <ul class="nav nav-pills nav-justified" style="padding: 10px;">
                         <div class="row">
                             <div class="col-xs-4"><img src=""/></div>
-                            <div class="col-xs-2"><a href="/video"><img style="max-width: 350%;" src="/video/首頁.png" alt="home"/></a></div>
+                            <div class="col-xs-2"><a href="/video"><img id="homie" src="/video/首頁.png" alt="home"/></a></div>
                         </div>
                         <p> </p>
                         <li class="under-1-source" style="z-index:99"><a class="bb" href="#under-1"><img style="max-width: 50%" src="/video/文學院.png"></a></li>
@@ -302,48 +303,31 @@
                         <li class="under-7-source" style="z-index:99"><a class="bb" href="#under-7"><img style="max-width: 50%" src="/video/客家學院.png"></a></li>
                         <p> </p>
                         <li class="under-8-source" style="z-index:99"><a class="bb" href="#under-8"><img style="max-width: 50%" src="/video/生醫理工學院.png"></a></li>
-                        <!-- <li style="font-size:1.3vw;" role="presentation" class="under-1-source"><a href="#under-1"><font color="#2F4F4F">文學院</font></a></li>
-                        <p> </p>
-                        <p> </p>
-                        <li style="font-size:1.3vw;" role="presentation" class="under-2-source"><a href="#under-2"><font color="#2F4F4F">理學院</font></a></li>
-                        <p> </p>
-                        <li style="font-size:1.3vw;" role="presentation" class="under-3-source"><a href="#under-3"><font color="#2F4F4F">工學院</font></a></li>
-                        <p> </p>
-                        <li style="font-size:1.3vw;" role="presentation" class="under-4-source"><a href="#under-4"><font color="#2F4F4F">管理學院</font></a></li>
-                        <p> </p>
-                        <li style="font-size:1.3vw;" role="presentation" class="under-5-source"><a href="#under-5"><font color="#2F4F4F">資訊電機學院</font></a></li>
-                        <p> </p>
-                        <li style="font-size:1.3vw;" role="presentation" class="under-6-source"><a href="#under-6"><font color="#2F4F4F">地球科學學院</font></a></li>
-                        <p> </p>
-                        <li style="font-size:1.3vw;" role="presentation" class="under-7-source"><a href="#under-7"><font color="#2F4F4F">客家學院</font></a></li>
-                        <p> </p>
-                        <li style="font-size:1.3vw;" role="presentation" class="under-8-source"><a href="#under-8"><font color="#2F4F4F">生醫理工學院</font></a></li> -->
                     </ul>
                 </div>
                 <div id="under-0" style="display: block;">
-                    <div class="col-md-1"><img src=""/></div>
-                    <div class="col-md-4"><img style="max-width: 30vw" src="/video/採訪區.png" class="img-responsive"/></div>
-                    <div class="col-md-4"><img src=""/></div>
-                    <div class="col-md-8"><img src=""/></div>
-                    <div class="col-md-1"><img src=""/></div>
-                    <div class="col-xs-8"><img style="width:900px" src="/video/介紹.png"/></div>
+                    <div class="col-xs-1"><img src=""/></div>
+                    <div class="col-xs-5"><img style="max-width: 40vw;margin-bottom: 0px; width:100%;" src="/video/採訪區.png" class="img-responsive"/></div>
+                    <div class="col-xs-3"><img src=""/></div>
+                    <div class="col-xs-1"><img src=""/></div>
+                    <div class="col-xs-8" style="margin-top: 2vw;margin-left: 2vw"><img style="width:55vw" src="/video/介紹.png"/></div>
                 </div>
                 <div id="under-1" style="display: none;">
-                    <div class="text-center"><h1 style="font-size: 500%;"><strong>文學院</strong></h1></div>
+                    <div style="margin-left: 54vw;"><h1 class="si""><strong>文學院</strong></h1></div>
                     <div class="col-xs-9"><h1></h1></div>
                     <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive cc" id="c1" alt="國文" src="/video/中文系.png" data-toggle="modal" data-target="#1"/></div>
                     <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive cc" id="c2" alt="英文" src="/video/英文系.png" data-toggle="modal" data-target="#2"/></div>
                     <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive cc" id="c3" alt="法文" src="/video/法文系.png" data-toggle="modal" data-target="#3"/></div>
                 </div>
                 <div id="under-2" style="display: none;">
-                    <div class="text-center"><h1 style="font-size: 500%;"><strong>理學院</strong></h1></div>
+                    <div style="margin-left: 54vw;"><h1 class="si"><strong>理學院</strong></h1></div>
                     <div class="col-xs-9"><h1></h1></div>
                     <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive cc" id="c4" alt="土木" src="/video/土木系.png" data-toggle="modal" data-target="#4"/></div>
                     <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive cc" id="c5" alt="化材" src="/video/化材系.png" data-toggle="modal" data-target="#5"/></div>
                     <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive cc" id="c6" alt="機械" src="/video/機械系.png" data-toggle="modal" data-target="#6"/></div>
                 </div>
                 <div id="under-3" style="display: none;">
-                    <div class="text-center"><h1 style="font-size: 500%;"><strong>工學院</strong></h1></div>
+                    <div style="margin-left: 54vw;"><h1 class="si"><strong>工學院</strong></h1></div>
                     <div class="col-xs-9"><h1></h1></div>
                     <div>
                         <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive cc" id="c7" alt="化學" src="/video/化學系.png" data-toggle="modal" data-target="#7"/></div>
@@ -354,7 +338,7 @@
                     </div>
                 </div>
                 <div id="under-4" style="display: none;">
-                    <div class="text-center"><h1 style="font-size: 500%;"><strong>管理學院</strong></h1></div>
+                    <div  style="margin-left: 51vw;"><h1 class="si"><strong>管理學院</strong></h1></div>
                     <div class="col-xs-9"><h1></h1></div>
                         <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive cc" id="c12" alt="企管" src="/video/企管系.png" data-toggle="modal" data-target="#12"/></div>
                         <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive cc" id="c13" alt="財金" src="/video/財金系.png" data-toggle="modal" data-target="#13"/></div>
@@ -362,27 +346,27 @@
                         <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive cc" id="c15" alt="資管" src="/video/資管系.png" data-toggle="modal" data-target="#15"/></div>
                 </div>
                 <div id="under-5" style="display: none;">
-                    <div class="text-center"><h1 style="font-size: 500%;"><strong>資電學院</strong></h1></div>
+                    <div  style="margin-left: 51vw;"><h1 class="si"><strong>資電學院</strong></h1></div>
                     <div class="col-xs-9"><h1></h1></div>
                     <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive cc" id="c16" alt="通訊" src="/video/通訊系.png" data-toggle="modal" data-target="#16"/></div>
                     <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive cc" id="c17" alt="資工" src="/video/資工系.png" data-toggle="modal" data-target="#17"/></div>
                     <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive cc" id="c18" alt="電機" src="/video/電機系.png" data-toggle="modal" data-target="#18"/></div>
                 </div>
                 <div id="under-6" style="display: none;">
-                    <div class="text-center"><h1 style="font-size: 500%;"><strong>地球科學學院</strong></h1></div>
+                    <div  style="margin-left: 40vw;"><h1 class="si"><strong>地球科學學院</strong></h1></div>
                     <div class="col-xs-9"><h1></h1></div>
                     <div class="col-xs-1"><h1></h1></div>
                     <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive cc" id="c19" alt="大氣" src="/video/大氣系.png" alt="" data-toggle="modal" data-target="#19"/></div>
                     <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive cc" id="c20" alt="地科" src="/video/地科系.png" data-toggle="modal" data-target="#20"/></div>
                 </div>
                 <div id="under-7" style="display: none;">
-                    <div class="text-center"><h1 style="font-size: 500%;"><strong>客家學院</strong></h1></div>
+                    <div  style="margin-left: 51vw;"><h1 class="si"><strong>客家學院</strong></h1></div>
                     <div class="col-xs-9"><h1></h1></div>
                     <div class="col-xs-3"><h1></h1></div>
                     <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive cc" id="c21" alt="客家" src="/video/客家系.png" data-toggle="modal" data-target="#21"/></div>
                 </div>
                 <div id="under-8" style="display: none;">
-                    <div class="text-center"><h1 style="font-size: 500%;"><strong>生醫理工學院</strong></h1></div>
+                    <div  style="margin-left: 40vw;"><h1 class="si"><strong>生醫理工學院</strong></h1></div>
                     <div class="col-xs-9"><h1></h1></div>
                     <div class="col-xs-1"><h1></h1></div>
                     <div class="col-xs-3"><img style="display:inline-block;" class="img-responsive cc" id="c22" alt="生科" src="/video/生科系.png" data-toggle="modal" data-target="#22"/></div>
