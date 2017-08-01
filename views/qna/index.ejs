@@ -6,22 +6,24 @@
 <body>
   <header>
     <% include ../layouts/navbar %>
+    <% include css.ejs %>
   </header>
 
-  <main>
+  
+  <%# 側導覽列 %>
+    <ul id="navi" style="height:100%; margin-top: 10px;">
+      <li><a href="#" type="button" style="background-image: url('images/btn_all.png');"></a></li>
+      <li><a href="#" type="button" style="background-image: url('images/btn_hot.png');"></a></li>
+      <li><a href="#" type="button" style="background-image: url('images/btn_school.png');"></a></li>
+      <li><a href="#" type="button" style="background-image: url('images/btn_student.png');"></a></li>
+      <li><a href="#" type="button" style="background-image: url('images/btn_dorm.png');"></a></li>
+      <li><a href="#" type="button" style="background-image: url('images/btn_other.png');"></a></li>
+      <li><a href="#" type="button" style="background-image: url('images/btn_post.png');" data-toggle="modal" data-target="#post"></a></li>
+    </ul>
+  <%# /側導覽列 %>
+
+  <main style="background-image: url('images/bg.png'); background-size: cover; background-repeat: no-repeat;">
     <div class="container">
-      <%# 側導覽列 %>
-      <div>
-        <ul>
-          <li>所有問題</li>
-          <li>校園生活</li>
-          <li>學生事務</li>
-          <li>宿舍生活</li>
-          <li>其他</li>
-          <li>我要發問</li>
-        </ul>
-      </div>
-      <%# /側導覽列 %>
       <%# 熱門問題 %>
       <div>
         <h1>熱門問題</h1>
@@ -74,37 +76,51 @@
         </ul>
       </div>
       <%# /分頁導覽 %>
-      <!-- Trigger the modal with a button -->
-      <div>
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+      <div class="test">
+        <p><%= user._id %></p>
       </div>
 
-      <!-- Modal -->
-      <div class="modal fade" id="myModal" role="dialog">
+      <%# 發問用 Modal %>
+      <div class="modal fade" id="post" role="dialog">
         <div class="modal-dialog modal-lg">
-        
-          <!-- Modal content-->
-          <div class="modal-content">
+          
+          <div class="modal-content"><%# Modal %>
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Modal Header</h4>
+              <h4 class="modal-title text-center">發問ING</h4>
             </div>
+
             <div class="modal-body">
-              <p>Some text in the modal.</p>
+              <form method="POST" action="/qna">
+                <div class="form-group">
+                  <label for="title">標題</label>
+                  <input id="title" name="title" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="content">詳細描述</label>
+                  <textarea id="content" name="content" class="form-control" rows="5"></textarea>
+                </div>
+                <div>
+                  <button type="submit" class="btn btn-default">送出</button>
+                </div>
+              </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-          </div>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+            </div><%# /Modal 內文 %>
+            
+          </div><%# /Modal %>
           
         </div>
       </div>
+      <%# /發問用 Modal %>
     </div>
   </main>
   <footer>
     <% include ../layouts/footer %>
   <footer>
-  <% include js %>
   <% include ../layouts/js %>
+  <% include js %>
 </body>
 </html>

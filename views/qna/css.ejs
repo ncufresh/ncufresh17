@@ -1,0 +1,54 @@
+<style>
+  #navi {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 150px;
+    background-color: rgba(255, 255, 255, 0);
+    ;
+    position: fixed;
+    height: 300px;
+    overflow: auto;
+  }
+  
+  #navi li a {
+    width: 144px;
+    height: 50px;
+    background-size: contain;
+  }
+  
+  #navi a,
+  #content a {
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 36px;
+  }
+  
+  #navi li a,
+  #content li a {
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+  }
+  
+  #navi li a.active {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  #navi li a:hover:not(.active),
+  #content li a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+  }
+  
+  #content li {
+    font-size: 20px;
+    background: rgba(204, 229, 255, 0.3);
+  }
+  
+  span {
+    display: inline-block;
+  }
+</style>

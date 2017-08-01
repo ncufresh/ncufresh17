@@ -16,13 +16,14 @@ router.get('/', function(req, res, next) {
 
 // 新增問題
 router.post('/', function(req, res) {
-  var qna = new qna();
-  qna.user = req.user.id;
+  console.log(req);
+  var qna = new Qna();
+  qna.user = req.userid;
   qna.title = req.body.title;
   qna.content = req.body.content;
   qna.created = new Date();
   qna.save();
-  res.redirect('/qna/');
+  res.send(req.body);
 });
 
 module.exports = router;

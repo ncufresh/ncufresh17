@@ -5,7 +5,7 @@ var qnaSchema = mongoose.Schema({
   type: { type: Number, default: 0 },
   title: String,
   content: String,
-  answer: String,
+  answer: { type: String, default: "" },
   created: Date,
   updated: { type: Date, default: Date.now },
   view: { type: Number, default: 0 }
