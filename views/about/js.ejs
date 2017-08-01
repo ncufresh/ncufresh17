@@ -15,4 +15,18 @@
         x.style.width = "130px";
     }
 
+    function checkLogin(aTag) {
+
+        if (<%= !!user %>) {
+            aTag.href="/personal";
+        } else {
+            $('#checkLoginModal').modal('show');
+        }
+
+    }
+
+    function checkConfirm() {
+        window.location.href = '/login';
+    }
+
 </script>
