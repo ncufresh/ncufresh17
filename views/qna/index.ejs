@@ -7,11 +7,9 @@
   <header>
     <% include ../layouts/navbar %>
     <% include css.ejs %>
-
   </header>
 
-  
-  <%# 側導覽列 %>
+  <div><%# 側導覽列 %>
     <ul id="navi" style="height:100%; margin-top: 10px;">
       <li><a href="#" type="button" style="background-image: url('images/btn_all.png');"></a></li>
       <li><a href="#" type="button" style="background-image: url('images/btn_hot.png');"></a></li>
@@ -21,7 +19,7 @@
       <li><a href="#" type="button" style="background-image: url('images/btn_other.png');"></a></li>
       <li><a href="#" type="button" style="background-image: url('images/btn_post.png');" data-toggle="modal" data-target="#post"></a></li>
     </ul>
-  <%# /側導覽列 %>
+  </div><%# /側導覽列 %>
 
   <main style="background-image: url('images/bg.png'); background-size: cover; background-repeat: no-repeat;">
     <div class="container">
@@ -36,22 +34,10 @@
             <td>標題</td>
             <td>觀看人數</td>
           </tr>
-          <% qna.forEach( function ( q ){
-              var date = q.updated;
-              var day = date.getDate();
-              var monthIndex = date.getMonth();
-              var year = date.getFullYear();
-              var time = year + '/' + (monthIndex++) + '/' + day;
-              var typeToName = [
-                "校園生活",
-                "學生事務",
-                "宿舍生活",
-                "其他"
-              ];
-          %>
+          <% qna.forEach( function (q) { %>
             <tr>
               <td><%= typeToName[q.type] %></td>
-              <td><%= time %></td>
+              <td><%= renderTime(q.updated) %></td>
               <td><%= q.title %></td>
               <td><%= q.view %></td>
             </tr>
@@ -67,22 +53,10 @@
             <td>標題</td>
             <td>觀看人數</td>
           </tr>
-          <% qna.forEach( function ( q ){
-              var date = q.updated;
-              var day = date.getDate();
-              var monthIndex = date.getMonth();
-              var year = date.getFullYear();
-              var time = year + '/' + (monthIndex++) + '/' + day;
-              var typeToName = [
-                "校園生活",
-                "學生事務",
-                "宿舍生活",
-                "其他"
-              ];
-          %>
+          <% qna.forEach( function (q) { %>
             <tr>
               <td><%= typeToName[q.type] %></td>
-              <td><%= time %></td>
+              <td><%= renderTime(q.updated) %></td>
               <td><%= q.title %></td>
               <td><%= q.view %></td>
             </tr>
@@ -104,49 +78,70 @@
       </div>
       <%# /分頁導覽 %>
       <% if (user) { %>
-      <%# 發問用 Modal %>
-      <div class="modal fade" id="post" role="dialog">
-        <div class="modal-dialog modal-lg">
-          
-          <div class="modal-content"><%# Modal %>
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title text-center">發問ING</h4>
-            </div>
-
-            <div class="modal-body">
-              <form method="POST" action="/qna">
-                <input id="userid" name="userid" type="hidden" value="<%= user._id %>">
-                <div class="form-group">
-                  <label for="title">標題</label>
-                  <input id="title" name="title" type="text" class="form-control">
-                </div>
-                <div class="form-group">
-                  <label for="content">詳細描述</label>
-                  <textarea id="content" name="content" class="form-control" rows="5"></textarea>
-                </div>
-                <div>
-                  <select name="type" class="form-control">
-                    <option value="0">校園生活</option>
-                    <option value="1">學生事務</option>
-                    <option value="2">宿舍生活</option>
-                    <option value="3">其他</option>
-                  </select>
-                </div>
-                <div>
-                  <button type="submit" class="btn btn-default">送出</button>
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
-            </div><%# /Modal 內文 %>
+        <div class="modal fade" id="post" role="dialog"><%# 發問用 Modal %>
+          <div class="modal-dialog modal-lg">
             
-          </div><%# /Modal %>
-          <% } %>
-        </div>
-      </div>
-      <%# /發問用 Modal %>
+            <div class="modal-content"><%# Modal %>
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center">發問ING</h4>
+              </div>
+
+              <div class="modal-body">
+                <form method="POST" action="/qna">
+                  <div class="form-group">
+                    <label for="title">標題</label>
+                    <input id="title" name="title" type="text" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="content">詳細描述</label>
+                    <textarea id="content" name="content" class="form-control" rows="5"></textarea>
+                  </div>
+                  <div>
+                    <select name="type" class="form-control">
+                      <option value="0">校園生活</option>
+                      <option value="1">學生事務</option>
+                      <option value="2">宿舍生活</option>
+                      <option value="3">其他</option>
+                    </select>
+                  </div>
+                  <div>
+                    <button type="submit" class="btn btn-default">送出</button>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+              </div><%# /Modal 內文 %>
+            </div><%# /Modal %>
+            
+          </div>
+        </div><%# /發問用 Modal %>
+      <% } else { %>
+        <div class="modal fade" id="post" role="dialog"><%# 請登入 Modal %>
+          <div class="modal-dialog modal-lg">
+            
+            <div class="modal-content"><%# Modal %>
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title text-center">發問前請先登入喔</h3>
+              </div>
+
+              <div class="modal-body">
+                <div class="modal-body"><h4>點選"前往登入"乖乖去登入</h4></div>
+                <div class="modal-body"><h4>點選"取消"繼續瀏覽新生Ｑ＆Ａ</h4></div>
+              </div>
+
+              <div class="modal-footer">
+                <a href="/login" type="button" class="btn btn-default">前往登入</a>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+              </div><%# /Modal 內文 %>
+            </div><%# /Modal %>
+            
+          </div>
+        </div><%# /請登入 Modal %>
+      <% } %>
+
     </div>
   </main>
   <footer>
