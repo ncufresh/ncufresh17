@@ -31,11 +31,10 @@
     
     $(document).ready(function(){
         $('.openModal').on('click', function(){
-            
             var titleText = $(this).closest('tr').find('td:eq(3)').text();
-
             $('#tt').html('標題: ' + titleText);
-            $('#ansField').html($('<b> Answer:  asdfasdf </b>'));
+            $('#qesField').html($('<b> Detail: <%= qna[0].content %> </b>'));
+            $('#ansField').html($('<b> Answer: <%= qna[0].answer %> </b>'));
         });
     });
 

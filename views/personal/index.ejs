@@ -110,13 +110,13 @@
                             </thead>
                             <tbody>
 
-                                <% for(var i=0; i< 10; i++) { %>
-                                    <% var index = i + 1 %>
+                                <% for(var i in qna) { %>
+                                    <% var index = i %>
                                     <tr data-toggle="modal" data-target="#QA-Modal" class="openModal">
-                                        <td> <%= index %> </td>
-                                        <td>test</td>
-                                        <td>7/14</td>
-                                        <td>kkkkkkk</td>
+                                        <td><%= index %></td>
+                                        <td><%= qna[i].type %></td>
+                                        <td><%= qna[i].updated %></td>
+                                        <td><%= qna[i].title %></td>
                                     </tr>
                                 <% } %>
 

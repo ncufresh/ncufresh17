@@ -11,6 +11,7 @@ var formidable = require('formidable');
 /* GET home page. */
 router.get('/', isLoggedIn, function(req, res, next) {
   Qna.find({}).exec(function(err, qna) {
+    console.log(qna);
     res.render('personal/index', { 
       title: 'personal', 
       user: req.user,
