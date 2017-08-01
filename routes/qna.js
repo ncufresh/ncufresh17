@@ -14,6 +14,15 @@ router.get('/', function(req, res, next) {
       "宿舍生活",
       "其他"
     ];
+
+    var renderTime = function(date) {
+      var day = date.getDate();
+      var monthIndex = date.getMonth();
+      var year = date.getFullYear();
+      var time = year + '/' + (++monthIndex) + '/' + day;
+      return time;
+    }
+
     res.render('qna/index', {
       title: 'QnA',
       user: req.user,
@@ -55,14 +64,6 @@ function isLoggedIn(req, res, next) {
     res.redirect('/login');
   else
     return next();
-}
-
-function renderTime(date) {
-  var day = date.getDate();
-  var monthIndex = date.getMonth();
-  var year = date.getFullYear();
-  var time = year + '/' + (++monthIndex) + '/' + day;
-  return time;
 }
 
 module.exports = router;
