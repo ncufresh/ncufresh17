@@ -25,9 +25,8 @@
     }
 
     function cancelUpload() {
-        //do nothing
+        document.getElementById("test").value = "";
     }
-
 /// Q-A table action
     
     $(document).ready(function(){
@@ -57,7 +56,7 @@
         if (myIndex > x.length) {myIndex = 1}        
         x[myIndex-1].style.display = "block";
         if (myIndex==6) {out=true;}
-        setTimeout(moveIn, 1000); 
+        setTimeout(moveIn, 800); 
     }
 
 </script>
