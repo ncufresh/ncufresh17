@@ -97,6 +97,9 @@
                                 width:<%= map_objs[i].size+'%'%>;
                                 top:<%= map_objs[i].y_position+'%'%>;
                                 left:<%= map_objs[i].x_position+'%'%>;
+                                <%if(map_objs[i].build_name=='太極銅雕'){%>
+                                    z-index:99;
+                                <%}%>
                             ">
                         <%}%>
                     </div>
