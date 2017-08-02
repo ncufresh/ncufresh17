@@ -8,7 +8,7 @@
         <% include ../layouts/navbar %>
     </header>
 
-    <main style="background-color:rgb(225,192,0)">
+    <main style="background-image: url(BACK2.png);"">
       <div class="container">
             <h1 style="font-size: 100px;">社團</h1>
             <hr size="8px" align="center" width="100%">
@@ -48,6 +48,14 @@
                           <label for="introduction" class="form-control">社團介紹</label>
                           <textarea name="introduction"></textarea></br>
                         </div>
+                        <div class="form-group">
+                          <label for="howtoadd" class="form-control">如何加入社團</label>
+                          <textarea name="howtoadd"></textarea></br>
+                        </div>
+                        <div class="form-group">
+                          <label for="FBfans" class="form-control">FB粉絲團</label>
+                          <textarea name="FBfans"></textarea></br>
+                        </div>
                         <button type="submit" class="btn btn-default btn-success btn-block" style="width:100px;height:30px;text-align:center;">add</button>
                       </form>
 
@@ -59,10 +67,10 @@
               </div> 
             </div>
 
-            <a href="/groups/all_club?club=learn" style="position:relative;left:130px;padding:4vh"><img src="e1.png"></a>
-            <a href="/groups/all_club?club=play" style="position:relative;left:130px;padding:4vh"><img src="e2.png"></a>
-            <a href="/groups/all_club?club=love" style="position:relative;left:130px;padding:4vh"><img src="e3.png"></a>
-            <a href="/groups/all_club?club=service" style="position:relative;left:130px;padding:4vh"><img src="e4.png"></a>
+            <a href="/groups/all_club?club=learn"><img src="e1.png" class="col-md-2 col-md-offset-2" style="padding-bottom: 30px"></a>
+            <a href="/groups/all_club?club=play"><img src="e2.png"  class="col-md-2" style="padding-bottom: 30px"></a>
+            <a href="/groups/all_club?club=love"><img src="e3.png"  class="col-md-2" style="padding-bottom: 30px"></a>
+            <a href="/groups/all_club?club=service"><img src="e4.png"  class="col-md-2" style="padding-bottom: 30px"></a>
             </div>
         </div>
     </main>
@@ -75,6 +83,24 @@
 
     <script type="text/javascript">
     CKEDITOR.replace('introduction',{
+      filebrowserUploadUrl: '/uploader',
+    });
+    CKEDITOR.editorConfig = function (config){
+        config.enterMode = CKEDITOR.ENTER_BR;
+        config.autoParagraph = false;
+    };
+    </script>
+    <script type="text/javascript">
+    CKEDITOR.replace('howtoadd',{
+      filebrowserUploadUrl: '/uploader',
+    });
+    CKEDITOR.editorConfig = function (config){
+        config.enterMode = CKEDITOR.ENTER_BR;
+        config.autoParagraph = false;
+    };
+    </script>
+    <script type="text/javascript">
+    CKEDITOR.replace('FBfans',{
       filebrowserUploadUrl: '/uploader',
     });
     CKEDITOR.editorConfig = function (config){

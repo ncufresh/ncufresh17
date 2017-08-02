@@ -7,10 +7,9 @@
     <header>
         <% include ../layouts/navbar %>
     </header>
-    <main>
+    <main style="background-image: url(BACK2.png);">
         <div class="container">
           <br>
-          <div class="jumbotron">
               <div class="container">
                 <ul id="de_tabs" class="nav nav-tabs">
                   <li><a data-toggle="tab" href="#learn">學術性</a></li>
@@ -18,6 +17,91 @@
                   <li><a data-toggle="tab" href="#love">聯誼性</a></li>
                   <li><a data-toggle="tab" href="#service">服務性</a></li>
                 </ul>
+
+                <!-- edit model -->
+                  <div class="modal fade" id="edit_club" role="dialog">
+                    <div class="modal-dialog modal-lg">
+
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h4 style="color:red;">修改社團</h4>
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                          <form action="/groups/edit_club" method="post" accept-charset="utf-8">
+                          <input type='hidden' id="edit_id" name="id">
+                            <div class="form-group">
+                              <label for="type" class="form-control">系所學院</label>
+                              <select name="type" id="edit_type" class="form-control">
+                                      <option value="learn">學術性</option>
+                                      <option value="play">康樂性</option>
+                                      <option value="love">聯誼性</option>
+                                      <option value="service">服務性</option>
+                              </select>
+                            </div>
+                            <div class="form-group">
+                              <label for="name" class="form-control">社團名稱</label>
+                              <input type="text" class="form-control" id="edit_name" name="name" placeholder="資訊管理學系">
+                            </div>
+                            <div class="form-group">
+                              <label for="introduction" class="form-control">社團介紹</label>
+                              <textarea name="introduction" id="edit_introduction"></textarea></br>
+                            </div>
+                            <div class="form-group">
+                              <label for="howtoadd" class="form-control">如何加入社團</label>
+                              <textarea name="howtoadd" id="edit_howtoadd"></textarea></br>
+                            </div>
+                            <div class="form-group">
+                              <label for="FBfans" class="form-control">FB粉絲團</label>
+                              <textarea name="FBfans" id="edit_FBfans"></textarea></br>
+                            </div>
+                            <button type="submit" class="btn btn-default btn-success btn-block" style="width:200px;height:30px;text-align:center;">update</button>
+                          </form>
+                        </div>
+
+                        <div class="modal-footer">
+                          <button type="submit" class="btn btn-default" data-dismiss="modal" style="width:120px;height:30px;text-align:left;">cancel</button>
+                        </div>
+                      </div>
+                  </div> 
+                </div>
+
+                <!-- add photo Modal -->
+              <div class="modal fade" id="uploadimg" role="dialog">
+                <div class="modal-dialog modal-lg">
+
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 style="color:red;">新增圖片</h4>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                      <form action="/groups/uploadimg" method="post" accept-charset="utf-8">
+                        <div class="form-group">
+                        <form class="form" >
+                        <input type='hidden' class="up" id="up" name="up[]" multiple>
+                        <div class="preview"></div>
+                        </form>
+                        </div>
+                        <div class="form-group">
+                        <form class="form1">
+                        社團介紹圖檔<input type='file' class="upl" id="up1" name="upl[]" multiple>
+                        <div class="preview"></div>
+                        </form>
+                        </div>
+                        <button type="submit" class="btn btn-default btn-success btn-block" style="width:100px;height:30px;text-align:center;">add</button>
+                    </form>
+                    </div>
+
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-default" data-dismiss="modal" style="width:120px;height:30px;text-align:left;">cancel</button>
+                    </div>
+                  </div>
+              </div> 
+            </div>
+
 
                   <div class="tab-content">
                   <div id="learn" class="tab-pane fade">
@@ -31,25 +115,51 @@
                     <div class="row container" id="literature">
                         <% for (var i in club){%>
                             <% if ( club[i].type == "learn"){ %>
+                                    <div class="col-md-3">
                                     <img data-toggle="modal" data-target="#<%- club[i].id%>" src="00社團圖標(全).png"/>
-                                    <p><%= club[i].name %></p>
+                                    <h5><%= club[i].name %></h5>
+                                    </div>
                                       <!-- Modal -->
-                                      <div class="modal fade" id="<%=club[i].id%>" role="dialog">
-                                        <div class="modal-dialog">
+                                      <div class="modal fade" id="<%-club[i].id%>" role="dialog">
+                                        <div class="modal-dialog modal-lg">
                                         <!-- Modal content-->
                                           <div class="modal-content">
                                             <div class="modal-header">
                                               <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                              <h1 class="modal-title"><%= club[i].name %></h1>
+                                              <h1 class="modal-title"><%- club[i].name %></h1>
                                             </div>
                                             <div class="modal-body">
-                                              <p>社團介紹:<%= club[i].introduction %></p>
-                                            </div>
+                                              <div class="container">
+                                              <ul class="nav nav-pills nav-stacked col-md-2">
+                                                <li class="active"><a href="#tab_learn_<%=club[i].id%>_a" data-toggle="pill">社團介紹</a></li>
+                                                <li><a href="#tab_learn_<%=club[i].id%>_b" data-toggle="pill">如何加入社團</a></li>
+                                                <li><a href="#tab_learn_<%=club[i].id%>_c" data-toggle="pill">FB粉絲團</a></li>
+                                              </ul>
+                                              <div class="tab-content col-md-10">
+                                                      <div class="tab-pane active" id="tab_learn_<%=club[i].id%>_a">
+                                                          <h4>社團介紹</h4>
+                                                          <h6><%- club[i].introduction %></h6>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_learn_<%=club[i].id%>_b">
+                                                          <h4>如何加入社團</h4>
+                                                          <h6><%- club[i].howtoadd %></h6>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_learn_<%=club[i].id%>_c">
+                                                          <h4>FB粉絲團</h4>
+                                                          <h6><%- club[i].FBfans %></h6>
+                                                      </div>
+                                              </div><!-- tab content -->
+                                              </div><!-- end of container -->
+                                            </div><!-- body -->
+
+                                              
                                             <div class="modal-footer">
+                                             <button class="btn btn-default edit_club" value="<%= club[i].id%>" data-dismiss="modal">編輯</button>
+                                             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#uploadimg" data-dismiss="modal">新增圖片</button>
+                                             <button class="btn btn-default btn-xs delete_club" value="<%= club[i].id%>"  data-dismiss="modal"> 刪除</button>
                                               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                             </div>
                                           </div>
-                                          
                                         </div>
                                       </div>
                             <%}%>
@@ -67,25 +177,51 @@
                     <div class="row container" id="literature">
                         <% for (var i in club){%>
                             <% if ( club[i].type == "play"){ %>
+                                    <div class="col-md-3">
                                     <img data-toggle="modal" data-target="#<%- club[i].id%>" src="00社團圖標(全).png"/>
-                                    <p><%= club[i].name %></p>
+                                    <h5><%= club[i].name %></h5>
+                                    </div>
                                       <!-- Modal -->
-                                      <div class="modal fade" id="<%=club[i].id%>" role="dialog">
-                                        <div class="modal-dialog">
+                                      <div class="modal fade" id="<%-club[i].id%>" role="dialog">
+                                        <div class="modal-dialog modal-lg">
                                         <!-- Modal content-->
                                           <div class="modal-content">
                                             <div class="modal-header">
                                               <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                              <h1 class="modal-title"><%= club[i].name %></h1>
+                                              <h1 class="modal-title"><%- club[i].name %></h1>
                                             </div>
                                             <div class="modal-body">
-                                              <p>社團介紹:<%= club[i].introduction %></p>
-                                            </div>
+                                              <div class="container">
+                                              <ul class="nav nav-pills nav-stacked col-md-2">
+                                                <li class="active"><a href="#tab_play_<%=club[i].id%>_a" data-toggle="pill">社團介紹</a></li>
+                                                <li><a href="#tab_play_<%=club[i].id%>_b" data-toggle="pill">如何加入社團</a></li>
+                                                <li><a href="#tab_play_<%=club[i].id%>_c" data-toggle="pill">FB粉絲團</a></li>
+                                              </ul>
+                                              <div class="tab-content col-md-10">
+                                                      <div class="tab-pane active" id="tab_play_<%=club[i].id%>_a">
+                                                          <h4>社團介紹</h4>
+                                                          <h6><%- club[i].introduction %></h6>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_play_<%=club[i].id%>_b">
+                                                          <h4>如何加入社團</h4>
+                                                          <h6><%- club[i].howtoadd %></h6>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_play_<%=club[i].id%>_c">
+                                                          <h4>FB粉絲團</h4>
+                                                          <h6><%- club[i].FBfans %></h6>
+                                                      </div>
+                                              </div><!-- tab content -->
+                                              </div><!-- end of container -->
+                                            </div><!-- body -->
+
+                                              
                                             <div class="modal-footer">
+                                             <button class="btn btn-default edit_club" value="<%= club[i].id%>" data-dismiss="modal">編輯</button>
+                                             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#uploadimg">新增圖片</button>
+                                             <button class="btn btn-default btn-xs delete_club" value="<%= club[i].id%>"  data-dismiss="modal"> 刪除</button>
                                               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                             </div>
                                           </div>
-                                          
                                         </div>
                                       </div>
                             <%}%>
@@ -103,25 +239,51 @@
                     <div class="row container" id="literature">
                         <% for (var i in club){%>
                             <% if ( club[i].type == "love"){ %>
+                                    <div class="col-md-3">
                                     <img data-toggle="modal" data-target="#<%- club[i].id%>" src="00社團圖標(全).png"/>
-                                    <p><%= club[i].name %></p>
+                                    <h5><%= club[i].name %></h5>
+                                    </div>
                                       <!-- Modal -->
-                                      <div class="modal fade" id="<%=club[i].id%>" role="dialog">
-                                        <div class="modal-dialog">
+                                      <div class="modal fade" id="<%-club[i].id%>" role="dialog">
+                                        <div class="modal-dialog modal-lg">
                                         <!-- Modal content-->
                                           <div class="modal-content">
                                             <div class="modal-header">
                                               <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                              <h1 class="modal-title"><%= club[i].name %></h1>
+                                              <h1 class="modal-title"><%- club[i].name %></h1>
                                             </div>
                                             <div class="modal-body">
-                                              <p>社團介紹:<%= club[i].introduction %></p>
-                                            </div>
+                                              <div class="container">
+                                              <ul class="nav nav-pills nav-stacked col-md-2">
+                                                <li class="active"><a href="#tab_love_<%=club[i].id%>_a" data-toggle="pill">社團介紹</a></li>
+                                                <li><a href="#tab_love_<%=club[i].id%>_b" data-toggle="pill">如何加入社團</a></li>
+                                                <li><a href="#tab_love_<%=club[i].id%>_c" data-toggle="pill">FB粉絲團</a></li>
+                                              </ul>
+                                              <div class="tab-content col-md-10">
+                                                      <div class="tab-pane active" id="tab_love_<%=club[i].id%>_a">
+                                                          <h4>社團介紹</h4>
+                                                          <h6h6><%- club[i].introduction %></h6h6>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_love_<%=club[i].id%>_b">
+                                                          <h4>如何加入社團</h4>
+                                                          <h6h6><%- club[i].howtoadd %></h6h6>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_love_<%=club[i].id%>_c">
+                                                          <h4>FB粉絲團</h4>
+                                                          <h6h6><%- club[i].FBfans %></h6h6>
+                                                      </div>
+                                              </div><!-- tab content -->
+                                              </div><!-- end of container -->
+                                            </div><!-- body -->
+
+                                              
                                             <div class="modal-footer">
+                                             <button class="btn btn-default edit_club" value="<%= club[i].id%>" data-dismiss="modal">編輯</button>
+                                             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#uploadimg">新增圖片</button>
+                                             <button class="btn btn-default btn-xs delete_club" value="<%= club[i].id%>"  data-dismiss="modal"> 刪除</button>
                                               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                             </div>
                                           </div>
-                                          
                                         </div>
                                       </div>
                             <%}%>
@@ -139,25 +301,51 @@
                     <div class="row container" id="literature">
                         <% for (var i in club){%>
                             <% if ( club[i].type == "service"){ %>
+                                    <div class="col-md-3">
                                     <img data-toggle="modal" data-target="#<%- club[i].id%>" src="00社團圖標(全).png"/>
-                                    <p><%= club[i].name %></p>
+                                    <h5><%= club[i].name %></h5>
+                                    </div>
                                       <!-- Modal -->
-                                      <div class="modal fade" id="<%=club[i].id%>" role="dialog">
-                                        <div class="modal-dialog">
+                                      <div class="modal fade" id="<%-club[i].id%>" role="dialog">
+                                        <div class="modal-dialog modal-lg">
                                         <!-- Modal content-->
                                           <div class="modal-content">
                                             <div class="modal-header">
                                               <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                              <h1 class="modal-title"><%= club[i].name %></h1>
+                                              <h1 class="modal-title"><%- club[i].name %></h1>
                                             </div>
                                             <div class="modal-body">
-                                              <p>社團介紹:<%= club[i].introduction %></p>
-                                            </div>
+                                              <div class="container">
+                                              <ul class="nav nav-pills nav-stacked col-md-2">
+                                                <li class="active"><a href="#tab_service_<%=club[i].id%>_a" data-toggle="pill">社團介紹</a></li>
+                                                <li><a href="#tab_service_<%=club[i].id%>_b" data-toggle="pill">如何加入社團</a></li>
+                                                <li><a href="#tab_service_<%=club[i].id%>_c" data-toggle="pill">FB粉絲團</a></li>
+                                              </ul>
+                                              <div class="tab-content col-md-10">
+                                                      <div class="tab-pane active" id="tab_service_<%=club[i].id%>_a">
+                                                          <h4>社團介紹</h4>
+                                                          <h6><%- club[i].introduction %></h6>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_service_<%=club[i].id%>_b">
+                                                          <h4>如何加入社團</h4>
+                                                          <h6><%- club[i].howtoadd %></h6>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_service_<%=club[i].id%>_c">
+                                                          <h4>FB粉絲團</h4>
+                                                          <h6><%- club[i].FBfans %></h6>
+                                                      </div>
+                                              </div><!-- tab content -->
+                                              </div><!-- end of container -->
+                                            </div><!-- body -->
+
+                                              
                                             <div class="modal-footer">
+                                             <button class="btn btn-default edit_club" value="<%= club[i].id%>" data-dismiss="modal">編輯</button>
+                                             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#uploadimg">新增圖片</button>
+                                             <button class="btn btn-default btn-xs delete_club" value="<%= club[i].id%>"  data-dismiss="modal"> 刪除</button>
                                               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                             </div>
                                           </div>
-                                          
                                         </div>
                                       </div>
                             <%}%>
@@ -177,6 +365,159 @@
     </footer>
         <% include js %>
         <% include ../layouts/js %>
+    <script type="text/javascript">
+    !function(t){var r="1.5.3",n={};t.vmodel={},t.vmodel.api=new function(){this.obj_sort=function(r){var n=[],e=0;t.each(r,function(t,r){n[e++]=t}),n.sort();var o={};return t.each(n,function(t,n){o[n]=r[n]}),o},this.each_autoload=function(r,n){return r?(t.each(r,function(r,e){return"function"!=t.type(n[e])?(local.msg_error(e,"不存在。"),!1):void n[e]()}),!0):!1},this.is_trigger_autoload=function(r,n){try{if(!n)throw"須要指定方法名稱陣列";if("array"!=t.type(n))throw"is_trigger_autoload() 代入的方法名稱必須要是陣列";{t.vmodel.api.each_autoload(n,r)}return!0}catch(e){return console.log(e),!1}},this.get_autoload_funame=function(r){var n=[],e=t.type(r.autoload);try{if("array"==e)n=r.autoload;else{if("function"!=e)throw r.vname+" 的 autoload 須要是陣列或 function。";if(res=r.autoload(),"array"!=t.type(res))throw r.vname+" 的 get_autoload_funame() 最終需要得到的型態應該是陣列。";n=res}return n}catch(o){return console.log(o),!1}}},t.vmodel.version=function(){return r},t.vmodel.end=function(r,n){var e=this;this.param_match=function(r,n){var e=[];if("function"==t.type(r)){var o=t.vmodel.get();e=[o,r]}else{var a={};t.each(r,function(r,n){a[n]=t.vmodel.get(n)}),e=[a,n]}return e};var o=e.param_match(r,n),a=o[0],i=o[1];r=n=null;var l=setInterval(function(){var r=!0;t.each(a,function(n,e){var o=t.vmodel.history(e.vname);return 0==o?(r=!1,!0):void(r=!0)}),r&&(i(a),clearInterval(l))},0)},t.vmodel.history=function(r){var n=!1,e=t.vmodel.get(r),o=e.root.attr("data-vmodel-history");if(!o)return!1;var a=t.parseJSON(o);return t.each(a,function(t,e){return e.vname!=r?!0:(n=e,!1)}),n},t.vmodel.get=function(r,e,o){var a=this;this.chk_trigger_callback=function(r){var n=!0;return t.each(r.fun_struct,function(t,r){return 0==r?(n=!1,!1):void 0}),0==n?!1:!0},this.display_attr=function(r,n){var e=new Date,o=[{vname:r,status:!0,timestamp:Date.parse(e)+"."+e.getMilliseconds()}],a=n.root.attr("data-vmodel-history");if(a){var i=t.parseJSON(a);i.push(o[0]),o=i}var l=JSON.stringify(o);n.root.attr("data-vmodel-history",l)},this.param_match=function(r,n,e){var o=[],a=t.type(r);return r?"string"==a&&(o=[r,n,e]):o=[r,null,null],o};var i=a.param_match(r,e,o),r=i[0],l=i[1],u=i[2];if(i=e=o=null,!r)return t.vmodel.api.obj_sort(n);var c=n[r];if(!c)return console.log("呼叫的倉儲名稱 "+r+" 不存在。"),!1;if("boolean"==t.type(l)&&1==l){var s=t.vmodel.api.get_autoload_funame(c),f=(t.vmodel.api.is_trigger_autoload(c,s),t.type(u));if("function"==f||"boolean"==f&&1==u){"function"==f&&(c.vmodel_get_callback=function(){u(c)});var v=setInterval(function(){if(1==a.chk_trigger_callback(c)){if(clearInterval(v),a.display_attr(r,c),"boolean"==f)return!0;c.vmodel_get_callback()}},20);return!0}}return n[r]},t.vmodel["delete"]=function(t){return t||""==t?n[t]&&delete n[t]:n={},this},t.fn.vmodel=function(r,e,o){local=this;var a=local.selector;return this.remove_sign=function(t){return"--"==t.substring(0,2)?t.substring(2):t},this.msg_error=function(t,r){console.log("錯誤：『"+a+"』呼叫的 function 『"+t+"』："+r)},this.define_autoload_struct=function(r,n){t.each(n,function(t,n){r.fun_struct[n]=!1})},this.ext_expend=function(r,n){var e=null!=n?n:null;return t.extend(r,{vname:e,selector:a,root:t(local),fun_struct:{},struct:function(n,e){if("boolean"==t.type(e)||e||(e=!0),"string"==t.type(n)){if("boolean"!=t.type(r.fun_struct[n]))return console.log("找不到名稱為 "+n+"的建構狀態"),!1;r.fun_struct[n]=e}else{if("array"!=t.type(n))return console.log("建構名稱須要指定"),!1;t.each(n,function(t,n){r.fun_struct[n]=e})}return!0}}),r},this.param_match=function(r,n,e){var o=null,a=null,i=null;return"string"==t.type(r)?(o=local.remove_sign(r),"boolean"==t.type(n)?(a=n,i=new e):i=new n):i=new r,[o,a,i]},this.put_storage=function(t,r){if(null!=t){if(n[t])return console.log("倉儲名稱『"+t+"』重複。"),!1;n[t]=r}},this.main=function(r,n,e){var o=local.param_match(r,n,e),a=o[0],i=o[1],l=o[2];r=n=e=null;var l=local.ext_expend(l,a),u=t.vmodel.api.get_autoload_funame(l);if(local.define_autoload_struct(l,u),i===!0){var c=t.vmodel.api.is_trigger_autoload(l,u);c===!1&&local.msg_error("is_trigger_autoload","發生錯誤")}return local.put_storage(a,l),this},local.main(r,e,o)}}(jQuery);
+    </script>
+
+    <script type="text/javascript">
+    $(function (){
+        // 建立一個模組叫做 preview，根節點為 .form1
+        $(".form").vmodel("--preview", true, function (){
+
+            var vs = this;
+
+            // 自動讀取的方法
+            this.autoload = ['change_file'];
+
+            // 連續的圖片編碼
+            this.imgcode = '';
+
+            // 選取發生改變
+            this.change_file = function (){
+                vs.root.on("change", ".up", function (){
+                    local_show(this);
+                });
+            }
+
+            // 批次圖片，先清空後再插入
+            var local_show = function (input){
+                if (input.files && input.files[0]) {
+                    local_clean();
+                    local_each_img(input.files);
+                }
+            }
+
+            // 批次讀取，最後再一次寫入
+            var local_each_img = function (files){
+
+                $.each(files, function (index, file){
+                    var src = URL.createObjectURL(file);
+                    local_create_imgcode(index, src);
+                });
+
+                // 放置預覽元素後重設
+                vs.root.find(".preview").html(vs.imgcode);
+                // local_reset();
+            }
+
+            // 建立圖片
+            var local_create_imgcode = function(key, src, callback){
+                vs.imgcode += '<img class="img" src="' + src + '">';
+                if (callback) callback();
+            }
+
+            // 清空預覽區域
+            var local_clean = function (){
+                vs.root.find(".preview").empty();
+            }
+
+            // 還原 input[type=file]
+            var local_reset = function (){
+                vs.imgcode = '';
+                vs.root.find(".up").val(null);
+            }
+
+        });
+    }) 
+    </script>
+    <script type="text/javascript">
+    $(function (){
+        // 建立一個模組叫做 preview，根節點為 .form1
+        $(".form1").vmodel("--preview", true, function (){
+
+            var vs = this;
+
+            // 自動讀取的方法
+            this.autoload = ['change_file'];
+
+            // 連續的圖片編碼
+            this.imgcode = '';
+
+            // 選取發生改變
+            this.change_file = function (){
+                vs.root.on("change", ".upl", function (){
+                    local_show(this);
+                });
+            }
+
+            // 批次圖片，先清空後再插入
+            var local_show = function (input){
+                if (input.files && input.files[0]) {
+                    local_clean();
+                    local_each_img(input.files);
+                }
+            }
+
+            // 批次讀取，最後再一次寫入
+            var local_each_img = function (files){
+
+                $.each(files, function (index, file){
+                    var src = URL.createObjectURL(file);
+                    local_create_imgcode(index, src);
+                });
+
+                // 放置預覽元素後重設
+                vs.root.find(".preview").html(vs.imgcode);
+                // local_reset();
+            }
+
+            // 建立圖片
+            var local_create_imgcode = function(key, src, callback){
+                vs.imgcode += '<img class="img" src="' + src + '">';
+                if (callback) callback();
+            }
+
+            // 清空預覽區域
+            var local_clean = function (){
+                vs.root.find(".preview").empty();
+            }
+
+            // 還原 input[type=file]
+            var local_reset = function (){
+                vs.imgcode = '';
+                vs.root.find(".upl").val(null);
+            }
+
+        });
+    }) 
+    </script>
+    <script type="text/javascript">
+    CKEDITOR.replace('introduction',{
+      filebrowserUploadUrl: '/uploader',
+    });
+    CKEDITOR.editorConfig = function (config){
+        config.enterMode = CKEDITOR.ENTER_BR;
+        config.autoParagraph = false;
+    };
+    </script>
+    <script type="text/javascript">
+    CKEDITOR.replace('howtoadd',{
+      filebrowserUploadUrl: '/uploader',
+    });
+    CKEDITOR.editorConfig = function (config){
+        config.enterMode = CKEDITOR.ENTER_BR;
+        config.autoParagraph = false;
+    };
+    </script>
+    <script type="text/javascript">
+    CKEDITOR.replace('FBfans',{
+      filebrowserUploadUrl: '/uploader',
+    });
+    CKEDITOR.editorConfig = function (config){
+        config.enterMode = CKEDITOR.ENTER_BR;
+        config.autoParagraph = false;
+    };
+    </script>
     <script type="text/javascript">
       $(document).ready(function(){
         var one = $('#firstClick').val();

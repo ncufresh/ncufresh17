@@ -1,17 +1,17 @@
 var mongoose = require('mongoose');
 var shortId = require('shortid');
 
-var club = mongoose.Schema({
+var organization = mongoose.Schema({
 	_id: {
 	type: String,
 	unique: true,
 	'default': shortId.generate
 	},
-    type : String,
     name : String,
     introduction : String,
-    howtoadd :String,
-    FBfans :String,
+    branch :String,
+    freshmenweek :String,
+    notice :String
 });
 
-module.exports = mongoose.model( 'club', club );
+module.exports = mongoose.model( 'organization', organization );
