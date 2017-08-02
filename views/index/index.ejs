@@ -229,7 +229,7 @@
         position: absolute;
         left: 20%;
         top: 20%;
-        width: 15vw;
+        width: 200px;
       }
       @media (max-width: 991px) {
         h1{
@@ -347,9 +347,9 @@
                       </div>
                     <% } %>
 
-
                     <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                     <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                    <input type="hidden" value="<%=newsimgs.length%>" id="newsimgsNum">
                   </div>
                   <br>
 
@@ -446,31 +446,38 @@
     			$( '#carousel' ).elastislide( {
     				minItems : 2
     			} );
-          var slideIndex = 1;
-          showSlides(slideIndex);
+          var slideIndex = 2;
+          var slidesNum = $("#newsimgsNum").val();
+          var ramSlideNum = Math.floor((Math.random() * slidesNum) + 1);
+          console.log(ramSlideNum);
+          showSlides(ramSlideNum);
 
           function plusSlides(n) {
-            showSlides(slideIndex += n);
+            showSlides(ramSlideNum += n);
           }
 
           function currentSlide(n) {
-            showSlides(slideIndex = n);
+            showSlides(ramSlideNum = n);
           }
 
           function showSlides(n) {
             var i;
             var slides = document.getElementsByClassName("mySlides");
             var dots = document.getElementsByClassName("dot");
-            if (n > slides.length) {slideIndex = 1}
-            if (n < 1) {slideIndex = slides.length}
+            if (n > slides.length) {ramSlideNum = 1}
+            if (n < 1) {ramSlideNum = slides.length}
             for (i = 0; i < slides.length; i++) {
                 slides[i].style.display = "none";
             }
             for (i = 0; i < dots.length; i++) {
                 dots[i].className = dots[i].className.replace(" active", "");
             }
-            slides[slideIndex-1].style.display = "block";
-            dots[slideIndex-1].className += " active";
+            slides[ramSlideNum-1].style.display = "block";
+            dots[ramSlideNum-1].className += " active";
+          }
+          function timeout_slide(){
+            plusSlides(-1);
+            setTimeout(timeout_slide, 3000);
           }
           window.onscroll = function() {scrollFunction()};
 
@@ -484,11 +491,15 @@
 
           // When the user clicks on the button, scroll to the top of the document
           function topFunction() {
-              document.body.scrollTop = 0; // For Chrome, Safari and Opera
-              document.documentElement.scrollTop = 0; // For IE and Firefox
+            $('html,body').animate({
+                 scrollTop: 0,
+            }, 1000);
+              // document.body.scrollTop = 0; // For Chrome, Safari and Opera
+              // document.documentElement.scrollTop = 0; // For IE and Firefox
           }
           $(function(){
             $('[data-toggle="tooltip"]').tooltip();
+            timeout_slide();
           })
     		</script>
 
