@@ -28,6 +28,7 @@ $(document).ready(function() {
       document.getElementById('show-answer').innerHTML = res.answer;
 
       $('#modal-show').modal('show');
+      <%# 當成功顯示之後，動態增加瀏覽次數 %>
       var objs = $('.' + id).find('.view');
       for (var i=0; i<objs.length; i++) {
         objs[i].innerHTML = parseInt(objs[i].innerHTML) + 1;
