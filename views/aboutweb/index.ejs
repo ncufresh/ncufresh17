@@ -7,13 +7,33 @@
     <header>
         <% include ../layouts/navbar %>
     </header>
-    <main style="background-image: url(/aboutweb/網頁背景.png); background-repeat: repeat; background-size: contain;background-attachment: scroll; background-size: 25%;">
-        <div style="position:relative;margin-top: 5vh; margin-bottom: 5vw; margin-left: 5vw; margin-right: 5vw;">
-            <img src="https://www.ledr.com/colours/white.jpg" style="position:relative; width: 100%;">
+    <main style="position:relative; background-image: url(/aboutweb/網頁背景.png); background-repeat: repeat; background-size: contain;background-size: 25%;padding: 5vw;">
+        <div style="height: 5vh;"></div>
+        <div style="position:relative;width:100%;padding-bottom:87.6288659793814%">
+            <img src="/aboutweb/線.png" style="position:absolute; width: 100%; top:0%; left:0%;">
+            <% for (var i in aboutweb){%>
+                <%if(aboutweb[i].type=="六角形"){%>
+                    <a href="<%=aboutweb[i].link%>" style="width: <%=aboutweb[i].size+"%"%>;position: absolute;top:<%=aboutweb[i].y+"%"%>; left: <%=aboutweb[i].x+"%"%>">
+                        <img src="/aboutweb/六角形按鈕.png" class="edit" id="<%=aboutweb[i]._id%>" style="position:absolute;width: 100%">
+                        <p style="font-size: 1.1vw; top:2.1vw; width:100%;position: absolute; text-align:center; color: black;"><%-aboutweb[i].name%></p>
+                    </a> 
+                <%}else if (aboutweb[i].type=="方形"){%>
+                    <a href="<%=aboutweb[i].link%>" style="width: <%=aboutweb[i].size+"%"%>;position: absolute;top:<%=aboutweb[i].y+"%"%>; left: <%=aboutweb[i].x+"%"%>">
+                        <img src="/aboutweb/方形按鈕.png" class="edit" id="<%=aboutweb[i]._id%>" style="position:absolute;width: 100%">
+                        <p style="font-size: 1.1vw; top:2.1vw; width:100%;position: absolute; text-align:center; color: black;line-height: 1em;"><%-aboutweb[i].name%></p>
+                    </a> 
+                <%}else if (aboutweb[i].type=="橢圓"){%>
+                    <a href="<%=aboutweb[i].link%>" style="width: <%=aboutweb[i].size+"%"%>;position: absolute;top:<%=aboutweb[i].y+"%"%>; left: <%=aboutweb[i].x+"%"%>">
+                        <img src="/aboutweb/橢圓按鈕.png" class="edit" id="<%=aboutweb[i]._id%>" style="position:absolute;width: 100%">
+                        <p style="font-size: 1.1vw; top:2.1vw; width:100%;position: absolute; text-align:center; color: black;"><%-aboutweb[i].name%></p>
+                    </a> 
+                <%}%>
+            <%}%>
         </div>
-        <a href="/aboutweb/edit_aboutweb/"><button style="width: 100vw" class="btn btn-success btn-lg btn-block"><p>後台</p></button></a>
     </main>
-
+    <% if(user&&user.local.accountType==='admin'){%>
+        <a href="/aboutweb/edit_aboutweb/"><button style="width: 100vw" class="btn btn-success btn-lg btn-block"><p>後台</p></button></a>
+        <%}%>
     <footer>
         <% include ../layouts/footer %>
     </footer>

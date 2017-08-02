@@ -60,16 +60,33 @@
                     </div>
                     <div class="modal-body">
                         
-                        <form action="/campus/newMapObj" method="post" accept-charset="utf-8">
+                        <form action="/aboutweb/edit" method="post" accept-charset="utf-8">
+
+                            <input type="hidden" name="id" id="edit_id">
 
                             <div class='form-group'>
-                                <label for="x"><p>X座標</p></label>
-                                <input type="text" name="x_position" id="x-position" value=0>
+                                <label for="name"><p>名稱</p></label>
+                                <input type="text" name="name" id="name" value=0>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="type" class="control-label"><p>類別</p></label>
+                                <select name="type" id="edit_type" class="form-control">
+                                    <option value="六角形">六角形</option>
+                                    <option value="方形">方形</option>
+                                    <option value="橢圓">橢圓</option>
+                                    <option selected="" value="">請選擇</option>
+                                </select>
+                            </div>
+
+                            <div class='form-group'>
+                                <label for="x_position"><p>X座標</p></label>
+                                <input type="text" name="x_position" id="x_position" value=0>
                             </div>
 
                             <div class='form-group'>
                                 <label for="y-position"><p>Y座標</p></label>
-                                <input type="text" name="y_position" id="y-position" value=0>
+                                <input type="text" name="y_position" id="y_position" value=0>
                             </div>
 
                             <div class='form-group'>
@@ -82,36 +99,47 @@
                                 <input type="text" name="link" id="link" value=0>
                             </div>
 
-                            <div style="height: 83vw;position:relative;margin-top: 5vh; margin-bottom: 5vw; margin-left: 5vw; margin-right: 5vw;">
-                                <img src="/aboutweb/線.png" id="underlay" style="position:absolute; width: 100%; top:10%; left:0%;">
+                            <div style="position:relative;width:100%;padding-bottom:87.6288659793814%">
+                                <img src="/aboutweb/線.png" id="underlay" style="position:absolute; width: 100%; top:0%; left:0%;">
                                 <img src="" id="the_image" style="position:absolute;cursor: move;">
                             </div>
 
-                            <button type="submit" name="button" value="edit" class="btn btn-primary" >送出</button>
+                            <button type="submit" name="button" value="edit" class="btn btn-primary">送出</button>
                         </form>
                     </div>
                     <div class="modal-footer">
+                        <button class="btn btn-danger btn-xs delete_data" id="delete_button" data-dismiss="modal"><i class="fa fa-trash-o fa-lg"></i>刪除</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
         </div>
 
-    <main style="position:relative; background-image: url(/aboutweb/網頁背景.png); background-repeat: repeat; background-size: contain;background-size: 25%;">
-        <div style="height: 83vw;position:relative;margin-top: 5vh; margin-bottom: 5vw; margin-left: 5vw; margin-right: 5vw;">
-            <img src="/aboutweb/線.png" style="position:absolute; width: 100%; top:10%; left:0%;">
+    <main style="position:relative; background-image: url(/aboutweb/網頁背景.png); background-repeat: repeat; background-size: contain;background-size: 25%;padding: 5vw;">
+        <div style="height: 5vh;"></div>
+        <div style="position:relative;width:100%;padding-bottom:87.6288659793814%">
+            <img src="/aboutweb/線.png" style="position:absolute; width: 100%; top:0%; left:0%;">
             <% for (var i in aboutweb){%>
                 <%if(aboutweb[i].type=="六角形"){%>
-                    <img src="/aboutweb/六角形按鈕.png" class="edit" id="<%=aboutweb[i]._id%>" style="position:absolute; width: <%=aboutweb[i].size+"%"%>; top:<%=aboutweb[i].y+"%"%>; left: <%=aboutweb[i].x+"%"%>">
+                    <a style="width: <%=aboutweb[i].size+"%"%>;position: absolute;top:<%=aboutweb[i].y+"%"%>; left: <%=aboutweb[i].x+"%"%>">
+                        <img src="/aboutweb/六角形按鈕.png" class="edit" id="<%=aboutweb[i]._id%>" style="position:absolute;width: 100%">
+                        <p style="font-size: 1.1vw; top:2.1vw; width:100%;position: absolute; text-align:center; color: black;"><%-aboutweb[i].name%></p>
+                    </a> 
                 <%}else if (aboutweb[i].type=="方形"){%>
-                    <img src="/aboutweb/方形按鈕.png" class="edit" id="<%=aboutweb[i]._id%>" style="position:absolute; width: <%=aboutweb[i].size+"%"%>; top:<%=aboutweb[i].y+"%"%>; left: <%=aboutweb[i].x+"%"%>">
+                    <a style="width: <%=aboutweb[i].size+"%"%>;position: absolute;top:<%=aboutweb[i].y+"%"%>; left: <%=aboutweb[i].x+"%"%>">
+                        <img src="/aboutweb/方形按鈕.png" class="edit" id="<%=aboutweb[i]._id%>" style="position:absolute;width: 100%">
+                        <p style="font-size: 1.1vw; top:2.1vw; width:100%;position: absolute; text-align:center; color: black;line-height: 1em;"><%-aboutweb[i].name%></p>
+                    </a> 
                 <%}else if (aboutweb[i].type=="橢圓"){%>
-                    <img src="/aboutweb/橢圓按鈕.png" class="edit" id="<%=aboutweb[i]._id%>" style="position:absolute; width: <%=aboutweb[i].size+"%"%>; top:<%=aboutweb[i].y+"%"%>; left: <%=aboutweb[i].x+"%"%>">
+                    <a style="width: <%=aboutweb[i].size+"%"%>;position: absolute;top:<%=aboutweb[i].y+"%"%>; left: <%=aboutweb[i].x+"%"%>">
+                        <img src="/aboutweb/橢圓按鈕.png" class="edit" id="<%=aboutweb[i]._id%>" style="position:absolute;width: 100%">
+                        <p style="font-size: 1.1vw; top:2.1vw; width:100%;position: absolute; text-align:center; color: black;"><%-aboutweb[i].name%></p>
+                    </a> 
                 <%}%>
             <%}%>
         </div>
     </main>
-
+    
     <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#add_model">新增</button>
 
     <footer>

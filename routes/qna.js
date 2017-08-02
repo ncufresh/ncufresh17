@@ -4,7 +4,6 @@ var Qna = require('../models/qna');
 
 // 讀取頁面
 router.get('/', function(req, res, next) {
-  console.log(req.user);
   Qna.find({}).sort({ view: 'desc' }).exec(function(err, qna) {
     if (err)
       throw err;

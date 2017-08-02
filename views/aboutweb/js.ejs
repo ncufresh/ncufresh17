@@ -15,12 +15,17 @@
                 console.log("ERR  :"+e);
             },
             success: function(data){
+            	$("#edit_id").val(data._id);
+            	$("#edit_type").val(data.type);
+            	$("#name").val(data.name);
                 $("#x_position").val(data.x);
                 $("#the_image").css('left',data.x+"%")
                 $("#y_position").val(data.y);
                 $("#the_image").css('top',data.y+"%")
                 $("#size").val(data.size);
                 $("#the_image").css('width',data.size+"%")
+                $("#delete_button").val(data._id);
+                console.log(data.link);
                 $("#link").val(data.link);
                 if(data.type=="六角形"){
 					$("#the_image").attr('src',"/aboutweb/六角形按鈕.png")
@@ -39,16 +44,39 @@
             var y=$("#the_image").css("top").substring(0,$("#the_image").css("top").length-2)/$("#underlay").height()*100;
             console.log(x);
             console.log(y);
-            $('#x-position').val(x);
-            $('#y-position').val(y);
+            $('#x_position').val(x);
+            $('#y_position').val(y);
         }
     });
-    $("#size,#x-position,#y-position").change(function(){
+    $("#size,#x_position,#y_position").change(function(){
         $("#the_image").css({
             "height":"auto",
             "width":$("#size").val()+"%",
-            "top":$("#y-position").val()+"%",
-            "left":$("#x-position").val()+"%"
+            "top":$("#y_position").val()+"%",
+            "left":$("#x_position").val()+"%"
         });
+    })
+    $("#edit_type").change(function(){
+    	if($("#edit_type").val()=="六角形"){
+			$("#the_image").attr('src',"/aboutweb/六角形按鈕.png")
+        }else if ($("#edit_type").val()=="方形"){
+        	$("#the_image").attr('src',"/aboutweb/方形按鈕.png")
+        }else if ($("#edit_type").val()=="橢圓"){
+        	$("#the_image").attr('src',"/aboutweb/橢圓按鈕.png")
+        }
+    })
+    $('#delete_button').click(function(){
+        if(confirm("確定要刪除?")){
+            var id = $(this).val();
+            $.ajax({
+                url:    '/aboutweb/delete/'+ id,
+                type:   'GET',
+                error: function(e){
+                    console.log("ERR  :"+e);
+                },
+                success: function(data){
+                }
+            });
+        }
     })
 </script>
