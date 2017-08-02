@@ -4,10 +4,13 @@ var Qna = require('../models/qna');
 
 // 讀取頁面
 router.get('/', function(req, res, next) {
+  // 用觀看次數排序
   Qna.find({}).sort({ view: 'desc' }).exec(function(err, qna) {
     if (err)
       throw err;
 
+    // Array：用來將資料庫 type 欄位的數字轉換成文字
+    // ex: typeToName[ QnA.type = 1 ] === "校園生活"
     var typeToName = [
       "其他",
       "校園生活",
@@ -15,6 +18,7 @@ router.get('/', function(req, res, next) {
       "宿舍生活"
     ];
 
+    // function：用來將資料庫 updated 欄位的時間轉換成日期
     var renderTime = function(date) {
       var day = date.getDate();
       var monthIndex = date.getMonth();
@@ -30,6 +34,30 @@ router.get('/', function(req, res, next) {
       renderTime: renderTime,
       qna: qna
     });
+  });
+});
+
+// 當前端點選問題時會傳送 xhr 到這裡
+router.get('/api/:id', function(req, res) {
+  // 依據 api_token 尋找相對應的 Qna
+  Qna.findById(req.params.id, function(err, qna) {
+    if (err)
+      res.send(err);
+    else {
+      // 增加瀏覽次數
+      qna.view++;
+      qna.save(function(err) {
+        if (err)
+          throw err;
+        // 回傳 title, content, answer
+        else
+          res.json({
+            title: qna.title,
+            content: qna.content,
+            answer: qna.answer
+          });
+      });
+    }
   });
 });
 

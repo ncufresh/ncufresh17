@@ -9,33 +9,37 @@
     <% include css.ejs %>
   </header>
 
-  <div><%# 側導覽列 %>
-    <ul id="navi" style="height:100%; margin-top: 10px;">
-      <li><a href="#" type="button" style="background-image: url('images/btn_all.png');"></a></li>
-      <li><a href="#" type="button" style="background-image: url('images/btn_hot.png');"></a></li>
-      <li><a href="#" type="button" style="background-image: url('images/btn_school.png');"></a></li>
-      <li><a href="#" type="button" style="background-image: url('images/btn_student.png');"></a></li>
-      <li><a href="#" type="button" style="background-image: url('images/btn_dorm.png');"></a></li>
-      <li><a href="#" type="button" style="background-image: url('images/btn_other.png');"></a></li>
-      <li><a href="#" type="button" style="background-image: url('images/btn_post.png');" data-toggle="modal" data-target="#post"></a></li>
-    </ul>
-  </div><%# /側導覽列 %>
-
   <main style="background-image: url('images/bg.png'); background-size: cover; background-repeat: no-repeat;">
-    <div class="container">
-      <%# 熱門問題 %>
-      <div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-2" style="padding-left: 0">
+          <ul id="navi" style="height:100%; margin-top: 20px;"><%# 側導覽列 %>
+            <li><a href="#" type="button"><img src="images/btn_all.png" alt="所有問題按鈕"></a></li>
+            <li><a href="#" type="button"><img src="images/btn_hot.png" alt="熱門問題按鈕"></a></li>
+            <li><a href="#" type="button"><img src="images/btn_school.png" alt="校園生活按鈕"></a></li>
+            <li><a href="#" type="button"><img src="images/btn_student.png" alt="學生事務按鈕"></a></li>
+            <li><a href="#" type="button"><img src="images/btn_dorm.png" alt="宿舍生活按鈕"></a></li>
+            <li><a href="#" type="button"><img src="images/btn_other.png" alt="其他按鈕"></a></li>
+            <li>
+              <a href="#" type="button" data-toggle="modal" data-target="#post">
+                <img src="images/btn_post.png" alt="我要發問按鈕">
+              </a>
+            </li>
+          </ul><%# /側導覽列 %>
+        </div>
+        <div class="col-xs-8">
+        <%# 熱門問題 %>
         <h1>熱門問題</h1>
         <p>歡迎發問</p>
         <table class="table table-hover">
           <tr>
-            <td>類別</td>
-            <td>日期</td>
-            <td>標題</td>
-            <td>觀看人數</td>
+            <th>類別</th>
+            <th>日期</th>
+            <th>標題</th>
+            <th>瀏覽次數</th>
           </tr>
           <% qna.forEach( function (q) { %>
-            <tr>
+            <tr id="<%= q._id %>" class="clickable">
               <td><%= typeToName[q.type] %></td>
               <td><%= renderTime(q.updated) %></td>
               <td><%= q.title %></td>
@@ -51,10 +55,10 @@
             <td>類別</td>
             <td>日期</td>
             <td>標題</td>
-            <td>觀看人數</td>
+            <td>瀏覽次數</td>
           </tr>
           <% qna.forEach( function (q) { %>
-            <tr>
+            <tr id="<%= q._id %>" class="clickable">
               <td><%= typeToName[q.type] %></td>
               <td><%= renderTime(q.updated) %></td>
               <td><%= q.title %></td>
@@ -78,7 +82,8 @@
       </div>
       <%# /分頁導覽 %>
       <% if (user) { %>
-        <div class="modal fade" id="post" role="dialog"><%# 發問用 Modal %>
+        <%# 發問用 Modal %>
+        <div class="modal fade" id="post" role="dialog">
           <div class="modal-dialog modal-lg">
             
             <div class="modal-content"><%# Modal %>
@@ -117,7 +122,9 @@
             
           </div>
         </div><%# /發問用 Modal %>
-        <div class="modal fade" id="success" role="dialog"><%# 成功 Modal %>
+
+        <%# /成功 Modal %>
+        <div class="modal fade" id="success" role="dialog">
           <div class="modal-dialog modal-lg">
             
             <div class="modal-content"><%# Modal %>
@@ -134,9 +141,11 @@
             </div><%# /Modal %>
             
           </div>
-        </div><%# /成功 Modal %>
+        </div><%# 成功 Modal %>
       <% } else { %>
-        <div class="modal fade" id="post" role="dialog"><%# 請登入 Modal %>
+
+        <%# 請登入 Modal %>
+        <div class="modal fade" id="post" role="dialog">
           <div class="modal-dialog modal-lg">
             
             <div class="modal-content"><%# Modal %>
@@ -159,6 +168,31 @@
           </div>
         </div><%# /請登入 Modal %>
       <% } %>
+
+      <%# show Modal %>
+        <div id="modal-show" class="modal fade" role="dialog">
+          <div class="modal-dialog modal-lg">
+            
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 id="show-title" class="modal-title text-center"></h3>
+              </div>
+
+              <div class="modal-body">
+                <div class="modal-body"><h4>Q</h4></div>
+                <div class="modal-body"><p id="show-content"></p></div>
+                <div class="modal-body"><h4>A</h4></div>
+                <div class="modal-body"><p id="show-answer"></p></div>
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+              </div>
+            </div>
+            
+          </div>
+        </div><%# /show Modal %>
 
     </div>
   </main>
