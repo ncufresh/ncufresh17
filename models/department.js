@@ -14,10 +14,6 @@ var department = mongoose.Schema({
     activity : String,
     team : String,
     course : String,
-    up1: String,
-    up2: String,
-    up3: String,
-    up4: String
 });
 
 module.exports = mongoose.model( 'department', department );

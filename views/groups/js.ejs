@@ -3,7 +3,6 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     
     <script src="/javascript/ckeditor/ckeditor.js"></script>
-
     
   
   <script>
@@ -47,3 +46,153 @@
     })
   })
   </script>
+
+  <script>
+  $(document).ready(function(){
+      $('.delete_club').click(function(){
+          if(confirm("確定要刪除?")){
+              var id = $(this).val();
+              $.ajax({
+                  url:    '/groups/delete_club/'+ id,
+                  type:   'GET',
+                  error: function(e){
+                      console.log("ERR  :"+e);
+                  },
+                  success: function(data){
+                      $('#'+ id).remove();
+                  }
+              });
+          }
+      })
+      $('.edit_club').click(function(){
+        var id = $(this).val();
+        $.ajax({
+          type: "get",
+            url:    "/groups/edit_club/"+ id,
+            error: function(e){
+                console.log("ERR  :"+e);
+            },
+            success: function(data){
+                $("#edit_id").val(data._id);
+                $("#edit_name").val(data.name);
+                $("#edit_type").val(data.type);
+                CKEDITOR.instances['edit_introduction'].setData(data.introduction);
+                CKEDITOR.instances['edit_howtoadd'].setData(data.howtoadd);
+                CKEDITOR.instances['edit_FBfans'].setData(data.FBfans);
+                $("#edit_club").modal("show");
+            }
+
+        });
+    })
+  })
+  </script>
+  
+  <script>
+  $(document).ready(function(){
+      $('.delete_or').click(function(){
+          if(confirm("確定要刪除?")){
+              var id = $(this).val();
+              $.ajax({
+                  url:    '/groups/delete_or/'+ id,
+                  type:   'GET',
+                  error: function(e){
+                      console.log("ERR  :"+e);
+                  },
+                  success: function(data){
+                      $('#'+ id).remove();
+                  }
+              });
+          }
+      })
+      $('.edit_or').click(function(){
+        var id = $(this).val();
+        $.ajax({
+          type: "get",
+            url:    "/groups/edit_or/"+ id,
+            error: function(e){
+                console.log("ERR  :"+e);
+            },
+            success: function(data){
+                $("#edit_id").val(data._id);
+                $("#edit_name").val(data.name);
+                CKEDITOR.instances['edit_introduction'].setData(data.introduction);
+                CKEDITOR.instances['edit_branch'].setData(data.branch);
+                CKEDITOR.instances['edit_freshmenweek'].setData(data.freshmenweek);
+                CKEDITOR.instances['edit_notice'].setData(data.notice);
+                $("#edit_or").modal("show");
+            }
+
+        });
+    })
+  })
+  </script>
+
+  <style>
+    h1 {font-size: 60px;}
+    h4 {font-size: 40px;}
+    h5 {
+      font-size: 20px;
+      text-align: center;
+      width: 65%;
+      background-color: yellow;
+    }
+    .modal {
+        overflow-y: scroll;
+    }
+    .modal-content{
+      background-image: url(內框背景.png);
+    }
+    h6 {
+      border-left: 6px solid lightgreen;
+      border-bottom: 40px;
+      background-color: lightyellow;
+      font-size: 20px;
+      border-spacing:50px;
+      padding-left:10px; 
+      width: 70%;
+      word-wrap: break-word;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    
+    li a {
+      color: green;
+    }
+
+    .slideshow-container {
+      max-width: 600px;
+      max-height: : 300px;
+      position: relative;
+
+    }
+
+    .mySlides {display:none}
+
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 55%;
+      width: auto;
+      padding: 6px;
+     /* margin-top:-10px;*/
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      transition: 0.6s ease;
+      border-radius: 0 3px 3px 0;
+
+    }
+
+    /* Position the "next button" to the right */
+    .next {
+      left: 592px;
+      border-radius: 3px 0 0 3px;
+
+    }
+
+    /* On hover, add a black background color with a little bit see-through */
+    .prev:hover, .next:hover {
+      background-color: rgba(0,0,0,0.8);
+    }
+    
+    </style>
