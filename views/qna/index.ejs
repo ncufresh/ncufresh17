@@ -39,11 +39,11 @@
             <th>瀏覽次數</th>
           </tr>
           <% qna.forEach( function (q) { %>
-            <tr id="<%= q._id %>" class="clickable">
+            <tr id="<%= q._id %>-hot" class="clickable <%= q._id %>">
               <td><%= typeToName[q.type] %></td>
               <td><%= renderTime(q.updated) %></td>
               <td><%= q.title %></td>
-              <td><%= q.view %></td>
+              <td class="view"><%= q.view %></td>
             </tr>
           <% }); %>
         </table>
@@ -58,11 +58,11 @@
             <td>瀏覽次數</td>
           </tr>
           <% qna.forEach( function (q) { %>
-            <tr id="<%= q._id %>" class="clickable">
+            <tr id="<%= q._id %>-all" class="clickable <%= q._id %>">
               <td><%= typeToName[q.type] %></td>
               <td><%= renderTime(q.updated) %></td>
               <td><%= q.title %></td>
-              <td><%= q.view %></td>
+              <td class="view"><%= q.view %></td>
             </tr>
           <% }); %>
         </table>
