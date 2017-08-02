@@ -1,0 +1,15 @@
+<script>
+$(document).ready(function() {
+  var strUrl = location.search;
+  if (strUrl.indexOf("?") !== -1) {
+    var getSearch = strUrl.split("?");
+    var getString = getSearch[1];
+    if(getString.indexOf("&") === -1){
+      var getAll = getString.split("=");
+      if(getAll[0]==="post" && getAll[1]==="success"){
+        $("#success").modal('show');
+      }
+    }
+  }
+});
+</script>
