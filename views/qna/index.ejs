@@ -36,10 +36,10 @@
             <th>類別</th>
             <th>日期</th>
             <th>標題</th>
-            <th>觀看人數</th>
+            <th>瀏覽次數</th>
           </tr>
           <% qna.forEach( function (q) { %>
-            <tr id="<%= q._id %>" class="click">
+            <tr id="<%= q._id %>" class="clickable">
               <td><%= typeToName[q.type] %></td>
               <td><%= renderTime(q.updated) %></td>
               <td><%= q.title %></td>
@@ -55,10 +55,10 @@
             <td>類別</td>
             <td>日期</td>
             <td>標題</td>
-            <td>觀看人數</td>
+            <td>瀏覽次數</td>
           </tr>
           <% qna.forEach( function (q) { %>
-            <tr>
+            <tr id="<%= q._id %>" class="clickable">
               <td><%= typeToName[q.type] %></td>
               <td><%= renderTime(q.updated) %></td>
               <td><%= q.title %></td>
@@ -187,7 +187,7 @@
               </div>
 
               <div class="modal-footer">
-                <button type="button" class="btn" data-dismiss="modal">OK</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
               </div>
             </div>
             

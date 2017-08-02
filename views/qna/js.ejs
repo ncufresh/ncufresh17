@@ -1,6 +1,7 @@
 <script>
 $(document).ready(function() {
 
+  <%# 當發問成功會轉址到 /qna/?post=success 時，顯示發問成功的 modal %>
   var strUrl = location.search;
   if (strUrl.indexOf('?') !== -1) {
     var getSearch = strUrl.split('?');
@@ -13,20 +14,23 @@ $(document).ready(function() {
     }
   }
 
-  $('.click').on('click', function(){
+  <%# 當問題被點擊的時候，傳送 xhr 到後端 api，api 會回傳物件包含標題、問題、答案 %>
+  $('.clickable').on('click', function(){
+    <%# api_token === Qna._id %>
     $.ajax({
       url: '/qna/api/' + this.id
     })
     .done(function(res) {
+      <%# 設定 modal 內容 %>
       document.getElementById('show-title').innerHTML = res.title;
       document.getElementById('show-content').innerHTML = res.content;
       document.getElementById('show-answer').innerHTML = res.answer;
+
       $('#modal-show').modal('show');
     })
     .fail(function(err) {
       console.log('Error: ' + err.status);
     });
   });
-  
 });
 </script>
