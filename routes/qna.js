@@ -33,6 +33,19 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get('/api/:id', function(req, res) {
+  Qna.findById(req.params.id, function(err, qna) {
+    if (err)
+      res.send(err);
+    else
+      res.json({
+        title: qna.title,
+        content: qna.content,
+        answer: qna.answer
+      });
+  });
+});
+
 // 新增問題
 router.post('/', isLoggedIn, function(req, res) {
 

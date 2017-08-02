@@ -1,15 +1,32 @@
 <script>
 $(document).ready(function() {
+
   var strUrl = location.search;
-  if (strUrl.indexOf("?") !== -1) {
-    var getSearch = strUrl.split("?");
+  if (strUrl.indexOf('?') !== -1) {
+    var getSearch = strUrl.split('?');
     var getString = getSearch[1];
-    if(getString.indexOf("&") === -1){
-      var getAll = getString.split("=");
-      if(getAll[0]==="post" && getAll[1]==="success"){
-        $("#success").modal('show');
+    if(getString.indexOf('&') === -1){
+      var getAll = getString.split('=');
+      if(getAll[0]==='post' && getAll[1]==='success'){
+        $('#success').modal('show');
       }
     }
   }
+
+  $('.click').on('click', function(){
+    $.ajax({
+      url: '/qna/api/' + this.id
+    })
+    .done(function(res) {
+      document.getElementById('show-title').innerHTML = res.title;
+      document.getElementById('show-content').innerHTML = res.content;
+      document.getElementById('show-answer').innerHTML = res.answer;
+      $('#modal-show').modal('show');
+    })
+    .fail(function(err) {
+      console.log('Error: ' + err.status);
+    });
+  });
+  
 });
 </script>
