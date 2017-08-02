@@ -10,6 +10,7 @@ router.get('/', function(req, res, next) {
 		user: req.user
 	});
 });
+
 router.get('/life', function(req, res, next) {
 	video.find({}).exec(function(err,video){
 		var foodURL,housingURL,transportationURL,educationURL,entertainmentURL,l1,l2,l3,l4;
@@ -164,7 +165,7 @@ router.get('/interview', function(req, res, next) {
 	  	});
 	});
 });
-router.post('/add', function(req, res, next) {
+router.post('/add',isAdmin, function(req, res, next) {
 	video.find({ type: req.body.type },function(e,data){
 		console.log('err  :'+e);
 		console.log('data  :'+data);
@@ -186,7 +187,7 @@ router.post('/add', function(req, res, next) {
 	});
 	res.redirect('/video/life');
 });
-router.post('/addQQ', function(req, res, next) {
+router.post('/addQQ',isAdmin, function(req, res, next) {
 	video.find({ type: req.body.type },function(e,data){
 		console.log('err  :'+e);
 		console.log('data  :'+data);
@@ -208,4 +209,14 @@ router.post('/addQQ', function(req, res, next) {
 	});
 	res.redirect('/video/interview');
 });
+function isAdmin(req, res, next) {
+  if (req.isAuthenticated()) {
+    // console.log('log:' + req.user.local);
+    if (req.user.local.accountType === 'admin') {
+      return next();
+    }
+  }
+  res.redirect('/');
+}
+
 module.exports = router;
