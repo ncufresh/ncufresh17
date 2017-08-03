@@ -373,13 +373,25 @@
                 		<div class="events-wrapper">
                 			<div class="events">
                 				<ol>
+                          <% var sel = true;%>
                           <% for(var i=0; i<main_events.length; i++) {%>
                             <%
+                              var selthis = false;
                               var date = new Date(main_events[i].date);
                               var str = (date.getDate()) + '/' +(date.getMonth()+1) + '/' +  date.getFullYear();
-                              var listr = (date.getMonth()+1)+"/"+(date.getDate())
+                              var listr = (date.getMonth()+1)+"/"+(date.getDate());
+                              if(sel){
+                                var datenew = new Date();
+                                if(date>=datenew){
+                                  selthis = true;
+                                  sel = false;
+                                }else if(i===main_events.length-1){
+                                  selthis = true;
+                                  sel = false;
+                                }
+                              }
                             %>
-                                 <li><a href="#0" data-date="<%=str%>" data-toggle="tooltip" title="<%=main_events[i].subtitle%>" data-placement="bottom" class="<%if(i===(main_events.length-1)){%>selected<%}%>"><%=listr%></a></li>
+                                 <li><a href="#0" data-date="<%=str%>" data-toggle="tooltip" title="<%=main_events[i].subtitle%>" data-placement="bottom" class="<%if(selthis){%>selected<%}%>"><%=listr%></a></li>
                           <% } %>
 
                         </ol>
@@ -396,13 +408,24 @@
 
                 	<div class="events-content">
                 		<ol>
-
+                      <% var sel = true;%>
                       <% for(var i=0; i<main_events.length; i++) {%>
                         <%
+                          var selthis = false;
                           var date = new Date(main_events[i].date);
                           var str = (date.getDate()) + '/'+(date.getMonth()+1) + '/' +  date.getFullYear();
+                          if(sel){
+                            var datenew = new Date();
+                            if(date>=datenew){
+                              selthis = true;
+                              sel = false;
+                            }else if(i===main_events.length-1){
+                              selthis = true;
+                              sel = false;
+                            }
+                          }
                         %>
-                        <li data-date="<%=str%>" class="<%if(i===(main_events.length-1)){%>selected<%}%>">
+                        <li data-date="<%=str%>" class="<%if(selthis){%>selected<%}%>">
 
                           <em><%=main_events[i].date%></em>
 
@@ -420,12 +443,10 @@
             <div class="dj container-fluid">
               <div class="djbg">
                 <img class="dj-word" src="/images/main/djlogo.jpg" alt="">
-              </div>
+              </div>              
             </div>
             <img src="images/main/top.png" onclick="topFunction()" id="topBtn" alt="">
-            <% if(user&&user.local.accountType==='admin'){%>
-            <a href="/manageMain"><i class="fa fa-cogs" aria-hidden="true"></i> 管理首頁</a>
-            <% } %>
+
         </div>
 
 
