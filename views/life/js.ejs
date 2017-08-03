@@ -14,7 +14,7 @@ $(document).ready(function(){
           },
           success: function(data){
               $("#bid").val(data._id);
-              $("#name").val(data.name);
+              $("#textname").val(data.textname);
               $("#type").val(data.type);
               CKEDITOR.instances['introduction'].setData(data.introduction);
               $("#btn_save").val("update");
@@ -32,10 +32,12 @@ $(document).ready(function(){
                   console.log("ERR  :"+e);
               },
               success: function(data){
+                $('#a'+id).remove();
                 $('#b'+id).remove();
                 $('#subtitle'+id).remove();
                 $('#img-view'+id).remove();
                 $('#content-text'+id).remove();
+                $('.switch').remove();
               },
           });
       }
