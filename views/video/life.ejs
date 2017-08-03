@@ -30,16 +30,92 @@
         #slideup:hover {
             padding: 2vw;
         }
+        #homie{
+            padding: 5vw;
+            width: 15%;
+        }
+        #homie:hover {
+            padding: 4vw;
+        }
     </style>
     <% include ../layouts/head %>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="/imageMapResizer.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function(){
+        var strUrl = location.search;
+        if (strUrl.indexOf("?") !== -1) {
+            var getSearch = strUrl.split("?");
+            var getString = getSearch[1];
+            if(getString=="1"){
+                $('html,body').animate({
+                scrollTop: $("#slidepoint2").offset().top-91
+            }, 400);
+            }else if(getString=="1.1"){
+                $('html,body').animate({
+                scrollTop: $("#slidepoint2").offset().top-91
+                }, 400);
+                $("#a1").modal("show");
+                $("#l1").html('<%- l1 %>')
+            }else if(getString=="1.2"){
+                $('html,body').animate({
+                scrollTop: $("#slidepoint2").offset().top-91
+                }, 400);
+                $("#a2").modal("show");
+                $("#l2").html('<%- l2 %>')
+            }else if(getString=="1.3"){
+                $('html,body').animate({
+                scrollTop: $("#slidepoint2").offset().top-91
+                }, 400);
+                $("#a3").modal("show");
+                $("#l3").html('<%- l3 %>')
+            }else if(getString=="1.4"){
+                $('html,body').animate({
+                scrollTop: $("#slidepoint2").offset().top-91
+                }, 400);
+                $("#a4").modal("show");
+                $("#l4").html('<%- l4 %>')
+            }else if(getString=="2"){
+                $('html,body').animate({
+                scrollTop: $("#slidepoint").offset().top-40
+                }, 400);
+            }else if(getString=="2.1"){
+                $('html,body').animate({
+                scrollTop: $("#slidepoint").offset().top-40
+                }, 400);
+                $("#5").modal("show");
+                $("#videofood").html('<%- foodURL %>')
+            }else if(getString=="2.2"){
+                $('html,body').animate({
+                scrollTop: $("#slidepoint").offset().top-40
+                }, 400);
+                $("#6").modal("show");
+                $("#videohousing").html('<%- housingURL %>')
+            }else if(getString=="2.3"){
+                $('html,body').animate({
+                scrollTop: $("#slidepoint").offset().top-40
+                }, 400);
+                $("#7").modal("show");
+                $("#videotransportation").html('<%- transportationURL %>')
+            }else if(getString=="2.4"){
+                $('html,body').animate({
+                scrollTop: $("#slidepoint").offset().top-40
+                }, 400);
+                $("#8").modal("show");
+                $("#videoeducation").html('<%- educationURL %>')
+            }else if(getString=="2.5"){
+                $('html,body').animate({
+                scrollTop: $("#slidepoint").offset().top-40
+                }, 400);
+                $("#9").modal("show");
+                $("#videoentertainment").html('<%- entertainmentURL %>')
+            }
+
+        }
         $('map').imageMapResize();
         $(".gg1").hover(function(){
             $("#"+$(this).attr("value")).css({
-                "width": "50%"
+                "width": "45%"
             });
         },function(){
             $("#"+$(this).attr("value")).css({
@@ -127,7 +203,7 @@
             <div class="row">
                 <div class="col-xs-2"><img src=""/></div>
                 <div class="col-xs-8" style="height: 15vw;"><img style="max-width: 25vw;margin-top:7vw;margin-bottom: 0vw;width: 100%;left: 50%;position: absolute;transform: translate(-50%,-50%);" id="slidepoint2" src="/video/生活區.png" class="img-responsive"/></div>
-                <div class="col-xs-2"><img src=""/></div>
+                <div class="col-xs-2" style="height: 15vw;"><a href="/video"><img style="max-width: 25vw;margin-top:7vw;margin-bottom: 0vw;width: 100%;left: 40%;position: absolute;transform: translate(-50%,-50%);" id="homie" src="/video/首頁.png" class="img-responsive"/></a></div>
             </div>
             <div style="width: 100vw;height: 45vw;position: relative;">
                 <img style="position: absolute; z-index: 1000;" width="100%" src="/video/back.png" usemap="#Map">
@@ -142,11 +218,11 @@
                 <img style="width: 32%;position: absolute;top: 32%;left: 50%;z-index: 10;transform: translate(-50%,-50%);" id="dr2" class="img-responsive" alt="長片" src="/video/簽到俠.png"  />
                 <img style="width: 32%;position: absolute;top: 64%;left: 50%;z-index: 60;transform: translate(-50%,-50%);" id="dr3" class="img-responsive" alt="長片" src="/video/筆記俠.png"  />
                 <img style="width: 30%;position: absolute;top: 41%;left: 63%;z-index: 20;transform: translate(-50%,-50%);" id="dr4" class="img-responsive" alt="長片" src="/video/調解俠.png"  />
-                <img style="display:inline-block;position: absolute;top:30%;left: 85%;z-index: 1001" id="slidedown" class="img-responsive" alt="箭頭" src="/video/箭頭.png" />
+                <img style="display:inline-block;position: absolute;top:30%;left: 82%;z-index: 1001" id="slidedown" class="img-responsive" alt="箭頭" src="/video/箭頭.png" />
             </div>
 
 
-            <div class="row" style="margin-top: 80vw">
+            <div class="row" style="margin-top: 20vw">
                 <div class="col-xs-2"><img src=""/></div>
                 <div class="col-xs-8" style="height: 5vw;"><img style="max-width: 25vw;margin-bottom: 0vw;width: 100%;left: 50%;position: absolute;transform: translate(-50%,-50%);" id="slidepoint" src="/video/生活區.png" class="img-responsive"/></div>
                 <div class="col-xs-2"><img src=""/></div>
@@ -157,7 +233,7 @@
                 <img style="position: absolute;top: 38%;left: 8%" src="/video/行.png" id="f3" class="img-responsive cc" alt="transportation" data-toggle="modal" data-target="#7"/>
                 <img style="position: absolute;top: 38%;left: 37%" src="/video/育.png" id="f4" class="img-responsive cc" alt="education" data-toggle="modal" data-target="#8"/>
                 <img style="position: absolute;top: 38%;left: 65%" src="/video/樂.png" id="f5" class="img-responsive cc" alt="entertainment" data-toggle="modal" data-target="#9"/>
-                <img style="display:inline-block;position: absolute;top:30%;left: 85%;z-index: 1001" id="slideup" class="img-responsive" alt="箭頭" src="/video/箭頭1.png" />
+                <img style="display:inline-block;position: absolute;top:30%;left: 82%;z-index: 1001" id="slideup" class="img-responsive" alt="箭頭" src="/video/箭頭1.png" />
             </div>
 
         <% if(user&&user.local.accountType==='admin'){%>
