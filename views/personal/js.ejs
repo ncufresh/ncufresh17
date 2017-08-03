@@ -20,25 +20,29 @@
 
 /// Confirm/Cancel upload image
 
-    function confirmUpload() {
-        //do nothing        
-    }
-
     function cancelUpload() {
+        $('#imgPreview').attr("src", "/personal/noImg.png");
         document.getElementById("test").value = "";
     }
+
 /// Q-A table action
     
     $(document).ready(function(){
         $('.openModal').on('click', function(){
+            var index = (Number($(this).closest('tr').find('td:eq(0)').text())) - 1;
+
             var titleText = $(this).closest('tr').find('td:eq(3)').text();
-            $('#tt').html('標題: ' + titleText);
-            $('#qesField').html($('<b> Detail: <%= qna[0].content %> </b>'));
-            $('#ansField').html($('<b> Answer: <%= qna[0].answer %> </b>'));
+            var conText = $("#con"+index).val();
+            var ansText = $("#ans"+index).val();
+
+            $('#tt').html($('<b> Title: ' + titleText + '</b>'));
+            $('#qesField').html($('<b> Detail: ' + conText + '</b>'));
+            $('#ansField').html($('<b> Answer: ' + ansText + '</b>'));
+
         });
     });
 
-/// game button action
+/// Game button action
 
     var myIndex = 1;
     var out = false;
