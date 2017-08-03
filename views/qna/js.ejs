@@ -14,12 +14,17 @@ $(document).ready(function() {
     }
   }
 
+  $('#success').on('hide.bs.modal', function(){
+    console.log(location.search);
+    location.search = "";
+  });
+
   <%# 當問題被點擊的時候，傳送 xhr 到後端 api，api 會回傳物件包含標題、問題、答案 %>
   $('.clickable').on('click', function(){
     <%# api_token === Qna._id %>
     var id = this.id.split('-')[0];
     $.ajax({
-      url: '/qna/api/' + id
+      url: '/qna/' + id
     })
     .done(function(res) {
       <%# 設定 modal 內容 %>
@@ -27,7 +32,7 @@ $(document).ready(function() {
       document.getElementById('show-content').innerHTML = res.content;
       document.getElementById('show-answer').innerHTML = res.answer;
 
-      $('#modal-show').modal('show');
+      $('#show-modal').modal('show');
       <%# 當成功顯示之後，動態增加瀏覽次數 %>
       var objs = $('.' + id).find('.view');
       for (var i=0; i<objs.length; i++) {
@@ -37,6 +42,19 @@ $(document).ready(function() {
     .fail(function(err) {
       console.log('Error: ' + err.status);
     });
+  });
+
+  $('.admin-answer').on('click', function(){
+    var id = this.id.split('-')[0];
+    console.log('in answer: '+id);
+    
+    var obj = $('.' + id);
+    <%# 設定 modal 內容 %>
+    $('#admin-answer-form').attr({'action': ('/qna/' + id) });
+    document.getElementById('admin-answer-title').value = obj.find('.title').text();
+    document.getElementById('admin-answer-content').value = obj.find('.content').text();
+    document.getElementById('admin-answer-type').value = obj.find('.type').val();
+    $('#modal-admin-answer').modal('show');
   });
 });
 </script>

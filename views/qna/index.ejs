@@ -10,167 +10,115 @@
   </header>
 
   <main style="background-image: url('images/bg.png'); background-size: cover; background-repeat: no-repeat;">
-    <div class="container-fluid">
+    <div class="container-fluid" style="background-color: rgba(255,255,255,0.5); min-height:100vh;">
       <div class="row">
         <div class="col-xs-2" style="padding-left: 0">
-          <ul id="navi" style="height:100%; margin-top: 20px;"><%# 側導覽列 %>
-            <li><a href="#" type="button"><img src="images/btn_hot.png" alt="熱門問題按鈕"></a></li>
-            <li><a href="#" type="button"><img src="images/btn_all.png" alt="所有問題按鈕"></a></li>
-            <li><a href="#" type="button"><img src="images/btn_school.png" alt="校園生活按鈕"></a></li>
-            <li><a href="#" type="button"><img src="images/btn_student.png" alt="學生事務按鈕"></a></li>
-            <li><a href="#" type="button"><img src="images/btn_dorm.png" alt="宿舍生活按鈕"></a></li>
-            <li><a href="#" type="button"><img src="images/btn_other.png" alt="其他按鈕"></a></li>
-            <li>
-              <a href="#" type="button" data-toggle="modal" data-target="#post">
-                <img src="images/btn_post.png" alt="我要發問按鈕">
-              </a>
-            </li>
-          </ul><%# /側導覽列 %>
-        </div>
+          <%# 側導覽列 %>
+            <ul id="navi" style="height:100%; margin-top: 20px;">
+              <li><a href="#" type="button"><img src="images/btn_hot.png" alt="熱門問題按鈕"></a></li>
+              <li><a href="#" type="button"><img src="images/btn_all.png" alt="所有問題按鈕"></a></li>
+              <li><a href="#" type="button"><img src="images/btn_school.png" alt="校園生活按鈕"></a></li>
+              <li><a href="#" type="button"><img src="images/btn_student.png" alt="學生事務按鈕"></a></li>
+              <li><a href="#" type="button"><img src="images/btn_dorm.png" alt="宿舍生活按鈕"></a></li>
+              <li><a href="#" type="button"><img src="images/btn_other.png" alt="其他按鈕"></a></li>
+              <li><a href="#" type="button" data-toggle="modal" data-target="#post"><img src="images/btn_post.png" alt="我要發問按鈕"></a></li>
+            </ul>
+          <%# /側導覽列 %>
+        </div><%# ./col-xs-2 %>
         <div class="col-xs-8">
-        <%# 熱門問題 %>
-        <p class="text-center"><img src="images/title_hot.png" alt="熱門問題" style="width: 50%;"></p>
-        <p>歡迎發問</p>
-        <table class="table table-hover">
-          <tr>
-            <th>類別</th>
-            <th>日期</th>
-            <th>標題</th>
-            <th>瀏覽次數</th>
-          </tr>
-          <% qna.forEach( function (q) { %>
-            <tr id="<%= q._id %>-hot" class="clickable <%= q._id %>">
-              <td><%= typeToName[q.type] %></td>
-              <td><%= renderTime(q.updated) %></td>
-              <td><%= q.title %></td>
-              <td class="view"><%= q.view %></td>
-            </tr>
-          <% }); %>
-        </table>
-        <%# /熱門問題 %>
-        <%# 所有問題 %>
-        <p class="text-center"><img src="images/title_all.png" alt="所有問題" style="width: 50%;"></p>
-        <table class="table table-hover">
-          <tr>
-            <td>類別</td>
-            <td>日期</td>
-            <td>標題</td>
-            <td>瀏覽次數</td>
-          </tr>
-          <% qna.forEach( function (q) { %>
-            <tr id="<%= q._id %>-all" class="clickable <%= q._id %>">
-              <td><%= typeToName[q.type] %></td>
-              <td><%= renderTime(q.updated) %></td>
-              <td><%= q.title %></td>
-              <td class="view"><%= q.view %></td>
-            </tr>
-          <% }); %>
-        </table>
-      </div>
-      <%# /所有問題 %>
-      <%# 分頁導覽 %>
-      <div>
-        <ul class="pagination">
-          <li><a href="#"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
-          <li><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">4</a></li>
-          <li><a href="#">5</a></li>
-          <li><a href="#"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
-        </ul>
-      </div>
-      <%# /分頁導覽 %>
-      <% if (user) { %>
-        <%# 發問用 Modal %>
-        <div class="modal fade" id="post" role="dialog">
-          <div class="modal-dialog modal-lg">
-            
-            <div class="modal-content"><%# Modal %>
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title text-center">發問ING</h4>
-              </div>
-
-              <div class="modal-body">
-                <form method="POST" action="/qna">
-                  <div class="form-group">
-                    <label for="title">標題</label>
-                    <input id="title" name="title" type="text" class="form-control">
-                  </div>
-                  <div class="form-group">
-                    <label for="content">詳細描述</label>
-                    <textarea id="content" name="content" class="form-control" rows="5"></textarea>
-                  </div>
-                  <div>
-                    <select name="type" class="form-control">
-                      <option value="1">校園生活</option>
-                      <option value="2">學生事務</option>
-                      <option value="3">宿舍生活</option>
-                      <option value="0">其他</option>
-                    </select>
-                  </div>
-                  <div>
-                    <button type="submit" class="btn btn-default">送出</button>
-                  </div>
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
-              </div><%# /Modal 內文 %>
-            </div><%# /Modal %>
-            
-          </div>
-        </div><%# /發問用 Modal %>
-
-        <%# /成功 Modal %>
-        <div class="modal fade" id="success" role="dialog">
-          <div class="modal-dialog modal-lg">
-            
-            <div class="modal-content"><%# Modal %>
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-              </div>
-
-              <div class="modal-body">
-                <img src="images/success.png" alt="發問成功" style="max-width: 100%;" />
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
-              </div><%# /Modal 內文 %>
-            </div><%# /Modal %>
-            
-          </div>
-        </div><%# 成功 Modal %>
-      <% } else { %>
-
-        <%# 請登入 Modal %>
-        <div class="modal fade" id="post" role="dialog">
-          <div class="modal-dialog modal-lg">
-            
-            <div class="modal-content"><%# Modal %>
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3 class="modal-title text-center">發問前請先登入喔</h3>
-              </div>
-
-              <div class="modal-body">
-                <div class="modal-body"><h4>點選"前往登入"乖乖去登入</h4></div>
-                <div class="modal-body"><h4>點選"取消"繼續瀏覽新生Ｑ＆Ａ</h4></div>
-              </div>
-
-              <div class="modal-footer">
-                <a href="/login" type="button" class="btn btn-default">前往登入</a>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
-              </div><%# /Modal 內文 %>
-            </div><%# /Modal %>
-            
-          </div>
-        </div><%# /請登入 Modal %>
-      <% } %>
+        
+          <%# 未回答問題 %>
+            <table class="table table-hover">
+              <caption>未回答問題<small>點擊可以回答</small></caption>
+              <tr>
+                <th>類別</th>
+                <th>日期</th>
+                <th>標題</th>
+                <th>瀏覽次數</th>
+                <th>管理員選項</th>
+              </tr>
+              <% qna.forEach( function (q) { %>
+                <% if(!q.answer) { %>
+                  <tr id="<%= q._id %>-answer" class="admin-answer <%= q._id %>">
+                    <td><%= typeToName[q.type] %></td>
+                    <input class="type" type="hidden" value="<%= q.type %>" />
+                    <td><%= renderTime(q.updated) %></td>
+                    <td class="title"><%= q.title %></td>
+                    <td class="view"><%= q.view %></td>
+                    <td><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#admin-answer">回答問題</button></td>
+                  </tr>
+                <% } %>
+              <% }); %>
+            </table>
+          <%# /未回答問題 %>
+          <%# 熱門問題 %>
+            <p class="text-center"><img src="images/title_hot.png" alt="熱門問題" style="width: 50%;"></p>
+            <table class="table table-hover" style="background-color:white;">
+              <tr>
+                <th>類別</th>
+                <th>日期</th>
+                <th>標題</th>
+                <th>瀏覽次數</th>
+              </tr>
+              <% qna.forEach( function (q) { %>
+                <% if(!q.answer) { %>
+                  <tr id="<%= q._id %>-hot" class="clickable <%= q._id %>">
+                    <td><%= typeToName[q.type] %></td>
+                    <td><%= renderTime(q.updated) %></td>
+                    <td><%= q.title %></td>
+                    <td class="content hidden">test</td>
+                    <td class="answer hidden">test</td>
+                    <td class="view"><%= q.view %></td>
+                  </tr>
+                <% } %>
+              <% }); %>
+            </table>
+          <%# /熱門問題 %>
+          <%# 所有問題 %>
+            <p class="text-center"><img src="images/title_all.png" alt="所有問題" style="width: 50%;"></p>
+            <table class="table table-hover">
+              <tr>
+                <td>類別</td>
+                <td>日期</td>
+                <td>標題</td>
+                <td>瀏覽次數</td>
+                <% if( user && user.local.accountType === 'admin' ) { %>
+                  <td>管理員選項</td>
+                <% } %>
+              </tr>
+              <% qna.forEach( function (q) { %>
+                <% if(!!q.answer) { %>
+                  <tr id="<%= q._id %>-all" class="clickable <%= q._id %>">
+                    <td><%= typeToName[q.type] %></td>
+                    <td><%= renderTime(q.updated) %></td>
+                    <td class="title"><%= q.title %></td>
+                    <td class="view"><%= q.view %></td>
+                    <% if( user && user.local.accountType === 'admin' ) { %>
+                      <td><button class="btn btn-success btn-sm">修改回答</button></td>
+                    <% } %>
+                  </tr>
+                <% } %>
+              <% }); %>
+            </table>
+          <%# /所有問題 %>
+        </div><%# ./col-xs-8 %>
+        <div class="col-xs-2">
+          <%# 分頁導覽 %>
+            <ul class="pagination">
+              <li><a href="#"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
+              <li><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+              <li><a href="#">5</a></li>
+              <li><a href="#"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
+            </ul>
+          <%# /分頁導覽 %>
+        </div><%# /col-xs-2 %>
+      </div><%# /.row %>
 
       <%# show Modal %>
-        <div id="modal-show" class="modal fade" role="dialog">
+        <div id="show-modal" class="modal fade" role="dialog">
           <div class="modal-dialog modal-lg">
             
             <div class="modal-content">
@@ -190,15 +138,156 @@
                 <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
               </div>
             </div>
-            
           </div>
-        </div><%# /show Modal %>
+        </div>
+      <%# /show Modal %>
 
-    </div>
+      <% if (user) { %>
+        <%# 發問用 Modal %>
+          <div class="modal fade" id="post" role="dialog">
+            <div class="modal-dialog modal-lg">
+              
+              <div class="modal-content"><%# Modal %>
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title text-center">發問ING</h4>
+                </div>
+
+                <div class="modal-body">
+                  <form method="POST" action="/qna">
+                    <div class="form-group">
+                      <label for="title">標題</label>
+                      <input id="title" name="title" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                      <label for="content">詳細描述</label>
+                      <textarea id="content" name="content" class="form-control" rows="5"></textarea>
+                    </div>
+                    <div>
+                      <select name="type" class="form-control" style="height: 50px;">
+                        <option value="1">校園生活</option>
+                        <option value="2">學生事務</option>
+                        <option value="3">宿舍生活</option>
+                        <option value="0">其他</option>
+                      </select>
+                    </div>
+                    <div>
+                      <button type="submit" class="btn btn-default">送出</button>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+                </div><%# /Modal 內文 %>
+              </div><%# /Modal %>
+              
+            </div>
+          </div>
+        <%# /發問用 Modal %>
+
+        <%# /成功 Modal %>
+          <div class="modal fade" id="success" role="dialog">
+            <div class="modal-dialog modal-lg">
+              
+              <div class="modal-content"><%# Modal %>
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <div class="modal-body">
+                  <img src="images/success.png" alt="發問成功" style="max-width: 100%;" />
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+                </div><%# /Modal 內文 %>
+              </div><%# /Modal %>
+              
+            </div>
+          </div>
+        <%# 成功 Modal %>
+
+      <% } else { %>
+
+        <%# 請登入 Modal %>
+          <div class="modal fade" id="post" role="dialog">
+            <div class="modal-dialog modal-lg">
+              
+              <div class="modal-content"><%# Modal %>
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h3 class="modal-title text-center">發問前請先登入喔</h3>
+                </div>
+
+                <div class="modal-body">
+                  <div class="modal-body"><h4>點選"前往登入"乖乖去登入</h4></div>
+                  <div class="modal-body"><h4>點選"取消"繼續瀏覽新生Ｑ＆Ａ</h4></div>
+                </div>
+
+                <div class="modal-footer">
+                  <a href="/login" type="button" class="btn btn-default">前往登入</a>
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+                </div><%# /Modal 內文 %>
+              </div><%# /Modal %>
+              
+            </div>
+          </div>
+        <%# /請登入 Modal %>
+
+      <% } %>
+
+      <% if ( true /*user && user.local.accountType==='admin'*/) { %>
+
+        <%# 管理員回答 Modal %>
+          <div class="modal fade" id="modal-admin-answer" role="dialog">
+            <div class="modal-dialog modal-lg">
+              
+              <div class="modal-content"><%# Modal %>
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title text-center">管理員回答問題</h4>
+                </div>
+
+                <div class="modal-body">
+                  <form id="admin-answer-form" method="POST" action="/qna">
+                    <div class="form-group">
+                      <label for="admin-answer-title">標題</label>
+                      <input id="admin-answer-title" name="title" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                      <label for="admin-answer-content">詳細描述</label>
+                      <textarea id="admin-answer-content" name="content" class="form-control" rows="5"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label for="admin-answer-answer">答案</label>
+                      <textarea id="admin-answer-answer" name="answer" class="form-control" rows="5" placeholder="輸入回答..."></textarea>
+                    </div>
+                    <div>
+                      <select id="admin-answer-type" name="type" class="form-control" style="height: 50px;">
+                        <option value="1">校園生活</option>
+                        <option value="2">學生事務</option>
+                        <option value="3">宿舍生活</option>
+                        <option value="0">其他</option>
+                      </select>
+                    </div>
+                    <div class="text-right">
+                      <button type="submit" class="btn btn-default">送出</button>
+                      <button type="button" class="btn" data-dismiss="modal">關閉</button>
+                    </div>
+                  </form>
+                </div>
+              </div><%# /Modal %>
+              
+            </div>
+          </div>
+        <%# /管理員 Modal %>
+
+      <% } %>
+
+    </div><%# /.container-fluid %>
   </main>
   <footer>
     <% include ../layouts/footer %>
-  <footer>
+  </footer>
   <% include ../layouts/js %>
   <% include js %>
 </body>
