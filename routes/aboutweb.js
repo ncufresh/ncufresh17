@@ -8,7 +8,7 @@ var shortId = require('shortid');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   aboutweb.find({}).exec(function(err,aboutweb){
-    res.render('aboutweb/index', { title: 'aboutweb', aboutweb: aboutweb, user: req.user });
+    res.render('aboutweb/index', { title: '網站地圖 ｜ 新生知訊網', aboutweb: aboutweb, user: req.user });
   });
 });
 
