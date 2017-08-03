@@ -20,6 +20,8 @@ router.get('/:id', function(req, res, next) {
       res.render('documents/index',{title: 'documents', document: document, user: req.user, index:"2.2"});
     }else if(req.params.id=="3"){
       res.render('documents/index',{title: 'documents', document: document, user: req.user, index:"3"});
+    }else{
+      res.render('documents/index',{title: 'documents', document: document, user: req.user, index:""});
     }
   });
 });
