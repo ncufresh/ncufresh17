@@ -8,7 +8,7 @@ var shortId = require('shortid');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   document.find({}).sort({order:1}).exec(function(err,document){
-      res.render('documents/index',{title: 'documents', document: document, user: req.user});
+      res.render('documents/index',{title: '新生必讀 ｜ 新生知訊網', document: document, user: req.user});
   });
 });
 
