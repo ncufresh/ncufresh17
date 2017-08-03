@@ -40,7 +40,7 @@ router.get('/', isLoggedIn, function(req, res, next) {
     	console.log(result);
 
     	res.render('smallgame/index', { 
-    		title: 'smallgame', 
+    		title: '小遊戲 ｜ 新生知訊網', 
     		user: req.user,
     		result: result,
     		rank:rank,

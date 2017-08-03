@@ -31,6 +31,9 @@ function mute(){
 
 //beginning
 $(document).ready(function() {
+    if ($('#mainmenu').css('display') == 'none') {
+    bgm.pause();
+}
     bgm.play();
     $('#menu').fadeIn(1000);
     $('#menubutton').toggle();

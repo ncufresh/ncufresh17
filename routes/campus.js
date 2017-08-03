@@ -78,13 +78,13 @@ router.get('/help', function (req, res, next) {
 	})
 });
 
-router.get('/newData', function (req, res, next) {
+router.get('/newData',isAdmin, function (req, res, next) {
 	building.find({}).sort({ type: 1 }).exec(function (err, buildings) {
 		res.render('campus/newData', { user: req.user, title: '新增建築物', buildings: buildings });
 	});
 });
 
-router.get('/editMap', function (req, res, next) {
+router.get('/editMap',isAdmin, function (req, res, next) {
 	building.find({}).sort({ type: 1 }).exec(function (err, buildings) {
 		map_obj.find({}).sort({ build_type: 1 }).exec(function (err, map_objs){
 			res.render('campus/editMap', {
@@ -108,12 +108,12 @@ router.get('/get_img/:id', function (req, res, next) {
 	})
 });
 
-router.get('/delete/:id', function (req, res, next) {
+router.get('/delete/:id',isAdmin, function (req, res, next) {
 	building.findById(req.params.id).remove().exec();
 	res.redirect('/campus/newData');
 });
 
-router.get('/delete_img/:id', function (req, res, next) {
+router.get('/delete_img/:id',isAdmin, function (req, res, next) {
 	img_list.findById(req.params.id, function (err, data) {
 		fs.unlink('./public/campus/' + data.fileName, function (e) {
 			if (e) console.log(e);
@@ -125,7 +125,7 @@ router.get('/delete_img/:id', function (req, res, next) {
 	});
 });
 
-router.get('/delete_mapObj/:id', function (req, res, next) {
+router.get('/delete_mapObj/:id',isAdmin, function (req, res, next) {
 	console.log(req.params.id);
 	map_obj.findById(req.params.id, function (err, data) {
 		if(data.build_type==="SOS"||data.build_type==="AED"){
@@ -144,7 +144,7 @@ router.get('/delete_mapObj/:id', function (req, res, next) {
 	});
 });
 
-router.post('/add', function (req, res, next) {
+router.post('/add',isAdmin, function (req, res, next) {
 	if (req.body.button == "update") {
 		building.update({ _id: req.body.bid }, {
 			name: req.body.name,
@@ -171,7 +171,7 @@ router.post('/add', function (req, res, next) {
 	res.redirect('/campus/newData');
 });
 
-router.post('/newMapObj', function (req, res, next) {
+router.post('/newMapObj',isAdmin, function (req, res, next) {
 	// console.log(req.body.button);
 	if(req.body.button!="edit"){
 		var form = new formidable.IncomingForm();
@@ -271,7 +271,7 @@ router.post('/newMapObj', function (req, res, next) {
 	}
 });
 
-router.post('/imgUpload', function (req, res, next) {
+router.post('/imgUpload',isAdmin, function (req, res, next) {
 
 	var form = new formidable.IncomingForm();
 	form.parse(req, function (err, fields, files) {
@@ -320,5 +320,15 @@ router.post('/imgUpload', function (req, res, next) {
 	});
 
 });
+
+function isAdmin(req, res, next) {
+  if (req.isAuthenticated()) {
+    // console.log('log:' + req.user.local);
+    if (req.user.local.accountType === 'admin') {
+      return next();
+    }
+  }
+  res.redirect('/');
+}
 
 module.exports = router;
