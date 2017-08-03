@@ -6,27 +6,9 @@ var document = require('../models/document');
 var shortId = require('shortid');
 
 /* GET home page. */
-router.get('/:id', function(req, res, next) {
-  document.find({}).sort({order:1}).exec(function(err,document){
-    if(req.params.id=="1.1"){
-      res.render('documents/index',{title: 'documents', document: document, user: req.user, index:"1.1"});
-    }else if(req.params.id=="1.2"){
-      res.render('documents/index',{title: 'documents', document: document, user: req.user, index:"1.2"});
-    }else if(req.params.id=="1.3"){
-      res.render('documents/index',{title: 'documents', document: document, user: req.user, index:"1.3"});
-    }else if(req.params.id=="2.1"){
-      res.render('documents/index',{title: 'documents', document: document, user: req.user, index:"2.1"});
-    }else if(req.params.id=="2.2"){
-      res.render('documents/index',{title: 'documents', document: document, user: req.user, index:"2.2"});
-    }else if(req.params.id=="3"){
-      res.render('documents/index',{title: 'documents', document: document, user: req.user, index:"3"});
-    }
-  });
-});
-
 router.get('/', function(req, res, next) {
   document.find({}).sort({order:1}).exec(function(err,document){
-      res.render('documents/index',{title: 'documents', document: document, user: req.user, index:""});
+      res.render('documents/index',{title: 'documents', document: document, user: req.user});
   });
 });
 
