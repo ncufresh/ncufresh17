@@ -42,9 +42,11 @@
               <h4>Facebook: <a href="https://www.facebook.com/groups/NCUgroup/">NCU TALK臉書版</a> 私訊管理員</h4>
             </div>
           </div>
-          <h1><%= error.message %></h1>
-          <h2><%= error.status %></h2>
-          <pre><%= error.stack %></pre>
+          <% if(error) { %>
+            <h1><%= error.message %></h1>
+            <h2><%= error.status %></h2>
+            <pre><%= error.stack %></pre>
+          <% } %>
         </div>
 
       </main>
