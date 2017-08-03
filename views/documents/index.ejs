@@ -8,9 +8,9 @@
         <% include ../layouts/navbar %>
     </header>
 
-    <main style="margin-top: 0px !important; min-width: 100vw; max-width:100vw">
+    <main style="background-image: url(/documents/背景.png); background-repeat: no-repeat; background-size: cover;background-attachment: fixed;margin-top: 0px !important; min-width: 100vw; max-width:100vw">
 
-        <div style=" background-color: #cce8f7 !important; padding-bottom: 20vh; padding-top: 25vh;">
+        <div style="padding-bottom: 20vh; padding-top: 25vh;">
             <div class="container" style="">
                 <div class="row container">
                     <div class="col-xs-4" style="padding-right: 0px !important; padding-left: 0px !important;"><img id="freshmen-source" style="display:inline-block; padding: 2vw;cursor: pointer;" class="img-responsive" alt="大一新生" src="大學生.png" /></div>
@@ -20,7 +20,7 @@
             </div>
         </div>
 
-        <div style=" background-image: linear-gradient(#cce8f7, #fcfffc) !important; padding-top: 5vh; min-height: 20vh">
+        <div style="padding-top: 5vh; min-height: 20vh">
             <% if(user&&user.local.accountType==='admin'){%>
                 <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#add_model">新增</button>
                 <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#change_order_model">更改順序</button>

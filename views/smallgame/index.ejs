@@ -2,13 +2,8 @@
 <html lang="en">
 <head>
     <% include ../layouts/head %>
-</head>
-<body>
-    <header>
-        <% include ../layouts/navbar %>
 
-        <style>
-
+<style>
 /*ANIMATION*/
 @keyframes fadein {
     from { opacity: 0; }
@@ -39,6 +34,23 @@
     to   { opacity: 1; }
 }
 /*ANIMATION*/
+
+#information{ /*alert for mobile user*/
+    display: none;
+    margin-top: 30%;
+    width:100%;
+    height:100%;
+    font-size: 300%;
+}
+    
+@media only screen and (max-width: 850px){ /*alert for mobile user*/
+    #mainmenu{
+    display: none;
+    }
+    #information{
+    display:inline-block;
+    }
+}
 
 #menu{
     display: none;
@@ -91,6 +103,7 @@
     background-color: #FFF799;
     font-weight: bold;
     font-size: 20px;
+    position:relative;
 }
 
 #menubutton , #rankbutton{
@@ -670,13 +683,20 @@ tr:nth-child(odd) {background: #0075a9}
 
 </style>
 
-
+</head>
+<body>
+    <header>
+        <% include ../layouts/navbar %>
     </header>
 
     <main>
+        
+        
       <div class="container" >
-
-
+            <div class="alert alert-info" id="information">  <!--alert for mobile user-->
+                <strong>不好意思!</strong> 小遊戲只能在電腦玩哦！
+            </div>
+        <div id="mainmenu">
         <div class="jumbotron" id="menu">
 
         <!--audio-->
@@ -883,7 +903,7 @@ tr:nth-child(odd) {background: #0075a9}
                 </div>
             </div>
             <!--PERSONAL SCORE-->
-
+        </div>
         </div>
         </div>
     </main>

@@ -160,7 +160,7 @@
                 <img style="display:inline-block;position: absolute;top:30%;left: 85%;z-index: 1001" id="slideup" class="img-responsive" alt="箭頭" src="/video/箭頭1.png" />
             </div>
 
-
+        <% if(user&&user.local.accountType==='admin'){%>
             <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#edit">加入影片</button>
             <!-- 修改排序model -->
             <div class="modal fade" id="edit" role="dialog">
@@ -177,10 +177,10 @@
                                 <div class="form-group">
                                     <label for="type" class="control-label">選擇影片名稱</label>
                                     <select name="type" id="change_order_id" class="form-control">
-                                        <option selected="not_commonly_used_link" value="l1">【延畢俠】</option>
-                                        <option selected="not_commonly_used_link" value="l2">【簽到俠】</option>
-                                        <option selected="not_commonly_used_link" value="l3">【筆記俠】</option>
-                                        <option selected="not_commonly_used_link" value="l4">【調解俠】</option>
+                                        <option selected="not_commonly_used_link" value="l1">【左-延畢俠】</option>
+                                        <option selected="not_commonly_used_link" value="l2">【上-簽到俠】</option>
+                                        <option selected="not_commonly_used_link" value="l3">【下-筆記俠】</option>
+                                        <option selected="not_commonly_used_link" value="l4">【右-調解俠】</option>
                                         <option selected="not_commonly_used_link" value="food">【中大生活-食】</option>
                                         <option selected="not_commonly_used_link" value="housing">【中大生活-住】</option>
                                         <option selected="not_commonly_used_link" value="transportation">【中大生活-行】</option>
@@ -205,6 +205,7 @@
 
                 </div>
             </div>
+        <% } %>
 
 
         <!-- Modal-->
