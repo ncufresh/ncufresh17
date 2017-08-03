@@ -12,6 +12,20 @@
   font-family:"CSong3HK Medium";
   src: url(/WebFont/CSong3HK-Medium.otf) format("opentype");
 }
+.divider2{
+  color:#3366ff;
+}
+.divider2:hover{
+  color:#000000;
+  cursor:pointer;
+}
+.titlepic{
+  position:relative;
+  cursor:pointer;
+  margin-bottom:0.5vw;
+  width:13vw;
+  height:6.5vw;
+}
 .title{
   position:relative;
   cursor:pointer;
@@ -25,9 +39,9 @@
 .title-text{
   position:relative;
   padding-top:1.5vw;
-  padding-left:1vw;
+  padding-left:2.5vw;
   color: #392681;
-  font-size: 2vw;
+  font-size: 2.5vw;
   font-family: "Hanyi Senty Tang", Georgia, sans-serif;
 }
 .fpvideo{
@@ -58,15 +72,25 @@
   min-height:25vw;
   height:25vw;
 }
-.content-text{
-
+.mySlide{
+  display:none;
+  width:100%;
+  height:80%;
 }
 .DisplaySlide{
   display:none;
+  width:100%;
+  height:30vw;
 }
 .Demo{
   position:relative;
   height:5.5vw;
+  cursor:pointer;
+  width:100%;
+}
+.DemoModal{
+  position:relative;
+  height:10vw;
   cursor:pointer;
   width:100%;
 }
@@ -77,25 +101,87 @@
         <% include ../layouts/navbar %>
     </header>
     <main style="background-color: #EBF2D2">
+      <div class="modal fade" id="imgbox-lg" role="dialog">
+        <div class="modal-dialog" style="width:90vw;height:100vh" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+              <% for (var i in life){ %>
+                <% if ( life[i].type == "food"){ %>
+                  <div>
+                    <%if(life[i].img_path1!="/life/"){%>
+                      <img src="<%= life[i].img_path1 %>" class="mySlide"></img>
+                    <%}%>
+                    <%if(life[i].img_path2!="/life/"){%>
+                      <img src="<%= life[i].img_path2 %>" class="mySlide"></img>
+                    <%}%>
+                    <%if(life[i].img_path3!="/life/"){%>
+                      <img src="<%= life[i].img_path3 %>" class="mySlide"></img>
+                    <%}%>
+                  </div>
+                  <div style="padding-top:1vw" class="w3-row-padding w3-section">
+                    <%if(life[i].img_path3!="/life/"){%>
+                      <div class="w3-col s4">
+                        <img src="<%= life[i].img_path1 %>" class="DemoModal w3-opacity w3-hover-opacity-off" onclick="currentDiv(1)"></img>
+                      </div>
+                      <div class="w3-col s4">
+                        <img src="<%= life[i].img_path2 %>" class="DemoModal w3-opacity w3-hover-opacity-off" onclick="currentDiv(2)"></img>
+                      </div>
+                      <div class="w3-col s4">
+                        <img src="<%= life[i].img_path3 %>" class="DemoModal w3-opacity w3-hover-opacity-off" onclick="currentDiv(3)"></img>
+                      </div>
+                    <% } else if(life[i].img_path2!="/life/"){%>
+                      <div class="w3-col s4 col-md-offset-2">
+                        <img src="<%= life[i].img_path1 %>" class="DemoModal w3-opacity w3-hover-opacity-off" onclick="currentDiv(1)"></img>
+                      </div>
+                      <div class="w3-col s4">
+                        <img src="<%= life[i].img_path2 %>" class="DemoModal w3-opacity w3-hover-opacity-off" onclick="currentDiv(2)"></img>
+                      </div>
+                    <% } else{%>
+                      <div class="w3-col s4 col-md-offset-4">
+                        <img src="<%= life[i].img_path1 %>" class="DemoModal" onclick="currentDiv(1)"></img>
+                      </div>
+                    <%}%>
+                  </div>
+                <%}%>
+              <%}%>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">離開</button>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="container">
         <div>
           <h1 class="text-center">中大生活</h1>
         </div>
         <ul class="breadcrumb" style="background-color: #EBF2D2">
           <li><a href="/life">中大生活</a> <span class="divider"></span></li>
-          <li class="active">食</li>
+          <li class="backvideo divider2">食<span style="display:none" class="showDivider divider"></span></li>
+          <% for (var i in life){ %>
+            <% if ( life[i].type == "food"){ %>
+          <li id="showDivider<%=life[i].id%>" class="active showDivider" style="display:none"><%= life[i].titletext %></li>
+            <%}%>
+          <%}%>
         </ul>
       </div>
       <div class="row" >
         <div class="col-md-2 col-md-offset-1">
           <% for (var i in life){ %>
             <% if ( life[i].type == "food"){ %>
+              <% if ( life[i].img_path0 != "/life/"){%>
+                <div class="btntitle" id="<%='a' + life[i].id %>" target_id="<%=life[i].id%>">
+                  <img src="<%= life[i].img_path0 %>" class="titlepic"></img>
+                  <button class="btn btn-danger btn-xs delete_life" value="<%= life[i].id%>"><i class="fa fa-trash-o"></i> 刪除</button>
+                </div>
+              <% } else{ %>
               <div class="btntitle" id="<%='b'+ life[i].id %>" target_id="<%=life[i].id%>">
                 <div class="title">
-                  <p class="title-text"><%= life[i].name %></p>
-                <button class="btn btn-danger btn-xs delete_life" value="<%= life[i].id%>"><i class="fa fa-trash-o"></i> 刪除</button>
+                  <p class="title-text"><%= life[i].titletext %></p>
+                  <button class="btn btn-danger btn-xs delete_life" value="<%= life[i].id%>"><i class="fa fa-trash-o"></i> 刪除</button>
                 </div>
               </div>
+              <%}%>
             <%}%>
           <%}%>
         </div>
@@ -106,50 +192,50 @@
           <% for (var i in life){ %>
             <% if ( life[i].type == "food"){ %>
               <div id="subtitle<%=life[i].id%>" class="subtitle">
-                <p class="subtitle-text"><%= life[i].name %></p>
+                <p class="subtitle-text"><%= life[i].titletext %></p>
                 <div id="img-view<%=life[i].id%>" class="img-view">
                   <%if(life[i].img_path1!="/life/"){%>
-                    <img src="<%= life[i].img_path1 %>" class="DisplaySlide" style="width:100%;height:30vw"></img>
+                    <img src="<%= life[i].img_path1 %>" class="DisplaySlide" data-toggle="modal" data-target="#imgbox-lg" title="點擊放大"></img>
                   <%}%>
                   <%if(life[i].img_path2!="/life/"){%>
-                    <img src="<%= life[i].img_path2 %>" class="DisplaySlide" style="width:100%;height:30vw"></img>
+                    <img src="<%= life[i].img_path2 %>" class="DisplaySlide" data-toggle="modal" data-target="#imgbox-lg" title="點擊放大"></img>
                   <%}%>
                   <%if(life[i].img_path3!="/life/"){%>
-                    <img src="<%= life[i].img_path3 %>" class="DisplaySlide" style="width:100%;height:30vw"></img>
+                    <img src="<%= life[i].img_path3 %>" class="DisplaySlide" data-toggle="modal" data-target="#imgbox-lg" title="點擊放大"></img>
                   <%}%>
                 </div>
                 <div style="padding-top:4vw" class="w3-row-padding w3-section">
                   <%if(life[i].img_path3!="/life/"){%>
                     <div class="w3-col s4">
-                      <img src="<%= life[i].img_path1 %>" class="Demo w3-opacity w3-hover-opacity-off" onclick="currentDiv(1)"></img>
+                      <img src="<%= life[i].img_path1 %>" class="Demo w3-opacity w3-hover-opacity-off" onclick="currentPicDiv(1)"></img>
                     </div>
                     <div class="w3-col s4">
-                      <img src="<%= life[i].img_path2 %>" class="Demo w3-opacity w3-hover-opacity-off" onclick="currentDiv(2)"></img>
+                      <img src="<%= life[i].img_path2 %>" class="Demo w3-opacity w3-hover-opacity-off" onclick="currentPicDiv(2)"></img>
                     </div>
                     <div class="w3-col s4">
-                      <img src="<%= life[i].img_path3 %>" class="Demo w3-opacity w3-hover-opacity-off" onclick="currentDiv(3)"></img>
+                      <img src="<%= life[i].img_path3 %>" class="Demo w3-opacity w3-hover-opacity-off" onclick="currentPicDiv(3)"></img>
                     </div>
-                    <% } else if(life[i].img_path2!="/life/"){%>
+                  <% } else if(life[i].img_path2!="/life/"){%>
                     <div class="w3-col s4 col-md-offset-2">
-                      <img src="<%= life[i].img_path1 %>" class="Demo w3-opacity w3-hover-opacity-off" onclick="currentDiv(1)"></img>
+                      <img src="<%= life[i].img_path1 %>" class="Demo w3-opacity w3-hover-opacity-off" onclick="currentPicDiv(1)"></img>
                     </div>
                     <div class="w3-col s4">
-                      <img src="<%= life[i].img_path2 %>" class="Demo w3-opacity w3-hover-opacity-off" onclick="currentDiv(2)"></img>
+                      <img src="<%= life[i].img_path2 %>" class="Demo w3-opacity w3-hover-opacity-off" onclick="currentPicDiv(2)"></img>
                     </div>
-                    <% } else{%>
+                  <% } else{%>
                     <div class="w3-col s4 col-md-offset-4">
-                      <img src="<%= life[i].img_path1 %>" class="Demo" onclick="currentDiv(1)"></img>
+                      <img src="<%= life[i].img_path1 %>" class="Demo" onclick="currentPicDiv(1)"></img>
                     </div>
                   <%}%>
                 </div>
                 <div id="content-text<%=life[i].id%>" class="content-text" style="padding-left:2vw;padding-top:1vw"><%- life[i].introduction %>
                 </div>
               </div>
-              <table id="switch<%=life[i].id%>"  class="switch" style="width:100%;display:none">
-                <tr>
-                  <th><i class="fa fa-angle-double-left fx-4x" aria-hidden="true"></i></th>
-                  <th></th>
-                  <th style="text-align:right"><i class="fa fa-angle-double-right fx-4x" aria-hidden="true"></i></th>
+              <table id="switch<%=life[i].id%>"  class="switch" style="width:100%;height:5vw;display:none">
+                <tr style="padding:3vw">
+                  <th onclick="plusDivs(-1)"><i class="fa fa-angle-double-left fx-lg" aria-hidden="true"></i>PREV</th>
+                  <th class="buttom-backvideo" style="text-align:center"><ins>回影片</ins></th>
+                  <th style="text-align:right;margin-right:2vw" onclick="plusDivs(1)">NEXT<i class="fa fa-angle-double-right fx-lg" aria-hidden="true"></i></th>
                 </tr>
               </table>
             <%}%>
@@ -167,18 +253,65 @@
         <% include ../layouts/js %>
         <% include js %>
         <script>
-          $(function(){
+          $(document).ready(function(){
             $('.btntitle').on('click',function(){
               var id = $(this).attr('target_id');
+              $('.showDivider').hide();
               $('.fpvideo').hide();
               $('.subtitle').hide();
               $('.img-view').hide();
-              $('.switch').fadeIn();
+              $('.switch').hide();
+              $('#showDivider'+id).show();
               $('#subtitle'+id).fadeIn();
               $('#img-view'+id).fadeIn();
               $('#switch'+id).fadeIn();
             });
+            $('.backvideo').on('click',function(){
+              var id = $(this).attr('target_id');
+              $('.showDivider').hide();
+              $('.subtitle').hide();
+              $('.img-view').hide();
+              $('.switch').hide();
+              $('.fpvideo').fadeIn();
+            });
+            $('.buttom-backvideo').on('click',function(){
+              var id = $(this).attr('target_id');
+              $('.showDivider').hide();
+              $('.subtitle').hide();
+              $('.img-view').hide();
+              $('.switch').hide();
+              $('.fpvideo').fadeIn();
+              $('html,body').animate({scrollTop:0}, 1000);
+              return false;
+            });
+            $(document).ready(function(){
+              $('[data-toggle="tooltip"]').tooltip();
+            });
           })
+          var PicslideIndex = 1;
+          showPicDivs(PicslideIndex);
+          function plusPicDivs(n) {
+            showPicDivs(PicslideIndex += n);
+          }
+          function currentPicDiv(n) {
+            showPicDivs(PicslideIndex = n);
+          }
+          function showPicDivs(n) {
+            var i;
+            var x = document.getElementsByClassName("DisplaySlide");
+            var dots = document.getElementsByClassName("Demo");
+            if (n > x.length) {PicslideIndex = 1}
+            if (n < 1) {PicslideIndex = x.length}
+            for (i = 0; i < x.length; i++) {
+               x[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+               dots[i].className = dots[i].className.replace(" w3-opacity-off", "");
+            }
+            x[PicslideIndex-1].style.display = "block";
+            dots[PicslideIndex-1].className += " w3-opacity-off";
+          }
+
           var slideIndex = 1;
           showDivs(slideIndex);
           function plusDivs(n) {
@@ -189,8 +322,8 @@
           }
           function showDivs(n) {
             var i;
-            var x = document.getElementsByClassName("DisplaySlide");
-            var dots = document.getElementsByClassName("Demo");
+            var x = document.getElementsByClassName("mySlide");
+            var dots = document.getElementsByClassName("DemoModal");
             if (n > x.length) {slideIndex = 1}
             if (n < 1) {slideIndex = x.length}
             for (i = 0; i < x.length; i++) {

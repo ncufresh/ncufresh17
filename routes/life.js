@@ -25,7 +25,7 @@ router.get('/food', function(req, res, next) {
 	var url_parts = url.parse(req.url, true);
 	var query = url_parts.query;
   res.render('life/food', {
-  	title: 'life',
+  	title: '中大生活 ｜ 新生知訊網',
   	user: req.user,
   	firstClick: req.query.dep,
     life: life,
@@ -35,8 +35,10 @@ router.get('/food', function(req, res, next) {
 router.post('/add_life', function(req, res, next) {
   if (req.body.button == "update") {
 		life.update({ _id: req.body.bid }, {
-      type:fields.type,
-  		name:fields.name,
+      type: fields.type,
+  		titletext: fields.titletext,
+      img_path0: '/life/' +fileName0,
+      fileName0: fileName0,
   		introduction:fields.introduction,
       img_path1: '/life/' + fileName1,
       fileName1: fileName1,
@@ -54,12 +56,26 @@ router.post('/add_life', function(req, res, next) {
 		if (err) {
 			console.log("上傳err");
 		}
+    var uploadedFile0 = files.titlepic;
     var uploadedFile1 = files.uploadImg1;
     var uploadedFile2 = files.uploadImg2;
     var uploadedFile3 = files.uploadImg3;
+    var tmpPath0 = uploadedFile0.path;
 		var tmpPath1 = uploadedFile1.path;
     var tmpPath2 = uploadedFile2.path;
     var tmpPath3 = uploadedFile3.path;
+    var fileName0 = "";
+    if(uploadedFile0.name!=""){
+      fileName0 = shortId.generate() + uploadedFile0.name.substr(uploadedFile0.name.lastIndexOf('.'));
+      var targetPath0 = './public/life/' + fileName0;
+      console.log(tmpPath0);
+      console.log(targetPath0);
+      var readStream0 = fs.createReadStream(tmpPath0);
+      var writeStream0 = fs.createWriteStream(targetPath0);
+      readStream0.on("end", function () {
+      	fs.unlink(tmpPath0);
+      }).pipe(writeStream0);
+    }
     var fileName1 = "";
     if(uploadedFile1.name!=""){
       fileName1 = shortId.generate() + uploadedFile1.name.substr(uploadedFile1.name.lastIndexOf('.'));
@@ -98,15 +114,17 @@ router.post('/add_life', function(req, res, next) {
       }).pipe(writeStream3);
     }
     var a = new life({
-		type:fields.type,
-		name:fields.name,
-		introduction:fields.introduction,
-    img_path1: '/life/' + fileName1,
-    fileName1: fileName1,
-    img_path2: '/life/' + fileName2,
-    fileName2: fileName2,
-    img_path3: '/life/' + fileName3,
-    fileName3: fileName3
+		type        : fields.type,
+    titletext   : fields.titletext,
+    img_path0    : '/life/' + fileName0,
+    fileName0   : fileName0,
+		introduction: fields.introduction,
+    img_path1   : '/life/' + fileName1,
+    fileName1   : fileName1,
+    img_path2   : '/life/' + fileName2,
+    fileName2   : fileName2,
+    img_path3   : '/life/' + fileName3,
+    fileName3   : fileName3
     });
     a.save(function(){
       res.redirect('/life/food');
@@ -116,24 +134,29 @@ router.post('/add_life', function(req, res, next) {
 router.get('/delete_life/:id', function (req, res, next) {
 	console.log(req.params.id);
 	life.findById(req.params.id, function (err, data) {
-      if (data.fileName1!=""){
-        fs.unlink('./public/life/' + data.fileName1, function(err){
-          if (err) console.log(err);
-        });
-      }
-      if (data.fileName2!=""){
-        fs.unlink('./public/life/' + data.fileName2,function(err){
-          if (err) console.log(err);
-        });
-      }
-      if (data.fileName3!=""){
-        fs.unlink('./public/life/' + data.fileName3, function (err) {
-				  if (err) console.log(err);
-        });
-      }
-			life.findById(req.params.id).remove().exec(function(){
-        res.redirect('/life/food');
+    if (data.fileName0!=""){
+      fs.unlink('./public/life/' + data.fileName0, function(err){
+        if (err) console.log(err);
       });
+    }
+    if (data.fileName1!=""){
+      fs.unlink('./public/life/' + data.fileName1, function(err){
+        if (err) console.log(err);
+      });
+    }
+    if (data.fileName2!=""){
+      fs.unlink('./public/life/' + data.fileName2,function(err){
+        if (err) console.log(err);
+      });
+    }
+    if (data.fileName3!=""){
+      fs.unlink('./public/life/' + data.fileName3, function (err) {
+			  if (err) console.log(err);
+      });
+    }
+		life.findById(req.params.id).remove().exec(function(){
+      res.redirect('/life/food');
+    });
 	});
 });
 module.exports = router;
