@@ -207,7 +207,7 @@ $(document).ready(function(){
 		        }, 200);
             }else{
                 if ($("#<%- document[i].id+"link"%>").is(':hover')){
-
+                    
                 }else{
                     $(this).animate({
                         opacity: '0.1'
@@ -237,7 +237,7 @@ $(document).ready(function(){
             }
 		});
         $("#<%- document[i].id+"link"%>").mouseover(function(){
-            $("#<%- document[i].id%>").css({"opacity":"0.4"});
+            $("#<%- document[i].id%>").css({"opacity":"0.1"});
             $("#<%- document[i].id+"link"%>").css({"opacity":"1"});
         });
     <%}%>
