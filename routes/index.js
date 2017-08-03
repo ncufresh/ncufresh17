@@ -70,7 +70,7 @@ module.exports = function(passport) {
   //註冊
   router.get('/register', isLoggedIn, function(req, res) {
     res.render('index/register', {
-      title: '註冊頁',
+      title: '註冊頁 ｜ 新生知訊網',
       user: req.user,
       message: req.flash('signupMessage')
     });
@@ -85,7 +85,7 @@ module.exports = function(passport) {
   //登入頁
   router.get('/login', isLoggedIn, function(req, res, next) {
     res.render('index/login', {
-      title: '登入頁',
+      title: '登入頁 ｜ 新生知訊網',
       user: req.user,
       message: req.flash('loginMessage')
     });
