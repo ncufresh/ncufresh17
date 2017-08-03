@@ -10,74 +10,79 @@
 <script type="text/javascript">
 $('.navbar').css({"margin-bottom":"0px"});
 $(document).ready(function(){
-    if("<%=index%>"=="1.1"){
-        $('#freshmen-distaination').css({"display":"block"});
-        $('#master-freshmen-distaination').css({"display":"none"});
-        $('#often-link-distaination').css({"display":"none"});
-        $('html,body').animate({
-            scrollTop: $('#freshmen-distaination').offset().top-91
-        }, 1000);
-        $('#under-1').css({"display":"block"});
-        $('#under-2').css({"display":"none"});
-        $('#under-3').css({"display":"none"});
-        $('#under-1').addClass("active");
-        $('#under-2').removeClass("active");
-        $('#under-3').removeClass("active");
-    }else if("<%=index%>"=="1.2"){
-        $('#freshmen-distaination').css({"display":"block"});
-        $('#master-freshmen-distaination').css({"display":"none"});
-        $('#often-link-distaination').css({"display":"none"});
-        $('html,body').animate({
-            scrollTop: $('#freshmen-distaination').offset().top-91
-        }, 1000);
-        $('#under-1').css({"display":"none"});
-        $('#under-2').css({"display":"block"});
-        $('#under-3').css({"display":"none"});
-        $('#under-1').removeClass("active");
-        $('#under-2').addClass("active");
-        $('#under-3').removeClass("active");
-    }else if("<%=index%>"=="1.3"){
-        $('#freshmen-distaination').css({"display":"block"});
-        $('#master-freshmen-distaination').css({"display":"none"});
-        $('#often-link-distaination').css({"display":"none"});
-        $('html,body').animate({
-            scrollTop: $('#freshmen-distaination').offset().top-91
-        }, 1000);
-        $('#under-1').css({"display":"none"});
-        $('#under-2').css({"display":"none"});
-        $('#under-3').css({"display":"block"});
-        $('#under-1').removeClass("active");
-        $('#under-2').removeClass("active");
-        $('#under-3').addClass("active");
-    }else if("<%=index%>"=="2.1"){
-        $('#freshmen-distaination').css({"display":"none"});
-        $('#master-freshmen-distaination').css({"display":"block"});
-        $('#often-link-distaination').css({"display":"none"});
-        $('html,body').animate({
-            scrollTop: $('#master-freshmen-distaination').offset().top-91
-        }, 1000);
-        $('#under-4').css({"display":"block"});
-        $('#under-5').css({"display":"none"});
-        $('#under-4').addClass("active");
-        $('#under-5').removeClass("active");
-    }else if("<%=index%>"=="2.2"){
-        $('#freshmen-distaination').css({"display":"none"});
-        $('#master-freshmen-distaination').css({"display":"block"});
-        $('#often-link-distaination').css({"display":"none"});
-        $('html,body').animate({
-            scrollTop: $('#master-freshmen-distaination').offset().top-91
-        }, 1000);
-        $('#under-4').css({"display":"none"});
-        $('#under-5').css({"display":"block"});
-        $('#under-4').removeClass("active");
-        $('#under-5').addClass("active");
-    }else if("<%=index%>"=="3"){
-        $('#freshmen-distaination').css({"display":"none"});
-        $('#master-freshmen-distaination').css({"display":"none"});
-        $('#often-link-distaination').css({"display":"block"});
-        $('html,body').animate({
-            scrollTop: $('#often-link-distaination').offset().top-91
-        }, 1000);
+    var strUrl = location.search;
+    if (strUrl.indexOf("?") !== -1) {
+        var getSearch = strUrl.split("?");
+        var getString = getSearch[1];
+        if(getString=="1.1"){
+            $('#freshmen-distaination').css({"display":"block"});
+            $('#master-freshmen-distaination').css({"display":"none"});
+            $('#often-link-distaination').css({"display":"none"});
+            $('html,body').animate({
+                scrollTop: $('#freshmen-distaination').offset().top-91
+            }, 1000);
+            $('#under-1').css({"display":"block"});
+            $('#under-2').css({"display":"none"});
+            $('#under-3').css({"display":"none"});
+            $('#under-1').addClass("active");
+            $('#under-2').removeClass("active");
+            $('#under-3').removeClass("active");
+        }else if(getString=="1.2"){
+            $('#freshmen-distaination').css({"display":"block"});
+            $('#master-freshmen-distaination').css({"display":"none"});
+            $('#often-link-distaination').css({"display":"none"});
+            $('html,body').animate({
+                scrollTop: $('#freshmen-distaination').offset().top-91
+            }, 1000);
+            $('#under-1').css({"display":"none"});
+            $('#under-2').css({"display":"block"});
+            $('#under-3').css({"display":"none"});
+            $('#under-1').removeClass("active");
+            $('#under-2').addClass("active");
+            $('#under-3').removeClass("active");
+        }else if(getString=="1.3"){
+            $('#freshmen-distaination').css({"display":"block"});
+            $('#master-freshmen-distaination').css({"display":"none"});
+            $('#often-link-distaination').css({"display":"none"});
+            $('html,body').animate({
+                scrollTop: $('#freshmen-distaination').offset().top-91
+            }, 1000);
+            $('#under-1').css({"display":"none"});
+            $('#under-2').css({"display":"none"});
+            $('#under-3').css({"display":"block"});
+            $('#under-1').removeClass("active");
+            $('#under-2').removeClass("active");
+            $('#under-3').addClass("active");
+        }else if(getString=="2.1"){
+            $('#freshmen-distaination').css({"display":"none"});
+            $('#master-freshmen-distaination').css({"display":"block"});
+            $('#often-link-distaination').css({"display":"none"});
+            $('html,body').animate({
+                scrollTop: $('#master-freshmen-distaination').offset().top-91
+            }, 1000);
+            $('#under-4').css({"display":"block"});
+            $('#under-5').css({"display":"none"});
+            $('#under-4').addClass("active");
+            $('#under-5').removeClass("active");
+        }else if(getString=="2.2"){
+            $('#freshmen-distaination').css({"display":"none"});
+            $('#master-freshmen-distaination').css({"display":"block"});
+            $('#often-link-distaination').css({"display":"none"});
+            $('html,body').animate({
+                scrollTop: $('#master-freshmen-distaination').offset().top-91
+            }, 1000);
+            $('#under-4').css({"display":"none"});
+            $('#under-5').css({"display":"block"});
+            $('#under-4').removeClass("active");
+            $('#under-5').addClass("active");
+        }else if(getString=="3"){
+            $('#freshmen-distaination').css({"display":"none"});
+            $('#master-freshmen-distaination').css({"display":"none"});
+            $('#often-link-distaination').css({"display":"block"});
+            $('html,body').animate({
+                scrollTop: $('#often-link-distaination').offset().top-91
+            }, 1000);
+        }
     }
 
     $(".modal").on('hide.bs.modal', function () {
