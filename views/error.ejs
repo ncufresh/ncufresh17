@@ -1,3 +1,56 @@
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
-<pre><%= error.stack %></pre>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <% include ./layouts/head %>
+      <style media="screen">
+      <style media="screen">
+        img {
+          width: 35vw;
+        }
+        @media (max-width:991px){
+            /* 手機 */
+            img {
+              width: 70vw;
+            }
+        }
+        main {
+          background-color: white;
+        }
+      </style>
+  </head>
+  <body>
+      <header>
+          <% include ./layouts/navbar %>
+      </header>
+      <main>
+        <div class="container" id="abort">
+          <br>
+          <br>
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              <img class="center-block" src="/error/404.png" alt="" />
+            </div>
+          </div>
+        <br>
+        <br>
+          <div class="row text-center">
+            <div class="col-md-8 col-md-offset-2">
+              <h2>您所查詢的頁面不存在</h2>
+              <h2>如果有任何問題， 歡迎向我們反應</h2>
+              <br>
+              <h4>Email: ncufreshweb@gmail.com</h4>
+              <h4>Facebook: <a href="https://www.facebook.com/groups/NCUgroup/">NCU TALK臉書版</a> 私訊管理員</h4>
+            </div>
+          </div>
+          <h1><%= error.message %></h1>
+          <h2><%= error.status %></h2>
+          <pre><%= error.stack %></pre>
+        </div>
+
+      </main>
+      <footer>
+          <% include ./layouts/footer %>
+      </footer>
+          <% include ./layouts/js %>
+  </body>
+</html>

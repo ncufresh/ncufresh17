@@ -35,7 +35,9 @@
       .newsimg{
         width: 100%;
       }
-
+      .event_input{
+        height: 300px;
+      }
     </style>
 </head>
 <body>
@@ -323,22 +325,19 @@
                         <h2 class="modal-title">編輯消息</h2>
                       </div>
                       <div class="modal-body">
-                          <div class="form-group">
-                             <label for="title">標題:</label>
-                             <input type="text"  name="title" style="" value="<%= main_event.title %>" required>
-                          </div>
+
                           <div class="form-group">
                              <label for="news_date">日期:</label>
                              <input type="date"  name="news_date" style="" value="<%= main_event.date %>" required>
                           </div>
 
                           <div class="form-group">
-                             <label for="subtitle">小標題:</label><small>（會出現在list裡的）</small>
+                             <label for="subtitle">小標題:</label><small>(會出現在list裡的）</small>
                              <input type="text"  name="subtitle" style="" value="<%= main_event.subtitle %>" required>
                           </div>
                           <div class="form-group">
                              <label for="news_content">內容:</label><small>（會出現在modal裡的）</small>
-                             <textarea name="news_content"  ><%= main_event.content %></textarea>
+                             <textarea class="event_input" name="news_content"  ><%= main_event.content %></textarea>
                           </div>
                       </div>
                       <div class="modal-footer">
@@ -409,10 +408,7 @@
             <h2 class="modal-title">新增消息</h2>
           </div>
           <div class="modal-body">
-              <div class="form-group">
-                 <label for="title">標題:</label>
-                 <input type="text"  name="title" style="" required>
-              </div>
+
               <div class="form-group">
                  <label for="news_date">日期:</label>
                  <input type="date"  name="news_date" style="" required>
@@ -423,7 +419,7 @@
               </div>
               <div class="form-group">
                  <label for="news_event">內容:</label><small>（會出現在下面content裡的）</small>
-                 <textarea name="news_event" id="news_event" ></textarea>
+                 <textarea  class="event_input" name="news_event" id="news_event" ></textarea>
               </div>
           </div>
           <div class="modal-footer">

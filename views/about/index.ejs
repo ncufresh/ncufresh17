@@ -7,32 +7,59 @@
     <header>
         <% include ../layouts/navbar %>
     </header>
-
-    <ul id="navi" style="height:100%; margin-top: 10px;">
-        <a href="/about"><img onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" 
-            src="/about/logo.png" style="width:130px; height:75px; margin: 5px 5px 5px 12px;"></a>
-        <li><a href="/about/markting" style="background-image: url('markting.png');"></a></li>
-        <li><a href="/about/programming" style="background-image: url('programming.png');"></a></li>
-        <li><a href="/about/ceo" style="background-image: url('ceo.png');"></a></li>
-        <li><a href="/about/art" style="background-image: url('art.png');"></a></li>
-        <li><a href="/about/video" style="background-image: url('video.png');"></a></li>
-    </ul>
-
+    
     <main style="background-image: url('background.png'); background-size: cover; background-repeat: no-repeat;">
 
-        <div class="container" style="height:600px; margin-top: 20px; margin-left:150px;">
-            <h2><b>關於我們</b></h2>
+        <div class="col-xs-2">
+            <ul id="navi" style="height:100%; margin-top: 10px;">
+                <a href="/about"><img onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" 
+                    src="/about/logo.png" style="width:200px; height:100px; margin: 5px 5px 5px 5px;"></a>
+                <li><a href="/about/markting" style="background-image: url('markting.png');"></a></li>
+                <li><a href="/about/programming" style="background-image: url('programming.png');"></a></li>
+                <li><a href="/about/ceo" style="background-image: url('ceo.png');"></a></li>
+                <li><a href="/about/art" style="background-image: url('art.png');"></a></li>
+                <li><a href="/about/video" style="background-image: url('video.png');"></a></li>
+            </ul>
+        </div>
+
+        <div class="col-xs-9" style="height:600px; margin: auto;">
+            <h1><b>關於我們</b></h1>
             <hr>
             <img src="/about/IMG_9281.jpg" alt="photo died!!!!!!" style="width:100%;height:240px;">
             <ul id="content" style="margin-top:30px;">
                 <li style="padding-left:14px; font-size:30px;"><b>為了迎接大學新鮮人，我們提供了各項新生需要的服務</b></li>
                 <li style="margin-top:8px;"><span><a href="/documents"><b>「新生必讀」</b></a></span>提供了到大學需要注意的事項</li>
-                <li><span><a href="/QnA" style="padding-right:14px;"><b>「新生Q&A」</b></a></span>透過問與答，解決新生的各種問題</li>
+                <li><span><a href="/QnA" style="padding-right:12px;"><b>「新生Q&A」</b></a></span>透過問與答，解決新生的各種問題</li>
                 <li><span><a href="/campus"><b>「校園導覽」</b></a></span>讓新生對校園有更進一步的認識</li>
                 <li><span><a href="/groups"><b>「系所社團」</b></a></span>輕鬆掌握在中央的食衣住行育樂</li>
                 <li><span><a href="/video"><b>「影音專區」</b></a></span>由影片帶領新生搶先體驗中大生活</li>
-                <li><span><a href="/personal"><b>「個人專區」</b></a></span>在知訊網中開拓一片屬於自己的地盤吧！</li>
+                <li><span><a id="aa" onclick="checkLogin(this)"><b>「個人專區」</b></a></span>在知訊網中開拓一片屬於自己的地盤吧！</li>
             </ul>
+        </div>
+
+        <div class="modal fade" id="checkLoginModal" role="dialog">
+            <div class="modal-dialog">
+                        
+                <div class="modal-content">
+                            
+                    <div class="modal-header" style="text-align: center;">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3 class="modal-title">沒登入還想去個人專區？？？</h3>
+                    </div>
+                                
+                    <div class="modal-body">
+                        <div class="modal-body">要馬點"確定"乖乖去登入</div>
+	                    <div class="modal-body">要馬點"取消"這輩子別去個人專區，繼續躲在這裡</div>
+                    </div>
+                                
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="checkConfirm()">確定</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    </div>
+                                
+                </div>            
+
+            </div>
         </div>
 
     </main>
@@ -51,16 +78,14 @@
         list-style-type: none;
         margin: 0;
         padding: 0;
-        width: 150px;
-        background-color: rgba(255, 255, 255, 0);;
-        position: fixed;
-        height: 300px;
+        width: 230px;
+        background-color: rgba(255, 255, 255, 0);
+        /*position: fixed;*/
         overflow: auto;
     }
 
     #navi li a {
-        width: 144px;
-        height: 50px;
+        height: 60px;
         background-size: contain;
     }
 

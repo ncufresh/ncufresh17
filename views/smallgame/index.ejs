@@ -2,13 +2,8 @@
 <html lang="en">
 <head>
     <% include ../layouts/head %>
-</head>
-<body>
-    <header>
-        <% include ../layouts/navbar %>
 
-        <style>
-
+<style>
 /*ANIMATION*/
 @keyframes fadein {
     from { opacity: 0; }
@@ -39,6 +34,23 @@
     to   { opacity: 1; }
 }
 /*ANIMATION*/
+
+#information{ /*alert for mobile user*/
+    display: none;
+    margin-top: 30%;
+    width:100%;
+    height:100%;
+    font-size: 300%;
+}
+    
+@media only screen and (max-width: 850px){ /*alert for mobile user*/
+    #mainmenu{
+    display: none;
+    }
+    #information{
+    display:inline-block;
+    }
+}
 
 #menu{
     display: none;
@@ -91,6 +103,7 @@
     background-color: #FFF799;
     font-weight: bold;
     font-size: 20px;
+    position:relative;
 }
 
 #menubutton , #rankbutton{
@@ -176,11 +189,13 @@
 }
 
 #playerpic{
-    height:auto;
-    width:auto;
     left:35px;
     position: absolute;
-
+}
+#playerpic img{
+    height:150px;
+    width:150px;
+    border-radius: 400px;
 }
 
 #pcpic{
@@ -535,6 +550,9 @@ svg circle {
 #last{
     margin-top: 220px;
     margin-left: 130px;
+    height: 150px;
+    width: 150px;
+    border-radius: 500px;
 }
 
 #userpoint{
@@ -616,6 +634,7 @@ tr:nth-child(odd) {background: #0075a9}
 /*RANK*/
 
 /*PERSONAL SCORE*/
+
 #score01{
     border:10px solid #004986;
     background-color: #7ECEF4;
@@ -633,7 +652,7 @@ tr:nth-child(odd) {background: #0075a9}
 
 #plypic img{
     width: 100px;
-    height: auto;
+    height: 100px;
     float: left;
     margin-right:10px;
 }
@@ -664,13 +683,20 @@ tr:nth-child(odd) {background: #0075a9}
 
 </style>
 
-
+</head>
+<body>
+    <header>
+        <% include ../layouts/navbar %>
     </header>
 
     <main>
+        
+        
       <div class="container" >
-
-
+            <div class="alert alert-info" id="information">  <!--alert for mobile user-->
+                <strong>不好意思!</strong> 小遊戲只能在電腦玩哦！
+            </div>
+        <div id="mainmenu">
         <div class="jumbotron" id="menu">
 
         <!--audio-->
@@ -867,7 +893,7 @@ tr:nth-child(odd) {background: #0075a9}
                 <div class="modal-dialog" >
                     <div class="modal-content" id="score01">
                         <div id="plypic">
-                            <img class="img-thumbnail" id="img" src="/personal/profile/<%= user.local.img %>">
+                            <img class="img-thumbnail" src="/personal/profile/<%= user.local.img %>">
                             <p>姓名: <%=user.local.name%>
                             <br>目前總共<%if(player==0){%>0<%}else{%><%=player.score%><%}%>個積分</p>
                         </div>
@@ -877,7 +903,7 @@ tr:nth-child(odd) {background: #0075a9}
                 </div>
             </div>
             <!--PERSONAL SCORE-->
-
+        </div>
         </div>
         </div>
     </main>

@@ -2,31 +2,50 @@
 <html lang="en">
 <head>
     <style type="text/css">
+
         .cc{
-            padding: 4vh; 
+            padding: 2vw;
+            width: 25%; 
         }
         .cc:hover {
-            padding: 0px;
+            padding: 0vw;
         }
-        .cc2{
-            max-width: 14vh; 
+        /*.cc2{
+            padding: 2vw;transform: translate(-50%,-50%);
         }
         .cc2:hover {
-            max-width: 22vh;
-            box-shadow: 0 0 1px 1px rgba(0,0,0,1);
-        }
+            padding: 0vw;
+        }*/
         #slidedown{
-            max-width: 14vh;
+            padding: 4vw;
+            width: 15%;
         }
         #slidedown:hover {
-            max-width: 22vh;
+            padding: 2vw;
         }
-        
+        #slideup{
+            padding: 4vw;
+            width: 15%;
+        }
+        #slideup:hover {
+            padding: 2vw;
+        }
     </style>
     <% include ../layouts/head %>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/imageMapResizer.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function(){
+        $('map').imageMapResize();
+        $(".gg1").hover(function(){
+            $("#"+$(this).attr("value")).css({
+                "width": "50%"
+            });
+        },function(){
+            $("#"+$(this).attr("value")).css({
+                "width": "32%"
+            });
+        });
         $(".g1").click(function(){
             $("#videofood").html("")
         });
@@ -60,41 +79,39 @@
         $(".l1").click(function(){
             $("#l1").html("")
         });
-        $("#dr1").click(function(){
+        $("#rr1").click(function(){
             $("#l1").html('<%- l1 %>')
         });
         $(".l2").click(function(){
             $("#l2").html("")
         });
-        $("#dr2").click(function(){
+        $("#rr2").click(function(){
             $("#l2").html('<%- l2 %>')
         });
         $(".l3").click(function(){
             $("#l3").html("")
         });
-        $("#dr3").click(function(){
+        $("#rr3").click(function(){
             $("#l3").html('<%- l3 %>')
         });
         $(".l4").click(function(){
             $("#l4").html("")
         });
-        $("#dr4").click(function(){
+        $("#rr4").click(function(){
             $("#l4").html('<%- l4 %>')
-        });
-        $(".l5").click(function(){
-            $("#l5").html("")
-        });
-        $("#dr5").click(function(){
-            $("#l5").html('<%- l5 %>')
         });
         $("#warn").click(function(){
             alert("記得一定要先試試看能不能開, 影音組的各位不要一直只想著放假 加油好嗎");
         });
         $("#slidedown").click(function(){
-            console.log("ok");
             $('html,body').animate({
-                scrollTop: $("#slidepoint").offset().top+20
-            }, 1000);
+                scrollTop: $("#slidepoint").offset().top-40
+            }, 400);
+        });
+        $("#slideup").click(function(){
+            $('html,body').animate({
+                scrollTop: $("#slidepoint2").offset().top-40
+            }, 400);
         });
         return false;
     });
@@ -104,51 +121,46 @@
     <header>
         <% include ../layouts/navbar %>
     </header>
-
+    
     <main style="background-image: url(/video/背景2.png);">
-        <div class="container">           
+        <div class="container-fluid">           
             <div class="row">
-                <div class="col-md-4"><img src=""/></div>
-                <div class="col-md-4"><img style="max-width: 25vw;margin-bottom: 100px" src="/video/生活區.png" id="gf" class="img-responsive"/></div>
-                <div class="col-md-4"><img src=""/></div>
-            </div>
-            <div class="row" style="height: 10vw;">
-                <div class="col-md-2"><img style="display:inline-block;" id="dr1" class="cc2 img-responsive" alt="長片" src="/video/0000.png"  data-toggle="modal" data-target="#a1" /></div>
-                <div class="col-md-2"><img style="display:inline-block;" id="dr1" class="cc2 img-responsive" alt="長片" src="/video/0000.png"  data-toggle="modal" data-target="#a1" /></div>
-                <div class="col-md-2"><img style="display:inline-block;" id="dr2" class="cc2 img-responsive" alt="長片" src="/video/0000.png"  data-toggle="modal" data-target="#a2" /></div>
-                <div class="col-md-2"><img style="display:inline-block;" id="dr3" class="cc2 img-responsive" alt="長片" src="/video/0000.png"  data-toggle="modal" data-target="#a3" /></div>
-                <div class="col-md-2"><img style="display:inline-block;" id="dr4" class="cc2 img-responsive" alt="長片" src="/video/0000.png"  data-toggle="modal" data-target="#a4" /></div>
-                <div class="col-md-2"><img style="display:inline-block;" id="dr5" class="cc2 img-responsive" alt="長片" src="/video/0000.png"  data-toggle="modal" data-target="#a5" /></div>
-            </div>
-            <div class="row" style="margin-top: 10vh;height: 10vw">
-                <div class="col-md-5"><img src=""/></div>
-                <div class="col-md-2"><img style="display:inline-block;" id="slidedown" class="img-responsive" alt="箭頭" src="/video/箭頭.png" /></div>
-                <div class="col-md-5"><img src=""/></div>
-            </div>
-
-
-            <div class="row" style="margin-top: 50vh;">
-                <div class="col-md-4"><img src=""/></div>
-                <div class="col-md-4"><img style="max-width: 25vw" src="/video/生活區.png" id="slidepoint" class="img-responsive"/></div>
-                <div class="col-md-4"><img src=""/></div>
-            </div>
-            <div class="row" style="margin-top: 0vh;">
                 <div class="col-xs-2"><img src=""/></div>
-                <div class="col-xs-4"><img src="/video/食.png" id="f1" class="img-responsive cc" alt="food" data-toggle="modal" data-target="#5"/></div>
-                <div class="col-xs-4"><img src="/video/住.png" id="f2" class="img-responsive cc" alt="housing" data-toggle="modal" data-target="#6"/></div>
+                <div class="col-xs-8" style="height: 15vw;"><img style="max-width: 25vw;margin-top:7vw;margin-bottom: 0vw;width: 100%;left: 50%;position: absolute;transform: translate(-50%,-50%);" id="slidepoint2" src="/video/生活區.png" class="img-responsive"/></div>
+                <div class="col-xs-2"><img src=""/></div>
+            </div>
+            <div style="width: 100vw;height: 45vw;position: relative;">
+                <img style="position: absolute; z-index: 1000;" width="100%" src="/video/back.png" usemap="#Map">
+                <map name="Map" id="Map">
+                    <area id="rr1" class="gg1" value="dr1" shape="poly" coords="638,156,767,153,862,253,869,382,829,424,850,461,842,508,842,548,851,577,820,619,750,642,746,691,614,678,432,533,442,478,554,254" data-toggle="modal" data-target="#a1"/>
+                    <area id="rr2" class="gg1" value="dr2" shape="poly" coords="807,97,797,170,865,253,855,277,861,353,874,376,860,403,830,423,855,449,902,402,942,391,983,387,1018,392,1078,421,1131,439,1109,390,1093,360,1098,341,1092,305,1098,279,1120,256,1134,215,1276,175,1311,130,1304,59,1243,20" data-toggle="modal" data-target="#a2" />
+                    <area id="rr3" class="gg1" value="dr3" shape="poly" coords="500,884,385,704,412,516,542,362,753,326,911,376,1044,475,1085,623,1065,796,1121,912,1332,929,1233,1154,1295,1184,1294,1249,1245,1438,1184,1438,1089,1367,527,1374,516,1440,465,1436,402,1234,285,1179,170,978" data-toggle="modal" data-target="#a3" />
+                    <area id="rr4" class="gg1" value="dr4" shape="poly" coords="1249,198,1164,240,1158,289,1111,278,1096,328,1109,374,1148,415,1194,478,1152,449,1101,438,1128,500,1131,522,1168,555,1178,619,1227,634,1228,661,1520,664,1524,565,1408,391,1421,347,1421,299,1410,260,1547,227,1563,143,1445,104" data-toggle="modal" data-target="#a4" />
+                </map>
+                
+                <img style="width: 32%;position: absolute;top: 46%;left: 36%;z-index: 20;transform: translate(-50%,-50%);" id="dr1" class="img-responsive" alt="長片" src="/video/延畢俠.png"   />
+                <img style="width: 32%;position: absolute;top: 32%;left: 50%;z-index: 10;transform: translate(-50%,-50%);" id="dr2" class="img-responsive" alt="長片" src="/video/簽到俠.png"  />
+                <img style="width: 32%;position: absolute;top: 64%;left: 50%;z-index: 60;transform: translate(-50%,-50%);" id="dr3" class="img-responsive" alt="長片" src="/video/筆記俠.png"  />
+                <img style="width: 30%;position: absolute;top: 41%;left: 63%;z-index: 20;transform: translate(-50%,-50%);" id="dr4" class="img-responsive" alt="長片" src="/video/調解俠.png"  />
+                <img style="display:inline-block;position: absolute;top:30%;left: 85%;z-index: 1001" id="slidedown" class="img-responsive" alt="箭頭" src="/video/箭頭.png" />
             </div>
 
-            <div class="row" style="margin-top: 0vh;">
-                <div class="col-xs-4"><img src="/video/行.png" id="f3" class="img-responsive cc" alt="transportation" data-toggle="modal" data-target="#7"/></div>
-                <div class="col-xs-4"><img src="/video/育.png" id="f4" class="img-responsive cc" alt="education" data-toggle="modal" data-target="#8"/></div>
-                <div class="col-xs-4"><img src="/video/樂.png" id="f5" class="img-responsive cc" alt="entertainment" data-toggle="modal" data-target="#9"/></div>
+
+            <div class="row" style="margin-top: 80vw">
+                <div class="col-xs-2"><img src=""/></div>
+                <div class="col-xs-8" style="height: 5vw;"><img style="max-width: 25vw;margin-bottom: 0vw;width: 100%;left: 50%;position: absolute;transform: translate(-50%,-50%);" id="slidepoint" src="/video/生活區.png" class="img-responsive"/></div>
+                <div class="col-xs-2"><img src=""/></div>
             </div>
-            <div class="row">
-                <div class="col-xs-4"><img src="" class="img-responsive"/></div>
-                <div class="col-xs-4"><img src="" class="img-responsive"/></div>
+            <div style="margin-top: -4vw;width: 100vw;height: 45vw;position: relative;">
+                <img style="position: absolute;top: 0%;left: 22%" src="/video/食.png" id="f1" class="img-responsive cc" alt="food" data-toggle="modal" data-target="#5"/>
+                <img style="position: absolute;top: 0%;left: 50%" src="/video/住.png" id="f2" class="img-responsive cc" alt="housing" data-toggle="modal" data-target="#6"/>
+                <img style="position: absolute;top: 38%;left: 8%" src="/video/行.png" id="f3" class="img-responsive cc" alt="transportation" data-toggle="modal" data-target="#7"/>
+                <img style="position: absolute;top: 38%;left: 37%" src="/video/育.png" id="f4" class="img-responsive cc" alt="education" data-toggle="modal" data-target="#8"/>
+                <img style="position: absolute;top: 38%;left: 65%" src="/video/樂.png" id="f5" class="img-responsive cc" alt="entertainment" data-toggle="modal" data-target="#9"/>
+                <img style="display:inline-block;position: absolute;top:30%;left: 85%;z-index: 1001" id="slideup" class="img-responsive" alt="箭頭" src="/video/箭頭1.png" />
             </div>
 
-
+        <% if(user&&user.local.accountType==='admin'){%>
             <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#edit">加入影片</button>
             <!-- 修改排序model -->
             <div class="modal fade" id="edit" role="dialog">
@@ -165,11 +177,10 @@
                                 <div class="form-group">
                                     <label for="type" class="control-label">選擇影片名稱</label>
                                     <select name="type" id="change_order_id" class="form-control">
-                                        <option selected="not_commonly_used_link" value="l1">【長劇1】</option>
-                                        <option selected="not_commonly_used_link" value="l2">【長劇2】</option>
-                                        <option selected="not_commonly_used_link" value="l3">【長劇3】</option>
-                                        <option selected="not_commonly_used_link" value="l4">【長劇4】</option>
-                                        <option selected="not_commonly_used_link" value="l5">【長劇5】</option>
+                                        <option selected="not_commonly_used_link" value="l1">【左-延畢俠】</option>
+                                        <option selected="not_commonly_used_link" value="l2">【上-簽到俠】</option>
+                                        <option selected="not_commonly_used_link" value="l3">【下-筆記俠】</option>
+                                        <option selected="not_commonly_used_link" value="l4">【右-調解俠】</option>
                                         <option selected="not_commonly_used_link" value="food">【中大生活-食】</option>
                                         <option selected="not_commonly_used_link" value="housing">【中大生活-住】</option>
                                         <option selected="not_commonly_used_link" value="transportation">【中大生活-行】</option>
@@ -194,6 +205,7 @@
 
                 </div>
             </div>
+        <% } %>
 
 
         <!-- Modal-->
@@ -296,8 +308,6 @@
 
                 </div>
             </div>
-        </div>
-    </main>
         <!-- Modal -->
             <div class="modal fade" id="a1" role="dialog">
                 <div class="modal-dialog">
@@ -306,7 +316,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close l1" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">【長劇1】</h4>
+                            <h4 class="modal-title text-center">☞ 延畢俠 ☜</h4>
                         </div>
                         <div class="modal-body">
                             <div id="l1"></div>
@@ -318,8 +328,6 @@
 
                 </div>
             </div>
-        </div>
-    </main>
 
         <!-- Modal -->
             <div class="modal fade" id="a2" role="dialog">
@@ -329,7 +337,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close l2" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">【長劇2】</h4>
+                            <h4 class="modal-title text-center">☞ 簽到俠 ☜</h4>
                         </div>
                         <div class="modal-body">
                             <div id="l2"></div>
@@ -341,8 +349,6 @@
 
                 </div>
             </div>
-        </div>
-    </main>
 
         <!-- Modal -->
             <div class="modal fade" id="a3" role="dialog">
@@ -352,7 +358,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close l3" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">【長劇3】</h4>
+                            <h4 class="modal-title text-center">☞ 筆記俠 ☜</h4>
                         </div>
                         <div class="modal-body">
                             <div id="l3"></div>
@@ -364,8 +370,6 @@
 
                 </div>
             </div>
-        </div>
-    </main>
 
         <!-- Modal -->
             <div class="modal fade" id="a4" role="dialog">
@@ -375,7 +379,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close l4" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">【長劇4】</h4>
+                            <h4 class="modal-title text-center">☞ 調解俠 ☜</h4>
                         </div>
                         <div class="modal-body">
                             <div id="l4"></div>
@@ -389,32 +393,6 @@
             </div>
         </div>
     </main>
-
-        <!-- Modal -->
-            <div class="modal fade" id="a5" role="dialog">
-                <div class="modal-dialog">
-
-        <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close l5" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">【長劇5】</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div id="l5"></div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default l5" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </main>
-
-
-
 
     <footer>
         <% include ../layouts/footer %>

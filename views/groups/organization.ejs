@@ -8,14 +8,162 @@
         <% include ../layouts/navbar %>
     </header>
 
-    <main>
+    <main style="background-image: url(BACK2.png);"">
       <div class="container">
-
-
-        <div class="jumbotron">
-            <h1>學生組織</h1>
+            <h1 style="font-size: 100px;">學生組織</h1>
             <hr size="8px" align="center" width="100%">
-        </div>
+            <ul class="breadcrumb">
+              <li><a href="/groups">系所社團</a> <span class="divider"></span></li>
+              <li class="active">學生組織</li>
+            </ul>
+            <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#add_club" style="width:100px;height:30px;text-align:center;">add</button></br>
+
+
+              <!-- Modal -->
+              <div class="modal fade" id="add_club" role="dialog">
+                <div class="modal-dialog modal-lg">
+
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 style="color:red;">新增學生組織</h4>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                      <form action="/groups/add_or" method="post" accept-charset="utf-8">
+                        <div class="form-group">
+                          <label for="name" class="form-control">學生組織名稱</label>
+                          <input type="text" class="form-control" id="name" placeholder="學生會" name="name">
+                        </div>
+                        <div class="form-group">
+                          <label for="introduction" class="form-control">學生會介紹</label>
+                          <textarea name="introduction"></textarea></br>
+                        </div>
+                        <div class="form-group">
+                          <label for="branch" class="form-control">部門介紹</label>
+                          <textarea name="branch"></textarea></br>
+                        </div>
+                        <div class="form-group">
+                          <label for="freshmenweek" class="form-control">歡度新生週</label>
+                          <textarea name="freshmenweek"></textarea></br>
+                        </div>
+                        <div class="form-group">
+                          <label for="notice" class="form-control">精彩活動預告</label>
+                          <textarea name="notice"></textarea></br>
+                        </div>
+                        <button type="submit" class="btn btn-default btn-success btn-block" style="width:100px;height:30px;text-align:center;">add</button>
+                      </form>
+
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-default" data-dismiss="modal" style="width:120px;height:30px;text-align:left;">cancel</button>
+                    </div>
+                  </div>
+                </div>
+              </div> 
+            </div>
+
+            <!-- edit model -->
+                  <div class="modal fade" id="edit_or" role="dialog">
+                    <div class="modal-dialog modal-lg">
+
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h4 style="color:red;">修改學生會</h4>
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                          <form action="/groups/edit_or" method="post" accept-charset="utf-8">
+                          <input type='hidden' id="edit_id" name="id">
+                            <div class="form-group">
+                              <label for="name" class="form-control">學生會名稱</label>
+                              <input type="text" class="form-control" id="edit_name" name="name">
+                            </div>
+                            <div class="form-group">
+                              <label for="introduction" class="form-control">學生會簡介</label>
+                              <textarea name="introduction" id="edit_introduction"></textarea></br>
+                            </div>
+                            <div class="form-group">
+                              <label for="branch" class="form-control">部門介紹</label>
+                              <textarea name="branch" id="edit_branch"></textarea></br>
+                            </div>
+                            <div class="form-group">
+                              <label for="freshmenweek" class="form-control">歡度新生週</label>
+                              <textarea name="freshmenweek" id="edit_freshmenweek"></textarea></br>
+                            </div>
+                            <div class="form-group">
+                              <label for="notice" class="form-control">精彩活動預告</label>
+                              <textarea name="notice" id="edit_notice"></textarea></br>
+                            </div>
+                            <button type="submit" class="btn btn-default btn-success btn-block" style="width:200px;height:30px;text-align:center;">update</button>
+                          </form>
+                        </div>
+
+                        <div class="modal-footer">
+                          <button type="submit" class="btn btn-default" data-dismiss="modal" style="width:120px;height:30px;text-align:left;">cancel</button>
+                        </div>
+                      </div>
+                  </div> 
+                </div>
+
+            <div class="row container" id="Student">
+                        <% for (var i in organization){%>
+                                    <div class="col-md-3">
+                                    <img data-toggle="modal" data-target="#<%- organization[i].id%>" src="pic1.png" style="width: 70%;position: absolute;left: 0px;top: 0px;z-index: 0;" class="col-md-3"/>
+                                    <h5 style="position: absolute;left: 10px;top: 75px;z-index: 1;"><%- organization[i].name %></h5>
+                                    </div>
+                                      <!-- Modal -->
+                                      <div class="modal fade" id="<%-organization[i].id%>" role="dialog">
+                                        <div class="modal-dialog modal-lg">
+                                        <!-- Modal content-->
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                              <h1 class="modal-title"><%- organization[i].name %></h1>
+                                            </div>
+                                            <div class="modal-body">
+                                              <div class="container">
+                                              <ul class="nav nav-pills nav-stacked col-md-2">
+                                                <li class="active"><a href="#tab_<%=organization[i].id%>_a" data-toggle="pill">學生會簡介</a></li>
+                                                <li><a href="#tab_<%=organization[i].id%>_b" data-toggle="pill">部門介紹</a></li>
+                                                <li><a href="#tab_<%=organization[i].id%>_c" data-toggle="pill">歡度新生週</a></li>
+                                                <li><a href="#tab_<%=organization[i].id%>_d" data-toggle="pill">精彩活動預告</a></li>
+                                              </ul>
+                                              <div class="tab-content col-md-10">
+                                                      <div class="tab-pane active" id="tab_<%=organization[i].id%>_a">
+                                                          <h4>學生會簡介</h4>
+                                                          <h6><%- organization[i].introduction %></h6>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_<%=organization[i].id%>_b">
+                                                          <h4>部門介紹</h4>
+                                                          <h6><%- organization[i].branch %></h6>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_<%=organization[i].id%>_c">
+                                                          <h4>歡度新生週</h4>
+                                                          <h6><%- organization[i].freshmenweek %></h6>
+                                                      </div>
+                                                      <div class="tab-pane" id="tab_<%=organization[i].id%>_d">
+                                                          <h4>精彩活動預告</h4>
+                                                          <h6><%- organization[i].notice %></h6>
+                                                      </div
+                                              </div><!-- tab content -->
+                                              </div><!-- end of container -->
+                                            </div><!-- body -->
+
+                                              
+                                            <div class="modal-footer">
+                                             <button class="btn btn-default edit_or" value="<%= organization[i].id%>" data-dismiss="modal">編輯</button>
+                                             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#uploadimg" data-dismiss="modal">新增圖片</button>
+                                             <button class="btn btn-default btn-xs delete_or" value="<%= organization[i].id%>"  data-dismiss="modal"> 刪除</button>
+                                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                        <%}%>
+                    </div>
+
+            </div>
         </div>
     </main>
 
@@ -24,5 +172,80 @@
     </footer>
         <% include js %>
         <% include ../layouts/js %>
+
+    <script type="text/javascript">
+    CKEDITOR.replace('introduction',{
+      filebrowserUploadUrl: '/uploader',
+    });
+    CKEDITOR.editorConfig = function (config){
+        config.enterMode = CKEDITOR.ENTER_BR;
+        config.autoParagraph = false;
+    };
+    </script>
+    <script type="text/javascript">
+    CKEDITOR.replace('branch',{
+      filebrowserUploadUrl: '/uploader',
+    });
+    CKEDITOR.editorConfig = function (config){
+        config.enterMode = CKEDITOR.ENTER_BR;
+        config.autoParagraph = false;
+    };
+    </script>
+    <script type="text/javascript">
+    CKEDITOR.replace('freshmenweek',{
+      filebrowserUploadUrl: '/uploader',
+    });
+    CKEDITOR.editorConfig = function (config){
+        config.enterMode = CKEDITOR.ENTER_BR;
+        config.autoParagraph = false;
+    };
+    </script>
+    <script type="text/javascript">
+    CKEDITOR.replace('notice',{
+      filebrowserUploadUrl: '/uploader',
+    });
+    CKEDITOR.editorConfig = function (config){
+        config.enterMode = CKEDITOR.ENTER_BR;
+        config.autoParagraph = false;
+    };
+    </script>
+
+    <script type="text/javascript">
+    CKEDITOR.replace('edit_introduction',{
+      filebrowserUploadUrl: '/uploader',
+    });
+    CKEDITOR.editorConfig = function (config){
+        config.enterMode = CKEDITOR.ENTER_BR;
+        config.autoParagraph = false;
+    };
+    </script>
+    <script type="text/javascript">
+    CKEDITOR.replace('edit_branch',{
+      filebrowserUploadUrl: '/uploader',
+    });
+    CKEDITOR.editorConfig = function (config){
+        config.enterMode = CKEDITOR.ENTER_BR;
+        config.autoParagraph = false;
+    };
+    </script>
+    <script type="text/javascript">
+    CKEDITOR.replace('edit_freshmenweek',{
+      filebrowserUploadUrl: '/uploader',
+    });
+    CKEDITOR.editorConfig = function (config){
+        config.enterMode = CKEDITOR.ENTER_BR;
+        config.autoParagraph = false;
+    };
+    </script>
+    <script type="text/javascript">
+    CKEDITOR.replace('edit_notice',{
+      filebrowserUploadUrl: '/uploader',
+    });
+    CKEDITOR.editorConfig = function (config){
+        config.enterMode = CKEDITOR.ENTER_BR;
+        config.autoParagraph = false;
+    };
+    </script>
 </body>
 </html>
+

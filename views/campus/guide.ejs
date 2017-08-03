@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <% include ../layouts/head %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
     <header>
@@ -11,24 +13,26 @@
     <div class="modal fade" id="detail_modal" role="dialog">
         <div class="modal-dialog modal-lg" style="width: 80vw;">
             <!-- Modal content-->
-            <div class="modal-content" style="background-color:#f3ea82">
+            <div class="modal-content" style="background-color:#f3ea82;border-radius:10px">
                 <div class="modal-body" style="overflow: hidden; padding:0">
                     <button type="button" style="opacity:1; position:absolute; right:1%; top:1%;" class="close" data-dismiss="modal"><img src="/campus/default/close.png" alt="" width="50px"></button>
 
-                    <div style="height:44vw;width:44vw;background-color:#ebf2d2;position: relative;clip-path:circle(50% at 47% 50%);top:-3%;left:-5%; overflow-y:scroll; overflow-x:hidden;">
-                        <div style="position:relative; width:inherit; height:inherit;">
+                    <div style="height:44vw;width:44vw;background-color:#ebf2d2;position: relative;-webkit-clip-path:circle(50% at 47% 50%);clip-path:circle(50% at 47% 50%);top:-3%;left:-5%;">
+                        <div style="position:absolute;width:inherit;top:-2%;height: 28%;background-color: #ebf2d2;z-index:100;"></div>
+                        <div style="position:absolute;width:inherit;top: 26%;height: 8%;background-image: linear-gradient(#ebf2d2, rgba(0,0,0,0));z-index:100;"></div>
+                        <div style="position:relative; width:inherit; height:inherit; overflow-y:scroll; overflow-x:hidden;">
                             <div id="detail-content" style="position:absolute;left:15%;width: 75%;"></div>
                         </div>
                     </div>
 
-                    <div class="abgne_product_arrow_silder" style="right:-5%;top:15%;clip-path:circle(42% at center);background-color:#ebf2d2">
+                    <div class="abgne_product_arrow_silder" style="right:0%;top:15%;-webkit-clip-path:circle(42% at center);clip-path:circle(42% at center);background-color:#ebf2d2">
                         <ul id="img-list">
                         </ul>
                         <img src="/campus/default/up.png" class="prev arrow" width="15%" style="left:42.5%;top:0%;"></img>
                         <img src="/campus/default/down.png" class="next arrow" width="15%" style="left:42.5%;bottom:0%;"></img>
                     </div>
-                    <div style="position:absolute;left: 55%; top:50%;transform: translate(-50%, -50%);">
-                        <p id="detail-name" style="background-color:rgba(0,0,0,0);color:#26669b;border: 1px solid #26669b;z-index:5; font-size:50px; letter-spacing: 5px;">測試測試</p>
+                    <div style="position:absolute;left: 21%;top: 17%;transform: translate(-50%, -50%);">
+                        <p id="detail-name" style="background-color:rgba(0,0,0,0);color:#26669b;border: 1px solid #26669b;z-index:5; font-size:3.5vw; letter-spacing: 5px;">測試測試</p>
                     </div>
                 </div>
             </div>

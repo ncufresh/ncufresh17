@@ -20,27 +20,29 @@
 
 /// Confirm/Cancel upload image
 
-    function confirmUpload() {
-        //do nothing        
-    }
-
     function cancelUpload() {
-        //do nothing
+        $('#imgPreview').attr("src", "/personal/noImg.png");
+        document.getElementById("test").value = "";
     }
 
 /// Q-A table action
     
     $(document).ready(function(){
         $('.openModal').on('click', function(){
-            
-            var titleText = $(this).closest('tr').find('td:eq(3)').text();
+            var index = (Number($(this).closest('tr').find('td:eq(0)').text())) - 1;
 
-            $('#tt').html('標題: ' + titleText);
-            $('#ansField').html($('<b> Answer:  asdfasdf </b>'));
+            var titleText = $(this).closest('tr').find('td:eq(3)').text();
+            var conText = $("#con"+index).val();
+            var ansText = $("#ans"+index).val();
+
+            $('#tt').html($('<b> Title: ' + titleText + '</b>'));
+            $('#qesField').html($('<b> Detail: ' + conText + '</b>'));
+            $('#ansField').html($('<b> Answer: ' + ansText + '</b>'));
+
         });
     });
 
-/// game button action
+/// Game button action
 
     var myIndex = 1;
     var out = false;
@@ -57,7 +59,7 @@
         if (myIndex > x.length) {myIndex = 1}        
         x[myIndex-1].style.display = "block";
         if (myIndex==6) {out=true;}
-        setTimeout(moveIn, 1000); 
+        setTimeout(moveIn, 800); 
     }
 
 </script>

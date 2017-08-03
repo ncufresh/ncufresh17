@@ -31,6 +31,9 @@ function mute(){
 
 //beginning
 $(document).ready(function() {
+    if ($('#mainmenu').css('display') == 'none') {
+    bgm.pause();
+}
     bgm.play();
     $('#menu').fadeIn(1000);
     $('#menubutton').toggle();
@@ -360,7 +363,7 @@ function r() {
     clk();
 
     //when game end
-    if(round == 2){ 
+    if(round == 21){ 
         clearInterval(clock);
         $('#row2, #row3, #countdown,#vs').toggle();
         gamestart.pause();

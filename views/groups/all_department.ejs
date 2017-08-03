@@ -2,45 +2,12 @@
 <html lang="en">
 <head>
     <% include ../layouts/head %>
-    <style>
-    h1 {font-size: 60px;}
-    h4 {font-size: 40px;}
-    h5 {
-      font-size: 20px;
-      text-align: center;
-      width: 65%;
-      background-color: yellow;
-    }
-    .modal {
-        overflow-y: scroll;
-    }
-    .modal-content{
-      background-image: url(內框背景.png);
-    }
-    p {
-      border-left: 6px solid lightgreen;
-      border-bottom: 40px;
-      background-color: lightyellow;
-      font-size: 20px;
-      border-spacing:50px;
-      padding-left:10px; 
-      width: 70%;
-      word-wrap: break-word;
-      max-height: 300px;
-      overflow-y: auto;
-    }
-    
-    li a {
-      color: green;
-    }
-    
-    </style>
 </head>
 <body>
     <header>
         <% include ../layouts/navbar %>
     </header>
-    <main>
+    <main style="background-image: url(BACK2.png);">
         <div class="container">
           <br>
           
@@ -120,58 +87,7 @@
                   </div> 
                 </div>
 
-                <!-- add photo Modal -->
-              <div class="modal fade" id="uploadimg" role="dialog">
-                <div class="modal-dialog modal-lg">
-
-                  <!-- Modal content-->
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h4 style="color:red;">新增圖片</h4>
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                      <form action="/groups/uploadimg" method="post" accept-charset="utf-8">
-                        <div class="form-group">
-                        <form class="form" >
-                        <input type='hidden' class="up" id="up" name="up[]" multiple>
-                        <div class="preview"></div>
-                        </form>
-                        </div>
-                        <div class="form-group">
-                        <form class="form1">
-                        系所介紹圖檔<input type='file' class="upl" id="up1" name="upl[]" multiple>
-                        <div class="preview"></div>
-                        </form>
-                        </div>
-                        <div class="form-group">
-                        <form class="form2">
-                        系學會圖檔<input type='file' class="up2" id="up2" name="up2[]" multiple>
-                        <div class="preview"></div>
-                        </form>
-                        </div>
-                        <div class="form-group">
-                        <form class="form3">
-                        系所活動圖檔<input type='file' class="up3" id="up3" name="up3[]" multiple>
-                        <div class="preview"></div>
-                        </form>
-                        </div>
-                        <div class="form-group">
-                        <form class="form4">
-                        系隊圖檔<input type='file' class="up4" id="up4" name="up4[]" multiple>
-                        <div class="preview"></div>
-                        </form>
-                        </div>
-                        <button type="submit" class="btn btn-default btn-success btn-block" style="width:100px;height:30px;text-align:center;">add</button>
-                    </form>
-                    </div>
-
-                    <div class="modal-footer">
-                      <button type="submit" class="btn btn-default" data-dismiss="modal" style="width:120px;height:30px;text-align:left;">cancel</button>
-                    </div>
-                  </div>
-              </div> 
-            </div>
+          
 
                   <div class="tab-content">
                   <div id="literature" class="tab-pane fade">
@@ -180,14 +96,76 @@
                     <li><a href="/groups/department">系所</a> <span class="divider"></span></li>
                     <li class="active">文學院</li>
                   </ul>
-                    <h3 style="font-size:80px;">文學院</h3>
+                    <img src="w2.png" style="width: 20%;height: 100%">
                     <hr size="8px" align="center" width="100%">
                     <div class="row container" id="literature">
                         <% for (var i in department){%>
                             <% if ( department[i].type == "literature"){ %>
+                              <!-- add photo Modal -->
+                              <div class="modal fade" id="uploadimg_li" role="dialog">
+                                <div class="modal-dialog modal-lg">
+                                <!-- Modal content-->
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h4 style="color:red;">新增圖片</h4>
+                                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <form>
+                                        <div class="form-group">
+                                        <input type='hidden' class="up" id="up" name="up[]" multiple>
+                                        <div class="preview"></div>
+                                        </form>
+                                        </div>
+                                        <div class="form-group">
+                                        <form action="/groups/uploadimg" method="post" enctype="multipart/form-data" class="form1">
+                                          系所介紹圖檔<input type='file' class="upl" id="up1" name="input_img">
+                                          <input type="hidden" name="type" value="intro">
+                                          <input type="hidden" name="belongs" value="<%= department[i].name%>">
+                                          <div class="preview"></div>
+                                           <button type="submit" class="btn btn-default btn-success btn-block" style="width:100px;height:30px;text-align:center;">add</button>
+                                        </form>
+                                        </div>
+                                        <div class="form-group">
+                                        <form action="/groups/uploadimg" method="post" enctype="multipart/form-data" class="form2">
+                                          系學會圖檔<input type='file' class="up2" id="up2" name="input_img">
+                                          <input type="hidden" name="type" value="or">
+                                          <input type="hidden" name="belongs" value="<%= department[i].name%>">
+                                          <div class="preview"></div>
+                                           <button type="submit" class="btn btn-default btn-success btn-block" style="width:100px;height:30px;text-align:center;">add</button>
+                                        </form>
+                                        </div>
+                                        <div class="form-group">
+                                        <form action="/groups/uploadimg" method="post" enctype="multipart/form-data" class="form4">
+                                          系所活動圖檔<input type='file' class="up3" id="up3" name="input_img">
+                                          <input type="hidden" name="type" value="ac">
+                                          <input type="hidden" name="belongs" value="<%= department[i].name%>">
+                                          <div class="preview"></div>
+                                           <button type="submit" class="btn btn-default btn-success btn-block" style="width:100px;height:30px;text-align:center;">add</button>
+                                        </form>
+                                        </div>
+                                        <div class="form-group">
+                                        <form action="/groups/uploadimg" method="post" enctype="multipart/form-data" class="form1">
+                                          系隊圖檔<input type='file' class="up4" id="up4" name="input_img">
+                                          <input type="hidden" name="type" value="team">
+                                          <input type="hidden" name="belongs" value="<%= department[i].name%>">
+                                          <div class="preview"></div>
+                                           <button type="submit" class="btn btn-default btn-success btn-block" style="width:100px;height:30px;text-align:center;">add</button>
+                                        </form>
+                                        </div>
+                                       
+                                    </div>
+
+                                    <div class="modal-footer">
+                                      <button type="submit" class="btn btn-default" data-dismiss="modal" style="width:120px;height:30px;text-align:left;">cancel</button>
+                                    </div>
+                                  </div>
+                              </div> 
+                            </div>
+
                                     <div class="col-md-3">
-                                    <img data-toggle="modal" data-target="#<%- department[i].id%>" src="01文圖標.png"/>
-                                    <h5><%- department[i].name %></h5>
+                                    <img data-toggle="modal" data-target="#<%- department[i].id%>" src="pic1.png" style="width: 70%;position: absolute;left: 0px;top: 0px;z-index: 0;" class="col-md-3"/>
+                                    <h5 style="position: absolute;left: 10px;top: 75px;z-index: 1;"><%- department[i].name %></h5>
                                     </div>
                                       <!-- Modal -->
                                       <div class="modal fade" id="<%-department[i].id%>" role="dialog">
@@ -210,33 +188,127 @@
                                               <div class="tab-content col-md-10">
                                                       <div class="tab-pane active" id="tab_literature_<%=department[i].id%>_a">
                                                           <h4>系所介紹</h4>
-                                                          <p><%- department[i].introduction %></p>
+                                                          <h6><%- department[i].introduction %></h6>
+                                                           <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width: 600px">
+                                                                  <!-- Indicators -->
+                                                                  <ol class="carousel-indicators">
+                                                                    <%var ha = false;%>
+                                                                    <%var la = 0;%>
+                                                                    <% for (var j in groupImg){%>
+                                                                        <% if ( groupImg[j].type == "intro" && groupImg[j].belongs == department[i].name ){ %>
+                                                                          <%if (ha==false){%>
+                                                                            <li data-target="#myCarousel" data-slide-to="<%la%>" class="active"></li>
+                                                                            <%ha=true;%>
+                                                                            <%la++;%>
+                                                                          <%}else{%>
+                                                                            <li data-target="#myCarousel" data-slide-to="<%la%>"></li>
+                                                                            <%la++;%>
+                                                                          <%}%>        
+                                                                        <%}%>
+                                                                    <%}%>
+                                                                  </ol>
+
+                                                                  <div class="carousel-inner">
+                                                                  <%var haha = false;%>
+                                                                  <% for (var j in groupImg){%>
+                                                                      <% if ( groupImg[j].type == "intro" && groupImg[j].belongs == department[i].name ){ %>
+
+                                                                        <%if (haha==false){%>
+                                                                          <div class="item active">
+                                                                        <%haha=true;%>
+                                                                        <%}else{%>
+                                                                          <div class="item">
+                                                                        <%}%>
+                                                                        <img src="<%= groupImg[j].path%>" style="width:600px;height: 400px">                              
+                                                                        </div>
+                                                                      <%}%>
+                                                                  <%}%>
+                                                                  </div>  
+                                                                  
+                                                                  
+                                                                  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                                                                        <span class="glyphicon glyphicon-chevron-left"></span>
+                                                                        <span class="sr-only">Previous</span>
+                                                                  </a>
+                                                                  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                                                                        <span class="glyphicon glyphicon-chevron-right"></span>
+                                                                        <span class="sr-only">Next</span>
+                                                                  </a>
+                                                              </div>
+
                                                       </div>
                                                       <div class="tab-pane" id="tab_literature_<%=department[i].id%>_b">
                                                           <h4>系學會</h4>
-                                                          <p><%- department[i].organization %></p>
+                                                          <h6><%- department[i].organization %></h6>
+                                                          <div id="myCarousel2" class="carousel slide" data-ride="carousel" style="width: 600px">
+                                                                  <!-- Indicators -->
+                                                                  <ol class="carousel-indicators">
+                                                                    <%var ha = false;%>
+                                                                    <%var la = 0;%>
+                                                                    <% for (var j in groupImg){%>
+                                                                        <% if ( groupImg[j].type == "or" && groupImg[j].belongs == department[i].name ){ %>
+                                                                          <%if (ha==false){%>
+                                                                            <li data-target="#myCarousel2" data-slide-to="<%la%>" class="active"></li>
+                                                                            <%ha=true;%>
+                                                                            <%la++;%>
+                                                                          <%}else{%>
+                                                                            <li data-target="#myCarousel2" data-slide-to="<%la%>"></li>
+                                                                            <%la++;%>
+                                                                          <%}%>        
+                                                                        <%}%>
+                                                                    <%}%>
+                                                                  </ol>
+
+                                                                  <div class="carousel-inner">
+                                                                  <%var haha = false;%>
+                                                                  <% for (var j in groupImg){%>
+                                                                      <% if ( groupImg[j].type == "or" && groupImg[j].belongs == department[i].name ){ %>
+
+                                                                        <%if (haha==false){%>
+                                                                          <div class="item active">
+                                                                        <%haha=true;%>
+                                                                        <%}else{%>
+                                                                          <div class="item">
+                                                                        <%}%>
+                                                                        <img src="<%= groupImg[j].path%>" style="width:600px;height: 400px">                              
+                                                                        </div>
+                                                                      <%}%>
+                                                                  <%}%>
+                                                                  </div>  
+                                                                  
+                                                                  
+                                                                  <a class="left carousel-control" href="#myCarousel2" data-slide="prev">
+                                                                        <span class="glyphicon glyphicon-chevron-left"></span>
+                                                                        <span class="sr-only">Previous</span>
+                                                                  </a>
+                                                                  <a class="right carousel-control" href="#myCarousel2" data-slide="next">
+                                                                        <span class="glyphicon glyphicon-chevron-right"></span>
+                                                                        <span class="sr-only">Next</span>
+                                                                  </a>
+                                                              </div>
+
                                                       </div>
                                                       <div class="tab-pane" id="tab_literature_<%=department[i].id%>_c">
                                                           <h4>系所活動</h4>
-                                                          <p><%- department[i].activity %></p>
+                                                          <h6><%- department[i].activity %></h6>
                                                       </div>
                                                       <div class="tab-pane" id="tab_literature_<%=department[i].id%>_d">
                                                           <h4>系隊</h4>
-                                                          <p><%- department[i].team %></p>
+                                                          <h6><%- department[i].team %></h6>
                                                       </div>
                                                       <div class="tab-pane" id="tab_literature_<%=department[i].id%>_e">
                                                           <h4>系上課程</h4>
-                                                          <p><%- department[i].course %></p>
+                                                          <h6><%- department[i].course %></h6>
                                                       </div>
-
                                               </div><!-- tab content -->
                                               </div><!-- end of container -->
                                             </div><!-- body -->
 
+
                                               
                                             <div class="modal-footer">
                                              <button class="btn btn-default edit_de" value="<%= department[i].id%>" data-dismiss="modal">編輯</button>
-                                             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#uploadimg">新增圖片</button>
+                                             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#uploadimg_li" data-dismiss="modal">新增圖片</button>
                                              <button class="btn btn-default btn-xs delete_de" value="<%= department[i].id%>"  data-dismiss="modal"> 刪除</button>
                                               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                             </div>
@@ -259,9 +331,9 @@
                         <% for (var i in department){%>
                             <% if ( department[i].type == "science"){ %>
                                 <div class="col-md-3">
-                                    <img data-toggle="modal" data-target="#<%- department[i].id%>" src="02理圖標.png"/>
-                                    <h5><%- department[i].name %></h5>
-                                </div>
+                                    <img data-toggle="modal" data-target="#<%- department[i].id%>" src="pic2.png" style="width: 70%;position: absolute;left: 0px;top: 0px;z-index: 0;" class="col-md-3"/>
+                                    <h5 style="position: absolute;left: 10px;top: 75px;z-index: 1;"><%- department[i].name %></h5>
+                                    </div>
                                       <!-- Modal -->
                                       <div class="modal fade" id="<%=department[i].id%>" role="dialog">
                                         <div class="modal-dialog modal-lg">
@@ -283,23 +355,23 @@
                                               <div class="tab-content col-md-10">
                                                       <div class="tab-pane active" id="tab_science_<%=department[i].id%>_a">
                                                           <h4>系所介紹</h4>
-                                                          <p><%- department[i].introduction %></p>
+                                                          <h6><%- department[i].introduction %></h6>
                                                       </div>
                                                       <div class="tab-pane" id="tab_science_<%=department[i].id%>_b">
                                                           <h4>系學會</h4>
-                                                          <p><%- department[i].organization %></p>
+                                                          <h6><%- department[i].organization %></h6>
                                                       </div>
                                                       <div class="tab-pane" id="tab_science_<%=department[i].id%>_c">
                                                           <h4>系所活動</h4>
-                                                          <p><%- department[i].activity %></p>
+                                                          <h6><%- department[i].activity %></h6>
                                                       </div>
                                                       <div class="tab-pane" id="tab_science_<%=department[i].id%>_d">
                                                           <h4>系隊</h4>
-                                                          <p><%- department[i].team %></p>
+                                                          <h6><%- department[i].team %></h6>
                                                       </div>
                                                       <div class="tab-pane" id="tab_science_<%=department[i].id%>_e">
                                                           <h4>系上課程</h4>
-                                                          <p><%- department[i].course %></p>
+                                                          <h6><%- department[i].course %></h6>
                                                       </div>
                                               </div><!-- tab content -->
                                               </div><!-- end of container -->
@@ -330,8 +402,8 @@
                         <% for (var i in department){%>
                             <% if ( department[i].type == "engineering"){ %>
                                     <div class="col-md-3">
-                                    <img data-toggle="modal" data-target="#<%- department[i].id%>" src="03工圖標.png"/>
-                                    <h5><%- department[i].name %></h5>
+                                    <img data-toggle="modal" data-target="#<%- department[i].id%>" src="pic3.png" style="width: 70%;position: absolute;left: 0px;top: 0px;z-index: 0;" class="col-md-3"/>
+                                    <h5 style="position: absolute;left: 10px;top: 75px;z-index: 1;"><%- department[i].name %></h5>
                                     </div>
                                       <!-- Modal -->
                                       <div class="modal fade" id="<%=department[i].id%>" role="dialog">
@@ -354,23 +426,23 @@
                                               <div class="tab-content col-md-10">
                                                       <div class="tab-pane active" id="tab_engineering_<%=department[i].id%>_a">
                                                           <h4>系所介紹</h4>
-                                                          <p><%- department[i].introduction %></p>
+                                                          <h6><%- department[i].introduction %></h6>
                                                       </div>
                                                       <div class="tab-pane" id="tab_engineering_<%=department[i].id%>_b">
                                                           <h4>系學會</h4>
-                                                          <p><%- department[i].organization %></p>
+                                                          <h6><%- department[i].organization %></h6>
                                                       </div>
                                                       <div class="tab-pane" id="tab_engineering_<%=department[i].id%>_c">
                                                           <h4>系所活動</h4>
-                                                          <p><%- department[i].activity %></p>
+                                                          <h6><%- department[i].activity %></h6>
                                                       </div>
                                                       <div class="tab-pane" id="tab_engineering_<%=department[i].id%>_d">
                                                           <h4>系隊</h4>
-                                                          <p><%- department[i].team %></p>
+                                                          <h6><%- department[i].team %></h6>
                                                       </div>
                                                       <div class="tab-pane" id="tab_engineering_<%=department[i].id%>_e">
                                                           <h4>系上課程</h4>
-                                                          <p><%- department[i].course %></p>
+                                                          <h6><%- department[i].course %><h6/h6>
                                                       </div>
                                               </div><!-- tab content -->
                                               </div><!-- end of container -->
@@ -401,8 +473,8 @@
                         <% for (var i in department){%>
                             <% if ( department[i].type == "management"){ %>
                                     <div class="col-md-3">
-                                    <img data-toggle="modal" data-target="#<%- department[i].id%>" src="04管理圖標.png"/>
-                                    <h5><%- department[i].name %></h5>
+                                    <img data-toggle="modal" data-target="#<%- department[i].id%>" src="pic5.png" style="width: 70%;position: absolute;left: 0px;top: 0px;z-index: 0;" class="col-md-3"/>
+                                    <h5 style="position: absolute;left: 10px;top: 75px;z-index: 1;"><%- department[i].name %></h5>
                                     </div>
                                       <!-- Modal -->
                                       <div class="modal fade" id="<%=department[i].id%>" role="dialog">
@@ -425,23 +497,23 @@
                                               <div class="tab-content col-md-10">
                                                       <div class="tab-pane active" id="tab_management_<%=department[i].id%>_a">
                                                           <h4>系所介紹</h4>
-                                                          <p><%- department[i].introduction %></p>
+                                                          <h6><%- department[i].introduction %></h6>
                                                       </div>
                                                       <div class="tab-pane" id="tab_management_<%=department[i].id%>_b">
                                                           <h4>系學會</h4>
-                                                          <p><%- department[i].organization %></p>
+                                                          <h6><%- department[i].organization %></h6>
                                                       </div>
                                                       <div class="tab-pane" id="tab_management_<%=department[i].id%>_c">
                                                           <h4>系所活動</h4>
-                                                          <p><%- department[i].activity %></p>
+                                                          <h6><%- department[i].activity %></h6>
                                                       </div>
                                                       <div class="tab-pane" id="tab_management_<%=department[i].id%>_d">
                                                           <h4>系隊</h4>
-                                                          <p><%- department[i].team %></p>
+                                                          <h6><%- department[i].team %></h6>
                                                       </div>
                                                       <div class="tab-pane" id="tab_management_<%=department[i].id%>_e">
                                                           <h4>系上課程</h4>
-                                                          <p><%- department[i].course %></p>
+                                                          <h6><%- department[i].course %></h6>
                                                       </div>
                                               </div><!-- tab content -->
                                               </div><!-- end of container -->
@@ -472,8 +544,8 @@
                         <% for (var i in department){%>
                             <% if ( department[i].type == "ceecs"){ %>
                                     <div class="col-md-3">
-                                    <img data-toggle="modal" data-target="#<%- department[i].id%>" src="05資電圖標.png"/>
-                                    <h5><%- department[i].name %></h5>
+                                    <img data-toggle="modal" data-target="#<%- department[i].id%>" src="pic7.png" style="width: 70%;position: absolute;left: 0px;top: 0px;z-index: 0;" class="col-md-3"/>
+                                    <h5 style="position: absolute;left: 10px;top: 60px;z-index: 1;"><%- department[i].name %></h5>
                                     </div>
                                       <!-- Modal -->
                                       <div class="modal fade" id="<%=department[i].id%>" role="dialog">
@@ -496,23 +568,23 @@
                                               <div class="tab-content col-md-10">
                                                       <div class="tab-pane active" id="tab_ceecs_<%=department[i].id%>_a">
                                                           <h4>系所介紹</h4>
-                                                          <p><%- department[i].introduction %></p>
+                                                          <h6><%- department[i].introduction %></h6>
                                                       </div>
                                                       <div class="tab-pane" id="tab_ceecs_<%=department[i].id%>_b">
                                                           <h4>系學會</h4>
-                                                          <p><%- department[i].organization %></p>
+                                                          <h6><%- department[i].organization %></h6>
                                                       </div>
                                                       <div class="tab-pane" id="tab_ceecs_<%=department[i].id%>_c">
                                                           <h4>系所活動</h4>
-                                                          <p><%- department[i].activity %></p>
+                                                          <h6><%- department[i].activity %></h6>
                                                       </div>
                                                       <div class="tab-pane" id="tab_ceecs_<%=department[i].id%>_d">
                                                           <h4>系隊</h4>
-                                                          <p><%- department[i].team %></p>
+                                                          <h6><%- department[i].team %></h6>
                                                       </div>
                                                       <div class="tab-pane" id="tab_ceecs_<%=department[i].id%>_e">
                                                           <h4>系上課程</h4>
-                                                          <p><%- department[i].course %></p>
+                                                          <h6><%- department[i].course %></h6>
                                                       </div>
                                               </div><!-- tab content -->
                                               </div><!-- end of container -->
@@ -543,8 +615,8 @@
                         <% for (var i in department){%>
                             <% if ( department[i].type == "earth"){ %>
                                     <div class="col-md-3">
-                                    <img data-toggle="modal" data-target="#<%- department[i].id%>" src="06地科圖標.png"/>
-                                    <h5><%- department[i].name %></h5>
+                                    <img data-toggle="modal" data-target="#<%- department[i].id%>" src="pic4.png" style="width: 70%;position: absolute;left: 0px;top: 0px;z-index: 0;" class="col-md-3"/>
+                                    <h5 style="position: absolute;left: 10px;top: 75px;z-index: 1;"><%- department[i].name %></h5>
                                     </div>
                                       <!-- Modal -->
                                       <div class="modal fade" id="<%=department[i].id%>" role="dialog">
@@ -567,23 +639,23 @@
                                               <div class="tab-content col-md-10">
                                                       <div class="tab-pane active" id="tab_earth_<%=department[i].id%>_a">
                                                           <h4>系所介紹</h4>
-                                                          <p><%- department[i].introduction %></p>
+                                                          <h6><%- department[i].introduction %></h6>
                                                       </div>
                                                       <div class="tab-pane" id="tab_earth_<%=department[i].id%>_b">
                                                           <h4>系學會</h4>
-                                                          <p><%- department[i].organization %></p>
+                                                          <h6><%- department[i].organization %></h6>
                                                       </div>
                                                       <div class="tab-pane" id="tab_earth_<%=department[i].id%>_c">
                                                           <h4>系所活動</h4>
-                                                          <p><%- department[i].activity %></p>
+                                                          <h6><%- department[i].activity %></h6>
                                                       </div>
                                                       <div class="tab-pane" id="tab_earth_<%=department[i].id%>_d">
                                                           <h4>系隊</h4>
-                                                          <p><%- department[i].team %></p>
+                                                          <h6><%- department[i].team %></h6>
                                                       </div>
                                                       <div class="tab-pane" id="tab_earth_<%=department[i].id%>_e">
                                                           <h4>系上課程</h4>
-                                                          <p><%- department[i].course %></p>
+                                                          <h6><%- department[i].course %></h6>
                                                       </div>
                                               </div><!-- tab content -->
                                               </div><!-- end of container -->
@@ -614,8 +686,8 @@
                         <% for (var i in department){%>
                             <% if ( department[i].type == "hikka"){ %>
                                     <div class="col-md-3">
-                                    <img data-toggle="modal" data-target="#<%- department[i].id%>" src="07客家圖標.png"/>
-                                    <h5><%- department[i].name %></h5>
+                                    <img data-toggle="modal" data-target="#<%- department[i].id%>" src="pic8.png" style="width: 70%;position: absolute;left: 0px;top: 0px;z-index: 0;" class="col-md-3"/>
+                                    <h5 style="position: absolute;left: 10px;top: 75px;z-index: 1;"><%- department[i].name %></h5>
                                     </div>
                                       <!-- Modal -->
                                       <div class="modal fade" id="<%=department[i].id%>" role="dialog">
@@ -638,23 +710,23 @@
                                             <div class="tab-content col-md-10">
                                                     <div class="tab-pane active" id="tab_hikka_<%=department[i].id%>_a">
                                                         <h4>系所介紹</h4>
-                                                        <p><%- department[i].introduction %></p>
+                                                        <h6><%- department[i].introduction %></h6>
                                                     </div>
                                                     <div class="tab-pane" id="tab_hikka_<%=department[i].id%>_b">
                                                         <h4>系學會</h4>
-                                                        <p><%- department[i].organization %></p>
+                                                        <h6><%- department[i].organization %></h6>
                                                     </div>
                                                     <div class="tab-pane" id="tab_hikka_<%=department[i].id%>_c">
                                                         <h4>系所活動</h4>
-                                                        <p><%- department[i].activity %></p>
+                                                        <h6><%- department[i].activity %></h6>
                                                     </div>
                                                     <div class="tab-pane" id="tab_hikka_<%=department[i].id%>_d">
                                                         <h4>系隊</h4>
-                                                        <p><%- department[i].team %></p>
+                                                        <h6><%- department[i].team %></h6>
                                                     </div>
                                                     <div class="tab-pane" id="tab_hikka_<%=department[i].id%>_e">
                                                         <h4>系上課程</h4>
-                                                        <p><%- department[i].course %></p>
+                                                        <h6><%- department[i].course %></h6>
                                                     </div>
                                               </div><!-- tab content -->
                                               </div><!-- end of container -->
@@ -686,8 +758,8 @@
                         <% for (var i in department){%>
                             <% if ( department[i].type == "chst"){ %>
                                     <div class="col-md-3">
-                                    <img data-toggle="modal" data-target="#<%- department[i].id%>" src="08生醫圖標.png"/>
-                                    <h5><%- department[i].name %></h5>
+                                    <img data-toggle="modal" data-target="#<%- department[i].id%>" src="pic6.png" style="width: 70%;position: absolute;left: 0px;top: 0px;z-index: 0;" class="col-md-3"/>
+                                    <h5 style="position: absolute;left: 10px;top: 75px;z-index: 1;"><%- department[i].name %></h5>
                                     </div>
                                       <!-- Modal -->
                                       <div class="modal fade" id="<%=department[i].id%>" role="dialog">
@@ -710,23 +782,23 @@
                                               <div class="tab-content col-md-10">
                                                       <div class="tab-pane active" id="tab_chst_<%=department[i].id%>_a">
                                                           <h4>系所介紹</h4>
-                                                          <p><%- department[i].introduction %></p>
+                                                          <h6><%- department[i].introduction %></h6>
                                                       </div>
-                                                      <div class="tab-pane" id="tab_chst_<%=department[i].id%>_b">
+                                                      <div class="tab-pane" id="tab_chst_<%=departh6ent[i].id%>_b">
                                                           <h4>系學會</h4>
-                                                          <p><%- department[i].organization %></p>
+                                                          <h6><%- department[i].organization %></h6>
                                                       </div>
                                                       <div class="tab-pane" id="tab_chst_<%=department[i].id%>_c">
                                                           <h4>系所活動</h4>
-                                                          <p><%- department[i].activity %></p>
+                                                          <h6><%- department[i].activity %></h6>
                                                       </div>
                                                       <div class="tab-pane" id="tab_chst_<%=department[i].id%>_d">
                                                           <h4>系隊</h4>
-                                                          <p><%- department[i].team %></p>
+                                                          <h6><%- department[i].team %></h6>
                                                       </div>
                                                       <div class="tab-pane" id="tab_chst_<%=department[i].id%>_e">
                                                           <h4>系上課程</h4>
-                                                          <p><%- department[i].course %></p>
+                                                          <h6><%- department[i].course %></h6>
                                                       </div>
                                               </div><!-- tab content -->
                                               </div><!-- end of container -->
@@ -782,23 +854,23 @@
                                               <div class="tab-content col-md-10">
                                                       <div class="tab-pane active" id="tab_space_<%=department[i].id%>_a">
                                                           <h4>系所介紹</h4>
-                                                          <p><%- department[i].introduction %></p>
+                                                          <p1><%- department[i].introduction %></p1>
                                                       </div>
                                                       <div class="tab-pane" id="tab_space_<%=department[i].id%>_b">
                                                           <h4>系學會</h4>
-                                                          <p><%- department[i].organization %></p>
+                                                          <h6><%- department[i].organization %></h6>
                                                       </div>
                                                       <div class="tab-pane" id="tab_space_<%=department[i].id%>_c">
                                                           <h4>系所活動</h4>
-                                                          <p><%- department[i].activity %></p>
+                                                          <h6><%- department[i].activity %></h6>
                                                       </div>
                                                       <div class="tab-pane" id="tab_space_<%=department[i].id%>_d">
                                                           <h4>系隊</h4>
-                                                          <p><%- department[i].team %></p>
+                                                          <h6><%- department[i].team %></h6>
                                                       </div>
                                                       <div class="tab-pane" id="tab_space_<%=department[i].id%>_e">
                                                           <h4>系上課程</h4>
-                                                          <p><%- department[i].course %></p>
+                                                          <h6><%- department[i].course %></h6>
                                                       </div>
                                               </div><!-- tab content -->
                                               </div><!-- end of container -->
@@ -830,11 +902,11 @@
     </footer>
         <% include js %>
         <% include ../layouts/js %>
+        
     <script type="text/javascript">
     !function(t){var r="1.5.3",n={};t.vmodel={},t.vmodel.api=new function(){this.obj_sort=function(r){var n=[],e=0;t.each(r,function(t,r){n[e++]=t}),n.sort();var o={};return t.each(n,function(t,n){o[n]=r[n]}),o},this.each_autoload=function(r,n){return r?(t.each(r,function(r,e){return"function"!=t.type(n[e])?(local.msg_error(e,"不存在。"),!1):void n[e]()}),!0):!1},this.is_trigger_autoload=function(r,n){try{if(!n)throw"須要指定方法名稱陣列";if("array"!=t.type(n))throw"is_trigger_autoload() 代入的方法名稱必須要是陣列";{t.vmodel.api.each_autoload(n,r)}return!0}catch(e){return console.log(e),!1}},this.get_autoload_funame=function(r){var n=[],e=t.type(r.autoload);try{if("array"==e)n=r.autoload;else{if("function"!=e)throw r.vname+" 的 autoload 須要是陣列或 function。";if(res=r.autoload(),"array"!=t.type(res))throw r.vname+" 的 get_autoload_funame() 最終需要得到的型態應該是陣列。";n=res}return n}catch(o){return console.log(o),!1}}},t.vmodel.version=function(){return r},t.vmodel.end=function(r,n){var e=this;this.param_match=function(r,n){var e=[];if("function"==t.type(r)){var o=t.vmodel.get();e=[o,r]}else{var a={};t.each(r,function(r,n){a[n]=t.vmodel.get(n)}),e=[a,n]}return e};var o=e.param_match(r,n),a=o[0],i=o[1];r=n=null;var l=setInterval(function(){var r=!0;t.each(a,function(n,e){var o=t.vmodel.history(e.vname);return 0==o?(r=!1,!0):void(r=!0)}),r&&(i(a),clearInterval(l))},0)},t.vmodel.history=function(r){var n=!1,e=t.vmodel.get(r),o=e.root.attr("data-vmodel-history");if(!o)return!1;var a=t.parseJSON(o);return t.each(a,function(t,e){return e.vname!=r?!0:(n=e,!1)}),n},t.vmodel.get=function(r,e,o){var a=this;this.chk_trigger_callback=function(r){var n=!0;return t.each(r.fun_struct,function(t,r){return 0==r?(n=!1,!1):void 0}),0==n?!1:!0},this.display_attr=function(r,n){var e=new Date,o=[{vname:r,status:!0,timestamp:Date.parse(e)+"."+e.getMilliseconds()}],a=n.root.attr("data-vmodel-history");if(a){var i=t.parseJSON(a);i.push(o[0]),o=i}var l=JSON.stringify(o);n.root.attr("data-vmodel-history",l)},this.param_match=function(r,n,e){var o=[],a=t.type(r);return r?"string"==a&&(o=[r,n,e]):o=[r,null,null],o};var i=a.param_match(r,e,o),r=i[0],l=i[1],u=i[2];if(i=e=o=null,!r)return t.vmodel.api.obj_sort(n);var c=n[r];if(!c)return console.log("呼叫的倉儲名稱 "+r+" 不存在。"),!1;if("boolean"==t.type(l)&&1==l){var s=t.vmodel.api.get_autoload_funame(c),f=(t.vmodel.api.is_trigger_autoload(c,s),t.type(u));if("function"==f||"boolean"==f&&1==u){"function"==f&&(c.vmodel_get_callback=function(){u(c)});var v=setInterval(function(){if(1==a.chk_trigger_callback(c)){if(clearInterval(v),a.display_attr(r,c),"boolean"==f)return!0;c.vmodel_get_callback()}},20);return!0}}return n[r]},t.vmodel["delete"]=function(t){return t||""==t?n[t]&&delete n[t]:n={},this},t.fn.vmodel=function(r,e,o){local=this;var a=local.selector;return this.remove_sign=function(t){return"--"==t.substring(0,2)?t.substring(2):t},this.msg_error=function(t,r){console.log("錯誤：『"+a+"』呼叫的 function 『"+t+"』："+r)},this.define_autoload_struct=function(r,n){t.each(n,function(t,n){r.fun_struct[n]=!1})},this.ext_expend=function(r,n){var e=null!=n?n:null;return t.extend(r,{vname:e,selector:a,root:t(local),fun_struct:{},struct:function(n,e){if("boolean"==t.type(e)||e||(e=!0),"string"==t.type(n)){if("boolean"!=t.type(r.fun_struct[n]))return console.log("找不到名稱為 "+n+"的建構狀態"),!1;r.fun_struct[n]=e}else{if("array"!=t.type(n))return console.log("建構名稱須要指定"),!1;t.each(n,function(t,n){r.fun_struct[n]=e})}return!0}}),r},this.param_match=function(r,n,e){var o=null,a=null,i=null;return"string"==t.type(r)?(o=local.remove_sign(r),"boolean"==t.type(n)?(a=n,i=new e):i=new n):i=new r,[o,a,i]},this.put_storage=function(t,r){if(null!=t){if(n[t])return console.log("倉儲名稱『"+t+"』重複。"),!1;n[t]=r}},this.main=function(r,n,e){var o=local.param_match(r,n,e),a=o[0],i=o[1],l=o[2];r=n=e=null;var l=local.ext_expend(l,a),u=t.vmodel.api.get_autoload_funame(l);if(local.define_autoload_struct(l,u),i===!0){var c=t.vmodel.api.is_trigger_autoload(l,u);c===!1&&local.msg_error("is_trigger_autoload","發生錯誤")}return local.put_storage(a,l),this},local.main(r,e,o)}}(jQuery);
     </script>
 
-    //======
     <script type="text/javascript">
     $(function (){
         // 建立一個模組叫做 preview，根節點為 .form1

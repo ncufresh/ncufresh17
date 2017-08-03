@@ -9,7 +9,9 @@ var club = mongoose.Schema({
 	},
     type : String,
     name : String,
-    introduction : String
+    introduction : String,
+    howtoadd :String,
+    FBfans :String,
 });
 
 module.exports = mongoose.model( 'club', club );

@@ -444,7 +444,7 @@ $(function(){
             },
             success: function(data){
                 for(var i in data){
-                    $("#img-list").append('<li id="li'+ i +'"><img width="100%" src="'+data[i].img_path+'" /></li>');
+                    $("#img-list").append('<li style="height: 100%;left: 50%;transform: translate(-50%,0%);" id="li'+ i +'"><img height="100%" src="'+data[i].img_path+'" /></li>');
                 }
                 $("#li0").addClass("selected");
 				$li = $('ul li', $silder).not(':first').css('opacity', 0).end();
@@ -458,7 +458,7 @@ $(function(){
 						console.log(data);
 						$("#detail-content").empty();
 						$("#detail-name").text(data.name);
-						$("#detail-content").append("<br><br><br><br>"+data.content+"<br><br><br><br>");
+						$("#detail-content").append("<br><br><br><br><br>"+data.content+"<br><br><br><br>");
 						$("#detail_modal").modal("show");
 					}
 				});
