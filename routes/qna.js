@@ -6,11 +6,9 @@ var Qna = require('../models/qna');
 router.get('/', function(req, res, next) {
   // 用觀看次數排序
   Qna.find({}).sort({ view: 'desc' }).exec(function(err, qna) {
-    if (err)
-      throw err;
 
     // Array：用來將資料庫 type 欄位的數字轉換成文字
-    // ex: typeToName[ QnA.type = 1 ] === "校園生活"
+    // ex: typeToName[ 1 ] === "校園生活"
     var typeToName = [
       "其他",
       "校園生活",
@@ -38,12 +36,20 @@ router.get('/', function(req, res, next) {
 });
 
 // 當前端點選問題時會傳送 xhr 到這裡
-router.get('/api/:id', function(req, res) {
+router.get('/:id', function(req, res) {
+  if (!req.xhr) {
+    res.redirect('/qna');
+  }
+
   // 依據 api_token 尋找相對應的 Qna
   Qna.findById(req.params.id, function(err, qna) {
-    if (err)
-      res.send(err);
-    else {
+    if (err) {
+      res.status(err.status || 500);
+      res.render('error', {
+        title: '頁面不存在 ｜ 新生知訊網',
+        user: req.user,
+      });
+    } else {
       // 增加瀏覽次數
       qna.view++;
       qna.save(function(err) {
@@ -82,11 +88,34 @@ router.post('/', isLoggedIn, function(req, res) {
   });
 });
 
+// 回答問題
+router.post('/:id', isAdmin, function(req, res) {
+  Qna.findById(req.params.id, function(err, qna) {
+    qna.answer = req.body.answer;
+    qna.save(function(err) {
+      if (err)
+        throw err;
+      else {
+        res.redirect('/qna');
+      }
+    });
+  });
+});
+
 function isLoggedIn(req, res, next) {
   if (!req.isAuthenticated())
     res.redirect('/login');
   else
     return next();
+}
+
+function isAdmin(req, res, next) {
+  if (req.isAuthenticated()) {
+    if (req.user.local.accountType === 'admin') {
+      return next();
+    }
+  }
+  res.redirect('/');
 }
 
 module.exports = router;
