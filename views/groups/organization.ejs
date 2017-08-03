@@ -109,8 +109,8 @@
             <div class="row container" id="Student">
                         <% for (var i in organization){%>
                                     <div class="col-md-3">
-                                    <img data-toggle="modal" data-target="#<%- organization[i].id%>" src="00社團圖標(全).png"/>
-                                    <h5><%= organization[i].name %></h5>
+                                    <img data-toggle="modal" data-target="#<%- organization[i].id%>" src="pic1.png" style="width: 70%;position: absolute;left: 0px;top: 0px;z-index: 0;" class="col-md-3"/>
+                                    <h5 style="position: absolute;left: 10px;top: 75px;z-index: 1;"><%- organization[i].name %></h5>
                                     </div>
                                       <!-- Modal -->
                                       <div class="modal fade" id="<%-organization[i].id%>" role="dialog">
@@ -202,6 +202,43 @@
     </script>
     <script type="text/javascript">
     CKEDITOR.replace('notice',{
+      filebrowserUploadUrl: '/uploader',
+    });
+    CKEDITOR.editorConfig = function (config){
+        config.enterMode = CKEDITOR.ENTER_BR;
+        config.autoParagraph = false;
+    };
+    </script>
+
+    <script type="text/javascript">
+    CKEDITOR.replace('edit_introduction',{
+      filebrowserUploadUrl: '/uploader',
+    });
+    CKEDITOR.editorConfig = function (config){
+        config.enterMode = CKEDITOR.ENTER_BR;
+        config.autoParagraph = false;
+    };
+    </script>
+    <script type="text/javascript">
+    CKEDITOR.replace('edit_branch',{
+      filebrowserUploadUrl: '/uploader',
+    });
+    CKEDITOR.editorConfig = function (config){
+        config.enterMode = CKEDITOR.ENTER_BR;
+        config.autoParagraph = false;
+    };
+    </script>
+    <script type="text/javascript">
+    CKEDITOR.replace('edit_freshmenweek',{
+      filebrowserUploadUrl: '/uploader',
+    });
+    CKEDITOR.editorConfig = function (config){
+        config.enterMode = CKEDITOR.ENTER_BR;
+        config.autoParagraph = false;
+    };
+    </script>
+    <script type="text/javascript">
+    CKEDITOR.replace('edit_notice',{
       filebrowserUploadUrl: '/uploader',
     });
     CKEDITOR.editorConfig = function (config){
