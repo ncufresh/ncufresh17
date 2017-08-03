@@ -174,3 +174,15 @@
         <% include ../layouts/js %>
 </body>
 </html>
+
+<script src="/javascript/ckeditor/ckeditor.js"></script>
+
+<script type="text/javascript">
+  CKEDITOR.replace('content',{
+    filebrowserUploadUrl: '/uploader',
+  });
+  CKEDITOR.editorConfig = function (config){
+      config.enterMode = CKEDITOR.ENTER_BR;
+      config.autoParagraph = false;
+  };
+</script>

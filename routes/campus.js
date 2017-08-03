@@ -9,7 +9,7 @@ var formidable = require('formidable');
 var shortId = require('shortid');
 /* GET home page. */
 router.get('/', function (req, res, next) {
-	res.render('campus/index', { user: req.user, title: 'campus' });
+	res.render('campus/index', { user: req.user, title: '校園導覽 ｜ 新生知訊網' });
 });
 
 router.get('/guide', function (req, res, next) {
@@ -32,7 +32,7 @@ router.get('/guide', function (req, res, next) {
 			}
 			res.render('campus/guide', {
 				user: req.user,
-				title: '校園地圖' ,
+				title: '校園地圖 ｜ 新生知訊網' ,
 				map_objs: map_objs,
 				dep: dep,
 				work: work,
@@ -65,7 +65,7 @@ router.get('/help', function (req, res, next) {
 			}
 			res.render('campus/help', {
 				user: req.user,
-				title: '校園地圖' ,
+				title: '校園防災 ｜ 新生知訊網' ,
 				map_objs: map_objs,
 				dep: dep,
 				work: work,
@@ -80,7 +80,7 @@ router.get('/help', function (req, res, next) {
 
 router.get('/newData',isAdmin, function (req, res, next) {
 	building.find({}).sort({ type: 1 }).exec(function (err, buildings) {
-		res.render('campus/newData', { user: req.user, title: '新增建築物', buildings: buildings });
+		res.render('campus/newData', { user: req.user, title: '新增建築物 ｜ 新生知訊網', buildings: buildings });
 	});
 });
 
@@ -88,7 +88,7 @@ router.get('/editMap',isAdmin, function (req, res, next) {
 	building.find({}).sort({ type: 1 }).exec(function (err, buildings) {
 		map_obj.find({}).sort({ build_type: 1 }).exec(function (err, map_objs){
 			res.render('campus/editMap', {
-				user: req.user, title: '編輯地圖物件',
+				user: req.user, title: '編輯地圖物件 ｜ 新生知訊網',
 				buildings: buildings ,
 				map_objs: map_objs
 			});

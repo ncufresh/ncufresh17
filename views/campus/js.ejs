@@ -247,6 +247,7 @@ $(document).ready(function(){
         $(".type-menu").addClass("no-animate");
         $('[data-toggle="tooltip"]').tooltip("hide");
         $("*").stop(false,true);
+        $("#goback").fadeOut(500);
         $(".type-menu").fadeOut(300);  
         $("#type-title").attr("src",$(this).attr("src"))
                         .attr("alt",now).fadeIn(1000);
@@ -267,6 +268,7 @@ $(document).ready(function(){
     $("#type-title").click(function(){
         var now=$(this).attr("alt");
         $("*").stop(false,true);
+        $("#goback").fadeIn(500);
         $(".s"+now).slideUp(500,function(){
             $("#type-title").fadeOut(300);
             $("#map-left").animate({
@@ -319,15 +321,27 @@ $(document).ready(function(){
      $(".help-menu").click(function(){
         var now=$(this).attr("alt");
         $(".map-build").stop(false,true);
-        $(".map-build."+now).css("display","block").animate({
+        if($(this).hasClass("active")){
+            $("#goback").stop().fadeIn(500);
+            $(".map-build").css("display","block").animate({
+                opacity:1
+            },300);
+            $(".help-menu").removeClass("active");
+        }
+        else{ 
+            $(".help-menu").removeClass("active");
+            $("#goback").stop().fadeOut(500);
+            $(".map-build."+now).css("display","block").animate({
             opacity:1
-        },200);
-        $(".map-build."+now).tooltip("show");
-        $(".map-build").not("."+now).animate({
-            opacity:0
-        },200,function(){
-            $(".map-build").not("."+now).css("display","none")
-        });
+            },200);
+            $(".map-build."+now).tooltip("show");
+            $(".map-build").not("."+now).animate({
+                opacity:0
+            },200,function(){
+                $(".map-build").not("."+now).css("display","none")
+            });
+            $(this).addClass("active");
+        }
     });
     	// 先取得必要的元素並用 jQuery 包裝
 	var $silder = $('.abgne_product_arrow_silder'), 
@@ -337,7 +351,7 @@ $(document).ready(function(){
  
 	// 把箭頭超連結加到 $silder 中
 	// 並幫 $silder 加上 hover 事件
-	$silder.append($arrows).hover(function(){
+	$arrows.hover(function(){
 		var no = $li.filter('.selected').index();
 	});
  
@@ -368,7 +382,7 @@ $(document).ready(function(){
             },
             success: function(data){
                 for(var i in data){
-                    $("#img-list").append('<li style="height: 100%;left: 50%;transform: translate(-50%,0%);" id="li'+ i +'"><img height="100%" src="'+data[i].img_path+'" /></li>');
+                    $("#img-list").append('<li style="height: 100%;width: 100%;left: 50%;transform: translate(-50%,0%);" id="li'+ i +'"><a href="'+data[i].img_path+'" target="_blank"><img height="100%" src="'+data[i].img_path+'" /></a></li>');
                 }
                 $("#li0").addClass("selected");
 				$li = $('ul li', $silder).not(':first').css('opacity', 0).end();
@@ -381,7 +395,7 @@ $(document).ready(function(){
 					success: function(data){
 						console.log(data);
 						$("#detail-name").text(data.name);
-						$("#detail-content").append("<br><br><br><br><br>"+data.content+"<br><br><br>");
+						$("#detail-content").append("<div style='height: 3.52vw;'></div>"+data.content+"<br>");
 						$("#detail_modal").modal("show");
 					}
 				});
@@ -403,19 +417,6 @@ $(document).ready(function(){
         });
      });
 })
-</script>
-
-
-<script src="/javascript/ckeditor/ckeditor.js"></script>
-
-<script type="text/javascript">
-  CKEDITOR.replace('content',{
-    filebrowserUploadUrl: '/uploader',
-  });
-  CKEDITOR.editorConfig = function (config){
-      config.enterMode = CKEDITOR.ENTER_BR;
-      config.autoParagraph = false;
-  };
 </script>
 
 <style>
@@ -443,15 +444,12 @@ $(document).ready(function(){
     .abgne_product_arrow_silder ul li.selected {
         z-index: 2;
     }
-    .prev {
+    .arrow {
         position: absolute;
         z-index: 3;
 		cursor: pointer;
-    }
-    .next {
-        position: absolute;
-        z-index:3;
-		cursor: pointer;
+        width:8%;
+        left:72%;
     }
 	.arrow:hover{
 		background-color:rgba(255,255,255,0.33);
