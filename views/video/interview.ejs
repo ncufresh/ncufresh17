@@ -19,11 +19,378 @@
             font-family: "LiGothic", "FangSong",Arial,cursive;
             font-size: 6vw;
         }
+        .bb{
+            padding: 0vw !important;
+            margin-bottom: 0vw !important;
+            line-height: 3vw;
+        }
     </style>
     <% include ../layouts/head %>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function(){
+        var strUrl = location.search;
+        if (strUrl.indexOf("?") !== -1) {
+            var getSearch = strUrl.split("?");
+            var getString = getSearch[1];
+            if(getString=="1"){
+                $('#under-0').css({"display":"none"});
+                $('#under-1').css({"display":"block"});
+                $('#under-2').css({"display":"none"});
+                $('#under-3').css({"display":"none"});
+                $('#under-4').css({"display":"none"});
+                $('#under-5').css({"display":"none"});
+                $('#under-6').css({"display":"none"});
+                $('#under-7').css({"display":"none"});
+                $('#under-8').css({"display":"none"});
+            }else if(getString=="1.1"){
+                $('#under-0').css({"display":"none"});
+                $('#under-1').css({"display":"block"});
+                $('#under-2').css({"display":"none"});
+                $('#under-3').css({"display":"none"});
+                $('#under-4').css({"display":"none"});
+                $('#under-5').css({"display":"none"});
+                $('#under-6').css({"display":"none"});
+                $('#under-7').css({"display":"none"});
+                $('#under-8').css({"display":"none"});
+                $("#1").modal("show");
+                $("#s1").html('<%- D1 %>')
+            }else if(getString=="1.2"){
+                $('#under-0').css({"display":"none"});
+                $('#under-1').css({"display":"block"});
+                $('#under-2').css({"display":"none"});
+                $('#under-3').css({"display":"none"});
+                $('#under-4').css({"display":"none"});
+                $('#under-5').css({"display":"none"});
+                $('#under-6').css({"display":"none"});
+                $('#under-7').css({"display":"none"});
+                $('#under-8').css({"display":"none"});
+                $("#2").modal("show");
+                $("#s2").html('<%- D2 %>')
+            }else if(getString=="1.3"){
+                $('#under-0').css({"display":"none"});
+                $('#under-1').css({"display":"block"});
+                $('#under-2').css({"display":"none"});
+                $('#under-3').css({"display":"none"});
+                $('#under-4').css({"display":"none"});
+                $('#under-5').css({"display":"none"});
+                $('#under-6').css({"display":"none"});
+                $('#under-7').css({"display":"none"});
+                $('#under-8').css({"display":"none"});
+                $("#3").modal("show");
+                $("#s3").html('<%- D3 %>')
+            }else if(getString=="2"){
+                $('#under-0').css({"display":"none"});
+                $('#under-1').css({"display":"none"});
+                $('#under-2').css({"display":"block"});
+                $('#under-3').css({"display":"none"});
+                $('#under-4').css({"display":"none"});
+                $('#under-5').css({"display":"none"});
+                $('#under-6').css({"display":"none"});
+                $('#under-7').css({"display":"none"});
+                $('#under-8').css({"display":"none"});
+            }else if(getString=="2.1"){
+                $('#under-0').css({"display":"none"});
+                $('#under-1').css({"display":"none"});
+                $('#under-2').css({"display":"block"});
+                $('#under-3').css({"display":"none"});
+                $('#under-4').css({"display":"none"});
+                $('#under-5').css({"display":"none"});
+                $('#under-6').css({"display":"none"});
+                $('#under-7').css({"display":"none"});
+                $('#under-8').css({"display":"none"});
+                $("#4").modal("show");
+                $("#s4").html('<%- D4 %>')
+            }else if(getString=="2.2"){
+                $('#under-0').css({"display":"none"});
+                $('#under-1').css({"display":"none"});
+                $('#under-2').css({"display":"block"});
+                $('#under-3').css({"display":"none"});
+                $('#under-4').css({"display":"none"});
+                $('#under-5').css({"display":"none"});
+                $('#under-6').css({"display":"none"});
+                $('#under-7').css({"display":"none"});
+                $('#under-8').css({"display":"none"});
+                $("#5").modal("show");
+                $("#s5").html('<%- D5 %>')
+            }else if(getString=="2.3"){
+                $('#under-0').css({"display":"none"});
+                $('#under-1').css({"display":"none"});
+                $('#under-2').css({"display":"block"});
+                $('#under-3').css({"display":"none"});
+                $('#under-4').css({"display":"none"});
+                $('#under-5').css({"display":"none"});
+                $('#under-6').css({"display":"none"});
+                $('#under-7').css({"display":"none"});
+                $('#under-8').css({"display":"none"});
+                $("#6").modal("show");
+                $("#s6").html('<%- D6 %>')
+            }else if(getString=="3"){
+                $('#under-0').css({"display":"none"});
+                $('#under-1').css({"display":"none"});
+                $('#under-2').css({"display":"none"});
+                $('#under-3').css({"display":"block"});
+                $('#under-4').css({"display":"none"});
+                $('#under-5').css({"display":"none"});
+                $('#under-6').css({"display":"none"});
+                $('#under-7').css({"display":"none"});
+                $('#under-8').css({"display":"none"});
+            }else if(getString=="3.1"){
+                $('#under-0').css({"display":"none"});
+                $('#under-1').css({"display":"none"});
+                $('#under-2').css({"display":"none"});
+                $('#under-3').css({"display":"block"});
+                $('#under-4').css({"display":"none"});
+                $('#under-5').css({"display":"none"});
+                $('#under-6').css({"display":"none"});
+                $('#under-7').css({"display":"none"});
+                $('#under-8').css({"display":"none"});
+                $("#7").modal("show");
+                $("#s7").html('<%- D7 %>')
+            }else if(getString=="3.2"){
+                $('#under-0').css({"display":"none"});
+                $('#under-1').css({"display":"none"});
+                $('#under-2').css({"display":"none"});
+                $('#under-3').css({"display":"block"});
+                $('#under-4').css({"display":"none"});
+                $('#under-5').css({"display":"none"});
+                $('#under-6').css({"display":"none"});
+                $('#under-7').css({"display":"none"});
+                $('#under-8').css({"display":"none"});
+                $("#8").modal("show");
+                $("#s8").html('<%- D8 %>')
+            }else if(getString=="3.3"){
+                $('#under-0').css({"display":"none"});
+                $('#under-1').css({"display":"none"});
+                $('#under-2').css({"display":"none"});
+                $('#under-3').css({"display":"block"});
+                $('#under-4').css({"display":"none"});
+                $('#under-5').css({"display":"none"});
+                $('#under-6').css({"display":"none"});
+                $('#under-7').css({"display":"none"});
+                $('#under-8').css({"display":"none"});
+                $("#9").modal("show");
+                $("#s9").html('<%- D9 %>')
+            }else if(getString=="3.4"){
+                $('#under-0').css({"display":"none"});
+                $('#under-1').css({"display":"none"});
+                $('#under-2').css({"display":"none"});
+                $('#under-3').css({"display":"block"});
+                $('#under-4').css({"display":"none"});
+                $('#under-5').css({"display":"none"});
+                $('#under-6').css({"display":"none"});
+                $('#under-7').css({"display":"none"});
+                $('#under-8').css({"display":"none"});
+                $("#10").modal("show");
+                $("#s10").html('<%- D10 %>')
+            }else if(getString=="3.5"){
+                $('#under-0').css({"display":"none"});
+                $('#under-1').css({"display":"none"});
+                $('#under-2').css({"display":"none"});
+                $('#under-3').css({"display":"block"});
+                $('#under-4').css({"display":"none"});
+                $('#under-5').css({"display":"none"});
+                $('#under-6').css({"display":"none"});
+                $('#under-7').css({"display":"none"});
+                $('#under-8').css({"display":"none"});
+                $("#11").modal("show");
+                $("#s11").html('<%- D11 %>')
+            }else if(getString=="4"){
+                $('#under-0').css({"display":"none"});
+                $('#under-1').css({"display":"none"});
+                $('#under-2').css({"display":"none"});
+                $('#under-3').css({"display":"none"});
+                $('#under-4').css({"display":"block"});
+                $('#under-5').css({"display":"none"});
+                $('#under-6').css({"display":"none"});
+                $('#under-7').css({"display":"none"});
+                $('#under-8').css({"display":"none"});
+            }else if(getString=="4.1"){
+                $('#under-0').css({"display":"none"});
+                $('#under-1').css({"display":"none"});
+                $('#under-2').css({"display":"none"});
+                $('#under-3').css({"display":"none"});
+                $('#under-4').css({"display":"block"});
+                $('#under-5').css({"display":"none"});
+                $('#under-6').css({"display":"none"});
+                $('#under-7').css({"display":"none"});
+                $('#under-8').css({"display":"none"});
+                $("#12").modal("show");
+                $("#s12").html('<%- D12 %>')
+            }else if(getString=="4.2"){
+                $('#under-0').css({"display":"none"});
+                $('#under-1').css({"display":"none"});
+                $('#under-2').css({"display":"none"});
+                $('#under-3').css({"display":"none"});
+                $('#under-4').css({"display":"block"});
+                $('#under-5').css({"display":"none"});
+                $('#under-6').css({"display":"none"});
+                $('#under-7').css({"display":"none"});
+                $('#under-8').css({"display":"none"});
+                $("#13").modal("show");
+                $("#s13").html('<%- D13 %>')
+            }else if(getString=="4.3"){
+                $('#under-0').css({"display":"none"});
+                $('#under-1').css({"display":"none"});
+                $('#under-2').css({"display":"none"});
+                $('#under-3').css({"display":"none"});
+                $('#under-4').css({"display":"block"});
+                $('#under-5').css({"display":"none"});
+                $('#under-6').css({"display":"none"});
+                $('#under-7').css({"display":"none"});
+                $('#under-8').css({"display":"none"});
+                $("#14").modal("show");
+                $("#s14").html('<%- D14 %>')
+            }else if(getString=="4.4"){
+                $('#under-0').css({"display":"none"});
+                $('#under-1').css({"display":"none"});
+                $('#under-2').css({"display":"none"});
+                $('#under-3').css({"display":"none"});
+                $('#under-4').css({"display":"block"});
+                $('#under-5').css({"display":"none"});
+                $('#under-6').css({"display":"none"});
+                $('#under-7').css({"display":"none"});
+                $('#under-8').css({"display":"none"});
+                $("#15").modal("show");
+                $("#s15").html('<%- D15 %>')
+            }else if(getString=="5"){
+                $('#under-0').css({"display":"none"});
+                $('#under-1').css({"display":"none"});
+                $('#under-2').css({"display":"none"});
+                $('#under-3').css({"display":"none"});
+                $('#under-4').css({"display":"none"});
+                $('#under-5').css({"display":"block"});
+                $('#under-6').css({"display":"none"});
+                $('#under-7').css({"display":"none"});
+                $('#under-8').css({"display":"none"});
+            }else if(getString=="5.1"){
+                $('#under-0').css({"display":"none"});
+                $('#under-1').css({"display":"none"});
+                $('#under-2').css({"display":"none"});
+                $('#under-3').css({"display":"none"});
+                $('#under-4').css({"display":"none"});
+                $('#under-5').css({"display":"block"});
+                $('#under-6').css({"display":"none"});
+                $('#under-7').css({"display":"none"});
+                $('#under-8').css({"display":"none"});
+                $("#16").modal("show");
+                $("#s16").html('<%- D16 %>')
+            }else if(getString=="5.2"){
+                $('#under-0').css({"display":"none"});
+                $('#under-1').css({"display":"none"});
+                $('#under-2').css({"display":"none"});
+                $('#under-3').css({"display":"none"});
+                $('#under-4').css({"display":"none"});
+                $('#under-5').css({"display":"block"});
+                $('#under-6').css({"display":"none"});
+                $('#under-7').css({"display":"none"});
+                $('#under-8').css({"display":"none"});
+                $("#17").modal("show");
+                $("#s17").html('<%- D17 %>')
+            }else if(getString=="5.3"){
+                $('#under-0').css({"display":"none"});
+                $('#under-1').css({"display":"none"});
+                $('#under-2').css({"display":"none"});
+                $('#under-3').css({"display":"none"});
+                $('#under-4').css({"display":"none"});
+                $('#under-5').css({"display":"block"});
+                $('#under-6').css({"display":"none"});
+                $('#under-7').css({"display":"none"});
+                $('#under-8').css({"display":"none"});
+                $("#18").modal("show");
+                $("#s18").html('<%- D18 %>')
+            }else if(getString=="6"){
+                $('#under-0').css({"display":"none"});
+                $('#under-1').css({"display":"none"});
+                $('#under-2').css({"display":"none"});
+                $('#under-3').css({"display":"none"});
+                $('#under-4').css({"display":"none"});
+                $('#under-5').css({"display":"none"});
+                $('#under-6').css({"display":"block"});
+                $('#under-7').css({"display":"none"});
+                $('#under-8').css({"display":"none"});
+            }else if(getString=="6.1"){
+                $('#under-0').css({"display":"none"});
+                $('#under-1').css({"display":"none"});
+                $('#under-2').css({"display":"none"});
+                $('#under-3').css({"display":"none"});
+                $('#under-4').css({"display":"none"});
+                $('#under-5').css({"display":"none"});
+                $('#under-6').css({"display":"block"});
+                $('#under-7').css({"display":"none"});
+                $('#under-8').css({"display":"none"});
+                $("#19").modal("show");
+                $("#s19").html('<%- D19 %>')
+            }else if(getString=="6.2"){
+                $('#under-0').css({"display":"none"});
+                $('#under-1').css({"display":"none"});
+                $('#under-2').css({"display":"none"});
+                $('#under-3').css({"display":"none"});
+                $('#under-4').css({"display":"none"});
+                $('#under-5').css({"display":"none"});
+                $('#under-6').css({"display":"block"});
+                $('#under-7').css({"display":"none"});
+                $('#under-8').css({"display":"none"});
+                $("#20").modal("show");
+                $("#s20").html('<%- D20 %>')
+            }else if(getString=="7"){
+                $('#under-0').css({"display":"none"});
+                $('#under-1').css({"display":"none"});
+                $('#under-2').css({"display":"none"});
+                $('#under-3').css({"display":"none"});
+                $('#under-4').css({"display":"none"});
+                $('#under-5').css({"display":"none"});
+                $('#under-6').css({"display":"none"});
+                $('#under-7').css({"display":"block"});
+                $('#under-8').css({"display":"none"});
+            }else if(getString=="7.1"){
+                $('#under-0').css({"display":"none"});
+                $('#under-1').css({"display":"none"});
+                $('#under-2').css({"display":"none"});
+                $('#under-3').css({"display":"none"});
+                $('#under-4').css({"display":"none"});
+                $('#under-5').css({"display":"none"});
+                $('#under-6').css({"display":"none"});
+                $('#under-7').css({"display":"block"});
+                $('#under-8').css({"display":"none"});
+                $("#21").modal("show");
+                $("#s21").html('<%- D21 %>')
+            }else if(getString=="8"){
+                $('#under-0').css({"display":"none"});
+                $('#under-1').css({"display":"none"});
+                $('#under-2').css({"display":"none"});
+                $('#under-3').css({"display":"none"});
+                $('#under-4').css({"display":"none"});
+                $('#under-5').css({"display":"none"});
+                $('#under-6').css({"display":"none"});
+                $('#under-7').css({"display":"none"});
+                $('#under-8').css({"display":"block"});
+            }else if(getString=="8.1"){
+                $('#under-0').css({"display":"none"});
+                $('#under-1').css({"display":"none"});
+                $('#under-2').css({"display":"none"});
+                $('#under-3').css({"display":"none"});
+                $('#under-4').css({"display":"none"});
+                $('#under-5').css({"display":"none"});
+                $('#under-6').css({"display":"none"});
+                $('#under-7').css({"display":"none"});
+                $('#under-8').css({"display":"block"});
+                $("#22").modal("show");
+                $("#s22").html('<%- D22 %>')
+            }else if(getString=="8.2"){
+                $('#under-0').css({"display":"none"});
+                $('#under-1').css({"display":"none"});
+                $('#under-2').css({"display":"none"});
+                $('#under-3').css({"display":"none"});
+                $('#under-4').css({"display":"none"});
+                $('#under-5').css({"display":"none"});
+                $('#under-6').css({"display":"none"});
+                $('#under-7').css({"display":"none"});
+                $('#under-8').css({"display":"block"});
+                $("#23").modal("show");
+                $("#s23").html('<%- D23 %>')
+            }
+        }
         $(".bb").hover(function(){
             $(this).css({
                 "background-color": "rgba(73, 125, 154,0.6)"
@@ -283,26 +650,18 @@
             <div class="row">
                 <div class="col-xs-3">
                     <ul class="nav nav-pills nav-justified" style="padding: 10px;">
-                        <div class="row">
+                        <div class="row" style="margin-bottom: 1vw">
                             <div class="col-xs-4"><img src=""/></div>
                             <div class="col-xs-2"><a href="/video"><img id="homie" src="/video/首頁.png" alt="home"/></a></div>
                         </div>
-                        <p> </p>
-                        <li class="under-1-source"><a class="bb" href="#under-1"><img style="width: 10vw;" src="/video/文學院.png"></a></li>
-                        <p> </p>
-                        <li class="under-2-source"><a class="bb" href="#under-2"><img style="width: 10vw;" src="/video/工學院.png"></a></li>
-                        <p> </p>
-                        <li class="under-3-source"><a class="bb" href="#under-3"><img style="width: 10vw;" src="/video/理學院1.png"></a></li>
-                        <p> </p>
-                        <li class="under-4-source"><a class="bb" href="#under-4"><img style="width: 10vw;" src="/video/管理學院.png"></a></li>
-                        <p> </p>
-                        <li class="under-5-source"><a class="bb" href="#under-5"><img style="width: 10vw;" src="/video/資電學院.png"></a></li>
-                        <p> </p>
-                        <li class="under-6-source"><a class="bb" href="#under-6"><img style="width: 10vw;" src="/video/地球科學學院.png"></a></li>
-                        <p> </p>
-                        <li class="under-7-source"><a class="bb" href="#under-7"><img style="width: 10vw;" src="/video/客家學院.png"></a></li>
-                        <p> </p>
-                        <li class="under-8-source"><a class="bb" href="#under-8"><img style="width: 10vw;" src="/video/生醫理工學院.png"></a></li>
+                        <li class="under-1-source"><a class="bb" href="#under-1"><img style="width: 10vw;" class="bc" src="/video/文學院.png"></a></li><br>
+                        <li class="under-2-source"><a class="bb" href="#under-2"><img style="width: 10vw;" class="bc" src="/video/工學院.png"></a></li><br>
+                        <li class="under-3-source"><a class="bb" href="#under-3"><img style="width: 10vw;" class="bc" src="/video/理學院1.png"></a></li><br>
+                        <li class="under-4-source"><a class="bb" href="#under-4"><img style="width: 10vw;" class="bc" src="/video/管理學院.png"></a></li><br>
+                        <li class="under-5-source"><a class="bb" href="#under-5"><img style="width: 10vw;" class="bc" src="/video/資電學院.png"></a></li><br>
+                        <li class="under-6-source"><a class="bb" href="#under-6"><img style="width: 10vw;" class="bc" src="/video/地球科學學院.png"></a></li><br>
+                        <li class="under-7-source"><a class="bb" href="#under-7"><img style="width: 10vw;" class="bc" src="/video/客家學院.png"></a></li><br>
+                        <li class="under-8-source"><a class="bb" href="#under-8"><img style="width: 10vw;" class="bc" src="/video/生醫理工學院.png"></a></li>
                     </ul>
                 </div>
                 <div id="under-0" style="display: block;">
