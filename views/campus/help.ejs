@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 <div class="row" style="position:relative;">
-                    <div id="main-map" style="position:relative;padding:0px;padding-bottom:50.4%;width:90%;left:5%;float:left; position:relative;">
+                    <div id="main-map" style="position:relative;padding:0px;padding-bottom:44.8%;width:80%;left:10%;float:left; position:relative;">
                         <img src="/campus/default/back2.png"style="position:absolute;" width="100%" alt="">  
                         <%for(var i in map_objs){%>
                             <img class="map-animate map-build <%= map_objs[i].SOS?'SOS':''%> <%= map_objs[i].AED?'AED':''%>" src="<%= map_objs[i].path%>" alt="<%= map_objs[i].build_name%>" value="<%=map_objs[i].build_id%>"  data-toggle="tooltip" title="<%= map_objs[i].build_name%>" data-placement="top" style="
