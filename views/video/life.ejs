@@ -23,6 +23,13 @@
         #slidedown:hover {
             padding: 2vw;
         }
+        #Hsu{
+            padding: 4vw;
+            width: 20%;
+        }
+        #Hsu:hover {
+            padding: 2vw;
+        }
         #slideup{
             padding: 4vw;
             width: 15%;
@@ -51,6 +58,12 @@
                 $('html,body').animate({
                 scrollTop: $("#slidepoint2").offset().top-91
             }, 400);
+            }else if(getString=="1.0"){
+                $('html,body').animate({
+                scrollTop: $("#slidepoint2").offset().top-91
+                }, 400);
+                $("#h1").modal("show");
+                $("#h2").html('<%- hh %>')
             }else if(getString=="1.1"){
                 $('html,body').animate({
                 scrollTop: $("#slidepoint2").offset().top-91
@@ -152,6 +165,12 @@
         $("#f5").click(function(){
             $("#videoentertainment").html('<%- entertainmentURL %>')
         });
+        $(".hh").click(function(){
+            $("#h2").html("")
+        });
+        $("#Hsu").click(function(){
+            $("#h2").html('<%- hh %>')
+        });
         $(".l1").click(function(){
             $("#l1").html("")
         });
@@ -213,7 +232,7 @@
                     <area id="rr3" class="gg1" value="dr3" shape="poly" coords="500,884,385,704,412,516,542,362,753,326,911,376,1044,475,1085,623,1065,796,1121,912,1332,929,1233,1154,1295,1184,1294,1249,1245,1438,1184,1438,1089,1367,527,1374,516,1440,465,1436,402,1234,285,1179,170,978" data-toggle="modal" data-target="#a3" />
                     <area id="rr4" class="gg1" value="dr4" shape="poly" coords="1249,198,1164,240,1158,289,1111,278,1096,328,1109,374,1148,415,1194,478,1152,449,1101,438,1128,500,1131,522,1168,555,1178,619,1227,634,1228,661,1520,664,1524,565,1408,391,1421,347,1421,299,1410,260,1547,227,1563,143,1445,104" data-toggle="modal" data-target="#a4" />
                 </map>
-                
+                <img style="display:inline-block;position: absolute;top:-10%;left: 10%;z-index: 1001" id="Hsu" class="img-responsive" alt="序" data-toggle="modal" data-target="#h1" src="/video/序.png" />
                 <img style="width: 32%;position: absolute;top: 46%;left: 36%;z-index: 20;transform: translate(-50%,-50%);" id="dr1" class="img-responsive" alt="長片" src="/video/延畢俠.png"   />
                 <img style="width: 32%;position: absolute;top: 32%;left: 50%;z-index: 10;transform: translate(-50%,-50%);" id="dr2" class="img-responsive" alt="長片" src="/video/簽到俠.png"  />
                 <img style="width: 32%;position: absolute;top: 64%;left: 50%;z-index: 60;transform: translate(-50%,-50%);" id="dr3" class="img-responsive" alt="長片" src="/video/筆記俠.png"  />
@@ -253,10 +272,11 @@
                                 <div class="form-group">
                                     <label for="type" class="control-label">選擇影片名稱</label>
                                     <select name="type" id="change_order_id" class="form-control">
-                                        <option selected="not_commonly_used_link" value="l1">【左-延畢俠】</option>
-                                        <option selected="not_commonly_used_link" value="l2">【上-簽到俠】</option>
-                                        <option selected="not_commonly_used_link" value="l3">【下-筆記俠】</option>
-                                        <option selected="not_commonly_used_link" value="l4">【右-調解俠】</option>
+                                        <option selected="not_commonly_used_link" value="hh">【超人-序】</option>
+                                        <option selected="not_commonly_used_link" value="l1">【超人左-延畢俠】</option>
+                                        <option selected="not_commonly_used_link" value="l2">【超人上-簽到俠】</option>
+                                        <option selected="not_commonly_used_link" value="l3">【超人下-筆記俠】</option>
+                                        <option selected="not_commonly_used_link" value="l4">【超人右-調解俠】</option>
                                         <option selected="not_commonly_used_link" value="food">【中大生活-食】</option>
                                         <option selected="not_commonly_used_link" value="housing">【中大生活-住】</option>
                                         <option selected="not_commonly_used_link" value="transportation">【中大生活-行】</option>
@@ -384,7 +404,29 @@
 
                 </div>
             </div>
+
         <!-- Modal -->
+            <div class="modal fade" id="h1" role="dialog">
+                <div class="modal-dialog">
+
+        <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close hh" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title text-center">超人們 ☞ 序</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div id="h2"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default hh" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Modal -->
             <div class="modal fade" id="a1" role="dialog">
                 <div class="modal-dialog">
 
