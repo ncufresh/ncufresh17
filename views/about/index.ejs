@@ -6,38 +6,28 @@
 <body>
     <header>
         <% include ../layouts/navbar %>
+        <% include indexCSS %>
     </header>
     
     <main style="background-image: url('background.png'); background-size: cover; background-repeat: no-repeat;">
 
         <div class="row">
-        
-        <div class="col-xs-2">
-            <ul id="navi" style="height:100%; margin-top: 10px;">
-                <a href="/about"><img onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" 
-                    src="/about/logo.png" style="width: 90%; margin: 5px 5px 5px 5px;"></a>
-                <li><a href="/about/markting"><img src="/about/markting.png" alt="企劃按鈕"></a></li>
-                <li><a href="/about/programming"><img src="/about/programming.png" alt="程設按鈕"></a></li>
-                <li><a href="/about/ceo"><img src="/about/ceo.png" alt="執行按鈕"></a></li>
-                <li><a href="/about/art"><img src="/about/art.png" alt="美工按鈕"></a></li>
-                <li><a href="/about/video"><img src="/about/video.png" alt="影音按鈕"></a></li>
-            </ul>
-        </div>
+            <% include navi %>
 
-        <div class="col-xs-9" style="height:600px; margin: auto;">
-            <h1><b>關於我們</b></h1>
-            <hr>
-            <img src="/about/IMG_9281.jpg" alt="photo died!!!!!!" style="width:100%;">
-            <ul id="content" style="margin-top:30px;">
-                <li style="padding-left:14px; font-size:30px;"><b>為了迎接大學新鮮人，我們提供了各項新生需要的服務</b></li>
-                <li style="margin-top:8px;"><span><a href="/documents"><b>「新生必讀」</b></a></span>提供了到大學需要注意的事項</li>
-                <li><span><a href="/QnA" style="padding-right:12px;"><b>「新生Q&A」</b></a></span>透過問與答，解決新生的各種問題</li>
-                <li><span><a href="/campus"><b>「校園導覽」</b></a></span>讓新生對校園有更進一步的認識</li>
-                <li><span><a href="/groups"><b>「系所社團」</b></a></span>輕鬆掌握在中央的食衣住行育樂</li>
-                <li><span><a href="/video"><b>「影音專區」</b></a></span>由影片帶領新生搶先體驗中大生活</li>
-                <li><span><a id="aa" onclick="checkLogin(this)"><b>「個人專區」</b></a></span>在知訊網中開拓一片屬於自己的地盤吧！</li>
-            </ul>
-        </div>
+            <div class="col-xs-9" style="margin: auto;">
+                <h1><b>關於我們</b></h1>
+                <hr>
+                <img src="/about/IMG_9281.jpg" alt="photo died!!!!!!" style="width:100%;">
+                <ul id="content" style="margin-top: 2%;">
+                    <li style="padding-left: 1%; font-size:30px;"><b>為了迎接大學新鮮人，我們提供了各項新生需要的服務</b></li>
+                    <li style="margin-top: 1%;"><span><a href="/documents"><b>「新生必讀」</b></a></span> 提供了到大學需要注意的事項</li>
+                    <li><span><a href="/QnA" style="padding-right: 1%"><b>「新生Q&A」</b></a></span>透過問與答，解決新生的各種問題</li>
+                    <li><span><a href="/campus"><b>「校園導覽」</b></a></span> 讓新生對校園有更進一步的認識</li>
+                    <li><span><a href="/groups"><b>「系所社團」</b></a></span> 輕鬆掌握在中央的食衣住行育樂</li>
+                    <li><span><a href="/video"><b>「影音專區」</b></a></span> 由影片帶領新生搶先體驗中大生活</li>
+                    <li><span><a onclick="checkLogin(this)"><b>「個人專區」</b></a></span> 在知訊網中開拓一片屬於自己的地盤吧！</li>
+                </ul>
+            </div>
         </div>
 
         <div class="modal fade" id="checkLoginModal" role="dialog">
@@ -74,55 +64,3 @@
         <% include ../layouts/js %>
 </body>
 </html>
-
-<style>
-
-    #navi {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        background-color: rgba(255, 255, 255, 0);
-        /*position: fixed;*/
-        overflow: auto;
-    }
-
-    #navi li a {
-        background-size: contain;
-    }
-
-    #navi a ,#content a {
-        background-repeat: no-repeat; 
-        background-size: contain;
-    }
-
-    #navi li a, #content li a {
-        display: block;
-        color: #000;
-        /*padding: 8px 16px;*/
-        text-decoration: none;
-    }
-
-    #navi li a.active {
-        background-color: #4CAF50;
-        color: white;
-    }
-
-    #navi li a:hover:not(.active), #content li a:hover:not(.active) {
-        background-color: #555;
-        color: white;
-    }
-
-    #content li {
-        font-size: 20px;
-        background: rgba(204, 229, 255, 0.3);
-    }
-
-    #navi li a img {
-        max-width: 90%;
-    }
-
-    span {
-        display: inline-block;
-    }
-
-</style>
