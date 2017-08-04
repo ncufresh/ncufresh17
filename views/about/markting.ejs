@@ -11,22 +11,12 @@
 
     <main style="background-image: url('background.png'); background-size: cover; background-repeat: no-repeat;">
         <div class="row">
-            <div class="col-xs-2">
-                <ul id="navi" style="height:100%; margin-top: 5%;">
-                    <a href="/about"><img onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" 
-                        src="/about/logo.png" style="width: 90%; margin: 2%;"></a>
-                    <li><a href="/about/markting"><img src="/about/markting.png" alt="企劃按鈕"></a></li>
-                    <li><a href="/about/programming"><img src="/about/programming.png" alt="程設按鈕"></a></li>
-                    <li><a href="/about/ceo"><img src="/about/ceo.png" alt="執行按鈕"></a></li>
-                    <li><a href="/about/art"><img src="/about/art.png" alt="美工按鈕"></a></li>
-                    <li><a href="/about/video"><img src="/about/video.png" alt="影音按鈕"></a></li>
-                </ul>
-            </div>
+            <% include navi %>
 
-            <div class="col-xs-9" style="height:580px; margin: auto;">
+            <div class="col-xs-9" style="margin: auto;">
                 <h1><b>行銷企劃組</b></h1>
                 <hr>
-                <img src="/about/IMG_9281.jpg" alt="photo died!!!!!!" style="width:100%;height:240px;">
+                <img src="/about/IMG_9281.jpg" alt="photo died!!!!!!" style="width:100%;">
                 <p id="content" >企劃組決定網頁的風格，並設計網頁的格式，再將理念交付美工組與程設組，
                     透過美化理想，付諸程式實現，共同完成，並帶給新生一個有如通往大學橋樑的知訊網。</p>
             </div>
