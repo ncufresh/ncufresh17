@@ -43,8 +43,9 @@
             </div>
           </div>
           <% if(error) { %>
-            <h1><%= error.message %></h1>
-            <h2><%= error.status %></h2>
+            <h1>message: <%= error.message %></h1>
+            <h2>status: <%= error.status %></h2>
+            <p>stack:</p>
             <pre><%= error.stack %></pre>
           <% } %>
         </div>
