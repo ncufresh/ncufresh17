@@ -8,7 +8,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
-$('.navbar').css({"margin-bottom":"0px"});
+$('table').attr({"style":""});
+$('tbody').attr({"style":""});
+$('td').attr({"style":""});
+$('tr').attr({"style":""});
+$('a').css({"display":"inline","clear":"none","white-space": "normal"});
 $(document).ready(function(){
     var strUrl = location.search;
     if (strUrl.indexOf("?") !== -1) {
@@ -194,30 +198,18 @@ $(document).ready(function(){
             $('#not_commonly_used_link_textarea_in_edit_data').attr({"name":"content"});
         }
     });
-    $("#freshmen-source,#master-freshmen-source,#often-link-source").mouseenter(function(){
-            $(this).animate({
-                padding:'0vh'
-            }, 200);
-    });
-    $("#freshmen-source,#master-freshmen-source,#often-link-source").mouseleave(function(){
-            $(this).animate({
-                padding:'2vh'
-            }, 200);
-    });
     <% for (var i in document){%>
         $("#<%- document[i].id%>").mouseenter(function(){
             if ("<%-document[i].type%>"!="常用連結"){
-		        $(this).animate({
-		            padding:'0px'
-		        }, 200);
+		        
             }else{
                 if ($("#<%- document[i].id+"link"%>").is(':hover')){
                     
                 }else{
-                    $(this).animate({
+                    $(this).velocity({
                         opacity: '0.1'
                     }, { duration: 200, queue: false });
-                    $("#<%- document[i].id+"link"%>").animate({
+                    $("#<%- document[i].id+"link"%>").velocity({
                         opacity: '1'
                     }, { duration: 200, queue: false });
                 }
@@ -225,17 +217,15 @@ $(document).ready(function(){
 		});
 		$("#<%- document[i].id%>").mouseleave(function(){
             if ("<%-document[i].type%>"!="常用連結"){
-		        $(this).animate({
-		            padding:'2vw'
-		        }, 200);
+		        
             }else{
                 if ($("#<%- document[i].id+"link"%>").is(':hover')){
 
                 }else{
-                    $(this).animate({
+                    $(this).velocity({
                         opacity: '1'
                     }, { duration: 200, queue: false });
-                    $("#<%- document[i].id+"link"%>").animate({
+                    $("#<%- document[i].id+"link"%>").velocity({
                         opacity: '0'
                     }, { duration: 200, queue: false });
                 }
