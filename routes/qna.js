@@ -1,6 +1,16 @@
 var express = require('express');
 var router = express.Router();
+var sanitize = require('../lib/sanitize');
 var Qna = require('../models/qna');
+
+// 測試
+router.get('/test', function(req, res, next) {
+  var err = new Error({});
+  err.messang = 'error test';
+  if (err) {
+    next(err);
+  }
+});
 
 // 讀取頁面
 router.get('/', function(req, res, next) {
@@ -36,69 +46,72 @@ router.get('/', function(req, res, next) {
 });
 
 // 當前端點選問題時會傳送 xhr 到這裡
-router.get('/:id', function(req, res) {
-  if (!req.xhr) {
-    res.redirect('/qna');
-  }
+router.get('/:id', function(req, res, next) {
+  if (!req.xhr)
+    next(err);
 
   // 依據 api_token 尋找相對應的 Qna
   Qna.findById(req.params.id, function(err, qna) {
-    if (err) {
-      res.status(err.status || 500);
-      res.render('error', {
-        title: '頁面不存在 ｜ 新生知訊網',
-        user: req.user,
+    if (err)
+      next(err);
+
+    // 增加瀏覽次數
+    qna.view++;
+    qna.save(function(err) {
+      if (err)
+        next(err);
+      // 回傳 title, content, answer
+      res.json({
+        title: qna.title,
+        content: qna.content,
+        answer: qna.answer
       });
-    } else {
-      // 增加瀏覽次數
-      qna.view++;
-      qna.save(function(err) {
-        if (err)
-          throw err;
-        // 回傳 title, content, answer
-        else
-          res.json({
-            title: qna.title,
-            content: qna.content,
-            answer: qna.answer
-          });
-      });
-    }
+    });
   });
 });
 
 // 新增問題
-router.post('/', isLoggedIn, function(req, res) {
-
+router.post('/', isLoggedIn, function(req, res, next) {
   var qna = new Qna();
   qna.userId = req.user._id;
-  qna.type = (function(reqBodyType) {
-    if (reqBodyType > 3 || reqBodyType < 0)
-      return 3;
-    else
+  // Immediately-Invoked Function Expression (IIFE)
+  qna.type = (
+    function(reqBodyType) {
+      if (reqBodyType > 3 || reqBodyType < 0)
+        return 3;
       return Math.round(reqBodyType);
-  })(req.body.type);
-  qna.title = req.body.title;
-  qna.content = req.body.content;
+    }
+  )(req.body.type);
+
+  qna.title = sanitize(req.body.title);
+  qna.content = sanitize(req.body.content);
   qna.save(function(err) {
     if (err)
-      return handleError(err);
-    else
-      res.redirect('/qna/?post=success');
+      next(err);
+    res.redirect('/qna/?post=success');
   });
 });
 
 // 回答問題
-router.post('/:id', isAdmin, function(req, res) {
+router.post('/answer/:id', isAdmin, function(req, res, next) {
   Qna.findById(req.params.id, function(err, qna) {
+    if (err)
+      next(err);
     qna.answer = req.body.answer;
     qna.save(function(err) {
       if (err)
-        throw err;
+        next(err);
       else {
         res.redirect('/qna');
       }
     });
+  });
+});
+
+// 刪除問題
+router.post('/delete/:id', isAdmin, function(req, res) {
+  Qna.findByIdAndRemove(req.params.id, function(err, qna) {
+    res.redirect('/qna/?delete=success');
   });
 });
 
@@ -115,7 +128,7 @@ function isAdmin(req, res, next) {
       return next();
     }
   }
-  res.redirect('/');
+  res.redirect('/qna');
 }
 
 module.exports = router;

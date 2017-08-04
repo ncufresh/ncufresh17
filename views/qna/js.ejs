@@ -6,27 +6,26 @@ $(document).ready(function() {
   if (strUrl.indexOf('?') !== -1) {
     var getSearch = strUrl.split('?');
     var getString = getSearch[1];
-    if(getString.indexOf('&') === -1){
+    if (getString.indexOf('&') === -1) {
       var getAll = getString.split('=');
-      if(getAll[0]==='post' && getAll[1]==='success'){
+      if (getAll[0] === 'post' && getAll[1] === 'success') {
         $('#success').modal('show');
       }
+      <% if (user && user.local.accountType==='admin') { %>
+        else if (getAll[0] === 'delete' && getAll[1] === 'success') {
+          $('#delete-success').modal('show');
+        }
+      <% } %>
     }
   }
 
-  $('#success').on('hide.bs.modal', function(){
-    console.log(location.search);
-    location.search = "";
-  });
-
   <%# 當問題被點擊的時候，傳送 xhr 到後端 api，api 會回傳物件包含標題、問題、答案 %>
-  $('.clickable').on('click', function(){
+  $('.clickable').on('click', function() {
     <%# api_token === Qna._id %>
     var id = this.id.split('-')[0];
     $.ajax({
       url: '/qna/' + id
-    })
-    .done(function(res) {
+    }).done(function(res) {
       <%# 設定 modal 內容 %>
       document.getElementById('show-title').innerHTML = res.title;
       document.getElementById('show-content').innerHTML = res.content;
@@ -35,24 +34,24 @@ $(document).ready(function() {
       $('#show-modal').modal('show');
       <%# 當成功顯示之後，動態增加瀏覽次數 %>
       var objs = $('.' + id).find('.view');
-      for (var i=0; i<objs.length; i++) {
+      for (var i = 0; i < objs.length; i++) {
         objs[i].innerHTML = parseInt(objs[i].innerHTML) + 1;
       }
-    })
-    .fail(function(err) {
+    }).fail(function(err) {
       console.log('Error: ' + err.status);
     });
   });
 
-  $('.admin-answer').on('click', function(){
+  <%# 管理員回答 %>
+  $('.admin-answer').on('click', function() {
     var id = this.id.split('-')[0];
-    console.log('in answer: '+id);
-    
+    console.log('in answer: ' + id);
+
     var obj = $('.' + id);
     <%# 設定 modal 內容 %>
-    $('#admin-answer-form').attr({'action': ('/qna/' + id) });
+    $('#admin-answer-form').attr({ 'action': ('/qna/answer/' + id) });
     document.getElementById('admin-answer-title').value = obj.find('.title').text();
-    document.getElementById('admin-answer-content').value = obj.find('.content').text();
+    document.getElementById('admin-answer-content').value = obj.find('.content').val();
     document.getElementById('admin-answer-type').value = obj.find('.type').val();
     $('#modal-admin-answer').modal('show');
   });

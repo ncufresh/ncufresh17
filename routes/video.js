@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/life', function(req, res, next) {
 	video.find({}).exec(function(err,video){
-		var foodURL,housingURL,transportationURL,educationURL,entertainmentURL,l1,l2,l3,l4;
+		var foodURL,housingURL,transportationURL,educationURL,entertainmentURL,l1,l2,l3,l4,hh;
 		for (var i in video){
 			if(video[i].type=="food"){
     			foodURL=video[i].insert
@@ -42,6 +42,9 @@ router.get('/life', function(req, res, next) {
 			else if(video[i].type=="l4"){
 				l4=video[i].insert
 			}
+			else if(video[i].type=="hh"){
+				hh=video[i].insert
+			}
 		}
 		res.render('video/life', 
 		{
@@ -56,7 +59,8 @@ router.get('/life', function(req, res, next) {
 			l1: l1,
 			l2: l2,
 			l3: l3,
-			l4: l4
+			l4: l4,
+			hh: hh
 		});
 	});
 });

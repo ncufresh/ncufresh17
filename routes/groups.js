@@ -59,6 +59,7 @@ router.get('/all_department', function(req, res, next) {
 });
 router.get('/all_club', function(req, res, next) {
 	club.find({}).exec(function(err,club){
+    groupImg.find({}).exec(function(err,groupImg){
 	var url_parts = url.parse(req.url, true);
 	var query = url_parts.query;
   res.render('groups/all_club', {
@@ -66,9 +67,11 @@ router.get('/all_club', function(req, res, next) {
   	user: req.user,
   	firstClick: req.query.club,
   	club: club,
+    groupImg: groupImg,
    });
 });
 });
+  });
 router.get('/organization', function(req, res, next) {
   organization.find({}).exec(function(err,organization){
   var url_parts = url.parse(req.url, true);
@@ -82,22 +85,22 @@ router.get('/organization', function(req, res, next) {
 });
 });
 
-router.get('/delete_de/:id', function (req, res, next) {
+router.get('/delete_de/:id', isAdmin,function (req, res, next) {
 	department.findById(req.params.id).remove().exec();
 	res.redirect('/groups/all_department');
 });
 
-router.get('/delete_club/:id', function (req, res, next) {
+router.get('/delete_club/:id', isAdmin,function (req, res, next) {
 	club.findById(req.params.id).remove().exec();
 	res.redirect('/groups/all_club');
 });
 
-router.get('/delete_or/:id', function (req, res, next) {
+router.get('/delete_or/:id', isAdmin,function (req, res, next) {
   organization.findById(req.params.id).remove().exec();
   res.redirect('/groups/organization');
 });
 
-router.post('/add_de', function(req, res, next) {
+router.post('/add_de', isAdmin,function(req, res, next) {
 	department({
 		type:req.body.type,
 		name:req.body.name,
@@ -112,7 +115,7 @@ router.post('/add_de', function(req, res, next) {
 	});
 });
 
-router.post('/add_club', function(req, res, next) {
+router.post('/add_club',isAdmin, function(req, res, next) {
 	club({
 		type:req.body.type,
 		name:req.body.name,
@@ -125,7 +128,7 @@ router.post('/add_club', function(req, res, next) {
 	});
 });
 
-router.post('/add_or', function(req, res, next) {
+router.post('/add_or',isAdmin, function(req, res, next) {
   organization({
     name:req.body.name,
     introduction:req.body.introduction,
@@ -138,28 +141,28 @@ router.post('/add_or', function(req, res, next) {
   });
 });
 
-router.get('/edit_de/:id', function(req, res, next) {
+router.get('/edit_de/:id',isAdmin, function(req, res, next) {
 	console.log(1234);
   department.findById(req.params.id,function(err, doc){
         res.send(doc);
       });
 });
 
-router.get('/edit_club/:id', function(req, res, next) {
+router.get('/edit_club/:id',isAdmin, function(req, res, next) {
 	console.log(1234);
   club.findById(req.params.id,function(err, doc){
         res.send(doc);
       });
 });
 
-router.get('/edit_or/:id', function(req, res, next) {
+router.get('/edit_or/:id',isAdmin, function(req, res, next) {
   console.log(1234);
   organization.findById(req.params.id,function(err, doc){
         res.send(doc);
       });
 });
 
-router.post('/edit_de', function(req, res, next) {
+router.post('/edit_de',isAdmin, function(req, res, next) {
   department.update({ _id: req.body.id},{
   	type:req.body.type,
   	name:req.body.name,
@@ -174,7 +177,7 @@ router.post('/edit_de', function(req, res, next) {
       });
 });
 
-router.post('/edit_club', function(req, res, next) {
+router.post('/edit_club',isAdmin, function(req, res, next) {
   club.update({ _id: req.body.id},{
   	type:req.body.type,
   	name:req.body.name,
@@ -187,7 +190,7 @@ router.post('/edit_club', function(req, res, next) {
       });
 });
 
-router.post('/edit_or', function(req, res, next) {
+router.post('/edit_or',isAdmin, function(req, res, next) {
   organization.update({ _id: req.body.id},{
     name:req.body.name,
     introduction:req.body.introduction,
@@ -201,7 +204,7 @@ router.post('/edit_or', function(req, res, next) {
 });
 
 
- router.post('/uploadimg', function(req, res, next) {
+ router.post('/uploadimg',isAdmin, function(req, res, next) {
     var form = new formidable.IncomingForm();
     form.parse(req, function(err, fields, files) {
     	console.log(123);
@@ -240,6 +243,17 @@ router.post('/edit_or', function(req, res, next) {
 
     });
   });
+
+ function isAdmin(req, res, next) {
+  if (req.isAuthenticated()) {
+    // console.log('log:' + req.user.local);
+    if (req.user.local.accountType === 'admin') {
+      return next();
+    }
+  }
+  res.redirect('/');
+}
+
 
 
 module.exports = router;

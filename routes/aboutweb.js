@@ -8,20 +8,21 @@ var shortId = require('shortid');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   aboutweb.find({}).exec(function(err,aboutweb){
+    if (err) next(err);
     res.render('aboutweb/index', { title: '網站地圖 ｜ 新生知訊網', aboutweb: aboutweb, user: req.user });
   });
 });
 
 router.get('/edit_aboutweb', isAdmin,function(req, res, next) {
   aboutweb.find({}).exec(function(err,aboutweb){
+    if (err) next(err);
     res.render('aboutweb/edit_aboutweb', { title: 'edit_aboutweb', aboutweb: aboutweb, user: req.user });
   });
 });
 
 router.get('/get_data/:id',isAdmin,function(req,res,next){
   aboutweb.find({_id:req.params.id},function(err,data){
-    if(err) 
-      console.log(err);
+    if (err) next(err);
     res.send(data[0]);
   });
 });
@@ -41,8 +42,7 @@ router.post('/edit',isAdmin,function(req,res,next){
       link:req.body.link,
       size:req.body.size
     },function(err){
-      if(err)
-        console.log(err);
+      if (err) next(err);
    	  res.redirect('/aboutweb/edit_aboutweb/');
     });
 });
@@ -55,7 +55,9 @@ router.post('/add',isAdmin,function(req,res,next){
     y:0,
     size:10.5,
     type:req.body.type
-  }).save();
+  }).save(function(err){
+    if (err) next(err);
+  });
   res.redirect('/aboutweb/edit_aboutweb/');
 });
 
