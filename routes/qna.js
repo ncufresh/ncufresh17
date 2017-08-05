@@ -5,17 +5,16 @@ var Qna = require('../models/qna');
 
 // 測試
 router.get('/test', function(req, res, next) {
-  var err = new Error({});
-  err.messang = 'error test';
-  if (err) {
-    next(err);
-  }
+  var err = new Error('error test');
+  if (err)
+    return next(err);
+  console.log('hello');
 });
 
 // 讀取頁面
 router.get('/', function(req, res, next) {
   // 用觀看次數排序
-  Qna.find({}).sort({ view: 'desc' }).exec(function(err, qna) {
+  Qna.find().sort({ view: 'desc' }).exec(function(err, qna) {
 
     // Array：用來將資料庫 type 欄位的數字轉換成文字
     // ex: typeToName[ 1 ] === "校園生活"
@@ -28,10 +27,9 @@ router.get('/', function(req, res, next) {
 
     // function：用來將資料庫 updated 欄位的時間轉換成日期
     var renderTime = function(date) {
-      var day = date.getDate();
       var monthIndex = date.getMonth();
-      var year = date.getFullYear();
-      var time = year + '/' + (++monthIndex) + '/' + day;
+      var day = date.getDate();
+      var time = (++monthIndex) + '/' + day;
       return time;
     }
 
@@ -47,19 +45,22 @@ router.get('/', function(req, res, next) {
 
 // 當前端點選問題時會傳送 xhr 到這裡
 router.get('/:id', function(req, res, next) {
-  if (!req.xhr)
-    next(err);
+  if (!req.xhr) {
+    var err = new Error('Not Found 123');
+    err.status = 404;
+    return next(err);
+  }
 
   // 依據 api_token 尋找相對應的 Qna
   Qna.findById(req.params.id, function(err, qna) {
-    if (err)
-      next(err);
+    if (err || !qna)
+      return next(err);
 
     // 增加瀏覽次數
     qna.view++;
     qna.save(function(err) {
       if (err)
-        next(err);
+        return next(err);
       // 回傳 title, content, answer
       res.json({
         title: qna.title,
@@ -87,7 +88,7 @@ router.post('/', isLoggedIn, function(req, res, next) {
   qna.content = sanitize(req.body.content);
   qna.save(function(err) {
     if (err)
-      next(err);
+      return next(err);
     res.redirect('/qna/?post=success');
   });
 });
@@ -96,38 +97,35 @@ router.post('/', isLoggedIn, function(req, res, next) {
 router.post('/answer/:id', isAdmin, function(req, res, next) {
   Qna.findById(req.params.id, function(err, qna) {
     if (err)
-      next(err);
+      return next(err);
     qna.answer = req.body.answer;
     qna.save(function(err) {
       if (err)
-        next(err);
-      else {
-        res.redirect('/qna');
-      }
+        return next(err);
+      res.redirect('/qna');
     });
   });
 });
 
-// 刪除問題
-router.post('/delete/:id', isAdmin, function(req, res) {
+// 管理員刪除問題
+router.post('/deleteByAdmin/:id', isAdmin, function(req, res, next) {
   Qna.findByIdAndRemove(req.params.id, function(err, qna) {
-    res.redirect('/qna/?delete=success');
+    if (err)
+      return next(err);
+    res.json({ id: qna._id });
   });
 });
 
 function isLoggedIn(req, res, next) {
-  if (!req.isAuthenticated())
-    res.redirect('/login');
-  else
+  if (req.isAuthenticated())
     return next();
+  res.redirect('/login');
 }
 
 function isAdmin(req, res, next) {
-  if (req.isAuthenticated()) {
-    if (req.user.local.accountType === 'admin') {
+  if (req.isAuthenticated())
+    if (req.user.local.accountType === 'admin')
       return next();
-    }
-  }
   res.redirect('/qna');
 }
 
