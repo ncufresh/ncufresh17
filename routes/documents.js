@@ -8,14 +8,14 @@ var shortId = require('shortid');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   document.find({}).sort({order:1}).exec(function(err,document){
-      if (err) next(err);
+      if (err) return next(err);
       res.render('documents/index',{title: '新生必讀 ｜ 新生知訊網', document: document, user: req.user});
   });
 });
 
-router.get('/require_data/:id',isAdmin,function(req,res,next){
+router.get('/require_data/:id',function(req,res,next){
   document.find({_id:req.params.id},function(err,data){
-    if (err) next(err);
+    if (err) return next(err);
     res.send(data[0]);
   });
 });
@@ -26,11 +26,11 @@ router.get('/delete/:id',isAdmin,function(req,res,next){
   var the_type;
   var the_order;
   document.find({_id:req.params.id}).exec(function (err, results) {
-    if (err) next(err);
+    if (err) return next(err);
     the_type = results[0].type;
     the_order = results[0].order;
     fs.unlink("./public"+results[0].img_path,function(err){
-      if (err) next(err);
+      if (err) return next(err);
     });
     document.find({type:the_type}).exec(function (err, result) {
       total = result.length;
@@ -45,7 +45,7 @@ router.get('/delete/:id',isAdmin,function(req,res,next){
         document.update({order:ha,type:the_type},{
           order: temp
         },function(err){
-          if (err) next(err);
+          if (err) return next(err);
         });
       }
       document.findById(req.params.id).remove().exec();
@@ -57,7 +57,7 @@ router.get('/delete/:id',isAdmin,function(req,res,next){
 router.post('/add',isAdmin,function(req,res,next){
   var form = new formidable.IncomingForm();
   form.parse(req, function(err, fields, files){
-      if (err) next(err);
+      if (err) return next(err);
       // console.log('received fields: ');
       // console.log(fields);
       // console.log('received files: ');
@@ -91,7 +91,7 @@ router.post('/add',isAdmin,function(req,res,next){
         })
         .pipe(writeStream,function(){
           fs.unlink(tmpPath, function(err) {
-            if (err) next(err);
+            if (err) return next(err);
             console.log('File Uploaded to ' + targetPath + ' - ' + uploadedFile.size + ' bytes');
           });
         });
@@ -119,7 +119,7 @@ router.post('/update',isAdmin,function(req,res,next){
         name:req.body.name,
         content:req.body.Content
       },function(err){
-        if (err) next(err);
+        if (err) return next(err);
       });
   console.log(req.body.id);
   console.log(req.body.name);
@@ -137,15 +137,15 @@ router.post('/change_order',isAdmin,function(req,res,next){
   document.update({type:req.body.type,order:first_order},{
     order:0
   },function(err){
-    if (err) next(err);
+    if (err) return next(err);
     document.update({type:req.body.type,order:second_order},{
       order:first_order
     },function(err){
-      if (err) next(err);
+      if (err) return next(err);
       document.update({type:req.body.type,order:0},{
         order:second_order
       },function(err){
-        if (err) next(err);
+        if (err) return next(err);
       });
     });
   });
@@ -158,7 +158,7 @@ router.post('/insertimg/:id',isAdmin,function(req,res,next) {
 
   var form = new formidable.IncomingForm();
   form.parse(req, function(err, fields, files){
-      if (err) next(err);
+      if (err) return next(err);
       // console.log('received fields: ');
       // console.log(fields);
       // console.log('received files: ');
@@ -189,14 +189,14 @@ router.post('/insertimg/:id',isAdmin,function(req,res,next) {
         document.update({_id:req.params.id},{
           img_path:'/documents/' + fileName
         },function(err){
-          if (err) next(err);
+          if (err) return next(err);
           res.redirect('/documents');
         });
         console.log(fields.imgid);
       })
       .pipe(writeStream,function(){
         fs.unlink(tmpPath, function(err) {
-          if (err) next(err);
+          if (err) return next(err);
           console.log('File Uploaded to ' + targetPath + ' - ' + uploadedFile.size + ' bytes');
         });
       });
