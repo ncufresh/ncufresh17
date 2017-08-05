@@ -43,6 +43,7 @@
             </div>
           </div>
           <% if(error) { %>
+            <p><%= error %></p>
             <h1>message: <%= error.message %></h1>
             <h2>status: <%= error.status %></h2>
             <p>stack:</p>

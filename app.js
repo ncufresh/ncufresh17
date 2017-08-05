@@ -41,6 +41,10 @@ var configDB = require('./config/database');
 mongoose.Promise = global.Promise;
 mongoose.connect(configDB.url, { useMongoClient: true });
 
+// middleware: 上線倒數計時
+var countdown = require('./middleware/countdown');
+app.use(countdown);
+
 // passport 認證
 require('./config/passport')(passport);
 var index = require('./routes/index')(passport);
@@ -122,7 +126,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error',{
+  res.render('error', {
     title: '頁面不存在 ｜ 新生知訊網',
     user: req.user,
   });
