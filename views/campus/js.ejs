@@ -175,12 +175,12 @@ $(document).ready(function(){
     });
     $(".map-animate").mouseenter(function(){
         $(this).velocity({
-            padding:'0vh'
+            padding:'0vw'
         },100);
     });
     $(".map-animate").mouseleave(function(){
         $(this).velocity({
-            padding:'0.5vh'
+            padding:'0.247vw'
         },100);
     });
     $("#building_img").draggable({
@@ -344,26 +344,26 @@ $(document).ready(function(){
     $(".build-name").mouseenter(function(){
         console.log($(this).attr("value"));
         $(".mapimg"+$(this).attr("value")).velocity({
-            padding:'0vh'
+            padding:'0vw'
         }, 100);
         $(".mapimg"+$(this).attr("value")).tooltip("show");
     })
     $(".build-name").mouseleave(function(){
         console.log($(this).attr("value"));
         $(".mapimg"+$(this).attr("value")).velocity({
-            padding:'0.5vh'
+            padding:'0.247vw'
         }, 100);
         $(".mapimg"+$(this).attr("value")).tooltip("hide");
     })
     $(".help-menu").mouseenter(function(){
         $("."+$(this).attr("alt")).velocity({
-            padding:'0vh'
+            padding:'0vw'
         }, 100);
         $("."+$(this).attr("alt")).tooltip("show");
     })
     $(".help-menu").mouseleave(function(){
         $("."+$(this).attr("alt")).velocity({
-            padding:'0.5vh'
+            padding:'0.247vw'
         }, 100);
         $("."+$(this).attr("alt")).tooltip("hide");
     })
