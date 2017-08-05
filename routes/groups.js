@@ -74,6 +74,7 @@ router.get('/all_club', function(req, res, next) {
   });
 router.get('/organization', function(req, res, next) {
   organization.find({}).exec(function(err,organization){
+    groupImg.find({}).exec(function(err,groupImg){
   var url_parts = url.parse(req.url, true);
   var query = url_parts.query;
   res.render('groups/organization', {
@@ -81,10 +82,11 @@ router.get('/organization', function(req, res, next) {
     user: req.user,
     firstClick: req.query.organization,
     organization: organization,
+    groupImg: groupImg,
    });
 });
 });
-
+});
 router.get('/delete_de/:id', isAdmin,function (req, res, next) {
 	department.findById(req.params.id).remove().exec();
 	res.redirect('/groups/all_department');

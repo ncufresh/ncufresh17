@@ -17,12 +17,12 @@
               <li class="active">學生組織</li>
             </ul>
             <% if(user&&user.local.accountType==='admin'){%>
-            <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#add_club" style="width:100px;height:30px;text-align:center;">add</button></br>
+            <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#add_organization" style="width:100px;height:30px;text-align:center;">add</button></br>
             <%}%>
 
 
               <!-- Modal -->
-              <div class="modal fade" id="add_club" role="dialog">
+              <div class="modal fade" id="add_organization" role="dialog">
                 <div class="modal-dialog modal-lg">
 
                   <!-- Modal content-->
@@ -110,6 +110,39 @@
 
             <div class="row container" id="Student">
                         <% for (var i in organization){%>
+                        <!-- add photo Modal -->
+                              <div class="modal fade" id="uploadimg_<%= organization[i].id%>" role="dialog">
+                                <div class="modal-dialog modal-lg">
+                                <!-- Modal content-->
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h4 style="color:red;">新增圖片</h4>
+                                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <form>
+                                        <div class="form-group">
+                                        <input type='hidden' class="up" id="up" name="up[]" multiple>
+                                        <div class="preview"></div>
+                                        </form>
+                                        </div>
+                                        <div class="form-group">
+                                        <form action="/groups/uploadimg" method="post" enctype="multipart/form-data" class="form1">
+                                          系所介紹圖檔<input type='file' class="upl" id="up1" name="input_img">
+                                          <input type="hidden" name="type" value="intro">
+                                          <input type="hidden" name="belongs" value="<%= organization[i].name%>">
+                                          <div class="preview"></div>
+                                           <button type="submit" class="btn btn-default btn-success btn-block" style="width:100px;height:30px;text-align:center;">add</button>
+                                        </form>
+                                        </div>
+                                        </div>
+
+                                    <div class="modal-footer">
+                                      <button type="submit" class="btn btn-default" data-dismiss="modal" style="width:120px;height:30px;text-align:left;">cancel</button>
+                                    </div>
+                                  </div>
+                                </div> 
+                              </div>
                                     <div class="col-xs-3" style="height: 250px;cursor:pointer;" data-toggle="modal" data-target="#<%- organization[i].id%>"">
                                     <img src="pic1.png" style="width: 70%;position: absolute;left: 0px;top: 0px;z-index: 0;" class="col-md-3"/>
                                     <h5 style="position: absolute;left: 10px;top: 75px;z-index: 1;"><%- organization[i].name %></h5>
@@ -135,6 +168,57 @@
                                                       <div class="tab-pane active" id="tab_<%=organization[i].id%>_a">
                                                           <h4>學生會簡介</h4>
                                                           <h6><%- organization[i].introduction %></h6>
+                                                          <div id="myCarousel_<%= organization[i].name%>" class="carousel slide" data-ride="carousel" style="max-width: 600px">
+                                                                  <!-- Indicators -->
+                                                                  <ol class="carousel-indicators">
+                                                                    <%var ha = false;%>
+                                                                    <%var la = 0;%>
+                                                                    <% for (var j in groupImg){%>
+                                                                        <% if ( groupImg[j].type == "intro" && groupImg[j].belongs == organization[i].name ){ %>
+                                                                          <%if (ha==false){%>
+                                                                            <li data-target="#myCarousel_<%= organization[i].name%>" data-slide-to="<%la%>" class="active"></li>
+                                                                            <%ha=true;%>
+                                                                            <%la++;%>
+                                                                          <%}else{%>
+                                                                            <li data-target="#myCarousel_<%= organization[i].name%>" data-slide-to="<%la%>"></li>
+                                                                            <%la++;%>
+                                                                          <%}%>        
+                                                                        <%}%>
+                                                                    <%}%>
+                                                                  </ol>
+                                                                  <div class="carousel-inner">
+                                                                  <%var haha = false;%>
+                                                                  <% for (var j in groupImg){%>
+                                                                      <% if ( groupImg[j].type == "intro" && groupImg[j].belongs == organization[i].name ){ %>
+
+                                                                        <%if (haha==false){%>
+                                                                          <div class="item active">
+                                                                        <%haha=true;%>
+                                                                        <%}else{%>
+                                                                          <div class="item">
+                                                                        <%}%>
+                                                                        <img src="<%= groupImg[j].path%>" style="width:600px;height: 400px">                              
+                                                                        </div>
+                                                                      <%}%>
+                                                                  <%}%>
+                                                                  </div>
+                                                              <%var hah = false;%>   
+                                                              <% for (var j in groupImg){%>
+                                                              <% if ( groupImg[j].type == "intro" && groupImg[j].belongs == organization[i].name ){ %>
+                                                                  <%if (hah==false){%>
+                                                                  <a class="left carousel-control" href="#myCarousel_<%= organization[i].name%>" data-slide="prev">
+                                                                        <span class="glyphicon glyphicon-chevron-left"></span>
+                                                                        <span class="sr-only">Previous</span>
+                                                                  </a>
+                                                                  <a class="right carousel-control" href="#myCarousel_<%= organization[i].name%>" data-slide="next">
+                                                                        <span class="glyphicon glyphicon-chevron-right"></span>
+                                                                        <span class="sr-only">Next</span>
+                                                                  </a>
+                                                                   <%hah = true;%>  
+                                                                   <%}%> 
+                                                                  <%}%>
+                                                                  <%}%>
+                                                              </div>
                                                       </div>
                                                       <div class="tab-pane" id="tab_<%=organization[i].id%>_b">
                                                           <h4>部門介紹</h4>
@@ -156,7 +240,7 @@
                                             <div class="modal-footer">
                                             <% if(user&&user.local.accountType==='admin'){%>
                                              <button class="btn btn-default edit_or" value="<%= organization[i].id%>" data-dismiss="modal">編輯</button>
-                                             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#uploadimg" data-dismiss="modal">新增圖片</button>
+                                             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#uploadimg_<%= organization[i].id%>" data-dismiss="modal">新增圖片</button>
                                              <button class="btn btn-default btn-xs delete_or" value="<%= organization[i].id%>"  data-dismiss="modal"> 刪除</button>
                                              <%}%>
                                               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
