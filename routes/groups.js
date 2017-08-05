@@ -236,7 +236,7 @@ router.post('/edit_or',isAdmin, function(req, res, next) {
         path: fileName,
         updated_at: Date.now(),
       }).save(function() {
-        res.redirect('all_department?dep=literature');
+        res.redirect('all_club?club=learn');
       });
       readStream.on("end", function() {
         console.log(readStream);
