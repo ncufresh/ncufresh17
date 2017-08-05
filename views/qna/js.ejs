@@ -12,7 +12,7 @@ $(document).ready(function() {
         if (getAll[0] === 'post' && getAll[1] === 'success') {
           $('#success').modal('show');
         } else if (getAll[0] === 'delete' && getAll[1] === 'success') {
-          $('#success').modal('show');
+          $('#delete-success').modal('show');
         }
       }
     }
@@ -73,7 +73,6 @@ $(document).ready(function() {
         })
       }
     });
-  });
-<% } %>
-
+  <% } %>
+});
 </script>
