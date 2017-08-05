@@ -9,12 +9,6 @@
 
 <script type="text/javascript">
 
-    <%/*解決在modal中的table無法縮放的問題*/%>
-    $('table').attr({"style":""});
-    $('tbody').attr({"style":""});
-    $('td').attr({"style":""});
-    $('tr').attr({"style":""});
-
     <%/*開始時大一新生—註冊報到和碩一新生—註冊報到的按鈕都經被按了*/%>
     $(".under-1-source").css({"background-color":"#eee"});
     $(".under-4-source").css({"background-color":"#eee"});
@@ -251,7 +245,13 @@
             var id = this.id;
             if (id in documentObjects){
                 $('#show-name').html(documentObjects[id].name);
-                $('#show-content').html(documentObjects[id].content);
+                $('#show-content').html(documentObjects[id].content).promise().done(function(){
+                    <%/*解決在modal中的table無法縮放的問題*/%>
+                    $('table').attr({"style":""});
+                    $('tbody').attr({"style":""});
+                    $('td').attr({"style":""});
+                    $('tr').attr({"style":""});
+                });
                 <% if(user&&user.local.accountType==='admin'){%>
                     $('show-edit-data').val(id);
                     $('show-insert-image').attr({"data-target":"#"+id+"insertimg"})
@@ -266,7 +266,13 @@
                     },
                     success: function(data){
                         $('#show-name').html(data.name);
-                        $('#show-content').html(data.content);
+                        $('#show-content').html(data.content).promise().done(function(){
+                            <%/*解決在modal中的table無法縮放的問題*/%>
+                            $('table').attr({"style":""});
+                            $('tbody').attr({"style":""});
+                            $('td').attr({"style":""});
+                            $('tr').attr({"style":""});
+                        });
                         <% if(user&&user.local.accountType==='admin'){%>
                             $('#show-edit-data').val(id);
                             $('#show-insert-image').attr({"data-target":"#"+id+"insertimg"})
