@@ -19,6 +19,11 @@ var fs = require('fs');
 
 module.exports = function(passport) {
 
+  // YouTube 認證用
+  router.get('/google935aea65c621a665.html', function(res, req) {
+    res.send('google-site-verification: google935aea65c621a665.html');
+  });
+
   /* GET home page. */
   router.get('/', function(req, res, next) {
     async.parallel({
@@ -27,23 +32,23 @@ module.exports = function(passport) {
             cb(null, com);
           });
         },
-        main_news: function(cb){
-          Main_new.find({'to_top':'false'}).sort({date: -1}).exec(function(err, com){
+        main_news: function(cb) {
+          Main_new.find({'to_top':'false'}).sort({date: -1}).exec(function(err, com) {
             cb(null, com);
           });
         },
-        main_news_top: function(cb){
-          Main_new.find({'to_top':'true'}).sort({date: -1}).exec(function(err, com){
+        main_news_top: function(cb) {
+          Main_new.find({'to_top':'true'}).sort({date: -1}).exec(function(err, com) {
             cb(null, com);
           });
         },
-        newsimgs: function(cb){
-          Newsimg.find().exec(function(err, com){
+        newsimgs: function(cb) {
+          Newsimg.find().exec(function(err, com) {
             cb(null, com);
           });
         },
-        main_events: function(cb){
-          Main_event.find().sort({date: 1}).exec(function(err, com){
+        main_events: function(cb) {
+          Main_event.find().sort({date: 1}).exec(function(err, com) {
             cb(null, com);
           });
         },
@@ -209,23 +214,23 @@ module.exports = function(passport) {
             cb(null, com);
           });
         },
-        main_news: function(cb){
-          Main_new.find({'to_top':'false'}).sort({date: -1}).exec(function(err, com){
+        main_news: function(cb) {
+          Main_new.find({'to_top':'false'}).sort({date: -1}).exec(function(err, com) {
             cb(null, com);
           });
         },
-        main_news_top: function(cb){
-          Main_new.find({'to_top':'true'}).sort({date: -1}).exec(function(err, com){
+        main_news_top: function(cb) {
+          Main_new.find({'to_top':'true'}).sort({date: -1}).exec(function(err, com) {
             cb(null, com);
           });
         },
-        newsimgs: function(cb){
-          Newsimg.find().exec(function(err, com){
+        newsimgs: function(cb) {
+          Newsimg.find().exec(function(err, com) {
             cb(null, com);
           });
         },
-        main_events: function(cb){
-          Main_event.find().sort({date: -1}).exec(function(err, com){
+        main_events: function(cb) {
+          Main_event.find().sort({date: -1}).exec(function(err, com) {
             cb(null, com);
           });
         },
@@ -251,20 +256,20 @@ module.exports = function(passport) {
     var form = new formidable.IncomingForm();
     form.parse(req, function(err, fields, files) {
       if (err) {
-				console.log(err);
-			}
-			// console.log('received fields: ');
-			// console.log(fields);
+        console.log(err);
+      }
+      // console.log('received fields: ');
+      // console.log(fields);
       // console.log('received files: ');
-			// console.log(files);
+      // console.log(files);
 
 
       var uploadedFile = files.input_img;
       var tmpPath = uploadedFile.path;
       var fileName = shortId.generate() + uploadedFile.name.substr(uploadedFile.name.lastIndexOf('.'));
       var targetPath = './public/images/main/galimg/' + fileName;
-			// console.log(tmpPath);
-			// console.log(targetPath);
+      // console.log(tmpPath);
+      // console.log(targetPath);
 
 
       var readStream = fs.createReadStream(tmpPath)
@@ -286,10 +291,10 @@ module.exports = function(passport) {
     });
   });
   //刪除gal
-  router.post('/manageMain/delGal/:id',isAdmin, function(req, res){
-    Galimg.findById( req.params.id, function ( err, galimg ){
-      galimg.remove( function ( err, galimg ){
-        fs.unlink("./public/images/main/galimg/"+galimg.imgurl,function(err){
+  router.post('/manageMain/delGal/:id', isAdmin, function(req, res) {
+    Galimg.findById(req.params.id, function(err, galimg) {
+      galimg.remove(function(err, galimg) {
+        fs.unlink("./public/images/main/galimg/" + galimg.imgurl, function(err) {
 
           console.log(err);
           res.redirect('/manageMain');
@@ -298,7 +303,7 @@ module.exports = function(passport) {
     });
   });
   //新增消息
-  router.post('/manageMain/addNews',isAdmin, function(req, res){
+  router.post('/manageMain/addNews', isAdmin, function(req, res) {
     new Main_new({
       title      : req.body.title,
       date       : req.body.news_date,
@@ -306,65 +311,65 @@ module.exports = function(passport) {
       subtitle   : req.body.subtitle,
       to_top     : req.body.to_top,
       updated_at : Date.now(),
-    }).save(function(){
-      res.redirect( '/manageMain' );
+    }).save(function() {
+      res.redirect('/manageMain');
     });
   });
-  router.post('/manageMain/editNews/:id',isAdmin, function(req, res){
+  router.post('/manageMain/editNews/:id', isAdmin, function(req, res) {
     // console.log(req.body);
-    Main_new.findById( req.params.id, function ( err, main_new ){
+    Main_new.findById(req.params.id, function(err, main_new) {
       main_new.title    = req.body.title;
       main_new.date     = req.body.news_date;
       main_new.content  = req.body.news_content;
       main_new.subtitle = req.body.subtitle;
-      if(req.body.to_top){
-        main_new.to_top   = true;
-      }else{
-        main_new.to_top   = false;
+      if (req.body.to_top) {
+        main_new.to_top = true;
+      } else {
+        main_new.to_top = false;
       }
       main_new.updated_at = Date.now();
-      main_new.save( function ( err, todo, count ){
-        res.redirect( '/manageMain' );
+      main_new.save(function(err, todo, count) {
+        res.redirect('/manageMain');
       });
     });
   });
   //刪除news
-  router.post('/manageMain/delNews/:id',isAdmin, function(req, res){
-    Main_new.findById( req.params.id, function ( err, main_new ){
-      main_new.remove( function ( err, main_new ){
+  router.post('/manageMain/delNews/:id', isAdmin, function(req, res) {
+    Main_new.findById(req.params.id, function(err, main_new) {
+      main_new.remove(function(err, main_new) {
         res.redirect('/manageMain');
       });
     });
   });
 
   //最上面的照片
-  router.post('/manageMain/addNewsImg',isAdmin,function(req,res,next){
+  router.post('/manageMain/addNewsImg', isAdmin, function(req, res, next) {
     var form = new formidable.IncomingForm();
-    form.parse(req, function (err, fields, files) {
+    form.parse(req, function(err, fields, files) {
       if (err) {
-				console.log(err);
-			}
-			// console.log('received fields: ');
-			// console.log(fields);
+        console.log(err);
+      }
+      // console.log('received fields: ');
+      // console.log(fields);
       // console.log('received files: ');
-			// console.log(files);
+      // console.log(files);
 
       var uploadedFile = files.input_img;
       var tmpPath = uploadedFile.path;
-			var fileName = shortId.generate() + uploadedFile.name.substr(uploadedFile.name.lastIndexOf('.'));
+      var fileName = shortId.generate() + uploadedFile.name.substr(uploadedFile.name.lastIndexOf('.'));
       var targetPath = './public/images/main/newsimg/' + fileName;
-			// console.log(tmpPath);
-			// console.log(targetPath);
+      // console.log(tmpPath);
+      // console.log(targetPath);
 
       var readStream = fs.createReadStream(tmpPath)
-			var writeStream = fs.createWriteStream(targetPath);
+      var writeStream = fs.createWriteStream(targetPath);
 
       new Newsimg({
         imgurl: fileName,
-      }).save(function(){
+      }).save(function() {
         res.redirect('/manageMain');
       });
-      readStream.on("end", function () {
+      readStream.on("end", function() {
         // console.log(readStream);
         fs.unlink(tmpPath);
       }).pipe(writeStream);
@@ -372,10 +377,10 @@ module.exports = function(passport) {
     });
   });
   //刪除newsimg
-  router.post('/manageMain/delNewsImg/:id',isAdmin, function(req, res){
-    Newsimg.findById( req.params.id, function ( err, newsimg ){
-      newsimg.remove( function ( err, newsimg ){
-        fs.unlink("./public/images/main/newsimg/"+newsimg.imgurl,function(err){
+  router.post('/manageMain/delNewsImg/:id', isAdmin, function(req, res) {
+    Newsimg.findById(req.params.id, function(err, newsimg) {
+      newsimg.remove(function(err, newsimg) {
+        fs.unlink("./public/images/main/newsimg/" + newsimg.imgurl, function(err) {
 
           console.log(err);
           res.redirect('/manageMain');
@@ -384,7 +389,7 @@ module.exports = function(passport) {
     });
   });
   //新增時程
-  router.post('/manageMain/addEvent',isAdmin, function(req, res){
+  router.post('/manageMain/addEvent', isAdmin, function(req, res) {
     console.log(req);
     new Main_event({
       title      : req.body.title,
@@ -392,41 +397,34 @@ module.exports = function(passport) {
       content    : req.body.news_event,
       subtitle   : req.body.subtitle,
       updated_at : Date.now(),
-    }).save(function(){
-      res.redirect( '/manageMain' );
+    }).save(function() {
+      res.redirect('/manageMain');
     });
   });
   // 編輯時程
-  router.post('/manageMain/editEvent/:id',isAdmin, function(req, res){
+  router.post('/manageMain/editEvent/:id', isAdmin, function(req, res) {
     // console.log(req.body);
-    Main_event.findById( req.params.id, function ( err, main_new ){
+    Main_event.findById(req.params.id, function(err, main_new) {
       main_new.title    = req.body.title;
       main_new.date     = req.body.news_date;
       main_new.content  = req.body.news_content;
       main_new.subtitle = req.body.subtitle;
 
       main_new.updated_at = Date.now();
-      main_new.save( function ( err, todo, count ){
-        res.redirect( '/manageMain' );
+      main_new.save(function(err, todo, count) {
+        res.redirect('/manageMain');
       });
     });
   });
 
   //刪除時程
-  router.post('/manageMain/delEvent/:id',isAdmin, function(req, res){
-    Main_event.findById( req.params.id, function ( err, main_new ){
-      main_new.remove( function ( err, main_new ){
+  router.post('/manageMain/delEvent/:id', isAdmin, function(req, res) {
+    Main_event.findById(req.params.id, function(err, main_new) {
+      main_new.remove(function(err, main_new) {
         res.redirect('/manageMain');
       });
     });
   });
-  // router.get('/auth/provider', passport.authenticate('provider',{ scope: 'user.info.basic.read' }));
-  //
-  // router.get('/auth/provider/callback',
-  // passport.authenticate('provider', { successRedirect: '/',
-  //                                     failureRedirect: '/login' }),function(){
-  //
-  //                                     });
 
   //Todo test
   router.get('/todo', isAdmin, function(req, res, next) {
@@ -491,19 +489,13 @@ module.exports = function(passport) {
 }
 
 function isLoggedIn(req, res, next) {
-  // if login then redirect
   if (req.isAuthenticated())
     res.redirect('/');
-
   return next();
 }
 
 function isAdmin(req, res, next) {
-  if (req.isAuthenticated()) {
-    // console.log('log:' + req.user.local);
-    if (req.user.local.accountType === 'admin') {
-      return next();
-    }
-  }
+  if (req.isAuthenticated() && req.user.local.accountType === 'admin')
+    return next();
   res.redirect('/');
 }
