@@ -2,28 +2,28 @@
 $(document).ready(function() {
 
   <%# 當發問成功會轉址到 /qna/?post=success 時，顯示發問成功的 modal %>
-  var strUrl = location.search;
-  if (strUrl.indexOf('?') !== -1) {
-    var getSearch = strUrl.split('?');
-    var getString = getSearch[1];
-    if (getString.indexOf('&') === -1) {
-      var getAll = getString.split('=');
-      if (getAll[0] === 'post' && getAll[1] === 'success') {
-        $('#success').modal('show');
-      }
-      <% if (user && user.local.accountType==='admin') { %>
-        else if (getAll[0] === 'delete' && getAll[1] === 'success') {
-          $('#delete-success').modal('show');
+  <% if (user) { %>
+    var strUrl = location.search;
+    if (strUrl.indexOf('?') !== -1) {
+      var getSearch = strUrl.split('?');
+      var getString = getSearch[1];
+      if (getString.indexOf('&') === -1) {
+        var getAll = getString.split('=');
+        if (getAll[0] === 'post' && getAll[1] === 'success') {
+          $('#success').modal('show');
+        } else if (getAll[0] === 'delete' && getAll[1] === 'success') {
+          $('#success').modal('show');
         }
-      <% } %>
+      }
     }
-  }
+  <% } %>
 
   <%# 當問題被點擊的時候，傳送 xhr 到後端 api，api 會回傳物件包含標題、問題、答案 %>
   $('.clickable').on('click', function() {
     <%# api_token === Qna._id %>
     var id = this.id.split('-')[0];
     $.ajax({
+      method: 'GET',
       url: '/qna/' + id
     }).done(function(res) {
       <%# 設定 modal 內容 %>
@@ -38,22 +38,42 @@ $(document).ready(function() {
         objs[i].innerHTML = parseInt(objs[i].innerHTML) + 1;
       }
     }).fail(function(err) {
-      console.log('Error: ' + err.status);
+      alert('發生不知明錯誤');
     });
   });
 
-  <%# 管理員回答 %>
-  $('.admin-answer').on('click', function() {
-    var id = this.id.split('-')[0];
-    console.log('in answer: ' + id);
+  <% if (user && user.local.accountType==='admin') { %>
 
-    var obj = $('.' + id);
-    <%# 設定 modal 內容 %>
-    $('#admin-answer-form').attr({ 'action': ('/qna/answer/' + id) });
-    document.getElementById('admin-answer-title').value = obj.find('.title').text();
-    document.getElementById('admin-answer-content').value = obj.find('.content').val();
-    document.getElementById('admin-answer-type').value = obj.find('.type').val();
-    $('#modal-admin-answer').modal('show');
+    <%# 管理員回答 %>
+    $('.admin-answer').on('click', function() {
+      var id = this.id.split('-')[0];
+      var obj = $('.' + id);
+      <%# 設定 modal 內容 %>
+      $('#admin-answer-form').attr({ 'action': ('/qna/answer/' + id) });
+      $('#btn-admin-delete-answer').attr({ 'data-id' : id });
+      document.getElementById('admin-answer-title').value = obj.find('.title').text();
+      document.getElementById('admin-answer-content').value = obj.find('.content').val();
+      document.getElementById('admin-answer-answer').value = "";
+      document.getElementById('admin-answer-type').value = obj.find('.type').val();
+      $('#modal-admin-answer').modal('show');
+    });
+
+    <%# 管理員刪除 %>
+    $('#btn-admin-delete-answer').on('click', function() {
+      if (confirm("確定要刪除嗎？？？")) {
+        $.ajax({
+          method: 'POST',
+          url: '/qna/deleteByAdmin/' + $(this).attr('data-id')
+        }).done(function(res) {
+          alert('刪除成功');
+          $('#modal-admin-answer').modal('hide');
+          $('.' + res.id).remove();
+        }).fail(function(err) {
+          alert('發生錯誤: ' + err);
+        })
+      }
+    });
   });
-});
+<% } %>
+
 </script>
