@@ -66,7 +66,7 @@
                 </tr>
                 <% var counter = 1; %>
                 <% qna.forEach( function (q) { %>
-                  <% if(!q.answer && counter <= 15) { %>
+                  <% if(q.answer && counter <= 15) { %>
                     <tr id="<%= q._id %>-hot" class="clickable <%= q._id %>">
                       <td><%= typeToChineseName[q.type] %></td>
                       <td><%= renderTime(q.updated) %></td>
@@ -95,7 +95,7 @@
                   <% } %>
                 </tr>
                 <% qna.forEach( function (q) { %>
-                  <% if(!!q.answer) { %>
+                  <% if(q.answer) { %>
                     <tr id="<%= q._id %>-all" class="clickable <%= q._id %> qa-<%= typeToEnglishName[q.type] %>"><%# 在 routes/qna.js 裡面 %>
                       <td><%= typeToChineseName[q.type] %><%# 在 routes/qna.js 裡面 %></td>
                       <td><%= renderTime(q.updated) %></td>
