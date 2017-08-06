@@ -6,7 +6,7 @@ var video = require('../models/video');
 router.get('/', function(req, res, next) {
 	res.render('video/index',
 	{
-		title: 'video',
+		title: '影音專區 | 新生知訊網',
 		user: req.user
 	});
 });
@@ -48,7 +48,7 @@ router.get('/life', function(req, res, next) {
 		}
 		res.render('video/life', 
 		{
-			title: 'life',
+			title: '生活區 | 新生知訊網',
 			user: req.user,
 			video: video,
 			foodURL: foodURL,
@@ -140,7 +140,7 @@ router.get('/interview', function(req, res, next) {
 		}
 		res.render('video/interview',
 	  	{
-	  		title: 'interview',
+			title: '採訪區 | 新生知訊網',
 	  		user: req.user,
 	  		video: video,
 	  		D1: D1,
@@ -213,13 +213,10 @@ router.post('/addQQ',isAdmin, function(req, res, next) {
 	});
 	res.redirect('/video/interview');
 });
+
 function isAdmin(req, res, next) {
-  if (req.isAuthenticated()) {
-    // console.log('log:' + req.user.local);
-    if (req.user.local.accountType === 'admin') {
-      return next();
-    }
-  }
+  if (req.isAuthenticated() && req.user.local.accountType === 'admin')
+    return next();
   res.redirect('/');
 }
 

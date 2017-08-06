@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
 router.get('/edit_aboutweb', isAdmin,function(req, res, next) {
   aboutweb.find({}).exec(function(err,aboutweb){
     if (err) return next(err);
-    res.render('aboutweb/edit_aboutweb', { title: 'edit_aboutweb', aboutweb: aboutweb, user: req.user });
+    res.render('aboutweb/edit_aboutweb', { title: '修改網站地圖 ｜ 新生知訊網', aboutweb: aboutweb, user: req.user });
   });
 });
 
@@ -62,12 +62,8 @@ router.post('/add',isAdmin,function(req,res,next){
 });
 
 function isAdmin(req, res, next) {
-  if (req.isAuthenticated()) {
-    // console.log('log:' + req.user.local);
-    if (req.user.local.accountType === 'admin') {
-      return next();
-    }
-  }
+  if (req.isAuthenticated() && req.user.local.accountType === 'admin')
+    return next();
   res.redirect('/');
 }
 
