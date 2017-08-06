@@ -2,18 +2,28 @@
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <!-- <script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script> -->
-
-<script src="/javascript/ckeditor/ckeditor.js"></script>
+<% if(user&&user.local.accountType==='admin'){%>
+    <script src="/javascript/ckeditor/ckeditor.js"></script>
+<%}%>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" type="text/javascript"></script>
 
+<script src="jquery.lazyload.js"></script>
+
 <script type="text/javascript">
 
-    <%/*開始時大一新生—註冊報到和碩一新生—註冊報到的按鈕都經被按了*/%>
-    $(".under-1-source").css({"background-color":"#eee"});
-    $(".under-4-source").css({"background-color":"#eee"});
-
     $(document).ready(function(){
+
+        <%/*除了三張主圖以外其他的圖都lazyload*/%>
+        $('.commonly_used_link_image').lazyload();
+        $('.pop-modal').lazyload();
+
+        <%/*除了第一次以外，按按鈕時不會在往下1px*/%>
+        var under_1_first_time = true;
+        var under_2_first_time = true;
+        var under_3_first_time = true;
+        var under_4_first_time = true;
+        var under_5_first_time = true;
 
         <%/*get?後面的東西*/%>
         var strUrl = location.search;
@@ -26,9 +36,6 @@
                 $('#freshmen-distaination').css({"display":"block"});
                 $('#master-freshmen-distaination').css({"display":"none"});
                 $('#often-link-distaination').css({"display":"none"});
-                $('html,body').animate({
-                    scrollTop: $('#freshmen-distaination').offset().top-91
-                }, 1000);
                 $('#under-1').css({"display":"block"});
                 $(".under-1-source").css({"background-color":"#eee"});
                 $('#under-2').css({"display":"none"});
@@ -36,15 +43,16 @@
                 $('#under-1').addClass("active");
                 $('#under-2').removeClass("active");
                 $('#under-3').removeClass("active");
+                $('html,body').animate({
+                    scrollTop: $('#freshmen-distaination').offset().top-91
+                }, 1000);
+                under_1_first_time = false;
 
             <%/*大一新生—新生週活動*/%>
             }else if(getString=="1.2"){
                 $('#freshmen-distaination').css({"display":"block"});
                 $('#master-freshmen-distaination').css({"display":"none"});
                 $('#often-link-distaination').css({"display":"none"});
-                $('html,body').animate({
-                    scrollTop: $('#freshmen-distaination').offset().top-91
-                }, 1000);
                 $('#under-1').css({"display":"none"});
                 $('#under-2').css({"display":"block"});
                 $(".under-2-source").css({"background-color":"#eee"});
@@ -52,15 +60,16 @@
                 $('#under-1').removeClass("active");
                 $('#under-2').addClass("active");
                 $('#under-3').removeClass("active");
+                $('html,body').animate({
+                    scrollTop: $('#freshmen-distaination').offset().top-91
+                }, 1000);
+                under_2_first_time = false;
 
             <%/*大一新生—共同課程門檻*/%>
             }else if(getString=="1.3"){
                 $('#freshmen-distaination').css({"display":"block"});
                 $('#master-freshmen-distaination').css({"display":"none"});
                 $('#often-link-distaination').css({"display":"none"});
-                $('html,body').animate({
-                    scrollTop: $('#freshmen-distaination').offset().top-91
-                }, 1000);
                 $('#under-1').css({"display":"none"});
                 $('#under-2').css({"display":"none"});
                 $('#under-3').css({"display":"block"});
@@ -68,34 +77,40 @@
                 $('#under-1').removeClass("active");
                 $('#under-2').removeClass("active");
                 $('#under-3').addClass("active");
+                $('html,body').animate({
+                    scrollTop: $('#freshmen-distaination').offset().top-91
+                }, 1000);
+                under_3_first_time = false;
 
             <%/*碩一新生—註冊報到*/%>
             }else if(getString=="2.1"){
                 $('#freshmen-distaination').css({"display":"none"});
                 $('#master-freshmen-distaination').css({"display":"block"});
                 $('#often-link-distaination').css({"display":"none"});
-                $('html,body').animate({
-                    scrollTop: $('#master-freshmen-distaination').offset().top-91
-                }, 1000);
                 $(".under-4-source").css({"background-color":"#eee"});
                 $('#under-4').css({"display":"block"});
                 $('#under-5').css({"display":"none"});
                 $('#under-4').addClass("active");
                 $('#under-5').removeClass("active");
+                $('html,body').animate({
+                    scrollTop: $('#master-freshmen-distaination').offset().top-91
+                }, 1000);
+                under_4_first_time = false;
 
             <%/*碩一新生—新生週活動*/%>
             }else if(getString=="2.2"){
                 $('#freshmen-distaination').css({"display":"none"});
                 $('#master-freshmen-distaination').css({"display":"block"});
                 $('#often-link-distaination').css({"display":"none"});
-                $('html,body').animate({
-                    scrollTop: $('#master-freshmen-distaination').offset().top-91
-                }, 1000);
                 $('#under-4').css({"display":"none"});
                 $(".under-5-source").css({"background-color":"#eee"});
                 $('#under-5').css({"display":"block"});
                 $('#under-4').removeClass("active");
                 $('#under-5').addClass("active");
+                $('html,body').animate({
+                    scrollTop: $('#master-freshmen-distaination').offset().top-91
+                }, 1000);
+                under_5_first_time = false;
 
             <%/*常用連結*/%>
             }else if(getString=="3"){
@@ -105,6 +120,10 @@
                 $('html,body').animate({
                     scrollTop: $('#often-link-distaination').offset().top-91
                 }, 1000);
+            }else{
+                <%/*開始時大一新生—註冊報到和碩一新生—註冊報到的按鈕都經被按了*/%>
+                $(".under-1-source").css({"background-color":"#eee"});
+                $(".under-4-source").css({"background-color":"#eee"});
             }
         }
 
@@ -119,7 +138,7 @@
                 "overflow":"hidden"
             });
          });
-        
+
         <%/*滑鼠進入圖片時*/%>
         $(".commonly_used_link_image").mouseenter(function(){
             <%/*如果type是常用連結且滑鼠不是在中間的字上面時*/%>
@@ -155,32 +174,42 @@
             $('#freshmen-distaination').css({"display":"block"});
             $('#master-freshmen-distaination').css({"display":"none"});
             $('#often-link-distaination').css({"display":"none"});
-            $('html,body').animate({
-                scrollTop: $('#freshmen-distaination').offset().top-91
-            }, 1000);
+            $('#freshmen-distaination').velocity("scroll", {
+                duration: 1000,
+                offset: -91
+            })
             return false;
         });
         $("#master-freshmen-source").click(function(){
             $('#freshmen-distaination').css({"display":"none"});
             $('#master-freshmen-distaination').css({"display":"block"});
             $('#often-link-distaination').css({"display":"none"});
-            $('html,body').animate({
-                scrollTop: $('#master-freshmen-distaination').offset().top-91
-            }, 1000);
+            $('#master-freshmen-distaination').velocity("scroll", {
+                duration: 1000,
+                offset: -91
+            })
             return false;
         });
         $("#often-link-source").click(function(){
             $('#freshmen-distaination').css({"display":"none"});
             $('#master-freshmen-distaination').css({"display":"none"});
             $('#often-link-distaination').css({"display":"block"});
-            $('html,body').animate({
-                scrollTop: $('#often-link-distaination').offset().top-91
-            }, 1000);
+            $('#often-link-distaination').velocity("scroll", {
+                duration: 1000,
+                offset: -91
+            })
             return false;
         });
 
         <%/*大一新生-註冊報到的按鈕*/%>
         $(".under-1-source").click(function(){
+            if (under_1_first_time==true){
+                $('html').velocity("scroll", {
+                    duration: 1000,
+                    offset: $(window).scrollTop()+1
+                });
+                under_1_first_time = false;
+            }
             $(this).css({"background-color":"#eee"});
             $(".under-2-source").css({"background-color":""});
             $(".under-3-source").css({"background-color":""});
@@ -194,6 +223,13 @@
         });
         <%/*大一新生-新生週活動的按鈕*/%>
         $(".under-2-source").click(function(){
+            if (under_2_first_time==true){
+                $('html').velocity("scroll", {
+                    duration: 1000,
+                    offset: $(window).scrollTop()+1
+                });
+                under_2_first_time = false;
+            }
             $(".under-1-source").css({"background-color":""});
             $(this).css({"background-color":"#eee"});
             $(".under-3-source").css({"background-color":""});
@@ -207,6 +243,13 @@
         });
         <%/*大一新生-共同課程及門檻的按鈕*/%>
         $(".under-3-source").click(function(){
+            if (under_3_first_time==true){
+                $('html').velocity("scroll", {
+                    duration: 1000,
+                    offset: $(window).scrollTop()+1
+                });
+                under_3_first_time = false;
+            }
             $(".under-1-source").css({"background-color":""});
             $(".under-2-source").css({"background-color":""});
             $(this).css({"background-color":"#eee"});
@@ -220,6 +263,13 @@
         });
         <%/*碩一新生-註冊報到的按鈕*/%>
         $(".under-4-source").click(function(){
+            if (under_4_first_time==true){
+                $('html').velocity("scroll", {
+                    duration: 1000,
+                    offset: $(window).scrollTop()+1
+                });
+                under_4_first_time = false;
+            }
             $(this).css({"background-color":"#eee"});
             $(".under-5-source").css({"background-color":""});
             $('#under-4').css({"display":"block"});
@@ -230,6 +280,13 @@
         });
         <%/*碩一新生-新生週活動的按鈕*/%>
         $(".under-5-source").click(function(){
+            if (under_5_first_time==true){ 
+                $('html').velocity("scroll", {
+                    duration: 1000,
+                    offset: $(window).scrollTop()+1
+                })
+                under_5_first_time = false;
+            }
             $(".under-4-source").css({"background-color":""});
             $(this).css({"background-color":"#eee"});
             $('#under-4').css({"display":"none"});
