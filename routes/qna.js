@@ -26,7 +26,7 @@ router.get('/', function(req, res, next) {
     }
 
     res.render('qna/index', {
-      title: 'QnA',
+      title: '新生Ｑ＆Ａ | 新生知訊網',
       user: req.user,
       typeToName: typeToName,
       renderTime: renderTime,
@@ -37,6 +37,7 @@ router.get('/', function(req, res, next) {
 
 // 當前端點選問題時會傳送 xhr 到這裡
 router.get('/:id', function(req, res, next) {
+  // 非 xhr 回傳 404
   if (!req.xhr) {
     var err = new Error('Not Found');
     err.status = 404;
@@ -50,6 +51,8 @@ router.get('/:id', function(req, res, next) {
 
     // 增加瀏覽次數
     qna.view++;
+
+    // 儲存瀏覽次數
     qna.save(function(err) {
       if (err)
         return next(err);
@@ -87,6 +90,7 @@ router.post('/', isLoggedIn, function(req, res, next) {
 
 // 當前端點選問題時會傳送 xhr 到這裡
 router.get('/admin/:id', isAdmin, function(req, res, next) {
+  // 非 xhr 回傳 404
   if (!req.xhr) {
     var err = new Error('Not Found');
     err.status = 404;
@@ -108,7 +112,7 @@ router.get('/admin/:id', isAdmin, function(req, res, next) {
   });
 });
 
-// 回答問題
+// 管理員回答問題
 router.post('/answer/:id', isAdmin, function(req, res, next) {
   Qna.findById(req.params.id, function(err, qna) {
     if (err)
@@ -151,9 +155,8 @@ function isLoggedIn(req, res, next) {
 }
 
 function isAdmin(req, res, next) {
-  if (req.isAuthenticated())
-    if (req.user.local.accountType === 'admin')
-      return next();
+  if (req.isAuthenticated() && req.user.local.accountType === 'admin')
+    return next();
   res.redirect('/qna');
 }
 

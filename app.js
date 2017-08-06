@@ -63,7 +63,6 @@ var aboutweb = require('./routes/aboutweb');
 
 // Routes
 app.use('/', index);
-app.use('/users', users);
 
 // 新生必讀
 app.use('/documents', documents);

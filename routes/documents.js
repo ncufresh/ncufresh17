@@ -97,7 +97,7 @@ router.post('/add',isAdmin,function(req,res,next){
         });
       } 
       document.find({type:fields.type}).exec(function (err, results) {
-        if(err) throw err;
+        if(err) return next(err);
         var temp = results.length;
         temp++;
         console.log(temp);
@@ -108,7 +108,9 @@ router.post('/add',isAdmin,function(req,res,next){
           content:fields.content,
           img_path:'/documents/' + fileName,
           order: temp
-        }).save();
+        }).save(function(err){
+          if(err) return next(err);
+        });
         res.redirect('/documents');
       });
   });
@@ -204,14 +206,9 @@ router.post('/insertimg/:id',isAdmin,function(req,res,next) {
 })
 
 function isAdmin(req, res, next) {
-  if (req.isAuthenticated()) {
-    // console.log('log:' + req.user.local);
-    if (req.user.local.accountType === 'admin') {
-      return next();
-    }
-  }
+  if (req.isAuthenticated() && req.user.local.accountType === 'admin')
+    return next();
   res.redirect('/');
 }
-
 
 module.exports = router;
