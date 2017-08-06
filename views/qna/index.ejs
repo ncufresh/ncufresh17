@@ -25,7 +25,7 @@
                   <% qna.forEach( function (q) { %>
                     <% if(!q.answer) { %>
                       <tr id="<%= q._id %>-answer" class="admin-answer <%= q._id %>">
-                        <td><%= typeToName[q.type] %></td>
+                        <td><%= typeToChineseName[q.type] %></td>
                         <td><%= renderTime(q.updated) %></td>
                         <td class="title"><%= q.title %></td>
                         <input class="content" type="hidden" value="<%- q.content %>" />
@@ -42,20 +42,20 @@
         <div class="col-md-2" style="padding-left:0">
           <%# 側導覽列 %>
             <ul id="navi" style="max-height: 75vh; margin-top: 20px;">
-              <li><a href="#" type="button"><img src="images/btn_hot.png" alt="熱門問題按鈕"></a></li>
-              <li><a href="#" type="button"><img src="images/btn_all.png" alt="所有問題按鈕"></a></li>
-              <li><a href="#" type="button"><img src="images/btn_school.png" alt="校園生活按鈕"></a></li>
-              <li><a href="#" type="button"><img src="images/btn_student.png" alt="學生事務按鈕"></a></li>
-              <li><a href="#" type="button"><img src="images/btn_dorm.png" alt="宿舍生活按鈕"></a></li>
-              <li><a href="#" type="button"><img src="images/btn_other.png" alt="其他按鈕"></a></li>
-              <li><a href="#" type="button" data-toggle="modal" data-target="#post"><img src="images/btn_post.png" alt="我要發問按鈕"></a></li>
+              <li><a href="#hot" type="button"><img src="images/btn_hot.png" alt="熱門問題按鈕"></a></li>
+              <li><a href="#all" type="button"><img src="images/btn_all.png" alt="所有問題按鈕"></a></li>
+              <li><a href="#school" type="button"><img src="images/btn_school.png" alt="校園生活按鈕"></a></li>
+              <li><a href="#student" type="button"><img src="images/btn_student.png" alt="學生事務按鈕"></a></li>
+              <li><a href="#dorm" type="button"><img src="images/btn_dorm.png" alt="宿舍生活按鈕"></a></li>
+              <li><a href="#other" type="button"><img src="images/btn_other.png" alt="其他按鈕"></a></li>
+              <li><a type="button" data-toggle="modal" data-target="#post"><img src="images/btn_post.png" alt="我要發問按鈕"></a></li>
             </ul>
           <%# /側導覽列 %>
         </div><%# ./col-md-2 %>
         <div class="col-md-8">
 
-          <%# 熱門問題 %>
-            <div class="hide">
+          <%# 熱門問題 Top15 %>
+            <div class="qa-hot">
               <p class="text-center"><img src="images/title_hot.png" alt="熱門問題" style="width: 50%;"></p>
               <table class="table table-hover" style="background-color:white;">
                 <tr>
@@ -64,53 +64,57 @@
                   <th>標題</th>
                   <th>瀏覽次數</th>
                 </tr>
+                <% var counter = 1; %>
                 <% qna.forEach( function (q) { %>
-                  <% if(!q.answer) { %>
+                  <% if(!q.answer && counter <= 15) { %>
                     <tr id="<%= q._id %>-hot" class="clickable <%= q._id %>">
-                      <td><%= typeToName[q.type] %></td>
+                      <td><%= typeToChineseName[q.type] %></td>
                       <td><%= renderTime(q.updated) %></td>
                       <td><%= q.title %></td>
                       <td class="content hidden">BUG appear</td>
                       <td class="answer hidden">BUG appear</td>
                       <td class="view"><%= q.view %></td>
                     </tr>
+                    <% counter++; %>
                   <% } %>
                 <% }); %>
               </table>
             </div>
-          <%# /熱門問題 %>
+          <%# /熱門問題 Top15 %>
           <%# 所有問題 %>
-            <p class="text-center"><img src="images/title_all.png" alt="所有問題" style="width: 50%;"></p>
-            <table class="table table-hover">
-              <tr>
-                <td>類別</td>
-                <td>日期</td>
-                <td>標題</td>
-                <td>瀏覽次數</td>
-                <% if( user && user.local.accountType === 'admin' ) { %>
-                  <td>管理員選項</td>
-                <% } %>
-              </tr>
-              <% qna.forEach( function (q) { %>
-                <% if(!!q.answer) { %>
-                  <tr id="<%= q._id %>-all" class="clickable <%= q._id %>">
-                    <td><%= typeToName[q.type] %></td>
-                    <td><%= renderTime(q.updated) %></td>
-                    <td class="title"><%= q.title %></td>
-                    <td class="view"><%= q.view %></td>
-                    <% if( user && user.local.accountType === 'admin' ) { %>
-                      <td><button id="<%= q._id %>-admin-btn" class="btn btn-success btn-sm btn-admin-update-answer" style="z-index: 99">修改回答</button></td>
-                      <input class="content" type="hidden" value="<%- q.content %>" />
-                      <input class="type" type="hidden" value="<%= q.type %>" />
-                    <% } %>
-                  </tr>
-                <% } %>
-              <% }); %>
-            </table>
+            <div class="qa-all" style="display: none;">
+              <p class="text-center"><img src="images/title_all.png" alt="所有問題" style="width: 50%;"></p>
+              <table class="table table-hover">
+                <tr>
+                  <td>類別</td>
+                  <td>日期</td>
+                  <td>標題</td>
+                  <td>瀏覽次數</td>
+                  <% if( user && user.local.accountType === 'admin' ) { %>
+                    <td>管理員選項</td>
+                  <% } %>
+                </tr>
+                <% qna.forEach( function (q) { %>
+                  <% if(!!q.answer) { %>
+                    <tr id="<%= q._id %>-all" class="clickable <%= q._id %> qa-<%= typeToEnglishName[q.type] %>"><%# 在 routes/qna.js 裡面 %>
+                      <td><%= typeToChineseName[q.type] %><%# 在 routes/qna.js 裡面 %></td>
+                      <td><%= renderTime(q.updated) %></td>
+                      <td class="title"><%= q.title %></td>
+                      <td class="view"><%= q.view %></td>
+                      <% if( user && user.local.accountType === 'admin' ) { %>
+                        <td><button id="<%= q._id %>-admin-btn" class="btn btn-success btn-sm btn-admin-update-answer" style="z-index: 99">修改回答</button></td>
+                        <input class="content" type="hidden" value="<%- q.content %>" />
+                        <input class="type" type="hidden" value="<%= q.type %>" />
+                      <% } %>
+                    </tr>
+                  <% } %>
+                <% }); %>
+              </table>
+            </div>
           <%# /所有問題 %>
         </div><%# ./col-md-8 %>
         <div class="col-md-2">
-          <%# 分頁導覽 %>
+          <%# 分頁導覽
             <ul class="pagination">
               <li><a href="#"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
               <li><a href="#">1</a></li>
@@ -120,7 +124,7 @@
               <li><a href="#">5</a></li>
               <li><a href="#"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
             </ul>
-          <%# /分頁導覽 %>
+          /分頁導覽 %>
         </div><%# /col-md-2 %>
       </div><%# /.row %>
 

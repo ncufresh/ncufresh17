@@ -3,6 +3,59 @@
 <% } %>
 <script>
 $(document).ready(function() {
+  $("li a[href='#hot'], li a[href='#all'], li a[href='#school'], li a[href='#student'], li a[href='#dorm'], li a[href='#other']").on('click', function(event) {
+    // Prevent default anchor click behavior
+    event.preventDefault();
+    // Store hash
+    var hash = this.hash;
+    if (hash === "#hot") {
+      $('div.qa-hot').show();
+      $('div.qa-all').hide();
+
+    } else if (hash === "#all") {
+      $('div.qa-hot').hide();
+      $('div.qa-all').show();
+      $('tr.qa-school').show();
+      $('tr.qa-student').show();
+      $('tr.qa-dorm').show();
+      $('tr.qa-other').show();
+
+    } else if (hash === "#school") {
+      $('div.qa-hot').hide();
+      $('div.qa-all').show();
+      $('tr.qa-school').show();
+      $('tr.qa-student').hide();
+      $('tr.qa-dorm').hide();
+      $('tr.qa-other').hide();
+
+    } else if (hash === "#student") {
+      $('div.qa-hot').hide();
+      $('div.qa-all').show();
+      $('tr.qa-school').hide();
+      $('tr.qa-student').show();
+      $('tr.qa-dorm').hide();
+      $('tr.qa-other').hide();
+
+    } else if (hash === "#dorm") {
+      $('div.qa-hot').hide();
+      $('div.qa-all').show();
+      $('tr.qa-school').hide();
+      $('tr.qa-student').hide();
+      $('tr.qa-dorm').show();
+      $('tr.qa-other').hide();
+
+    } else if (hash === "#other") {
+      $('div.qa-hot').hide();
+      $('div.qa-all').show();
+      $('tr.qa-school').hide();
+      $('tr.qa-student').hide();
+      $('tr.qa-dorm').hide();
+      $('tr.qa-other').show();
+
+    }
+    window.location.hash = hash;
+  });
+
 
   <%# 當發問成功會轉址到 /qna/?post=success 時，顯示發問成功的 modal %>
   <% if (user) { %>
