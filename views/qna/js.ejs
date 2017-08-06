@@ -1,3 +1,6 @@
+<% if (user && user.local.accountType==='admin') { %>
+<script src="/javascript/ckeditor/ckeditor.js"></script>
+<% } %>
 <script>
 $(document).ready(function() {
 
@@ -43,6 +46,15 @@ $(document).ready(function() {
   });
 
   <% if (user && user.local.accountType==='admin') { %>
+
+    <%# CKEDITOR %>
+    CKEDITOR.replace('admin-answer-answer',{
+      filebrowserUploadUrl: '/uploader',
+    });
+    CKEDITOR.editorConfig = function (config){
+      config.enterMode = CKEDITOR.ENTER_BR;
+      config.autoParagraph = false;
+    };
 
     <%# 管理員回答 %>
     $('.admin-answer').on('click', function() {

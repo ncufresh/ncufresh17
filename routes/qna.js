@@ -116,6 +116,19 @@ router.post('/deleteByAdmin/:id', isAdmin, function(req, res, next) {
   });
 });
 
+// 使用者刪除問題
+router.post('/deleteByUser/:id', isLoggedIn, function(req, res, next) {
+  Qna.findById(req.params.id, function(err, qna) {
+    if (err)
+      return next(err);
+    if (req.user._id === qna.userId) {
+      res.json({ message: "刪除問題成功" });
+    } else {
+      res.json({ message: "你有問題嗎？" });
+    }
+  });
+});
+
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated())
     return next();
