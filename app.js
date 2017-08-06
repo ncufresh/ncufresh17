@@ -87,25 +87,25 @@ app.use('/aboutweb', aboutweb);
 
 
 // ckeditor uploader
-app.post('/uploader', multipartMiddleware, function(req, res) {
+app.post('/uploader', multipartMiddleware, function(req, res, next) {
   var fs = require('fs');
 
   fs.readFile(req.files.upload.path, function(err, data) {
+  if (err) return next(err);
     var newPath = __dirname + '/public/uploads/' + req.files.upload.name;
     fs.writeFile(newPath, data, function(err) {
-      if (err) console.log({ err: err });
-      else {
-        html = "";
-        html += "<script type='text/javascript'>";
-        html += "    var funcNum = " + req.query.CKEditorFuncNum + ";";
-        html += "    var url     = \"/uploads/" + req.files.upload.name + "\";";
-        html += "    var message = \"Uploaded file successfully\";";
-        html += "";
-        html += "    window.parent.CKEDITOR.tools.callFunction(funcNum, url, message);";
-        html += "</script>";
+      if (err) return next(err);
 
-        res.send(html);
-      }
+      html = "";
+      html += "<script type='text/javascript'>";
+      html += "    var funcNum = " + req.query.CKEditorFuncNum + ";";
+      html += "    var url     = \"/uploads/" + req.files.upload.name + "\";";
+      html += "    var message = \"Uploaded file successfully\";";
+      html += "";
+      html += "    window.parent.CKEDITOR.tools.callFunction(funcNum, url, message);";
+      html += "</script>";
+
+      res.send(html);
     });
   });
 });
@@ -127,7 +127,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {
     title: '頁面不存在 ｜ 新生知訊網',
-    user: req.user,
+    user: req.user
   });
 });
 
