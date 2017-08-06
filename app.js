@@ -48,7 +48,6 @@ app.use(countdown);
 // passport 認證
 require('./config/passport')(passport);
 var index = require('./routes/index')(passport);
-var users = require('./routes/users');
 
 var documents = require('./routes/documents');
 var qna = require('./routes/qna');
@@ -91,7 +90,7 @@ app.post('/uploader', multipartMiddleware, function(req, res, next) {
   var fs = require('fs');
 
   fs.readFile(req.files.upload.path, function(err, data) {
-  if (err) return next(err);
+    if (err) return next(err);
     var newPath = __dirname + '/public/uploads/' + req.files.upload.name;
     fs.writeFile(newPath, data, function(err) {
       if (err) return next(err);
