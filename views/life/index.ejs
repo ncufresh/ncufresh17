@@ -12,11 +12,6 @@
 .mainbtn:hover{
   padding:0vw;
 }
-.jumbotron{
-  background-image: url("Bubble.png");
-  background-color: #E7F4F7;
-  height:45vw;
-}
 </style>
 </head>
 <body>
@@ -27,8 +22,9 @@
       <div class="container">
           <div>
               <h1 class="text-center">中大生活</h1>
-              <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#add_life" style="width:100px;height:30px;text-align:center;">新增</button>
-    <!--      <button class="btn btn-default btn-block edit_life" style="width:100px;height:30px;text-align:center;">編輯</button> -->
+              <% if(user&&user.local.accountType==='admin'){%>
+                <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#add_life" style="width:100px;height:30px;text-align:center;">新增</button>
+              <%}%>
           </div>
             <!-- Add/edit Modal -->
             <div class="modal fade" id="add_life" role="dialog">

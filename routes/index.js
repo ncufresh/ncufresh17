@@ -19,11 +19,6 @@ var fs = require('fs');
 
 module.exports = function(passport) {
 
-  // YouTube 認證用
-  router.get('/google935aea65c621a665.html', function(res, req) {
-    res.send('google-site-verification: google935aea65c621a665.html');
-  });
-
   /* GET home page. */
   router.get('/', function(req, res, next) {
     async.parallel({

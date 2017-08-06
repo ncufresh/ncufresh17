@@ -10,12 +10,37 @@ var shortId = require('shortid');
 router.get('/', function(req, res, next) {
   res.render('life/index', { title: 'life', user: req.user });
 });
-router.get('/life/:id',function(req,res,next){
+router.get('/life/:id',isAdmin,function(req,res,next){
   life.find({_id:req.params.id},function(err,data){
     res.send(data[0]);
   });
 });
-router.get('/life/food/:id',function(req,res,next){
+router.get('/life/food/:id',isAdmin,function(req,res,next){
+  life.find({_id:req.params.id},function(err,data){
+    res.send(data[0]);
+  });
+});
+router.get('/life/dorm/:id',isAdmin,function(req,res,next){
+  life.find({_id:req.params.id},function(err,data){
+    res.send(data[0]);
+  });
+});
+router.get('/life/traffic/:id',isAdmin,function(req,res,next){
+  life.find({_id:req.params.id},function(err,data){
+    res.send(data[0]);
+  });
+});
+router.get('/life/study/:id',isAdmin,function(req,res,next){
+  life.find({_id:req.params.id},function(err,data){
+    res.send(data[0]);
+  });
+});
+router.get('/life/entertainment/:id',isAdmin,function(req,res,next){
+  life.find({_id:req.params.id},function(err,data){
+    res.send(data[0]);
+  });
+});
+router.get('/life/others/:id',isAdmin,function(req,res,next){
   life.find({_id:req.params.id},function(err,data){
     res.send(data[0]);
   });
@@ -27,12 +52,66 @@ router.get('/food', function(req, res, next) {
   res.render('life/food', {
   	title: '中大生活 ｜ 新生知訊網',
   	user: req.user,
-  	firstClick: req.query.dep,
-    life: life,
+    life: life
    });
 });
 });
-router.post('/add_life', function(req, res, next) {
+router.get('/dorm', function(req, res, next) {
+	life.find({}).exec(function(err,life){
+	var url_parts = url.parse(req.url, true);
+	var query = url_parts.query;
+  res.render('life/dorm', {
+  	title: '中大生活 ｜ 新生知訊網',
+  	user: req.user,
+    life: life
+   });
+});
+});
+router.get('/traffic', function(req, res, next) {
+	life.find({}).exec(function(err,life){
+	var url_parts = url.parse(req.url, true);
+	var query = url_parts.query;
+  res.render('life/traffic', {
+  	title: '中大生活 ｜ 新生知訊網',
+  	user: req.user,
+    life: life
+   });
+});
+});
+router.get('/study', function(req, res, next) {
+	life.find({}).exec(function(err,life){
+	var url_parts = url.parse(req.url, true);
+	var query = url_parts.query;
+  res.render('life/study', {
+  	title: '中大生活 ｜ 新生知訊網',
+  	user: req.user,
+    life: life
+   });
+});
+});
+router.get('/entertainment', function(req, res, next) {
+	life.find({}).exec(function(err,life){
+	var url_parts = url.parse(req.url, true);
+	var query = url_parts.query;
+  res.render('life/entertainment', {
+  	title: '中大生活 ｜ 新生知訊網',
+  	user: req.user,
+    life: life
+   });
+});
+});
+router.get('/others', function(req, res, next) {
+	life.find({}).exec(function(err,life){
+	var url_parts = url.parse(req.url, true);
+	var query = url_parts.query;
+  res.render('life/others', {
+  	title: '中大生活 ｜ 新生知訊網',
+  	user: req.user,
+    life: life
+   });
+});
+});
+router.post('/add_life',isAdmin, function(req, res, next) {
   if (req.body.button == "update") {
 		life.update({ _id: req.body.bid }, {
       type: fields.type,
@@ -127,11 +206,11 @@ router.post('/add_life', function(req, res, next) {
     fileName3   : fileName3
     });
     a.save(function(){
-      res.redirect('/life/food');
+      res.redirect('/life');
     });
   });
 });
-router.get('/delete_life/:id', function (req, res, next) {
+router.get('/delete_life/:id',isAdmin, function (req, res, next) {
 	console.log(req.params.id);
 	life.findById(req.params.id, function (err, data) {
     if (data.fileName0!=""){
@@ -155,8 +234,17 @@ router.get('/delete_life/:id', function (req, res, next) {
       });
     }
 		life.findById(req.params.id).remove().exec(function(){
-      res.redirect('/life/food');
+      res.redirect('/life');
     });
 	});
 });
+function isAdmin(req, res, next) {
+  if (req.isAuthenticated()) {
+    // console.log('log:' + req.user.local);
+    if (req.user.local.accountType === 'admin') {
+      return next();
+    }
+  }
+  res.redirect('/');
+}
 module.exports = router;
