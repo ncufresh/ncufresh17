@@ -380,10 +380,10 @@ $(document).ready(function(){
             $(".help-menu").removeClass("active");
             $("#goback").velocity("stop").velocity("fadeOut",500);
             $(".map-build."+now).css("display","block").velocity({
-            opacity:1
+                opacity:1
             },200);
             $(".map-build."+now).tooltip("show");
-            $(".map-build").velocity("stop").not("."+now).velocity({
+            $(".map-build").not("."+now).velocity("stop").velocity({
                 opacity:0
             },200,function(){
                 $(".map-build").not("."+now).css("display","none")
