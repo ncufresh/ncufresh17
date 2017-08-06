@@ -8,13 +8,22 @@ router.get('/', function(req, res, next) {
   // 用觀看次數排序
   Qna.find().sort({ view: 'desc' }).exec(function(err, qna) {
 
-    // Array：用來將資料庫 type 欄位的數字轉換成文字
-    // ex: typeToName[ 1 ] === "校園生活"
-    var typeToName = [
+    // Array：用來將資料庫 type 欄位的數字轉換成中文文字
+    // ex: typeToChineseName[ 1 ] === "校園生活"
+    var typeToChineseName = [
       "其他",
       "校園生活",
       "學生事務",
       "宿舍生活"
+    ];
+
+    // Array：用來將資料庫 type 欄位的數字轉換成英文
+    // ex: typeToEnglishName[ 1 ] === "school"
+    var typeToEnglishName = [
+      "other",
+      "school",
+      "student",
+      "dorm"
     ];
 
     // function：用來將資料庫 updated 欄位的時間轉換成日期
@@ -28,7 +37,8 @@ router.get('/', function(req, res, next) {
     res.render('qna/index', {
       title: '新生Ｑ＆Ａ | 新生知訊網',
       user: req.user,
-      typeToName: typeToName,
+      typeToChineseName: typeToChineseName,
+      typeToEnglishName: typeToEnglishName,
       renderTime: renderTime,
       qna: qna
     });
