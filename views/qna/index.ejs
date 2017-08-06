@@ -10,7 +10,34 @@
   </header>
 
   <main style="background-image: url('images/bg.png'); background-size: cover; background-repeat: no-repeat;">
-    <div class="container-fluid" style="<%# background-color: rgba(255,255,255,0.5); %> min-height:100vh;">
+    <div class="container-fluid">
+      <%# 未回答問題 %>
+        <% if (user && user.local.accountType==='admin') { %>
+          <div class="row">
+            <div class="col-xs-12">
+              <h1>未回答問題<small>點擊可以回答</small></h1>
+                <table class="table table-hover">
+                  <tr>
+                    <th>類別</th>
+                    <th>日期</th>
+                    <th>標題</th>
+                  </tr>
+                  <% qna.forEach( function (q) { %>
+                    <% if(!q.answer) { %>
+                      <tr id="<%= q._id %>-answer" class="admin-answer <%= q._id %>">
+                        <td><%= typeToName[q.type] %></td>
+                        <td><%= renderTime(q.updated) %></td>
+                        <td class="title"><%= q.title %></td>
+                        <input class="content" type="hidden" value="<%- q.content %>" />
+                        <input class="type" type="hidden" value="<%= q.type %>" />
+                      </tr>
+                    <% } %>
+                  <% }); %>
+                </table>
+            </div>
+          </div>
+        <% } %>
+      <%# /未回答問題 %>
       <div class="row">
         <div class="col-md-2" style="padding-left:0">
           <%# 側導覽列 %>
@@ -26,33 +53,6 @@
           <%# /側導覽列 %>
         </div><%# ./col-md-2 %>
         <div class="col-md-8">
-
-          <% if (user && user.local.accountType==='admin') { %>
-            <h1>未回答問題<small>點擊可以回答</small></h1>
-            <%# 未回答問題 %>
-              <table class="table table-hover">
-                <caption></caption>
-                <tr>
-                  <th>類別</th>
-                  <th>日期</th>
-                  <th>標題</th>
-                  <th>瀏覽次數</th>
-                </tr>
-                <% qna.forEach( function (q) { %>
-                  <% if(!q.answer) { %>
-                    <tr id="<%= q._id %>-answer" class="admin-answer <%= q._id %>">
-                      <td><%= typeToName[q.type] %></td>
-                      <td><%= renderTime(q.updated) %></td>
-                      <td class="title"><%= q.title %></td>
-                      <td class="view"><%= q.view %></td>
-                      <input class="content" type="hidden" value="<%- q.content %>" />
-                      <input class="type" type="hidden" value="<%= q.type %>" />
-                    </tr>
-                  <% } %>
-                <% }); %>
-              </table>
-            <%# /未回答問題 %>
-          <% } %>
 
           <%# 熱門問題 %>
             <div class="hide">
@@ -99,7 +99,9 @@
                     <td class="title"><%= q.title %></td>
                     <td class="view"><%= q.view %></td>
                     <% if( user && user.local.accountType === 'admin' ) { %>
-                      <td><button class="btn btn-success btn-sm">修改回答</button></td>
+                      <td><button id="<%= q._id %>-admin-btn" class="btn btn-success btn-sm btn-admin-update-answer" style="z-index: 99">修改回答</button></td>
+                      <input class="content" type="hidden" value="<%- q.content %>" />
+                      <input class="type" type="hidden" value="<%= q.type %>" />
                     <% } %>
                   </tr>
                 <% } %>
@@ -148,14 +150,14 @@
       <%# /show Modal %>
 
       <% if (user && user.local.accountType==='admin') { %>
-        <%# 管理員回答 Modal %>
+        <%# 管理員 Modal %>
           <div class="modal fade" id="modal-admin-answer" role="dialog">
             <div class="modal-dialog modal-lg">
               
               <div class="modal-content"><%# Modal %>
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title text-center">管理員回答問題</h4>
+                  <h4 class="modal-title text-center">管理員專區</h4>
                 </div>
 
                 <div class="modal-body">
@@ -170,7 +172,9 @@
                     </div>
                     <div class="form-group">
                       <label for="admin-answer-answer">答案</label>
-                      <textarea id="admin-answer-answer" name="answer" class="form-control" rows="5" placeholder="輸入回答..."></textarea>
+                      <div id="CKE-wrapper">
+                        <textarea id="admin-answer-answer" name="answer" class="form-control" rows="5" placeholder="輸入回答..."></textarea>
+                      </div>
                     </div>
                     <div>
                       <select id="admin-answer-type" name="type" class="form-control" style="height: 50px;">
