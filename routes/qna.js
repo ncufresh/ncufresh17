@@ -3,14 +3,6 @@ var router = express.Router();
 var sanitize = require('../lib/sanitize');
 var Qna = require('../models/qna');
 
-// 測試
-router.get('/test', function(req, res, next) {
-  var err = new Error('error test');
-  if (err)
-    return next(err);
-  console.log('hello');
-});
-
 // 讀取頁面
 router.get('/', function(req, res, next) {
   // 用觀看次數排序
@@ -46,7 +38,7 @@ router.get('/', function(req, res, next) {
 // 當前端點選問題時會傳送 xhr 到這裡
 router.get('/:id', function(req, res, next) {
   if (!req.xhr) {
-    var err = new Error('Not Found 123');
+    var err = new Error('Not Found');
     err.status = 404;
     return next(err);
   }
@@ -74,7 +66,6 @@ router.get('/:id', function(req, res, next) {
 // 新增問題
 router.post('/', isLoggedIn, function(req, res, next) {
   var qna = new Qna();
-  qna.userId = req.user._id;
   // Immediately-Invoked Function Expression (IIFE)
   qna.type = (
     function(reqBodyType) {
@@ -84,12 +75,36 @@ router.post('/', isLoggedIn, function(req, res, next) {
     }
   )(req.body.type);
 
+  qna.userId = req.user._id;
   qna.title = sanitize(req.body.title);
   qna.content = sanitize(req.body.content);
   qna.save(function(err) {
     if (err)
       return next(err);
     res.redirect('/qna/?post=success');
+  });
+});
+
+// 當前端點選問題時會傳送 xhr 到這裡
+router.get('/admin/:id', isAdmin, function(req, res, next) {
+  if (!req.xhr) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    return next(err);
+  }
+
+  // 依據 api_token 尋找相對應的 Qna
+  Qna.findById(req.params.id, function(err, qna) {
+    if (err || !qna)
+      return next(err);
+
+    // 回傳 title, content, answer
+    res.json({
+      title: qna.title,
+      content: qna.content,
+      answer: qna.answer,
+      type: qna.type
+    });
   });
 });
 

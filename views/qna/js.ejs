@@ -58,16 +58,45 @@ $(document).ready(function() {
 
     <%# 管理員回答 %>
     $('.admin-answer').on('click', function() {
+
       var id = this.id.split('-')[0];
-      var obj = $('.' + id);
+      var obj = $('tr.admin-answer.' + id);
       <%# 設定 modal 內容 %>
       $('#admin-answer-form').attr({ 'action': ('/qna/answer/' + id) });
       $('#btn-admin-delete-answer').attr({ 'data-id' : id });
       document.getElementById('admin-answer-title').value = obj.find('.title').text();
       document.getElementById('admin-answer-content').value = obj.find('.content').val();
-      document.getElementById('admin-answer-answer').value = "";
+      // document.getElementById('admin-answer-answer').value = "";
+      CKEDITOR.instances['admin-answer-answer'].setData('');
       document.getElementById('admin-answer-type').value = obj.find('.type').val();
       $('#modal-admin-answer').modal('show');
+
+    });
+
+    <%# 管理員修改 %>
+    $('.btn-admin-update-answer').on('click', function() {
+
+      var id = this.id.split('-')[0];
+      $.ajax({
+        method: 'GET',
+        url: '/qna/admin/' + id
+      }).done(function(res) {
+        console.log(res);
+        $('#admin-answer-form').attr({ 'action': ('/qna/answer/' + id) });
+        $('#btn-admin-delete-answer').attr({ 'data-id' : id });
+        document.getElementById('admin-answer-title').value = res.title;
+        document.getElementById('admin-answer-content').value = res.content;
+        // document.getElementById('admin-answer-answer').value = res.answer;
+        CKEDITOR.instances['admin-answer-answer'].setData(res.answer);
+        document.getElementById('admin-answer-type').value = res.type;
+
+        $('#modal-admin-answer').modal('show');
+
+        $('#show-modal').modal('hide');
+
+      }).fail(function(err) {
+        alert('發生不知明錯誤');
+      });
     });
 
     <%# 管理員刪除 %>
