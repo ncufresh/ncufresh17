@@ -1,4 +1,9 @@
 <script>
+            
+    $('.nav-toggle-btn').on('click', function(e) {
+        $('body').toggleClass('active-nav');
+        e.preventDefault();
+    });
 
     function mouseOver(x) {
         x.style.width = "95%";
