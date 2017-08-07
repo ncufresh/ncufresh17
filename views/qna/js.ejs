@@ -16,49 +16,73 @@ $(document).ready(function() {
     // Store hash
     var hash = this.hash;
     if (hash === "#hot") {
-      $('div.qa-hot').show();
+      $('div.qa-hot').fadeIn(500);
       $('div.qa-all').hide();
 
     } else if (hash === "#all") {
       $('div.qa-hot').hide();
-      $('div.qa-all').show();
-      $('tr.qa-school').show();
-      $('tr.qa-student').show();
-      $('tr.qa-dorm').show();
-      $('tr.qa-other').show();
+      $('div.qa-all').hide().fadeIn(500);
+      $('.qa-school').show();
+      $('.qa-student').show();
+      $('.qa-dorm').show();
+      $('.qa-other').show();
+      $('#title-all').show();
+      $('#title-school').hide();
+      $('#title-student').hide();
+      $('#title-dorm').hide();
+      $('#title-other').hide();
 
     } else if (hash === "#school") {
       $('div.qa-hot').hide();
-      $('div.qa-all').show();
+      $('div.qa-all').hide().fadeIn(500);
       $('tr.qa-school').show();
       $('tr.qa-student').hide();
       $('tr.qa-dorm').hide();
       $('tr.qa-other').hide();
+      $('#title-all').hide();
+      $('#title-school').show();
+      $('#title-student').hide();
+      $('#title-dorm').hide();
+      $('#title-other').hide();
 
     } else if (hash === "#student") {
       $('div.qa-hot').hide();
-      $('div.qa-all').show();
+      $('div.qa-all').hide().fadeIn(500);
       $('tr.qa-school').hide();
       $('tr.qa-student').show();
       $('tr.qa-dorm').hide();
       $('tr.qa-other').hide();
+      $('#title-all').hide();
+      $('#title-school').hide();
+      $('#title-student').show();
+      $('#title-dorm').hide();
+      $('#title-other').hide();
 
     } else if (hash === "#dorm") {
       $('div.qa-hot').hide();
-      $('div.qa-all').show();
+      $('div.qa-all').hide().fadeIn(500);
       $('tr.qa-school').hide();
       $('tr.qa-student').hide();
       $('tr.qa-dorm').show();
       $('tr.qa-other').hide();
+      $('#title-all').hide();
+      $('#title-school').hide();
+      $('#title-student').hide();
+      $('#title-dorm').show();
+      $('#title-other').hide();
 
     } else if (hash === "#other") {
       $('div.qa-hot').hide();
-      $('div.qa-all').show();
+      $('div.qa-all').hide().fadeIn(500);
       $('tr.qa-school').hide();
       $('tr.qa-student').hide();
       $('tr.qa-dorm').hide();
       $('tr.qa-other').show();
-
+      $('#title-all').hide();
+      $('#title-school').hide();
+      $('#title-student').hide();
+      $('#title-dorm').hide();
+      $('#title-other').show();
     }
     window.location.hash = hash;
   });
