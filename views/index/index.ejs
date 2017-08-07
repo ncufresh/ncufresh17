@@ -218,19 +218,41 @@
         text-align: center;
       }
       .dj{
-        height: 1080px;
+        height: 680px;
         position: relative;
-        background-image: url("/images/main/djbg-2.png");
+        background-image: url("/images/main/djbg.png");
+        background-attachment: fixed;
         background-repeat: no-repeat;
         background-color: #55454b;
         background-position: 100% 50%;
       }
-
+      .djbefore{
+        width: 100%;
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 100,100 100,0 ' style='fill:%23acccfc' /%3E%3C/svg%3E");
+        height: 104px;
+        background-repeat: no-repeat;
+  			background-size: 100% 100%;
+      }
+      .djafter{
+        position: absolute;
+        bottom:0;
+        width: 100%;
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,100 100,100 100,0 ' style='fill:%234dc0c7' /%3E%3C/svg%3E");
+        height: 104px;
+        background-repeat: no-repeat;
+  			background-size: 100% 100%;
+      }
       .dj-word{
         position: absolute;
         left: 20%;
-        top: 20%;
-        width: 200px;
+        top: 35%;
+        width: 15%;
+      }
+      .dj-wordd{
+        position: absolute;
+        left: 50%;
+        top: 35%;
+        width: 50%;
       }
       @media (max-width: 991px) {
         h1{
@@ -247,6 +269,16 @@
         }*/
         .event-p{
           font-size: 30px !important;
+        }
+        .dj-wordd{
+          left: 15%;
+          width: 80%;
+        }
+        .dj-word{
+          position: absolute;
+          left: 35%;
+          top: 50%;
+          width: 40%;
         }
       }
 
@@ -442,9 +474,14 @@
               </div>
             </div>
             <div class="dj container-fluid">
+              <div class="djbefore"></div>
               <div class="djbg">
-                <img class="dj-word" src="/images/main/djlogo.jpg" alt="">
-              </div>              
+                <a href="http://radio.pinewave.tw" target="_blank"><img class="dj-word" src="/images/main/djlogo.jpg" alt=""></a>
+              </div>
+              <div class="djbg">
+                <img class="dj-wordd" src="/images/main/djlogoo.png" alt="">
+              </div>
+              <div class="djafter"></div>
             </div>
             <%# <img src="images/main/top.png" onclick="topFunction()" id="topBtn" alt=""> %>
             <img src="images/main/top2.png" onclick="topFunction()" id="topBtn" alt="">
