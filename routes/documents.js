@@ -48,8 +48,10 @@ router.get('/delete/:id',isAdmin,function(req,res,next){
           if (err) return next(err);
         });
       }
-      document.findById(req.params.id).remove().exec();
-      res.redirect('/documents');
+      document.findById(req.params.id).remove().exec(function(err){
+        if (err) return next(err);
+        res.redirect('/documents');
+      });
     });
   });
 });
@@ -87,9 +89,9 @@ router.post('/add',isAdmin,function(req,res,next){
 
         var readStream = fs.createReadStream(tmpPath)
         var writeStream = fs.createWriteStream(targetPath);
-        readStream.on("end",function(){        
-        })
-        .pipe(writeStream,function(){
+        readStream.on("end",function(err){
+          if (err) return next(err);
+        }).pipe(writeStream,function(){
           fs.unlink(tmpPath, function(err) {
             if (err) return next(err);
             console.log('File Uploaded to ' + targetPath + ' - ' + uploadedFile.size + ' bytes');
