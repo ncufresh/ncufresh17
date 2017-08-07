@@ -35,7 +35,7 @@ router.get('/', function(req, res, next) {
     }
 
     res.render('qna/index', {
-      title: '新生Ｑ＆Ａ | 新生知訊網',
+      title: '新生Ｑ＆Ａ ｜ 新生知訊網',
       user: req.user,
       typeToChineseName: typeToChineseName,
       typeToEnglishName: typeToEnglishName,
