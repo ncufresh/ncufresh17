@@ -6,11 +6,11 @@
 <style>
 @font-face{
   font-family:"Hanyi Senty Tang";
-  src: url(/WebFont/SentyTang.ttf) dormat("truetype");
+  src: url(/WebFont/SentyTang.ttf) format("truetype");
 }
 @font-face{
   font-family:"CSong3HK Medium";
-  src: url(/WebFont/CSong3HK-Medium.otf) dormat("opentype");
+  src: url(/WebFont/CSong3HK-Medium.otf) format("opentype");
 }
 .divider2{
   color:#0275d8;
@@ -158,7 +158,7 @@
     <%}%>
     <div class="container">
       <div>
-        <div style="font-size:2.5vw" class="text-center">中大生活</div>
+        <div><img style="display:block;margin:auto;width:40%" src="/life/life.png"></img></div>
       </div>
       <ul class="breadcrumb" style="background-color:#ebf2d2">
         <li style="font-size:1.3vw"><a href="/life">中大生活</a> <span class="divider"></span></li>
@@ -214,29 +214,29 @@
                 </div>
                 <div style="position:relative;top:-1.5vw;display:table" >
                   <%if(life[i].img_path3!="/life/"){%>
-                    <div class="col-xs-4">
+                    <div class="col-md-4">
                       <img src="<%= life[i].img_path1 %>" id="Demo<%=life[i].fileName1%>" class="Demo" onclick="switchDemoPic<%-counter%>(1)"></img>
                     </div>
-                    <div class="col-xs-4">
+                    <div class="col-md-4">
                       <img src="<%= life[i].img_path2 %>" id="Demo<%=life[i].fileName2%>" class="Demo" onclick="switchDemoPic<%-counter%>(2)"></img>
                     </div>
-                    <div class="col-xs-4">
+                    <div class="col-md-4">
                       <img src="<%= life[i].img_path3 %>" id="Demo<%=life[i].fileName3%>" class="Demo" onclick="switchDemoPic<%-counter%>(3)"></img>
                     </div>
                   <% } else if(life[i].img_path2!="/life/"){%>
-                    <div class="col-xs-4 col-xs-offset-2">
+                    <div class="col-md-4 col-md-offset-2">
                       <img src="<%= life[i].img_path1 %>" id="Demo<%=life[i].fileName1%>" class="Demo" onclick="switchDemoPic<%-counter%>(1)"></img>
                     </div>
-                    <div class="col-xs-4">
+                    <div class="col-md-4">
                       <img src="<%= life[i].img_path2 %>" id="Demo<%=life[i].fileName2%>" class="Demo" onclick="switchDemoPic<%-counter%>(2)"></img>
                     </div>
                   <% } else{%>
-                    <div class="col-xs-4 col-xs-offset-4">
+                    <div class="col-md-4 col-md-offset-4">
                       <img src="<%= life[i].img_path1 %>" id="Demo<%=life[i].fileName1%>" class="Demo" onclick="switchDemoPic<%-counter%>(1)"></img>
                     </div>
                   <%}%>
                 </div>
-                <div style="background-color:#9ec8e2;position:relative;padding-bottom:1vw;padding-left:1vw;padding-top:1vw"><%- life[i].introduction %></div>
+                <div style="background-color:#9ec8e2;position:relative;padding-bottom:1vw;padding-left:1vw;padding-top:1vw;line-height:30px"><%- life[i].introduction %></div>
                 <table id="switch<%=life[i].id%>" class="switch" style="width:100%;height:10vw;display:none">
                   <tr>
                     <%if(i-1>=0){%>
