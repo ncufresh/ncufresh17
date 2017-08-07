@@ -16,7 +16,7 @@ $(document).ready(function(){
                 url:    '/campus/delete/'+ id,
                 type:   'GET',
                 error: function(e){
-                    console.log("ERR  :"+e);
+                    // console.log("ERR  :"+e);
                 },
                 success: function(data){
                     $('#b'+ id).remove();
@@ -29,7 +29,7 @@ $(document).ready(function(){
         $.ajax({
             url:    "/campus/newData/"+id,
             error: function(e){
-                console.log("ERR  :"+e);
+                // console.log("ERR  :"+e);
             },
             success: function(data){
                 $("#bid").val(data._id);
@@ -53,10 +53,10 @@ $(document).ready(function(){
         $.ajax({
             url:    "/campus/get_img/"+id,
             error: function(e){
-                console.log("ERR  :"+e);
+                // console.log("ERR  :"+e);
             },
             success: function(data){
-                console.log(data)
+                // console.log(data)
                 for(var i in data){
                     $("#img_body").append('<div id="'+ 'img'+ data[i]._id +'">'+
                                             '<img src= "' +data[i].img_path+'"' + 'width="100%"' + '>'+'\n'+
@@ -113,7 +113,7 @@ $(document).ready(function(){
                 url:    '/campus/delete_img/'+ id,
                 type:   'GET',
                 error: function(e){
-                    console.log("ERR  :"+e);
+                    // console.log("ERR  :"+e);
                 },
                 success: function(data){
                     $('#img'+ id).remove();
@@ -129,7 +129,7 @@ $(document).ready(function(){
                 url:    '/campus/delete_mapObj/'+ id,
                 type:   'GET',
                 error: function(e){
-                    console.log("ERR  :"+e);
+                    // console.log("ERR  :"+e);
                 },
                 success: function(data){
                     $('#mapObj'+ id).remove();
@@ -150,7 +150,7 @@ $(document).ready(function(){
             contentType: false,
             enctype: 'multipart/form-data',
             success: function(data){
-                console.log(data);
+                // console.log(data);
                 $("#img_body").append('<div id="'+ 'img'+ data._id +'">'+
                                             '<img src= "' +data.img_path+'"' + 'width="100%"' + '>'+'\n'+
                                             '<button class="btn delete_img btn-success" value ="'+data._id +'">'+'刪除圖片'+'</button>'+
@@ -158,7 +158,7 @@ $(document).ready(function(){
                 $("#img_path").val("");
             },
             error: function(e){
-                console.log(e);
+                // console.log(e);
             }
         });
     })
@@ -342,14 +342,14 @@ $(document).ready(function(){
         
     });
     $(".build-name").mouseenter(function(){
-        console.log($(this).attr("value"));
+        // console.log($(this).attr("value"));
         $(".mapimg"+$(this).attr("value")).velocity({
             padding:'0vw'
         }, 100);
         $(".mapimg"+$(this).attr("value")).tooltip("show");
     })
     $(".build-name").mouseleave(function(){
-        console.log($(this).attr("value"));
+        // console.log($(this).attr("value"));
         $(".mapimg"+$(this).attr("value")).velocity({
             padding:'0.247vw'
         }, 100);
@@ -412,7 +412,7 @@ $(document).ready(function(){
 		// 判斷是要上一張還是下一張
         no = this.className=='prev' ? no - 1 : no + 1;
         no=(no+$li.length)%$li.length;
-		console.log($li.length);
+		// console.log($li.length);
 		$li.eq(no).stop().fadeTo(fadeSpeed + 100, 1).addClass('selected').siblings().fadeTo(fadeSpeed, 0).removeClass('selected');
  
 		return false;
@@ -422,11 +422,11 @@ $(document).ready(function(){
 	
 	$(".map-build , .build-name").click(function(){
         var id=$(this).attr("value");
-        console.log(id);
+        // console.log(id);
 		$.ajax({
             url:    "/campus/get_img/"+id,
             error: function(e){
-                console.log("ERR  :"+e);
+                // console.log("ERR  :"+e);
             },
             success: function(data){
                 for(var i in data){
@@ -438,10 +438,10 @@ $(document).ready(function(){
 				$.ajax({
 					url:    "/campus/newData/"+id,
 					error: function(e){
-						console.log("ERR  :"+e);
+						// console.log("ERR  :"+e);
 					},
 					success: function(data){
-						console.log(data);
+						// console.log(data);
 						$("#detail-name").text(data.name);
 						$("#detail-content").append("<div style='height: 3.52vw;'></div>"+data.content+"<br>");
                         $("#detail-content p a").attr("target","_blank");
