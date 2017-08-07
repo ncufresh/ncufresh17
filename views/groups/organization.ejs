@@ -10,7 +10,7 @@
 
     <main style="background-image: url(BACK2.png);"">
       <div class="container">
-            <h1 style="font-size: 100px;">學生組織</h1>
+            <img src="學生組織字.png" style="width:50%;padding-top: 20px">
             <hr size="8px" align="center" width="100%">
             <ul class="breadcrumb">
               <li><a href="/groups">系所社團</a> <span class="divider"></span></li>
@@ -144,8 +144,8 @@
                                 </div> 
                               </div>
                                     <div class="col-xs-3" style="height: 250px;cursor:pointer;" data-toggle="modal" data-target="#<%- organization[i].id%>"">
-                                    <img src="pic1.png" style="width: 70%;position: absolute;left: 0px;top: 0px;z-index: 0;" class="col-md-3"/>
-                                    <h5 style="position: absolute;left: 10px;top: 75px;z-index: 1;"><%- organization[i].name %></h5>
+                                    <img src="學生會.png" style="width: 80%;position: absolute;left: 0px;top: 0px;z-index: 0;" class="col-md-3"/>
+                                    <h5 style="position: absolute;left: 20px;top: 75px;z-index: 1;"><%- organization[i].name %></h5>
                                     </div>
                                       <!-- Modal -->
                                       <div class="modal fade" id="<%-organization[i].id%>" role="dialog">
@@ -158,13 +158,13 @@
                                             </div>
                                             <div class="modal-body">
                                               <div class="container">
-                                              <ul class="nav nav-pills nav-stacked col-md-2">
+                                              <ul class="nav nav-pills nav-stacked col-xs-2">
                                                 <li class="active"><a href="#tab_<%=organization[i].id%>_a" data-toggle="pill">學生會簡介</a></li>
                                                 <li><a href="#tab_<%=organization[i].id%>_b" data-toggle="pill">部門介紹</a></li>
                                                 <li><a href="#tab_<%=organization[i].id%>_c" data-toggle="pill">歡度新生週</a></li>
                                                 <li><a href="#tab_<%=organization[i].id%>_d" data-toggle="pill">精彩活動預告</a></li>
                                               </ul>
-                                              <div class="tab-content col-md-10">
+                                              <div class="tab-content col-xs-10">
                                                       <div class="tab-pane active" id="tab_<%=organization[i].id%>_a">
                                                           <h4>學生會簡介</h4>
                                                           <h6><%- organization[i].introduction %></h6>
