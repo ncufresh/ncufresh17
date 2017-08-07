@@ -4,6 +4,7 @@ var url = require('url');
 var fs = require('fs');
 var formidable = require('formidable');
 var life = require('../models/life');
+var life_video = require('../models/life_video')
 var shortId = require('shortid');
 
 /* GET home page. */
@@ -47,68 +48,86 @@ router.get('/life/others/:id',isAdmin,function(req,res,next){
 });
 router.get('/food', function(req, res, next) {
 	life.find({type:"food"}).exec(function(err,life){
-	var url_parts = url.parse(req.url, true);
-	var query = url_parts.query;
-  res.render('life/food', {
-  	title: ' 食 ｜ 新生知訊網',
-  	user: req.user,
-    life: life
-   });
+    life_video.find({type:"food"}).exec(function(err,life_video){
+    	var url_parts = url.parse(req.url, true);
+    	var query = url_parts.query;
+      res.render('life/food', {
+      	title: ' 食 ｜ 新生知訊網',
+      	user: req.user,
+        life: life,
+        life_video : life_video
+       });
+    });
 });
 });
 router.get('/dorm', function(req, res, next) {
 	life.find({type:"dorm"}).exec(function(err,life){
-	var url_parts = url.parse(req.url, true);
-	var query = url_parts.query;
-  res.render('life/dorm', {
-  	title: ' 住 ｜ 新生知訊網',
-  	user: req.user,
-    life: life
-   });
+    life_video.find({type:"dorm"}).exec(function(err,life_video){
+    	var url_parts = url.parse(req.url, true);
+    	var query = url_parts.query;
+      res.render('life/dorm', {
+      	title: ' 住 ｜ 新生知訊網',
+      	user: req.user,
+        life: life,
+        life_video : life_video
+       });
+    });
 });
 });
 router.get('/traffic', function(req, res, next) {
 	life.find({type:"traffic"}).exec(function(err,life){
-	var url_parts = url.parse(req.url, true);
-	var query = url_parts.query;
-  res.render('life/traffic', {
-  	title: '  行 ｜ 新生知訊網',
-  	user: req.user,
-    life: life
-   });
+    life_video.find({type:"traffic"}).exec(function(err,life_video){
+    	var url_parts = url.parse(req.url, true);
+    	var query = url_parts.query;
+      res.render('life/traffic', {
+      	title: '  行 ｜ 新生知訊網',
+      	user: req.user,
+        life: life,
+        life_video : life_video
+       });
+    });
 });
 });
 router.get('/study', function(req, res, next) {
 	life.find({type:"study"}).exec(function(err,life){
-	var url_parts = url.parse(req.url, true);
-	var query = url_parts.query;
-  res.render('life/study', {
-  	title: ' 育 ｜ 新生知訊網',
-  	user: req.user,
-    life: life
-   });
+    life_video.find({type:"study"}).exec(function(err,life_video){
+    	var url_parts = url.parse(req.url, true);
+    	var query = url_parts.query;
+      res.render('life/study', {
+      	title: ' 育 ｜ 新生知訊網',
+      	user: req.user,
+        life: life,
+        life_video : life_video
+       });
+    });
 });
 });
 router.get('/entertainment', function(req, res, next) {
 	life.find({type:"entertainment"}).exec(function(err,life){
-	var url_parts = url.parse(req.url, true);
-	var query = url_parts.query;
-  res.render('life/entertainment', {
-  	title: ' 樂 ｜ 新生知訊網',
-  	user: req.user,
-    life: life
+    life_video.find({type:"entertainment"}).exec(function(err,life_video){
+  	var url_parts = url.parse(req.url, true);
+  	var query = url_parts.query;
+    res.render('life/entertainment', {
+    	title: ' 樂 ｜ 新生知訊網',
+    	user: req.user,
+      life: life,
+      life_video : life_video
+     });
    });
 });
 });
 router.get('/others', function(req, res, next) {
 	life.find({type:"others"}).exec(function(err,life){
-	var url_parts = url.parse(req.url, true);
-	var query = url_parts.query;
-  res.render('life/others', {
-  	title: ' 其他 ｜ 新生知訊網',
-  	user: req.user,
-    life: life
-   });
+    life_video.find({type:"others"}).exec(function(err,life_video){
+    	var url_parts = url.parse(req.url, true);
+    	var query = url_parts.query;
+      res.render('life/others', {
+      	title: ' 其他 ｜ 新生知訊網',
+      	user: req.user,
+        life: life,
+        life_video : life_video
+       });
+    });
 });
 });
 router.post('/add_life',isAdmin, function(req, res, next) {
@@ -238,6 +257,32 @@ router.get('/delete_life/:id',isAdmin, function (req, res, next) {
     });
 	});
 });
+
+router.post('/change_youtube_link/:id',isAdmin,function(req, res, next){
+  life_video.find({type: req.params.id},function(err,data){
+    if (err) return next(err);
+    console.log(data);
+    console.log(typeof(data));
+    console.log(data.length);
+    if(data.length === 0){
+      console.log('1');
+      var ha = new life_video({
+        type: req.params.id,
+        content: req.body.content
+      }).save(function(err){
+        if (err) return next(err);
+      })
+    }else{
+      console.log('2');
+      life_video.update({type: req.params.id},{content:req.body.content},function(err){
+        console.log(err);
+        if (err) return next(err);
+      });
+    }
+  })
+  res.redirect('/life/'+req.params.id);
+})
+
 function isAdmin(req, res, next) {
   if (req.isAuthenticated()) {
     // console.log('log:' + req.user.local);
