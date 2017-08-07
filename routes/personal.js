@@ -11,6 +11,7 @@ var formidable = require('formidable');
 /* GET home page. */
 router.get('/', isLoggedIn, function(req, res, next) {
   Qna.find({ userId:req.user._id }).exec(function(err, qna) {
+    if (err) return next(err);
 
     // Array：用來將資料庫 type 欄位的數字轉換成文字
     // ex: typeToName[ QnA.type = 1 ] === "校園生活"
@@ -58,8 +59,10 @@ router.post('/uploadProfile/:id', function(req, res, next) {
       var writeStream = fs.createWriteStream(targetPath);
 
       User.findById( req.params.id, function( err, user) {
+        if (err) return next(err);
         user.local.img = fileName;
         user.save(function(err, todo, count) {
+          if (err) return next(err);
           res.redirect('/personal');
         });
       });
@@ -77,8 +80,10 @@ router.post('/uploadProfile/:id', function(req, res, next) {
 router.get('/initial/:id', function(req, res, next) {
     
   User.findById( req.params.id, function( err, user) {
+    if (err) return next(err);
     user.local.img = "profile.png";
     user.save(function(err, todo, count) {
+        if (err) return next(err);
         res.redirect('/personal');
     });
   });
