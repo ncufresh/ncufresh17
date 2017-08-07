@@ -4,6 +4,106 @@
 <script>
 $(document).ready(function() {
 
+  var hash = location.hash;
+  if (hash === "#hot") {
+    $('div.qa-hot').fadeIn(500);
+    $('div.qa-all').hide();
+
+  } else if (hash === "#all") {
+    $('div.qa-hot').hide();
+    $('div.qa-all').hide().fadeIn(500);
+    $('.qa-school').show();
+    $('.qa-student').show();
+    $('.qa-dorm').show();
+    $('.qa-other').show();
+    $('#title-all').show();
+    $('#title-school').hide();
+    $('#title-student').hide();
+    $('#title-dorm').hide();
+    $('#title-other').hide();
+
+  } else if (hash === "#school") {
+    $('div.qa-hot').hide();
+    $('div.qa-all').hide().fadeIn(500);
+    $('tr.qa-school').show();
+    $('tr.qa-student').hide();
+    $('tr.qa-dorm').hide();
+    $('tr.qa-other').hide();
+    $('#title-all').hide();
+    $('#title-school').show();
+    $('#title-student').hide();
+    $('#title-dorm').hide();
+    $('#title-other').hide();
+
+  } else if (hash === "#student") {
+    $('div.qa-hot').hide();
+    $('div.qa-all').hide().fadeIn(500);
+    $('tr.qa-school').hide();
+    $('tr.qa-student').show();
+    $('tr.qa-dorm').hide();
+    $('tr.qa-other').hide();
+    $('#title-all').hide();
+    $('#title-school').hide();
+    $('#title-student').show();
+    $('#title-dorm').hide();
+    $('#title-other').hide();
+
+  } else if (hash === "#dorm") {
+    $('div.qa-hot').hide();
+    $('div.qa-all').hide().fadeIn(500);
+    $('tr.qa-school').hide();
+    $('tr.qa-student').hide();
+    $('tr.qa-dorm').show();
+    $('tr.qa-other').hide();
+    $('#title-all').hide();
+    $('#title-school').hide();
+    $('#title-student').hide();
+    $('#title-dorm').show();
+    $('#title-other').hide();
+
+  } else if (hash === "#other") {
+    $('div.qa-hot').hide();
+    $('div.qa-all').hide().fadeIn(500);
+    $('tr.qa-school').hide();
+    $('tr.qa-student').hide();
+    $('tr.qa-dorm').hide();
+    $('tr.qa-other').show();
+    $('#title-all').hide();
+    $('#title-school').hide();
+    $('#title-student').hide();
+    $('#title-dorm').hide();
+    $('#title-other').show();
+  } else {
+    $('div.qa-hot').hide().fadeIn(500);
+  }
+
+  <%# 當發問成功會轉址到 /qna/?post=success 時，顯示發問成功的 modal %>
+  <% if (user) { %>
+    var strUrl = location.search;
+    if (strUrl.indexOf('?') !== -1) {
+      var getSearch = strUrl.split('?');
+      var getString = getSearch[1];
+      if (getString.indexOf('&') === -1) {
+        var getAll = getString.split('=');
+        if (getAll[0] === 'post' && getAll[1] === 'success') {
+          $('#success').modal('show');
+        } else if (getAll[0] === 'delete' && getAll[1] === 'success') {
+          $('#delete-success').modal('show');
+        }
+      }
+    }
+  <% } %>
+
+  <%# Logo放大縮小 %>
+  $('#logo').on('mouseover', function(){
+    $(this).css('width', '95%');
+  });
+
+  $('#logo').on('mouseout', function(){
+    $(this).css('width', '90%');
+  });
+
+  <%# 側導覽列顯示動畫 %>
   $('.nav-toggle-btn').on('click', function(e) {
     $(this).children('i').toggleClass('fa-chevron-circle-right').toggleClass('fa-chevron-circle-left');
     $('#sideNav').toggleClass('active-nav');
@@ -17,6 +117,7 @@ $(document).ready(function() {
     // Store hash
     var hash = this.hash;
     if (hash === "#hot") {
+      console.log('hot');
       $('div.qa-hot').fadeIn(500);
       $('div.qa-all').hide();
 
@@ -87,23 +188,6 @@ $(document).ready(function() {
     }
     window.location.hash = hash;
   });
-
-  <%# 當發問成功會轉址到 /qna/?post=success 時，顯示發問成功的 modal %>
-  <% if (user) { %>
-    var strUrl = location.search;
-    if (strUrl.indexOf('?') !== -1) {
-      var getSearch = strUrl.split('?');
-      var getString = getSearch[1];
-      if (getString.indexOf('&') === -1) {
-        var getAll = getString.split('=');
-        if (getAll[0] === 'post' && getAll[1] === 'success') {
-          $('#success').modal('show');
-        } else if (getAll[0] === 'delete' && getAll[1] === 'success') {
-          $('#delete-success').modal('show');
-        }
-      }
-    }
-  <% } %>
 
   <%# 當問題被點擊的時候，傳送 xhr 到後端 api，api 會回傳物件包含標題、問題、答案 %>
   $('.clickable').on('click', function() {
