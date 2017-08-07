@@ -8,7 +8,7 @@ var shortId = require('shortid');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('life/index', { title: 'life', user: req.user });
+  res.render('life/index', { title: '中大生活 ｜ 新生知訊網', user: req.user });
 });
 router.get('/life/:id',isAdmin,function(req,res,next){
   life.find({_id:req.params.id},function(err,data){
@@ -50,7 +50,7 @@ router.get('/food', function(req, res, next) {
 	var url_parts = url.parse(req.url, true);
 	var query = url_parts.query;
   res.render('life/food', {
-  	title: '中大生活 ｜ 新生知訊網',
+  	title: ' 食 ｜ 新生知訊網',
   	user: req.user,
     life: life
    });
@@ -61,7 +61,7 @@ router.get('/dorm', function(req, res, next) {
 	var url_parts = url.parse(req.url, true);
 	var query = url_parts.query;
   res.render('life/dorm', {
-  	title: '中大生活 ｜ 新生知訊網',
+  	title: ' 住 ｜ 新生知訊網',
   	user: req.user,
     life: life
    });
@@ -72,7 +72,7 @@ router.get('/traffic', function(req, res, next) {
 	var url_parts = url.parse(req.url, true);
 	var query = url_parts.query;
   res.render('life/traffic', {
-  	title: '中大生活 ｜ 新生知訊網',
+  	title: '  行 ｜ 新生知訊網',
   	user: req.user,
     life: life
    });
@@ -83,7 +83,7 @@ router.get('/study', function(req, res, next) {
 	var url_parts = url.parse(req.url, true);
 	var query = url_parts.query;
   res.render('life/study', {
-  	title: '中大生活 ｜ 新生知訊網',
+  	title: ' 育 ｜ 新生知訊網',
   	user: req.user,
     life: life
    });
@@ -94,7 +94,7 @@ router.get('/entertainment', function(req, res, next) {
 	var url_parts = url.parse(req.url, true);
 	var query = url_parts.query;
   res.render('life/entertainment', {
-  	title: '中大生活 ｜ 新生知訊網',
+  	title: ' 樂 ｜ 新生知訊網',
   	user: req.user,
     life: life
    });
@@ -105,7 +105,7 @@ router.get('/others', function(req, res, next) {
 	var url_parts = url.parse(req.url, true);
 	var query = url_parts.query;
   res.render('life/others', {
-  	title: '中大生活 ｜ 新生知訊網',
+  	title: ' 其他 ｜ 新生知訊網',
   	user: req.user,
     life: life
    });
