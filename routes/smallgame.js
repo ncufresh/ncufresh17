@@ -6,15 +6,19 @@ var scorecollect = require('../models/smallgame');
 
 //update player personal score
 router.post('/smallgame_getscore', function(req, res, next) {
-		var temp; //save user latest score
-		scorecollect.findOne({ 'usermail' :  req.user.local.email }, function(err, found) {
+
+  if(req.body.totalscore >30){console.log('do not do anything illegal!');}
+  else{
+		  var temp; //save user latest score
+		  scorecollect.findOne({ 'usermail' :  req.user.local.email }, function(err, found) {
 		  temp = found.score;
       var point = parseInt(temp) + parseInt(req.body.totalscore); //sum up latest and new score
         scorecollect.update({ usermail: req.user.local.email },{$set:{score:point}},function(err, res){ //update total score
   		    if (err) throw err;
 		    });
-    });
-		res.redirect('/smallgame');    
+      });
+		res.redirect('/smallgame'); 
+  }
 });
 
 
