@@ -8,22 +8,9 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" type="text/javascript"></script>
 
-<script src="jquery.lazyload.js"></script>
-
 <script type="text/javascript">
 
     $(document).ready(function(){
-
-        <%/*除了三張主圖以外其他的圖都lazyload*/%>
-        $('.commonly_used_link_image').lazyload();
-        $('.pop-modal').lazyload();
-
-        <%/*除了第一次以外，按按鈕時不會在往下1px*/%>
-        var under_1_first_time = true;
-        var under_2_first_time = true;
-        var under_3_first_time = true;
-        var under_4_first_time = true;
-        var under_5_first_time = true;
 
         <%/*get?後面的東西*/%>
         var strUrl = location.search;
@@ -207,13 +194,6 @@
 
         <%/*大一新生-註冊報到的按鈕*/%>
         $(".under-1-source").click(function(){
-            if (under_1_first_time==true){
-                $('html').velocity("scroll", {
-                    duration: 1000,
-                    offset: $(window).scrollTop()+1
-                });
-                under_1_first_time = false;
-            }
             $(this).css({"background-color":"#eee"});
             $(".under-2-source").css({"background-color":""});
             $(".under-3-source").css({"background-color":""});
@@ -227,13 +207,6 @@
         });
         <%/*大一新生-新生週活動的按鈕*/%>
         $(".under-2-source").click(function(){
-            if (under_2_first_time==true){
-                $('html').velocity("scroll", {
-                    duration: 1000,
-                    offset: $(window).scrollTop()+1
-                });
-                under_2_first_time = false;
-            }
             $(".under-1-source").css({"background-color":""});
             $(this).css({"background-color":"#eee"});
             $(".under-3-source").css({"background-color":""});
@@ -247,13 +220,6 @@
         });
         <%/*大一新生-共同課程及門檻的按鈕*/%>
         $(".under-3-source").click(function(){
-            if (under_3_first_time==true){
-                $('html').velocity("scroll", {
-                    duration: 1000,
-                    offset: $(window).scrollTop()+1
-                });
-                under_3_first_time = false;
-            }
             $(".under-1-source").css({"background-color":""});
             $(".under-2-source").css({"background-color":""});
             $(this).css({"background-color":"#eee"});
@@ -267,13 +233,6 @@
         });
         <%/*碩一新生-註冊報到的按鈕*/%>
         $(".under-4-source").click(function(){
-            if (under_4_first_time==true){
-                $('html').velocity("scroll", {
-                    duration: 1000,
-                    offset: $(window).scrollTop()+1
-                });
-                under_4_first_time = false;
-            }
             $(this).css({"background-color":"#eee"});
             $(".under-5-source").css({"background-color":""});
             $('#under-4').css({"display":"block"});
@@ -284,13 +243,6 @@
         });
         <%/*碩一新生-新生週活動的按鈕*/%>
         $(".under-5-source").click(function(){
-            if (under_5_first_time==true){ 
-                $('html').velocity("scroll", {
-                    duration: 1000,
-                    offset: $(window).scrollTop()+1
-                })
-                under_5_first_time = false;
-            }
             $(".under-4-source").css({"background-color":""});
             $(this).css({"background-color":"#eee"});
             $('#under-4').css({"display":"none"});

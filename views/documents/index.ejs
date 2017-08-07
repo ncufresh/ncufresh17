@@ -244,7 +244,7 @@
                     <% if ( document[i].type == "大一新生—註冊報到"){ %>
                         <%temp++%>
                         <%if(temp==1){%><div class="row container"><%}%>
-                            <img style="display:inline-block; cursor: pointer;" class="img-responsive col-xs-3 pop-modal" id="<%- document[i].id%>" value=<%-document[i].id%> alt="<%- document[i].name %>" data-original="<%-document[i].img_path%>" />
+                            <img style="display:inline-block; cursor: pointer;" class="img-responsive col-xs-3 pop-modal" id="<%- document[i].id%>" value=<%-document[i].id%> alt="<%- document[i].name %>" src="<%-document[i].img_path%>" />
                         <%if(temp==4){%></div><%}%>
                     <%}%>
                 <%}%>
@@ -254,7 +254,7 @@
                     <% if ( document[i].type == "大一新生—新生週活動"){ %>
                         <%temp++%>
                         <%if(temp==1){%><div class="row container"><%}%>
-                        <img style="display:inline-block; cursor: pointer;" class="img-responsive col-xs-3 pop-modal" id="<%- document[i].id%>" value=<%= document[i].id%> alt="<%- document[i].name %>" data-original="<%-document[i].img_path%>" />
+                        <img style="display:inline-block; cursor: pointer;" class="img-responsive col-xs-3 pop-modal" id="<%- document[i].id%>" value=<%= document[i].id%> alt="<%- document[i].name %>" src="<%-document[i].img_path%>" />
                         <%if(temp==4){%></div><%}%>
                     <%}%>
                 <%}%>
@@ -264,7 +264,7 @@
                     <% if ( document[i].type == "大一新生—共同課程及門檻"){ %>
                         <%temp++%>
                         <%if(temp==1){%><div class="row container"><%}%>
-                        <img style="display:inline-block; cursor: pointer;" class="img-responsive col-xs-3 pop-modal" id="<%- document[i].id%>" value=<%= document[i].id%> alt="<%- document[i].name %>" data-original="<%-document[i].img_path%>" />
+                        <img style="display:inline-block; cursor: pointer;" class="img-responsive col-xs-3 pop-modal" id="<%- document[i].id%>" value=<%= document[i].id%> alt="<%- document[i].name %>" src="<%-document[i].img_path%>" />
                         <%if(temp==4){%></div><%}%>
                     <%}%>
                 <%}%>
@@ -284,7 +284,7 @@
                     <% if ( document[i].type == "碩一新生—註冊報到"){ %>
                         <%temp++%>
                         <%if(temp==1){%><div class="row container"><%}%>
-                        <img style="display:inline-block; cursor: pointer;" class="img-responsive col-xs-3 pop-modal" id="<%- document[i].id%>" value=<%= document[i].id%> alt="<%- document[i].name %>" data-original="<%-document[i].img_path%>" />
+                        <img style="display:inline-block; cursor: pointer;" class="img-responsive col-xs-3 pop-modal" id="<%- document[i].id%>" value=<%= document[i].id%> alt="<%- document[i].name %>" src="<%-document[i].img_path%>" />
                         <%if(temp==4){%></div><%}%>
                     <%}%>
                 <%}%>
@@ -294,7 +294,7 @@
                     <% if ( document[i].type == "碩一新生—新生週活動"){ %>
                         <%temp++%>
                         <%if(temp==1){%><div class="row container"><%}%>
-                        <img style="display:inline-block; cursor: pointer;" class="img-responsive col-xs-3 pop-modal" id="<%- document[i].id%>" value=<%= document[i].id%> alt="<%- document[i].name %>" data-original="<%-document[i].img_path%>" />
+                        <img style="display:inline-block; cursor: pointer;" class="img-responsive col-xs-3 pop-modal" id="<%- document[i].id%>" value=<%= document[i].id%> alt="<%- document[i].name %>" src="<%-document[i].img_path%>" />
                         <%if(temp==4){%></div><%}%>
                     <%}%>
                 <%}%>
@@ -310,7 +310,7 @@
                     <% if ( document[i].type == "常用連結"){ %>
                         <div class="thumbnail col-xs-3" style=" position:relative; border-width: 0px !important; background-color: rgba(0%, 0%, 0%, 0)">
                             <a href="<%-document[i].content%>" target="_blank">
-                                <img style="display:inline-block;" id="<%- document[i].id%>" alt="<%- document[i].name %>" class="commonly_used_link_image" data-original="<%- document[i].img_path%>" />
+                                <img style="display:inline-block;" id="<%- document[i].id%>" alt="<%- document[i].name %>" class="commonly_used_link_image" src="<%- document[i].img_path%>" />
                                 <p  id="<%- document[i].id+"link"%>" style="font-size: 2vw; top:7vw; left:6vw; position: absolute; opacity: 0;">按我前往</p>
                             </a>
                         </div>
