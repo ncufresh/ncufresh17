@@ -6,11 +6,11 @@
 <style>
 @font-face{
   font-family:"Hanyi Senty Tang";
-  src: url(/WebFont/SentyTang.ttf) format("truetype");
+  src: url(/WebFont/SentyTang.ttf) dormat("truetype");
 }
 @font-face{
   font-family:"CSong3HK Medium";
-  src: url(/WebFont/CSong3HK-Medium.otf) format("opentype");
+  src: url(/WebFont/CSong3HK-Medium.otf) dormat("opentype");
 }
 .divider2{
   color:#0275d8;
@@ -115,7 +115,7 @@
       <div class="modal-dialog" style="width:90vw;height:100vh" role="document">
         <div class="modal-content">
           <div class="modal-body">
-              <% if ( life[i].type == "form"){ %>
+              <% if ( life[i].type == "dorm"){ %>
                 <div>
                   <%if(life[i].img_path1!="/life/"){%>
                     <img src="<%= life[i].img_path1 %>" id="ModalSlide<%=life[i].fileName1%>" class="ModalSlide"></img>
@@ -168,7 +168,7 @@
         <li style="font-size:1.3vw"><a href="/life">中大生活</a> <span class="divider"></span></li>
         <li style="font-size:1.3vw" class="backvideo divider2">住<span style="display:none" class="showDivider divider"></span></li>
         <% for (var i in life){ %>
-          <% if ( life[i].type == "form"){ %>
+          <% if ( life[i].type == "dorm"){ %>
         <li id="showDivider<%=life[i].id%>" class="active showDivider" style="display:none"><%= life[i].titletext %></li>
           <%}%>
         <%}%>
@@ -178,7 +178,7 @@
       <div class="row" >
         <div class="col-xs-2 col-xs-offset-1">
           <% for (var i in life){ %>
-              <% if ( life[i].type == "form"){ %>
+              <% if ( life[i].type == "dorm"){ %>
                 <% if ( life[i].img_path0 != "/life/"){%>
                   <div class="btntitle" id="<%='a' + life[i].id %>" target_id="<%=life[i].id%>">
                     <img src="<%= life[i].img_path0 %>" class="titlepic"></img>
@@ -203,7 +203,7 @@
           <% var counter=0; for (var i in life){ %>
             <%//console.log(life[parseInt(i)+1].id)%>
             <%//console.log(life[parseInt(i)-1].id)%>
-            <% if ( life[i].type == "form"){ %>
+            <% if ( life[i].type == "dorm"){ %>
               <div id="subtitle<%=life[i].id%>" class="subtitle">
                 <p class="subtitle-text"><%= life[i].titletext %></p>
                 <div id="img-view<%=life[i].id%>" class="img-view">
