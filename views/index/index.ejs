@@ -22,7 +22,7 @@
       .news-word,.calendar-word{
         text-align: center;
       }
-      .wrapper:before, .wrapper:after,footer:before{
+      .wrapper:before, .wrapper:after{
   			background-repeat: no-repeat;
   			background-size: 100% 100%;
   			content: '';
@@ -35,7 +35,7 @@
 
       .news::before{
         background-color: #fff;
-        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,100 100,0 0,0' style='fill:#4dc0c7' /%3E%3C/svg%3E");
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,100 100,0 0,0' style='fill:%234dc0c7' /%3E%3C/svg%3E");
 
       }
       .news::before{
@@ -54,10 +54,10 @@
         background-color:#fff;
 	      color:#fff)/* IE6 */
       }
-
+      /*firefox的色碼需要轉換 http://meyerweb.com/eric/tools/dencoder/ */
       .calendar::before{
         background-color: #fff;
-        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 100,100 0,100 ' style='fill:#acccfc' /%3E%3C/svg%3E");
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 100,100 0,100 ' style='fill:%23acccfc' /%3E%3C/svg%3E");
       }
       .calendar::before{
         box-shadow: none;
@@ -65,26 +65,26 @@
       .calendar::after{
         box-shadow: none;
       }
-      .dj::before{
+      /*.dj::before{
         background-color: #acccfc;
-        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 100,100 0,100 ' style='fill:#cedfe2' /%3E%3C/svg%3E");
-      }
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 100,100 0,100 ' style='fill:%23cedfe2' /%3E%3C/svg%3E");
+      }*/
 
-      .dj::before{
+      /*.dj::before{
         box-shadow: none;
         box-shadow:  inset 0 -1px 0 0 #cedfe2, 0 1px 0 0 #cedfe2;
       }
       .dj::after{
         box-shadow: inset 0 -1px 1 0 #55454b, 0 1px 1 0 #55454b;
-      }
-      footer::before{
+      }*/
+      /*footer::before{
         padding: 0px;
         background-color: #55454b;
-        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 100,100 0,100 ' style='fill:#4dc0c7' /%3E%3C/svg%3E");
-      }
-      footer::before{
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 100,100 0,100 ' style='fill:%234dc0c7' /%3E%3C/svg%3E");
+      }*/
+      /*footer::before{
         box-shadow: none;
-      }
+      }*/
       .navbar{
         box-shadow: none;
       }
@@ -190,16 +190,17 @@
       #topBtn {
         display: none; /* Hidden by default */
         position: fixed; /* Fixed/sticky position */
+        width: 80px;
         bottom: 20px; /* Place the button at the bottom of the page */
         right: 30px; /* Place the button 30px from the right */
         z-index: 99; /* Make sure it does not overlap */
         border: none; /* Remove borders */
         outline: none; /* Remove outline */
-        /*background-color: red; /* Set a background color */*/
-        /*color: white; /* Text color */*/
+        /*background-color: red; /* Set a background color */
+        /*color: white; /* Text color */
         cursor: pointer; /* Add a mouse pointer on hover */
         padding: 15px; /* Some padding */
-        /*border-radius: 10px; /* Rounded corners */*/
+        /*border-radius: 10px; /* Rounded corners */
       }
 
       .gal:hover{
@@ -217,21 +218,43 @@
         text-align: center;
       }
       .dj{
-        height: 1180px;
+        height: 680px;
         position: relative;
-        background-image: url("/images/main/djbg-2.png");
+        background-image: url("/images/main/djbg.png");
+        background-attachment: fixed;
         background-repeat: no-repeat;
         background-color: #55454b;
         background-position: 100% 50%;
       }
-
+      .djbefore{
+        width: 100%;
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 100,100 100,0 ' style='fill:%23acccfc' /%3E%3C/svg%3E");
+        height: 104px;
+        background-repeat: no-repeat;
+  			background-size: 100% 100%;
+      }
+      .djafter{
+        position: absolute;
+        bottom:0;
+        width: 100%;
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,100 100,100 100,0 ' style='fill:%234dc0c7' /%3E%3C/svg%3E");
+        height: 104px;
+        background-repeat: no-repeat;
+  			background-size: 100% 100%;
+      }
       .dj-word{
         position: absolute;
         left: 20%;
-        top: 20%;
-        width: 200px;
+        top: 35%;
+        width: 15%;
       }
-      @media (max-width: 991px) {
+      .dj-wordd{
+        position: absolute;
+        left: 50%;
+        top: 35%;
+        width: 50%;
+      }
+      @media (max-width: 500px) {
         h1{
           font-size: 50px;
         }
@@ -246,6 +269,29 @@
         }*/
         .event-p{
           font-size: 30px !important;
+        }
+        .dj-wordd{
+          top:25%;
+          left: 15%;
+          width: 80%;
+        }
+        .dj-word{
+          left: 35%;
+          top: 50%;
+          width: 40%;
+        }
+      }
+
+      @media (max-width: 993px) and (min-width: 502px){
+        .dj-wordd{
+          top:15%;
+          left: 25%;
+          width: 50%;
+        }
+        .dj-word{
+          left: 40%;
+          top: 50%;
+          width: 20%;
         }
       }
 
@@ -373,13 +419,25 @@
                 		<div class="events-wrapper">
                 			<div class="events">
                 				<ol>
+                          <% var sel = true;%>
                           <% for(var i=0; i<main_events.length; i++) {%>
                             <%
+                              var selthis = false;
                               var date = new Date(main_events[i].date);
                               var str = (date.getDate()) + '/' +(date.getMonth()+1) + '/' +  date.getFullYear();
-                              var listr = (date.getMonth()+1)+"/"+(date.getDate())
+                              var listr = (date.getMonth()+1)+"/"+(date.getDate());
+                              if(sel){
+                                var datenew = new Date();
+                                if(date>=datenew){
+                                  selthis = true;
+                                  sel = false;
+                                }else if(i===main_events.length-1){
+                                  selthis = true;
+                                  sel = false;
+                                }
+                              }
                             %>
-                                 <li><a href="#0" data-date="<%=str%>" data-toggle="tooltip" title="<%=main_events[i].subtitle%>" data-placement="bottom" class="<%if(i===(main_events.length-1)){%>selected<%}%>"><%=listr%></a></li>
+                                 <li><a href="#0" data-date="<%=str%>" data-toggle="tooltip" title="<%=main_events[i].subtitle%>" data-placement="bottom" class="<%if(selthis){%>selected<%}%>"><%=listr%></a></li>
                           <% } %>
 
                         </ol>
@@ -396,13 +454,24 @@
 
                 	<div class="events-content">
                 		<ol>
-
+                      <% var sel = true;%>
                       <% for(var i=0; i<main_events.length; i++) {%>
                         <%
+                          var selthis = false;
                           var date = new Date(main_events[i].date);
                           var str = (date.getDate()) + '/'+(date.getMonth()+1) + '/' +  date.getFullYear();
+                          if(sel){
+                            var datenew = new Date();
+                            if(date>=datenew){
+                              selthis = true;
+                              sel = false;
+                            }else if(i===main_events.length-1){
+                              selthis = true;
+                              sel = false;
+                            }
+                          }
                         %>
-                        <li data-date="<%=str%>" class="<%if(i===(main_events.length-1)){%>selected<%}%>">
+                        <li data-date="<%=str%>" class="<%if(selthis){%>selected<%}%>">
 
                           <em><%=main_events[i].date%></em>
 
@@ -417,15 +486,19 @@
                 </section>
               </div>
             </div>
-            <div class="dj container-fluid wrapper">
+            <div class="dj container-fluid">
+              <div class="djbefore"></div>
               <div class="djbg">
-                <img class="dj-word" src="/images/main/djlogo.jpg" alt="">
+                <a href="http://radio.pinewave.tw" target="_blank"><img class="dj-word" src="/images/main/djlogo.jpg" alt=""></a>
               </div>
+              <div class="djbg">
+                <img class="dj-wordd" src="/images/main/djlogoo.png" alt="">
+              </div>
+              <div class="djafter"></div>
             </div>
-            <img src="images/main/top.png" onclick="topFunction()" id="topBtn" alt="">
-            <% if(user&&user.local.accountType==='admin'){%>
-            <a href="/manageMain"><i class="fa fa-cogs" aria-hidden="true"></i> 管理首頁</a>
-            <% } %>
+            <%# <img src="images/main/top.png" onclick="topFunction()" id="topBtn" alt=""> %>
+            <img src="images/main/top2.png" onclick="topFunction()" id="topBtn" alt="">
+
         </div>
 
 
@@ -449,7 +522,6 @@
           var slideIndex = 2;
           var slidesNum = $("#newsimgsNum").val();
           var ramSlideNum = Math.floor((Math.random() * slidesNum) + 1);
-          console.log(ramSlideNum);
           showSlides(ramSlideNum);
 
           function plusSlides(n) {

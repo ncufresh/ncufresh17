@@ -8,14 +8,39 @@ var shortId = require('shortid');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('life/index', { title: 'life', user: req.user });
+  res.render('life/index', { title: '中大生活 ｜ 新生知訊網', user: req.user });
 });
-router.get('/life/:id',function(req,res,next){
+router.get('/life/:id',isAdmin,function(req,res,next){
   life.find({_id:req.params.id},function(err,data){
     res.send(data[0]);
   });
 });
-router.get('/life/food/:id',function(req,res,next){
+router.get('/life/food/:id',isAdmin,function(req,res,next){
+  life.find({_id:req.params.id},function(err,data){
+    res.send(data[0]);
+  });
+});
+router.get('/life/dorm/:id',isAdmin,function(req,res,next){
+  life.find({_id:req.params.id},function(err,data){
+    res.send(data[0]);
+  });
+});
+router.get('/life/traffic/:id',isAdmin,function(req,res,next){
+  life.find({_id:req.params.id},function(err,data){
+    res.send(data[0]);
+  });
+});
+router.get('/life/study/:id',isAdmin,function(req,res,next){
+  life.find({_id:req.params.id},function(err,data){
+    res.send(data[0]);
+  });
+});
+router.get('/life/entertainment/:id',isAdmin,function(req,res,next){
+  life.find({_id:req.params.id},function(err,data){
+    res.send(data[0]);
+  });
+});
+router.get('/life/others/:id',isAdmin,function(req,res,next){
   life.find({_id:req.params.id},function(err,data){
     res.send(data[0]);
   });
@@ -25,18 +50,74 @@ router.get('/food', function(req, res, next) {
 	var url_parts = url.parse(req.url, true);
 	var query = url_parts.query;
   res.render('life/food', {
-  	title: 'life',
+  	title: ' 食 ｜ 新生知訊網',
   	user: req.user,
-  	firstClick: req.query.dep,
-    life: life,
+    life: life
    });
 });
 });
-router.post('/add_life', function(req, res, next) {
+router.get('/dorm', function(req, res, next) {
+	life.find({}).exec(function(err,life){
+	var url_parts = url.parse(req.url, true);
+	var query = url_parts.query;
+  res.render('life/dorm', {
+  	title: ' 住 ｜ 新生知訊網',
+  	user: req.user,
+    life: life
+   });
+});
+});
+router.get('/traffic', function(req, res, next) {
+	life.find({}).exec(function(err,life){
+	var url_parts = url.parse(req.url, true);
+	var query = url_parts.query;
+  res.render('life/traffic', {
+  	title: '  行 ｜ 新生知訊網',
+  	user: req.user,
+    life: life
+   });
+});
+});
+router.get('/study', function(req, res, next) {
+	life.find({}).exec(function(err,life){
+	var url_parts = url.parse(req.url, true);
+	var query = url_parts.query;
+  res.render('life/study', {
+  	title: ' 育 ｜ 新生知訊網',
+  	user: req.user,
+    life: life
+   });
+});
+});
+router.get('/entertainment', function(req, res, next) {
+	life.find({}).exec(function(err,life){
+	var url_parts = url.parse(req.url, true);
+	var query = url_parts.query;
+  res.render('life/entertainment', {
+  	title: ' 樂 ｜ 新生知訊網',
+  	user: req.user,
+    life: life
+   });
+});
+});
+router.get('/others', function(req, res, next) {
+	life.find({}).exec(function(err,life){
+	var url_parts = url.parse(req.url, true);
+	var query = url_parts.query;
+  res.render('life/others', {
+  	title: ' 其他 ｜ 新生知訊網',
+  	user: req.user,
+    life: life
+   });
+});
+});
+router.post('/add_life',isAdmin, function(req, res, next) {
   if (req.body.button == "update") {
 		life.update({ _id: req.body.bid }, {
-      type:fields.type,
-  		name:fields.name,
+      type: fields.type,
+  		titletext: fields.titletext,
+      img_path0: '/life/' +fileName0,
+      fileName0: fileName0,
   		introduction:fields.introduction,
       img_path1: '/life/' + fileName1,
       fileName1: fileName1,
@@ -54,12 +135,26 @@ router.post('/add_life', function(req, res, next) {
 		if (err) {
 			console.log("上傳err");
 		}
+    var uploadedFile0 = files.titlepic;
     var uploadedFile1 = files.uploadImg1;
     var uploadedFile2 = files.uploadImg2;
     var uploadedFile3 = files.uploadImg3;
+    var tmpPath0 = uploadedFile0.path;
 		var tmpPath1 = uploadedFile1.path;
     var tmpPath2 = uploadedFile2.path;
     var tmpPath3 = uploadedFile3.path;
+    var fileName0 = "";
+    if(uploadedFile0.name!=""){
+      fileName0 = shortId.generate() + uploadedFile0.name.substr(uploadedFile0.name.lastIndexOf('.'));
+      var targetPath0 = './public/life/' + fileName0;
+      console.log(tmpPath0);
+      console.log(targetPath0);
+      var readStream0 = fs.createReadStream(tmpPath0);
+      var writeStream0 = fs.createWriteStream(targetPath0);
+      readStream0.on("end", function () {
+      	fs.unlink(tmpPath0);
+      }).pipe(writeStream0);
+    }
     var fileName1 = "";
     if(uploadedFile1.name!=""){
       fileName1 = shortId.generate() + uploadedFile1.name.substr(uploadedFile1.name.lastIndexOf('.'));
@@ -98,42 +193,58 @@ router.post('/add_life', function(req, res, next) {
       }).pipe(writeStream3);
     }
     var a = new life({
-		type:fields.type,
-		name:fields.name,
-		introduction:fields.introduction,
-    img_path1: '/life/' + fileName1,
-    fileName1: fileName1,
-    img_path2: '/life/' + fileName2,
-    fileName2: fileName2,
-    img_path3: '/life/' + fileName3,
-    fileName3: fileName3
+		type        : fields.type,
+    titletext   : fields.titletext,
+    img_path0    : '/life/' + fileName0,
+    fileName0   : fileName0,
+		introduction: fields.introduction,
+    img_path1   : '/life/' + fileName1,
+    fileName1   : fileName1,
+    img_path2   : '/life/' + fileName2,
+    fileName2   : fileName2,
+    img_path3   : '/life/' + fileName3,
+    fileName3   : fileName3
     });
     a.save(function(){
-      res.redirect('/life/food');
+      res.redirect('/life');
     });
   });
 });
-router.get('/delete_life/:id', function (req, res, next) {
+router.get('/delete_life/:id',isAdmin, function (req, res, next) {
 	console.log(req.params.id);
 	life.findById(req.params.id, function (err, data) {
-      if (data.fileName1!=""){
-        fs.unlink('./public/life/' + data.fileName1, function(err){
-          if (err) console.log(err);
-        });
-      }
-      if (data.fileName2!=""){
-        fs.unlink('./public/life/' + data.fileName2,function(err){
-          if (err) console.log(err);
-        });
-      }
-      if (data.fileName3!=""){
-        fs.unlink('./public/life/' + data.fileName3, function (err) {
-				  if (err) console.log(err);
-        });
-      }
-			life.findById(req.params.id).remove().exec(function(){
-        res.redirect('/life/food');
+    if (data.fileName0!=""){
+      fs.unlink('./public/life/' + data.fileName0, function(err){
+        if (err) console.log(err);
       });
+    }
+    if (data.fileName1!=""){
+      fs.unlink('./public/life/' + data.fileName1, function(err){
+        if (err) console.log(err);
+      });
+    }
+    if (data.fileName2!=""){
+      fs.unlink('./public/life/' + data.fileName2,function(err){
+        if (err) console.log(err);
+      });
+    }
+    if (data.fileName3!=""){
+      fs.unlink('./public/life/' + data.fileName3, function (err) {
+			  if (err) console.log(err);
+      });
+    }
+		life.findById(req.params.id).remove().exec(function(){
+      res.redirect('/life');
+    });
 	});
 });
+function isAdmin(req, res, next) {
+  if (req.isAuthenticated()) {
+    // console.log('log:' + req.user.local);
+    if (req.user.local.accountType === 'admin') {
+      return next();
+    }
+  }
+  res.redirect('/');
+}
 module.exports = router;

@@ -6,32 +6,16 @@ var document = require('../models/document');
 var shortId = require('shortid');
 
 /* GET home page. */
-router.get('/:id', function(req, res, next) {
-  document.find({}).sort({order:1}).exec(function(err,document){
-    if(req.params.id=="1.1"){
-      res.render('documents/index',{title: 'documents', document: document, user: req.user, index:"1.1"});
-    }else if(req.params.id=="1.2"){
-      res.render('documents/index',{title: 'documents', document: document, user: req.user, index:"1.2"});
-    }else if(req.params.id=="1.3"){
-      res.render('documents/index',{title: 'documents', document: document, user: req.user, index:"1.3"});
-    }else if(req.params.id=="2.1"){
-      res.render('documents/index',{title: 'documents', document: document, user: req.user, index:"2.1"});
-    }else if(req.params.id=="2.2"){
-      res.render('documents/index',{title: 'documents', document: document, user: req.user, index:"2.2"});
-    }else if(req.params.id=="3"){
-      res.render('documents/index',{title: 'documents', document: document, user: req.user, index:"3"});
-    }
-  });
-});
-
 router.get('/', function(req, res, next) {
   document.find({}).sort({order:1}).exec(function(err,document){
-      res.render('documents/index',{title: 'documents', document: document, user: req.user, index:""});
+      if (err) return next(err);
+      res.render('documents/index',{title: '新生必讀 ｜ 新生知訊網', document: document, user: req.user});
   });
 });
 
-router.get('/require_data/:id',isAdmin,function(req,res,next){
+router.get('/require_data/:id',function(req,res,next){
   document.find({_id:req.params.id},function(err,data){
+    if (err) return next(err);
     res.send(data[0]);
   });
 });
@@ -42,11 +26,11 @@ router.get('/delete/:id',isAdmin,function(req,res,next){
   var the_type;
   var the_order;
   document.find({_id:req.params.id}).exec(function (err, results) {
+    if (err) return next(err);
     the_type = results[0].type;
     the_order = results[0].order;
     fs.unlink("./public"+results[0].img_path,function(err){
-      if(err)
-        console.log(err);
+      if (err) return next(err);
     });
     document.find({type:the_type}).exec(function (err, result) {
       total = result.length;
@@ -61,12 +45,13 @@ router.get('/delete/:id',isAdmin,function(req,res,next){
         document.update({order:ha,type:the_type},{
           order: temp
         },function(err){
-          if(err)
-            console.log(err);
+          if (err) return next(err);
         });
       }
-      document.findById(req.params.id).remove().exec();
-      res.redirect('/documents');
+      document.findById(req.params.id).remove().exec(function(err){
+        if (err) return next(err);
+        res.redirect('/documents');
+      });
     });
   });
 });
@@ -74,9 +59,7 @@ router.get('/delete/:id',isAdmin,function(req,res,next){
 router.post('/add',isAdmin,function(req,res,next){
   var form = new formidable.IncomingForm();
   form.parse(req, function(err, fields, files){
-      if(err){
-          console.log("上傳err");
-      }
+      if (err) return next(err);
       // console.log('received fields: ');
       // console.log(fields);
       // console.log('received files: ');
@@ -106,17 +89,17 @@ router.post('/add',isAdmin,function(req,res,next){
 
         var readStream = fs.createReadStream(tmpPath)
         var writeStream = fs.createWriteStream(targetPath);
-        readStream.on("end",function(){        
-        })
-        .pipe(writeStream,function(){
+        readStream.on("end",function(err){
+          if (err) return next(err);
+        }).pipe(writeStream,function(){
           fs.unlink(tmpPath, function(err) {
-            if(err)console.log("刪除暫存err")
+            if (err) return next(err);
             console.log('File Uploaded to ' + targetPath + ' - ' + uploadedFile.size + ' bytes');
           });
         });
       } 
       document.find({type:fields.type}).exec(function (err, results) {
-        if(err) throw err;
+        if(err) return next(err);
         var temp = results.length;
         temp++;
         console.log(temp);
@@ -127,7 +110,9 @@ router.post('/add',isAdmin,function(req,res,next){
           content:fields.content,
           img_path:'/documents/' + fileName,
           order: temp
-        }).save();
+        }).save(function(err){
+          if(err) return next(err);
+        });
         res.redirect('/documents');
       });
   });
@@ -138,8 +123,7 @@ router.post('/update',isAdmin,function(req,res,next){
         name:req.body.name,
         content:req.body.Content
       },function(err){
-        if(err)
-          console.log(err);
+        if (err) return next(err);
       });
   console.log(req.body.id);
   console.log(req.body.name);
@@ -157,18 +141,15 @@ router.post('/change_order',isAdmin,function(req,res,next){
   document.update({type:req.body.type,order:first_order},{
     order:0
   },function(err){
-    if(err)
-      console.log(err);
+    if (err) return next(err);
     document.update({type:req.body.type,order:second_order},{
       order:first_order
     },function(err){
-      if(err)
-        console.log(err);
+      if (err) return next(err);
       document.update({type:req.body.type,order:0},{
         order:second_order
       },function(err){
-        if(err)
-          console.log(err);
+        if (err) return next(err);
       });
     });
   });
@@ -181,9 +162,7 @@ router.post('/insertimg/:id',isAdmin,function(req,res,next) {
 
   var form = new formidable.IncomingForm();
   form.parse(req, function(err, fields, files){
-      if(err){
-          console.log("上傳err");
-      }
+      if (err) return next(err);
       // console.log('received fields: ');
       // console.log(fields);
       // console.log('received files: ');
@@ -214,15 +193,14 @@ router.post('/insertimg/:id',isAdmin,function(req,res,next) {
         document.update({_id:req.params.id},{
           img_path:'/documents/' + fileName
         },function(err){
-          if(err)
-            console.log(err);
+          if (err) return next(err);
           res.redirect('/documents');
         });
         console.log(fields.imgid);
       })
       .pipe(writeStream,function(){
         fs.unlink(tmpPath, function(err) {
-          if(err)console.log("刪除暫存err")
+          if (err) return next(err);
           console.log('File Uploaded to ' + targetPath + ' - ' + uploadedFile.size + ' bytes');
         });
       });
@@ -230,14 +208,9 @@ router.post('/insertimg/:id',isAdmin,function(req,res,next) {
 })
 
 function isAdmin(req, res, next) {
-  if (req.isAuthenticated()) {
-    // console.log('log:' + req.user.local);
-    if (req.user.local.accountType === 'admin') {
-      return next();
-    }
-  }
+  if (req.isAuthenticated() && req.user.local.accountType === 'admin')
+    return next();
   res.redirect('/');
 }
-
 
 module.exports = router;

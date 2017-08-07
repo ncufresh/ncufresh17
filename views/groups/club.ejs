@@ -8,15 +8,17 @@
         <% include ../layouts/navbar %>
     </header>
 
-    <main style="background-image: url(BACK2.png);"">
+    <main style="background-image: url(背景中.png);"">
       <div class="container">
-            <h1 style="font-size: 100px;">社團</h1>
+            <img src="社團字.png" style="width:30%;padding-top: 20px">
             <hr size="8px" align="center" width="100%">
             <ul class="breadcrumb">
               <li><a href="/groups">系所社團</a> <span class="divider"></span></li>
               <li class="active">社團</li>
             </ul>
+            <% if(user&&user.local.accountType==='admin'){%>
             <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#add_club" style="width:100px;height:30px;text-align:center;">add</button></br>
+            <%}%>
 
 
               <!-- Modal -->
@@ -67,10 +69,10 @@
               </div> 
             </div>
 
-            <a href="/groups/all_club?club=learn"><img src="e11.png" class="col-md-2 col-md-offset-2" style="padding-bottom: 30px"></a>
-            <a href="/groups/all_club?club=play"><img src="e21.png"  class="col-md-2" style="padding-bottom: 30px"></a>
-            <a href="/groups/all_club?club=love"><img src="e31.png"  class="col-md-2" style="padding-bottom: 30px"></a>
-            <a href="/groups/all_club?club=service"><img src="e41.png"  class="col-md-2" style="padding-bottom: 30px"></a>
+            <a href="/groups/all_club?club=learn"><img src="e11.png" class="col-xs-2 col-xs-offset-2" style="padding-bottom: 30px"></a>
+            <a href="/groups/all_club?club=play"><img src="e21.png"  class="col-xs-2" style="padding-bottom: 30px"></a>
+            <a href="/groups/all_club?club=love"><img src="e31.png"  class="col-xs-2" style="padding-bottom: 30px"></a>
+            <a href="/groups/all_club?club=service"><img src="e41.png"  class="col-xs-2" style="padding-bottom: 30px"></a>
             </div>
         </div>
     </main>

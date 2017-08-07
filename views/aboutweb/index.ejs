@@ -9,23 +9,23 @@
     </header>
     <main style="position:relative; background-image: url(/aboutweb/網頁背景.png); background-repeat: repeat; background-size: contain;background-size: 25%;padding: 5vw;">
         <div style="height: 5vh;"></div>
-        <div style="position:relative;width:100%;padding-bottom:87.6288659793814%">
+        <div style="position:relative;width:100%;padding-bottom:97.9381443298969%">
             <img src="/aboutweb/線.png" style="position:absolute; width: 100%; top:0%; left:0%;">
             <% for (var i in aboutweb){%>
                 <%if(aboutweb[i].type=="六角形"){%>
-                    <a href="<%=aboutweb[i].link%>" style="width: <%=aboutweb[i].size+"%"%>;position: absolute;top:<%=aboutweb[i].y+"%"%>; left: <%=aboutweb[i].x+"%"%>">
+                    <a href="<%=aboutweb[i].link%>" style="width: <%=aboutweb[i].size+"%"%>; height:<%=aboutweb[i].size*0.646464+"%"%>; position: absolute;top:<%=aboutweb[i].y+"%"%>; left: <%=aboutweb[i].x+"%"%>">
                         <img src="/aboutweb/六角形按鈕.png" class="edit" id="<%=aboutweb[i]._id%>" style="position:absolute;width: 100%">
-                        <p style="font-size: 1.1vw; top:2.1vw; width:100%;position: absolute; text-align:center; color: black;"><%-aboutweb[i].name%></p>
+                        <p style="font-size: 1.1vw; top:50%; width:100%;position: absolute; text-align:center; color: black; transform:translate(0,-50%);"><%-aboutweb[i].name%></p>
                     </a> 
                 <%}else if (aboutweb[i].type=="方形"){%>
-                    <a href="<%=aboutweb[i].link%>" style="width: <%=aboutweb[i].size+"%"%>;position: absolute;top:<%=aboutweb[i].y+"%"%>; left: <%=aboutweb[i].x+"%"%>">
+                    <a href="<%=aboutweb[i].link%>" style="width: <%=aboutweb[i].size+"%"%>; height:<%=aboutweb[i].size*0.646464+"%"%>; position: absolute;top:<%=aboutweb[i].y+"%"%>; left: <%=aboutweb[i].x+"%"%>">
                         <img src="/aboutweb/方形按鈕.png" class="edit" id="<%=aboutweb[i]._id%>" style="position:absolute;width: 100%">
-                        <p style="font-size: 1.1vw; top:2.1vw; width:100%;position: absolute; text-align:center; color: black;line-height: 1em;"><%-aboutweb[i].name%></p>
+                        <p style="font-size: 1.1vw; top:50%; width:100%;position: absolute; text-align:center; color: black; transform:translate(0,-50%);"><%-aboutweb[i].name%></p>
                     </a> 
                 <%}else if (aboutweb[i].type=="橢圓"){%>
-                    <a href="<%=aboutweb[i].link%>" style="width: <%=aboutweb[i].size+"%"%>;position: absolute;top:<%=aboutweb[i].y+"%"%>; left: <%=aboutweb[i].x+"%"%>">
+                    <a href="<%=aboutweb[i].link%>" style="width: <%=aboutweb[i].size+"%"%>; height:<%=aboutweb[i].size*0.646464+"%"%>; position: absolute;top:<%=aboutweb[i].y+"%"%>; left: <%=aboutweb[i].x+"%"%>">
                         <img src="/aboutweb/橢圓按鈕.png" class="edit" id="<%=aboutweb[i]._id%>" style="position:absolute;width: 100%">
-                        <p style="font-size: 1.1vw; top:2.1vw; width:100%;position: absolute; text-align:center; color: black;"><%-aboutweb[i].name%></p>
+                        <p style="font-size: 1.1vw; top:50%; width:100%;position: absolute; text-align:center; color: black; transform:translate(0,-50%);"><%-aboutweb[i].name%></p>
                     </a> 
                 <%}%>
             <%}%>
@@ -37,13 +37,6 @@
     <footer>
         <% include ../layouts/footer %>
     </footer>
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-        <script type="text/javascript">
-            
-        </script>
         <% include ../layouts/js %>
 </body>
 </html>

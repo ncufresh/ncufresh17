@@ -10,10 +10,12 @@
         <% include ../layouts/navbar %>
     </header>
 
-    <main style="background: #cce8f7; padding:2vw">
+    <main style="background-image:url(/campus/default/background.png); padding:2vw">
         <div class="container">
             <img src="/campus/default/campus3.png" alt="" width="100%" >
-            <a href="/campus/newData" class="btn btn-success">新增建築物</a>
+            <% if(user&&user.local.accountType==='admin'){%>
+                <a href="/campus/newData" class="btn btn-success">新增建築物</a>
+            <%}%>
             <div class="row text-center">
                 <div class="col-xs-6">
                     <a href="/campus/guide">
@@ -33,7 +35,7 @@
         <% include ../layouts/footer %>
     </footer>
     <% include js %>
-        <% include ../layouts/js %>
+    <% include ../layouts/js %> 
 </body>
 
 </html>

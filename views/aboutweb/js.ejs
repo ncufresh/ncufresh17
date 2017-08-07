@@ -7,6 +7,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
+
+    <%/*編輯ajax*/%>
 	$('.edit').click(function(){
         var id = $(this).attr('id');
         $.ajax({
@@ -38,16 +40,23 @@
             }
         });
     });
+
+    <%/*在編輯modal中圖片可拖放a*/%>
     $("#the_image").draggable({
+        <%/*放開後*/%>
         stop: function(){
+            <%/*把圖片離左上角的距離除以圖片的長寬來得出百分比*/%>
             var x=$("#the_image").css("left").substring(0,$("#the_image").css("left").length-2)/$("#underlay").width()*100;
             var y=$("#the_image").css("top").substring(0,$("#the_image").css("top").length-2)/$("#underlay").height()*100;
             console.log(x);
             console.log(y);
+            <%/*再把它放到編輯modal的xy格*/%>
             $('#x_position').val(x);
             $('#y_position').val(y);
         }
     });
+
+    <%/*在編輯modal中修改x、y或size時圖片也會一起變動*/%>
     $("#size,#x_position,#y_position").change(function(){
         $("#the_image").css({
             "height":"auto",
@@ -56,6 +65,8 @@
             "left":$("#x_position").val()+"%"
         });
     })
+
+    <%/*在編輯modal中修改圖片類型時圖片也會一起變動*/%>
     $("#edit_type").change(function(){
     	if($("#edit_type").val()=="六角形"){
 			$("#the_image").attr('src',"/aboutweb/六角形按鈕.png")
@@ -65,6 +76,8 @@
         	$("#the_image").attr('src',"/aboutweb/橢圓按鈕.png")
         }
     })
+
+    <%/*刪除ajax*/%>
     $('#delete_button').click(function(){
         if(confirm("確定要刪除?")){
             var id = $(this).val();

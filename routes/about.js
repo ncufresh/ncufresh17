@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('about/index', { title: 'about | 新生知訊網', user: req.user });
+  res.render('about/index', { title: '關於我們 | 新生知訊網', user: req.user });
 });
 router.get('/markting', function(req, res, next) {
   res.render('about/markting', { title: '行銷企劃組 | 新生知訊網', user: req.user });

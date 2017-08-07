@@ -31,10 +31,17 @@ function mute(){
 
 //beginning
 $(document).ready(function() {
+    if ($('#mainmenu').css('display') == 'none') {
+    bgm.pause();
+}
     bgm.play();
     $('#menu').fadeIn(1000);
     $('#menubutton').toggle();
 });
+
+window.onblur = function(){ 
+  location.reload();
+}
 //beginning
 
 //RULES
@@ -309,8 +316,14 @@ var cLr; //SVG interval
 
 var finalscore;
 
+var hasOnload=false;
+window.onload = function() {
+        hasOnload=true;
+      };
+
 //START GAME
 function start() {
+    if(hasOnload){
     question_temp.sort(function(){return Math.random()>0.5?-1:1;});
     clk();
     bgm.pause();
@@ -331,6 +344,7 @@ function start() {
     countdown = 10;
     roundNumber.textContent = "第" + round + "題";
     countdownNumberEl.textContent = countdown;
+    }
 }
 
 //rounds
@@ -875,6 +889,7 @@ $( "#end02" ).click(function(){
 });
 
 function getscore(){ //post score to db
+    
     $.post("smallgame/smallgame_getscore", 
         {totalscore: finalscore
     });

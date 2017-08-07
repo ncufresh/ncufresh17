@@ -31,8 +31,8 @@
               <img class="center-block" src="/error/404.png" alt="" />
             </div>
           </div>
-        <br>
-        <br>
+          <br>
+          <br>
           <div class="row text-center">
             <div class="col-md-8 col-md-offset-2">
               <h2>您所查詢的頁面不存在</h2>
@@ -42,9 +42,13 @@
               <h4>Facebook: <a href="https://www.facebook.com/groups/NCUgroup/">NCU TALK臉書版</a> 私訊管理員</h4>
             </div>
           </div>
-          <h1><%= error.message %></h1>
-          <h2><%= error.status %></h2>
-          <pre><%= error.stack %></pre>
+          <% if(error) { %>
+            <p><%= error %></p>
+            <h1>message: <%= error.message %></h1>
+            <h2>status: <%= error.status %></h2>
+            <p>stack:</p>
+            <pre><%= error.stack %></pre>
+          <% } %>
         </div>
 
       </main>

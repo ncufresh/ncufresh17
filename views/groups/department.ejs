@@ -15,15 +15,17 @@
         <% include ../layouts/navbar %>
     </header>
 
-    <main style="background-image: url(BACK2.png);">
+    <main style="background-image: url(背景中.png);">
       <div class="container">
-            <h1 style="font-size: 100px;">系所</h1>
+            <img src="系所字.png" style="width:27%;padding-top: 20px">
             <hr size="8px" align="center" width="100%">
             <ul class="breadcrumb">
               <li><a href="/groups">系所社團</a> <span class="divider"></span></li>
               <li class="active">系所</li>
             </ul>
+            <% if(user&&user.local.accountType==='admin'){%>
             <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#add_de" style="width:100px;height:30px;text-align:center;">add</button></br>
+            <%}%>
 
               <!-- Modal -->
               <div class="modal fade" id="add_de" role="dialog">
@@ -92,15 +94,18 @@
               </div> 
             </div>
 
-            <a href="/groups/all_department?dep=literature" id="literature"><img src="d11.png" class="col-md-2 " style="padding-bottom: 30px"></a>
-            <a href="/groups/all_department?dep=science" id="science"><img src="d21.png" class="col-md-2" style="padding-bottom: 30px"></a>
-            <a href="/groups/all_department?dep=engineering" id="engineering"><img src="d31.png"  class="col-md-2" style="padding-bottom: 30px"></a>
-            <a href="/groups/all_department?dep=management" id="management"><img src="d41.png"  class="col-md-2" style="padding-bottom: 30px"></a>
-            <a href="/groups/all_department?dep=ceecs" id="ceecs"><img src="d51.png"  class="col-md-2" style="padding-bottom: 30px"></a>
-            <a href="/groups/all_department?dep=earth" id="earth"><img src="d61.png" class="col-md-2" style="padding-bottom: 50px"></a>
-            <a href="/groups/all_department?dep=hikka" id="hikka"><img src="d71.png" class="col-md-2 col-md-offset-3" style="padding-bottom: 50px"></a>
-            <a href="/groups/all_department?dep=chst" id="chst"><img src="d81.png" class="col-md-2" style="padding-bottom: 50px"></a>
-            <a href="/groups/all_department?dep=space" id="space"><img src="d91.png" class="col-md-2" style="padding-bottom: 50px"></a>
+            <div class="row">
+            <a href="/groups/all_department?dep=literature" id="literature"><img src="d11.png" class="col-xs-2 col-xs-offset-2" style="padding-bottom: 30px"></a>
+            <a href="/groups/all_department?dep=science" id="science"><img src="d21.png" class="col-xs-2" style="padding-bottom: 30px"></a>
+            <a href="/groups/all_department?dep=engineering" id="engineering"><img src="d31.png"  class="col-xs-2" style="padding-bottom: 30px"></a>
+            <a href="/groups/all_department?dep=management" id="management"><img src="d41.png"  class="col-xs-2" style="padding-bottom: 30px"></a>
+            </div>
+            <div class="row">
+            <a href="/groups/all_department?dep=ceecs" id="ceecs"><img src="d51.png"  class="col-xs-2 col-xs-offset-2" style="padding-bottom: 30px"></a>
+            <a href="/groups/all_department?dep=earth" id="earth"><img src="d61.png" class="col-xs-2" style="padding-bottom: 50px"></a>
+            <a href="/groups/all_department?dep=hikka" id="hikka"><img src="d71.png" class="col-xs-2" style="padding-bottom: 50px"></a>
+            <a href="/groups/all_department?dep=chst" id="chst"><img src="d81.png" class="col-xs-2" style="padding-bottom: 50px"></a>
+            </div>
 
 
         </div>

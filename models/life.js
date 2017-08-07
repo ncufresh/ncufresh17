@@ -7,7 +7,9 @@ var life = mongoose.Schema({
     unique: true,
     'default': shortId.generate
     },
-    name        : String,
+    titletext   : String,
+    img_path0   : String,
+    fileName0   : String,
     type        : String,
     introduction: String,
     img_path1   : String,

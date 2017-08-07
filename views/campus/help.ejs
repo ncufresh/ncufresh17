@@ -8,12 +8,14 @@
         <% include ../layouts/navbar %>
     </header>
 
-    <main style="background: #cce8f7;">
+    <main style="background-image:url(/campus/default/background.png);">
         <div class="container-fluid">
             <div style="margin-left:25px;margin-right:25px;">
                 <img src="/campus/default/help1.png" alt="" width="100%" >
-                <img class="mouse-animate" src="/campus/default/goback.png" alt="" style="position:absolute;right:5%;top:90px;width:10%;padding:0.5vh;cursor:pointer;" onclick="javascript:location.href='/campus'">
-                <a href="/campus/editMap"><button class="btn btn-success new_building">編輯地圖物件</button></a>
+                <img class="mouse-animate" id="goback" src="/campus/default/goback.png" alt="" style="position:absolute;right:5%;top:90px;width:10%;padding:0.5vh;cursor:pointer;" onclick="javascript:location.href='/campus'">
+                <% if(user&&user.local.accountType==='admin'){%>
+                    <a href="/campus/editMap"><button class="btn btn-success new_building">編輯地圖物件</button></a>
+                <%}%>
                 <div class="row">
                     <div class="col-xs-6 text-center">
                         <img class="mouse-animate help-menu" src="/campus/default/help2.png" style="cursor:pointer; padding:1vh; vertical-align: middle;" width="60%" alt="SOS">
@@ -23,7 +25,7 @@
                     </div>
                 </div>
                 <div class="row" style="position:relative;">
-                    <div id="main-map" style="position:relative;padding:0px;padding-bottom:50.4%;width:90%;left:5%;float:left; position:relative;">
+                    <div id="main-map" style="position:relative;padding:0px;padding-bottom:44.8%;width:80%;left:10%;float:left; position:relative;">
                         <img src="/campus/default/back2.png"style="position:absolute;" width="100%" alt="">  
                         <%for(var i in map_objs){%>
                             <img class="map-animate map-build <%= map_objs[i].SOS?'SOS':''%> <%= map_objs[i].AED?'AED':''%>" src="<%= map_objs[i].path%>" alt="<%= map_objs[i].build_name%>" value="<%=map_objs[i].build_id%>"  data-toggle="tooltip" title="<%= map_objs[i].build_name%>" data-placement="top" style="
@@ -71,3 +73,8 @@
         <% include ../layouts/js %>
 </body>
 </html>
+<style>
+    .map-build{
+        cursor: auto !important;
+    }
+</style>
