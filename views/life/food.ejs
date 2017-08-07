@@ -51,10 +51,11 @@
   position:relative;
   display:none;
   background-image: url("/life/subtitle.png");
-  background-size: 55vw 63vw;
+  background-size: 55vw 45vw;
   background-position:left top;
+  z-index:2;
   width:55vw;
-  height:63vw;
+  height:45vw;
 }
 .subtitle-text{
   position:relative;
@@ -85,9 +86,6 @@
   width:100%;
   opacity:0.3;
 }
-.DemoModal:hover{
-  opacity:1.0;
-}
 .DisplaySlide{
   display:none;
   width:100%;
@@ -101,8 +99,9 @@
   width:100%;
   opacity:0.3;
 }
-.Demo:hover{
-  opacity:1.0;
+.return{
+  position:relative;
+  cursor:pointer;
 }
 </style>
 </head>
@@ -110,7 +109,7 @@
   <header>
     <% include ../layouts/navbar %>
   </header>
-  <main style="background-color: rgb(230,249,203)">
+  <main style="background-color:#ebf2d1">
     <% var hahaha=0; for (var i in life){ %>
     <div class="modal fade" id="imgbox-lg<%-life[i]._id%>" role="dialog">
       <div class="modal-dialog" style="width:90vw;height:100vh" role="document">
@@ -165,7 +164,7 @@
       <div>
         <div style="font-size:2.5vw" class="text-center">中大生活</div>
       </div>
-      <ul class="breadcrumb" style="background-color: rgb(230,249,203)">
+      <ul class="breadcrumb" style="background-color:#ebf2d2">
         <li style="font-size:1.3vw"><a href="/life">中大生活</a> <span class="divider"></span></li>
         <li style="font-size:1.3vw" class="backvideo divider2">食<span style="display:none" class="showDivider divider"></span></li>
         <% for (var i in life){ %>
@@ -241,7 +240,7 @@
                     </div>
                   <%}%>
                 </div>
-                <div id="content-text<%=life[i].id%>" class="content-text" style="position:relative;padding-left:2vw;top:1.5vw"><%- life[i].introduction %></div>
+                <div style="background-color:#9ec8e2;position:relative;padding-bottom:1vw;z-index:1"><%- life[i].introduction %></div>
               </div>
               <table id="switch<%=life[i].id%>" class="switch" style="width:55vw;height:10vw;display:none">
                 <tr>
@@ -264,6 +263,7 @@
             <iframe width="100%" hight="auto" src="https://www.youtube.com/embed/9TwwiLAk4GM" frameborder="0" allowfullscreen></iframe>
           </div>
         </div>
+        <div class="col-xs-2 return" onclick="self.location.href='/life'"><img src="/life/return.png"></img></div>
       </div>
     </div>
   </div>
@@ -280,6 +280,26 @@
             $(window).resize(function(){
               $('iframe').height($('iframe').width()*0.5625);
             })
+            $('.Demo').mouseenter(function(){
+              if($(this).css('opacity')!="1"){
+                $(this).css({'opacity':'0.999'});
+              }
+            });
+            $('.Demo').mouseleave(function(){
+              if($(this).css('opacity')=='0.999'){
+                $(this).css({'opacity':'0.3'});
+            }
+            });
+            $('.DemoModal').mouseenter(function(){
+              if($(this).css('opacity')!="1"){
+                $(this).css({'opacity':'0.999'});
+              }
+            });
+            $('.DemoModal').mouseleave(function(){
+              if($(this).css('opacity')=='0.999'){
+                $(this).css({'opacity':'0.3'});
+            }
+            });
             $('.btntitle').on('click',function(){
               var id = $(this).attr('target_id');
               $('.showDivider').hide();
