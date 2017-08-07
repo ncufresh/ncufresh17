@@ -63,31 +63,31 @@
                 scrollTop: $("#slidepoint2").offset().top-91
                 }, 400);
                 $("#h1").modal("show");
-                $("#h2").html('<%- hh %>')
+                $("#h2").html('<div class="video-container">'+'<%- hh %>'+'</div>')
             }else if(getString=="1.1"){
                 $('html,body').animate({
                 scrollTop: $("#slidepoint2").offset().top-91
                 }, 400);
                 $("#a1").modal("show");
-                $("#l1").html('<%- l1 %>')
+                $("#l1").html('<div class="video-container">'+'<%- l1 %>'+'</div>')
             }else if(getString=="1.2"){
                 $('html,body').animate({
                 scrollTop: $("#slidepoint2").offset().top-91
                 }, 400);
                 $("#a2").modal("show");
-                $("#l2").html('<%- l2 %>')
+                $("#l2").html('<div class="video-container">'+'<%- l2 %>'+'</div>')
             }else if(getString=="1.3"){
                 $('html,body').animate({
                 scrollTop: $("#slidepoint2").offset().top-91
                 }, 400);
                 $("#a3").modal("show");
-                $("#l3").html('<%- l3 %>')
+                $("#l3").html('<div class="video-container">'+'<%- l3 %>'+'</div>')
             }else if(getString=="1.4"){
                 $('html,body').animate({
                 scrollTop: $("#slidepoint2").offset().top-91
                 }, 400);
                 $("#a4").modal("show");
-                $("#l4").html('<%- l4 %>')
+                $("#l4").html('<div class="video-container">'+'<%- l4 %>'+'</div>')
             }else if(getString=="2"){
                 $('html,body').animate({
                 scrollTop: $("#slidepoint").offset().top-40
@@ -97,31 +97,31 @@
                 scrollTop: $("#slidepoint").offset().top-40
                 }, 400);
                 $("#5").modal("show");
-                $("#videofood").html('<%- foodURL %>')
+                $("#videofood").html('<div class="video-container">'+'<%- foodURL %>'+'</div>')
             }else if(getString=="2.2"){
                 $('html,body').animate({
                 scrollTop: $("#slidepoint").offset().top-40
                 }, 400);
                 $("#6").modal("show");
-                $("#videohousing").html('<%- housingURL %>')
+                $("#videohousing").html('<div class="video-container">'+'<%- housingURL %>'+'</div>')
             }else if(getString=="2.3"){
                 $('html,body').animate({
                 scrollTop: $("#slidepoint").offset().top-40
                 }, 400);
                 $("#7").modal("show");
-                $("#videotransportation").html('<%- transportationURL %>')
+                $("#videotransportation").html('<div class="video-container">'+'<%- transportationURL %>'+'</div>')
             }else if(getString=="2.4"){
                 $('html,body').animate({
                 scrollTop: $("#slidepoint").offset().top-40
                 }, 400);
                 $("#8").modal("show");
-                $("#videoeducation").html('<%- educationURL %>')
+                $("#videoeducation").html('<div class="video-container">'+'<%- educationURL %>'+'</div>')
             }else if(getString=="2.5"){
                 $('html,body').animate({
                 scrollTop: $("#slidepoint").offset().top-40
                 }, 400);
                 $("#9").modal("show");
-                $("#videoentertainment").html('<%- entertainmentURL %>')
+                $("#videoentertainment").html('<div class="video-container">'+'<%- entertainmentURL %>'+'</div>')
             }
 
         }
@@ -139,61 +139,61 @@
             $("#videofood").html("")
         });
         $("#f1").click(function(){
-            $("#videofood").html('<%- foodURL %>')
+            $("#videofood").html('<div class="video-container">'+'<%- foodURL %>'+'</div>')
         });
         $(".g2").click(function(){
             $("#videohousing").html("")
         });
         $("#f2").click(function(){
-            $("#videohousing").html('<%- housingURL %>')
+            $("#videohousing").html('<div class="video-container">'+'<%- housingURL %>'+'</div>')
         });
         $(".g3").click(function(){
             $("#videotransportation").html("")
         });
         $("#f3").click(function(){
-            $("#videotransportation").html('<%- transportationURL %>')
+            $("#videotransportation").html('<div class="video-container">'+'<%- transportationURL %>'+'</div>')
         });
         $(".g4").click(function(){
             $("#videoeducation").html("")
         });
         $("#f4").click(function(){
-            $("#videoeducation").html('<%- educationURL %>')
+            $("#videoeducation").html('<div class="video-container">'+'<%- educationURL %>'+'</div>')
         });
         $(".g5").click(function(){
             $("#videoentertainment").html("")
         });
         $("#f5").click(function(){
-            $("#videoentertainment").html('<%- entertainmentURL %>')
+            $("#videoentertainment").html('<div class="video-container">'+'<%- entertainmentURL %>'+'</div>')
         });
         $(".hh").click(function(){
             $("#h2").html("")
         });
         $("#Hsu").click(function(){
-            $("#h2").html('<%- hh %>')
+            $("#h2").html('<div class="video-container">'+'<%- hh %>'+'</div>')
         });
         $(".l1").click(function(){
             $("#l1").html("")
         });
         $("#rr1").click(function(){
-            $("#l1").html('<%- l1 %>')
+            $("#l1").html('<div class="video-container">'+'<%- l1 %>'+'</div>')
         });
         $(".l2").click(function(){
             $("#l2").html("")
         });
         $("#rr2").click(function(){
-            $("#l2").html('<%- l2 %>')
+            $("#l2").html('<div class="video-container">'+'<%- l2 %>'+'</div>')
         });
         $(".l3").click(function(){
             $("#l3").html("")
         });
         $("#rr3").click(function(){
-            $("#l3").html('<%- l3 %>')
+            $("#l3").html('<div class="video-container">'+'<%- l3 %>'+'</div>')
         });
         $(".l4").click(function(){
             $("#l4").html("")
         });
         $("#rr4").click(function(){
-            $("#l4").html('<%- l4 %>')
+            $("#l4").html('<div class="video-container">'+'<%- l4 %>'+'</div>')
         });
         $("#warn").click(function(){
             alert("記得一定要先試試看能不能開, 影音組的各位不要一直只想著放假 加油好嗎");
@@ -520,3 +520,20 @@
 
 </body>
 </html>
+<style>
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 35px;
+    height: 0;
+    overflow: hidden;
+}
+
+.video-container iframe {
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+</style>
