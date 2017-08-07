@@ -63,7 +63,7 @@ footer {
   font-size: x-large;
 }
 #navbar{
-  font-size: 18px;
+  font-size: 18px !important;
   margin-top: 10px;
   background-color: #4dc0c7;
 }

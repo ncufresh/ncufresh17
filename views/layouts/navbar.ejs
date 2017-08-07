@@ -21,7 +21,7 @@
 
         <li class="nav-item dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">
-            你好！<%= user.local.name %> <span class="caret"></span>
+            你好！<%= user.local.name %> <span class="caret"></span>  <small class="tips">(按完小箭頭請往下滑)</small>
           </a>
           <ul class="dropdown-menu">
             <li><a href="/personal"><i class="fa fa-user" aria-hidden="true"></i> 個人專區</a></li>
@@ -41,3 +41,13 @@
     </div><%# /.nav-collapse %>
   </div>
 </nav>
+<style media="screen">
+    .tips{
+      display: none;
+    }
+    @media (max-width: 768px){
+      .tips{
+        display: block;
+      }
+    }
+</style>
