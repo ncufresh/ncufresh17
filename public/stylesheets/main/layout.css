@@ -1,161 +1,215 @@
 /*全網站設定*/
-body{
+
+body {
   font-family: "Microsoft YaHei";
 }
-main {
-    /*至少會出現一個螢幕的長度*/
-    min-height: 100vh;
-    overflow-x:hidden;
-    /*關於背景*/
-    background-color: #fcfffc;
-    background-attachment:fixed;
-    background-repeat:no-repeat;
-    background-position: center center;
-    background-size: cover;
-    -o-background-size: cover;
-    -moz-background-size: cover;
-    -webkit-background-size: cover;
-    margin-top: 60px;
-    display: none;
 
+main {
+  /*至少會出現一個螢幕的長度*/
+  min-height: 100vh;
+  overflow-x: hidden;
+  /*關於背景*/
+  background-color: #fcfffc;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  -o-background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  margin-top: 60px;
+  display: none;
 }
+
 
 /* 為了把footer 黏在最下面 必要 */
+
+
 /****************************************************/
+
 html {
-    min-height: 100%;
-    position: relative;
+  min-height: 100%;
+  position: relative;
 }
+
 body {
-    margin-bottom: 150px; /* 如果頁面空白,這兩個數值可以控制距離 */
+  margin-bottom: 150px;
+  /* 如果頁面空白,這兩個數值可以控制距離 */
 }
+
 footer {
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-    height: 150px; /* 如果頁面空白,這兩個數值可以控制距離 */
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  height: 150px;
+  /* 如果頁面空白,這兩個數值可以控制距離 */
 }
+
+
 /****************************************************/
 
 
 /*navbar*/
+
+
 /****************************************************/
 
+
 /* navbar logo */
+
+
 /*.navbar-brand {
   padding: 0px !important;
 }*/
+
+
 /*.navbar-brand > img {
   height: 100%;
   padding: 10px 15px 10px 15px;
   width: auto;
 }*/
+
+
 /* 主要設定區 背景色 白字 */
-.navbar .container{
+
+.navbar .container {
   /*width: 100%;*/
 }
 
-.navbar{
+.navbar {
   background-color: #4dc0c7;
   height: 60px;
 }
-.navbar-brand{
+
+.navbar-brand {
   padding: 0px;
   font-size: x-large;
 }
-.navbar-collapse{
+
+.navbar-collapse {
   margin-top: 0px !important;
 }
-#navbar{
+
+#navbar {
   font-size: 18px !important;
   margin-top: 5px;
   background-color: #4dc0c7;
 }
 
-@media (max-width: 991px) and (min-width: 770px) {
-  .navbar-header {
-      float: none;
-
+@media (min-width: 768px) {
+  .navbar-nav>li>a {
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
-  .navbar-left,.navbar-right {
-      float: none !important;
+}
+
+@media (max-width: 1006px) and (min-width: 768px) {
+  .navbar-header {
+    float: none;
+  }
+  .navbar-left,
+  .navbar-right {
+    float: none !important;
   }
   .navbar-toggle {
-      display: block;
+    display: block;
   }
   .navbar-collapse {
-      border-top: 1px solid transparent;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
-
+    border-top: 1px solid transparent;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
   .navbar-fixed-top {
-      top: 0;
-      border-width: 0 0 1px;
+    top: 0;
+    border-width: 0 0 1px;
   }
   .navbar-collapse.collapse {
-      display: none!important;
+    display: none!important;
   }
   .navbar-nav {
-      float: none!important;
-      margin-top: 7.5px;
+    float: none!important;
+    margin-top: 7.5px;
   }
   .navbar-nav>li {
-      float: none;
+    float: none;
   }
   .navbar-nav>li>a {
-      padding-top: 10px;
-      padding-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
-  .collapse.in{
-      display:block !important;
+  .collapse.in {
+    display: block !important;
   }
-  .brandimg{
+  .brandimg {
     padding-left: 10px;
   }
-  .container-fluid{
+  .container-fluid {
     padding-right: 0px;
     padding-left: 0px;
   }
 }
 
+
 /****************************************************/
 
+
 /*footer*/
+
+
 /****************************************************/
-footer{
+
+footer {
   color: white;
 }
+
 footer h3 {
   margin-bottom: 30px;
 }
+
 footer .footer-above {
   padding-top: 50px;
-  background-color: #4dc0c7; /* 上footer背景色 */
+  background-color: #4dc0c7;
+  /* 上footer背景色 */
 }
+
 footer .footer-col {
   margin-bottom: 50px;
 }
+
 .footer-ul li {
-    line-height:2em; /* 行距 */
-    font-size:1em; /* 超連結大小可以改 */
-}
-/*連結的字*/
-.footer-ul {
-    list-style-type:none; /* 不要那顆圓形 */
-    padding-left:0px; /* 圓形那顆的去掉 */
-    margin-left:2px; /* 加了比較好看一點 */
-}
-.footer-ul li a,.footer-col p a {
-    text-decoration: none; /* 不要底線 */
-    color:#fff;
-    transition: color 0.2s linear 0s, background 0.2s linear 0s;
-}
-.footer-ul li a:hover {
-    color:#edf96b;
-    transition: color 0.2s linear 0s, background 0.2s linear 0s;
+  line-height: 2em;
+  /* 行距 */
+  font-size: 1em;
+  /* 超連結大小可以改 */
 }
 
+
+/*連結的字*/
+
+.footer-ul {
+  list-style-type: none;
+  /* 不要那顆圓形 */
+  padding-left: 0px;
+  /* 圓形那顆的去掉 */
+  margin-left: 2px;
+  /* 加了比較好看一點 */
+}
+
+.footer-ul li a,
+.footer-col p a {
+  text-decoration: none;
+  /* 不要底線 */
+  color: #fff;
+  transition: color 0.2s linear 0s, background 0.2s linear 0s;
+}
+
+.footer-ul li a:hover {
+  color: #edf96b;
+  transition: color 0.2s linear 0s, background 0.2s linear 0s;
+}
+
+
 /*聯絡我們的按鈕*/
+
 .fa-ul li {
   color: #e6e6e6;
   font-size: 20px;
@@ -164,7 +218,6 @@ footer .footer-col {
   margin-top: 15px;
   margin-bottom: 15px;
 }
-
 
 .btn-social {
   display: inline-block;
@@ -177,10 +230,11 @@ footer .footer-col {
   line-height: 45px;
 }
 
-
 footer .footer-below {
   padding: 25px 0;
-  background-color: #24404b;/* 下footer背景色 */
+  background-color: #24404b;
+  /* 下footer背景色 */
 }
+
 
 /****************************************************/
