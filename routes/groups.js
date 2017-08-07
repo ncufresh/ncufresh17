@@ -11,15 +11,15 @@ var groupImg = require('../models/groupImg');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('groups/index', { title: '系所社團 | 新生知訊網', user: req.user });
+  res.render('groups/index', { title: '系所社團 ｜ 新生知訊網', user: req.user });
 });
 
 router.get('/club', function(req, res, next) {
-  res.render('groups/club', { title: '社團 | 新生知訊網', user: req.user });
+  res.render('groups/club', { title: '社團 ｜ 新生知訊網', user: req.user });
 });
 
 router.get('/department', function(req, res, next) {
-  res.render('groups/department', { title: '系所 | 新生知訊網', user: req.user });
+  res.render('groups/department', { title: '系所 ｜ 新生知訊網', user: req.user });
 });
 
 router.get('/all_department/:id', function(req, res, next) {
@@ -46,7 +46,7 @@ router.get('/all_department', function(req, res, next) {
       var url_parts = url.parse(req.url, true);
       var query = url_parts.query;
       res.render('groups/all_department', {
-        title: '系所 | 新生知訊網',
+        title: '系所 ｜ 新生知訊網',
         user: req.user,
         firstClick: req.query.dep,
         department: department,
@@ -62,7 +62,7 @@ router.get('/all_club', function(req, res, next) {
       var url_parts = url.parse(req.url, true);
       var query = url_parts.query;
       res.render('groups/all_club', {
-        title: '社團 | 新生知訊網',
+        title: '社團 ｜ 新生知訊網',
         user: req.user,
         firstClick: req.query.club,
         club: club,
@@ -78,7 +78,7 @@ router.get('/organization', function(req, res, next) {
       var url_parts = url.parse(req.url, true);
       var query = url_parts.query;
       res.render('groups/organization', {
-        title: '學生組織 | 新生知訊網',
+        title: '學生組織 ｜ 新生知訊網',
         user: req.user,
         firstClick: req.query.organization,
         organization: organization,

@@ -10,7 +10,7 @@ var formidable = require('formidable');
 
 /* GET home page. */
 router.get('/', isLoggedIn, function(req, res, next) {
-  Qna.find({ userId:req.user._id }).exec(function(err, qna) {
+  Qna.find({ userId: req.user._id }).exec(function(err, qna) {
     if (err) return next(err);
 
     // Array：用來將資料庫 type 欄位的數字轉換成文字
@@ -31,8 +31,8 @@ router.get('/', isLoggedIn, function(req, res, next) {
       return time;
     };
 
-    res.render('personal/index', { 
-      title: '個人專區 | 新生知訊網', 
+    res.render('personal/index', {
+      title: '個人專區 ｜ 新生知訊網',
       user: req.user,
       typeToName: typeToName,
       renderTime: renderTime,
@@ -42,49 +42,49 @@ router.get('/', isLoggedIn, function(req, res, next) {
 });
 
 router.post('/uploadProfile/:id', function(req, res, next) {
-    var form = new formidable.IncomingForm();
-    form.parse(req, function(err, fields, files) {
+  var form = new formidable.IncomingForm();
+  form.parse(req, function(err, fields, files) {
 
-      if (err) {
-				console.log(err);
-			}
+    if (err) {
+      console.log(err);
+    }
 
-      var uploadedFile = files.input_img;
-      var tmpPath = uploadedFile.path;
-      var fileName = shortId.generate() + uploadedFile.name.substr(uploadedFile.name.lastIndexOf('.'));
-      var targetPath = './public/personal/profile/' + fileName;
-      var deletePath = './public/personal/profile/' + req.user.local.img;
+    var uploadedFile = files.input_img;
+    var tmpPath = uploadedFile.path;
+    var fileName = shortId.generate() + uploadedFile.name.substr(uploadedFile.name.lastIndexOf('.'));
+    var targetPath = './public/personal/profile/' + fileName;
+    var deletePath = './public/personal/profile/' + req.user.local.img;
 
-      var readStream = fs.createReadStream(tmpPath)
-      var writeStream = fs.createWriteStream(targetPath);
+    var readStream = fs.createReadStream(tmpPath)
+    var writeStream = fs.createWriteStream(targetPath);
 
-      User.findById( req.params.id, function( err, user) {
+    User.findById(req.params.id, function(err, user) {
+      if (err) return next(err);
+      user.local.img = fileName;
+      user.save(function(err, todo, count) {
         if (err) return next(err);
-        user.local.img = fileName;
-        user.save(function(err, todo, count) {
-          if (err) return next(err);
-          res.redirect('/personal');
-        });
+        res.redirect('/personal');
       });
-
-      readStream.on("end", function() {
-        console.log(readStream);
-        fs.unlink(tmpPath);
-        if (req.user.local.img != "profile.png")
-          fs.unlink(deletePath);
-      }).pipe(writeStream);
-
     });
+
+    readStream.on("end", function() {
+      console.log(readStream);
+      fs.unlink(tmpPath);
+      if (req.user.local.img != "profile.png")
+        fs.unlink(deletePath);
+    }).pipe(writeStream);
+
+  });
 });
 
 router.get('/initial/:id', function(req, res, next) {
-    
-  User.findById( req.params.id, function( err, user) {
+
+  User.findById(req.params.id, function(err, user) {
     if (err) return next(err);
     user.local.img = "profile.png";
     user.save(function(err, todo, count) {
-        if (err) return next(err);
-        res.redirect('/personal');
+      if (err) return next(err);
+      res.redirect('/personal');
     });
   });
 
