@@ -6,27 +6,25 @@
 <body>
     <header>
         <% include ../layouts/navbar %>
+        <% include naviCSS %>
     </header>
 
     <main style="background-image: url('background.png'); background-size: cover; background-repeat: no-repeat;">
+        <div class="row">
+            <% include navi %>
 
-        <div class="col-xs-2">
-            <ul id="navi" style="height:100%; margin-top: 10px;">
-                <a href="/about"><img onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" 
-                    src="/about/logo.png" style="width:200px; height:100px; margin: 5px 5px 5px 5px;"></a>
-                <li><a href="/about/markting" style="background-image: url('markting.png');"></a></li>
-                <li><a href="/about/programming" style="background-image: url('programming.png');"></a></li>
-                <li><a href="/about/ceo" style="background-image: url('ceo.png');"></a></li>
-                <li><a href="/about/art" style="background-image: url('art.png');"></a></li>
-                <li><a href="/about/video" style="background-image: url('video.png');"></a></li>
-            </ul>
-        </div>
-        <div class="col-xs-9" style="height:580px; margin: auto;">
-            <h1><b>程式設計組</b></h1>
-            <hr>
-            <img src="/about/IMG_8505.jpg" alt="photo died!!!!!!" style="width:40%;height:240px;">
-            <p id="content" >程設組以程式架構出知訊網，並利用程式碼，做出其他組希望達到的各種功能，
-                是這個網頁幕後的大功臣，也希望能以程式能力，期許新生一個更好的大學生活。</p>
+            <div class="col-xs-9">
+                <h1><b>程式設計組</b></h1>
+                <hr>
+                <div class="row">
+                    <div class="col-md-8">
+                        <img class="thumbnail" src="/about/程設.jpg" alt="photo died!!!!!!" style="width:100%; margin: auto; display: block;">
+                    </div>
+                    <div class="col-md-4">
+                        <p id="content" >程設組以程式架構出知訊網，並利用程式碼，做出其他組希望達到的各種功能，是這個網頁幕後的大功臣，也希望能以程式能力，期許新生一個更好的大學生活。</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
@@ -36,50 +34,3 @@
         <% include js %>
 </body>
 </html>
-
-<style>
-
-    #navi {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        width: 230px;
-        background-color: rgba(255, 255, 255, 0);;
-        overflow: auto;
-    }
-
-    #navi li a {
-        height: 60px;
-        background-size: contain;
-    }
-
-    #navi a {
-        background-repeat: no-repeat; 
-        background-size: contain;
-        height: 36px;
-    }
-
-    #navi li a {
-        display: block;
-        color: #000;
-        padding: 8px 16px;
-        text-decoration: none;
-    }
-
-    #navi li a.active {
-        background-color: #4CAF50;
-        color: white;
-    }
-
-    #navi li a:hover:not(.active) {
-        background-color: #555;
-        color: white;
-    }
-
-    #content {
-        font-size: 24px;
-        margin-top: 30px;
-        background: rgba(204, 229, 255, 0.3);
-    }
-
-</style>

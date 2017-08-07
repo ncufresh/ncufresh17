@@ -6,14 +6,14 @@ var video = require('../models/video');
 router.get('/', function(req, res, next) {
 	res.render('video/index',
 	{
-		title: 'video',
+		title: '影音專區 | 新生知訊網',
 		user: req.user
 	});
 });
 
 router.get('/life', function(req, res, next) {
 	video.find({}).exec(function(err,video){
-		var foodURL,housingURL,transportationURL,educationURL,entertainmentURL,l1,l2,l3,l4;
+		var foodURL,housingURL,transportationURL,educationURL,entertainmentURL,l1,l2,l3,l4,hh;
 		for (var i in video){
 			if(video[i].type=="food"){
     			foodURL=video[i].insert
@@ -42,10 +42,13 @@ router.get('/life', function(req, res, next) {
 			else if(video[i].type=="l4"){
 				l4=video[i].insert
 			}
+			else if(video[i].type=="hh"){
+				hh=video[i].insert
+			}
 		}
 		res.render('video/life', 
 		{
-			title: 'life',
+			title: '生活區 | 新生知訊網',
 			user: req.user,
 			video: video,
 			foodURL: foodURL,
@@ -56,7 +59,8 @@ router.get('/life', function(req, res, next) {
 			l1: l1,
 			l2: l2,
 			l3: l3,
-			l4: l4
+			l4: l4,
+			hh: hh
 		});
 	});
 });
@@ -136,7 +140,7 @@ router.get('/interview', function(req, res, next) {
 		}
 		res.render('video/interview',
 	  	{
-	  		title: 'interview',
+			title: '採訪區 | 新生知訊網',
 	  		user: req.user,
 	  		video: video,
 	  		D1: D1,
@@ -209,13 +213,10 @@ router.post('/addQQ',isAdmin, function(req, res, next) {
 	});
 	res.redirect('/video/interview');
 });
+
 function isAdmin(req, res, next) {
-  if (req.isAuthenticated()) {
-    // console.log('log:' + req.user.local);
-    if (req.user.local.accountType === 'admin') {
-      return next();
-    }
-  }
+  if (req.isAuthenticated() && req.user.local.accountType === 'admin')
+    return next();
   res.redirect('/');
 }
 

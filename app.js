@@ -20,7 +20,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
-// app.use(favicon(path.join(__dirsname, 'public/images/main', 'icon.png')));
+app.use(favicon(path.join(__dirname, 'public/images/main', 'icon.png')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -41,10 +41,13 @@ var configDB = require('./config/database');
 mongoose.Promise = global.Promise;
 mongoose.connect(configDB.url, { useMongoClient: true });
 
+// middleware: 上線倒數計時
+var countdown = require('./middleware/countdown');
+app.use(countdown);
+
 // passport 認證
 require('./config/passport')(passport);
 var index = require('./routes/index')(passport);
-var users = require('./routes/users');
 
 var documents = require('./routes/documents');
 var qna = require('./routes/qna');
@@ -59,7 +62,6 @@ var aboutweb = require('./routes/aboutweb');
 
 // Routes
 app.use('/', index);
-app.use('/users', users);
 
 // 新生必讀
 app.use('/documents', documents);
@@ -84,25 +86,25 @@ app.use('/aboutweb', aboutweb);
 
 
 // ckeditor uploader
-app.post('/uploader', multipartMiddleware, function(req, res) {
+app.post('/uploader', multipartMiddleware, function(req, res, next) {
   var fs = require('fs');
 
   fs.readFile(req.files.upload.path, function(err, data) {
+    if (err) return next(err);
     var newPath = __dirname + '/public/uploads/' + req.files.upload.name;
     fs.writeFile(newPath, data, function(err) {
-      if (err) console.log({ err: err });
-      else {
-        html = "";
-        html += "<script type='text/javascript'>";
-        html += "    var funcNum = " + req.query.CKEditorFuncNum + ";";
-        html += "    var url     = \"/uploads/" + req.files.upload.name + "\";";
-        html += "    var message = \"Uploaded file successfully\";";
-        html += "";
-        html += "    window.parent.CKEDITOR.tools.callFunction(funcNum, url, message);";
-        html += "</script>";
+      if (err) return next(err);
 
-        res.send(html);
-      }
+      html = "";
+      html += "<script type='text/javascript'>";
+      html += "    var funcNum = " + req.query.CKEditorFuncNum + ";";
+      html += "    var url     = \"/uploads/" + req.files.upload.name + "\";";
+      html += "    var message = \"Uploaded file successfully\";";
+      html += "";
+      html += "    window.parent.CKEDITOR.tools.callFunction(funcNum, url, message);";
+      html += "</script>";
+
+      res.send(html);
     });
   });
 });
@@ -122,9 +124,9 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error',{
+  res.render('error', {
     title: '頁面不存在 ｜ 新生知訊網',
-    user: req.user,
+    user: req.user
   });
 });
 

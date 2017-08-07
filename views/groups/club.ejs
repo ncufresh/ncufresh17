@@ -16,7 +16,9 @@
               <li><a href="/groups">系所社團</a> <span class="divider"></span></li>
               <li class="active">社團</li>
             </ul>
+            <% if(user&&user.local.accountType==='admin'){%>
             <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#add_club" style="width:100px;height:30px;text-align:center;">add</button></br>
+            <%}%>
 
 
               <!-- Modal -->

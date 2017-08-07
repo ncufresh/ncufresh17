@@ -14,7 +14,9 @@ router.get('/', function (req, res, next) {
 
 router.get('/guide', function (req, res, next) {
 	map_obj.find({}).exec(function(err,map_objs){
+		if(err) return next(err);
 		building.find({}).sort({ type: 1 }).exec(function(err,buildings){
+			if(err) return next(err);
 			var dep=[],work=[],sport=[],point=[],food=[],home=[];
 			for(var i=0;i<buildings.length;i++){
 				if(buildings[i].type==="系館")
@@ -47,7 +49,9 @@ router.get('/guide', function (req, res, next) {
 
 router.get('/help', function (req, res, next) {
 	map_obj.find({}).exec(function(err,map_objs){
+		if(err)return next(err);
 		building.find({}).sort({ type: 1 }).exec(function(err,buildings){
+			if(err)return next(err);
 			var dep=[],work=[],sport=[],point=[],food=[],home=[];
 			for(var i=0;i<buildings.length;i++){
 				if(buildings[i].type==="系館")
@@ -80,13 +84,16 @@ router.get('/help', function (req, res, next) {
 
 router.get('/newData',isAdmin, function (req, res, next) {
 	building.find({}).sort({ type: 1 }).exec(function (err, buildings) {
+		if(err)return next(err);
 		res.render('campus/newData', { user: req.user, title: '新增建築物 ｜ 新生知訊網', buildings: buildings });
 	});
 });
 
 router.get('/editMap',isAdmin, function (req, res, next) {
 	building.find({}).sort({ type: 1 }).exec(function (err, buildings) {
+		if(err)return next(err);
 		map_obj.find({}).sort({ build_type: 1 }).exec(function (err, map_objs){
+			if(err)return next(err);
 			res.render('campus/editMap', {
 				user: req.user, title: '編輯地圖物件 ｜ 新生知訊網',
 				buildings: buildings ,
@@ -98,12 +105,14 @@ router.get('/editMap',isAdmin, function (req, res, next) {
 
 router.get('/newData/:id', function (req, res, next) {
 	building.find({ _id: req.params.id }, function (err, data) {
+		if(err)return next(err);
 		res.send(data[0]);
 	});
 });
 
 router.get('/get_img/:id', function (req, res, next) {
 	img_list.find({ build_id: req.params.id }, function (err, data) {
+		if(err)return next(err);
 		res.send(data);
 	})
 });
@@ -115,6 +124,7 @@ router.get('/delete/:id',isAdmin, function (req, res, next) {
 
 router.get('/delete_img/:id',isAdmin, function (req, res, next) {
 	img_list.findById(req.params.id, function (err, data) {
+		if(err)return next(err);
 		fs.unlink('./public/campus/' + data.fileName, function (e) {
 			if (e) console.log(e);
 			else {
@@ -128,6 +138,7 @@ router.get('/delete_img/:id',isAdmin, function (req, res, next) {
 router.get('/delete_mapObj/:id',isAdmin, function (req, res, next) {
 	console.log(req.params.id);
 	map_obj.findById(req.params.id, function (err, data) {
+		if(err)return next(err);
 		if(data.build_type==="SOS"||data.build_type==="AED"){
 			map_obj.findById(req.params.id).remove().exec();
 			res.redirect('/campus/editMap');
@@ -154,6 +165,7 @@ router.post('/add',isAdmin, function (req, res, next) {
 			AED: req.body.AED == 0 ? false : true,
 			updated_at: Date.now()
 		}, function (err) {
+			if(err)return next(err);
 			if (err)
 				console.log(err);
 		});
@@ -178,6 +190,7 @@ router.post('/newMapObj',isAdmin, function (req, res, next) {
 		form.parse(req, function (err, fields, files) {
 			if (err) {
 				console.log(err);
+				return next(err);
 			}
 			console.log('received fields: ');
 			console.log(fields);
@@ -207,6 +220,7 @@ router.post('/newMapObj',isAdmin, function (req, res, next) {
 			building.findById(fields.map_obj_id).exec(function(err,data){
 				console.log(fields.map_obj_id);
 				console.log(data);
+				if(err)return next(err);
 				new map_obj({
 					build_name: data.name,
 					build_type: data.type,
@@ -231,7 +245,9 @@ router.post('/newMapObj',isAdmin, function (req, res, next) {
 	}
 	else{
 		map_obj.findById(req.body.mapObj_id,function(err,data){
+			if(err)return next(err);
 			building.findById(data.build_id,function(err,build){
+				if(err)return next(err);
 				map_obj.update({_id:req.body.mapObj_id},{
 					$set: {
 						build_name: build.name,
@@ -277,46 +293,49 @@ router.post('/imgUpload',isAdmin, function (req, res, next) {
 	form.parse(req, function (err, fields, files) {
 		if (err) {
 			console.log("上傳err");
+			return next(err);
 		}
-		// console.log('received fields: ');
-		// console.log(fields);
-		// console.log('received files: ');
-		// console.log(files);
+		else{
+			// console.log('received fields: ');
+			// console.log(fields);
+			// console.log('received files: ');
+			// console.log(files);
 
-		var uploadedFile = files.uploadingImg;
-		var tmpPath = uploadedFile.path;
-		var fileName = shortId.generate() + uploadedFile.name.substr(uploadedFile.name.lastIndexOf('.'));
-		var targetPath = './public/campus/' + fileName;
-		console.log(tmpPath);
-		console.log(targetPath);
-		// 跨分區會error
-		// fs.rename(tmpPath, targetPath, function(err) {
-		//   if (err){
-		//     console.log(err);
-		//   }
-		//   else{
-		//     fs.unlink(tmpPath, function() {
-		//       console.log('File Uploaded to ' + targetPath + ' - ' + uploadedFile.size + ' bytes');
-		//     });
-		//   }
-		// });
+			var uploadedFile = files.uploadingImg;
+			var tmpPath = uploadedFile.path;
+			var fileName = shortId.generate() + uploadedFile.name.substr(uploadedFile.name.lastIndexOf('.'));
+			var targetPath = './public/campus/' + fileName;
+			console.log(tmpPath);
+			console.log(targetPath);
+			// 跨分區會error
+			// fs.rename(tmpPath, targetPath, function(err) {
+			//   if (err){
+			//     console.log(err);
+			//   }
+			//   else{
+			//     fs.unlink(tmpPath, function() {
+			//       console.log('File Uploaded to ' + targetPath + ' - ' + uploadedFile.size + ' bytes');
+			//     });
+			//   }
+			// });
 
-		var readStream = fs.createReadStream(tmpPath);
-		var writeStream = fs.createWriteStream(targetPath);
-		var a = new img_list({
-			build_id: fields.imgid,
-			img_path: '/campus/' + fileName,
-			fileName: fileName
-		});
-		a.save();
-		readStream.on("end", function () {
-			fs.unlink(tmpPath, function () {
-				res.send(a);
+			var readStream = fs.createReadStream(tmpPath);
+			var writeStream = fs.createWriteStream(targetPath);
+			var a = new img_list({
+				build_id: fields.imgid,
+				img_path: '/campus/' + fileName,
+				fileName: fileName
 			});
-		}).pipe(writeStream);
+			a.save();
+			readStream.on("end", function () {
+				fs.unlink(tmpPath, function () {
+					res.send(a);
+				});
+			}).pipe(writeStream);
 
 
-		console.log(fields.imgid);
+			console.log(fields.imgid);
+		}
 	});
 
 });

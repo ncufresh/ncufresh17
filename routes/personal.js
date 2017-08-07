@@ -91,11 +91,8 @@ router.get('/initial/:id', function(req, res, next) {
 });
 
 function isLoggedIn(req, res, next) {
-
-  if (!req.isAuthenticated()) {
+  if (!req.isAuthenticated())
     res.redirect('/login');
-  }
-
   return next();
 }
 
