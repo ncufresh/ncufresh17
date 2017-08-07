@@ -322,8 +322,8 @@
             }else{
                 $.ajax({
                     url:    "/documents/require_data/"+id,
-                    error: function(e){
-                        console.log("ERR  :"+e);
+                    error: function(err){
+                        console.log("ERR  :"+err);
                     },
                     success: function(data){
                         $('#show-name').html(data.name);
@@ -354,8 +354,8 @@
                 var id = $(this).val();
                 $.ajax({
                     url:    "/documents/require_data/"+id,
-                    error: function(e){
-                        console.log("ERR  :"+e);
+                    error: function(err){
+                        console.log("ERR  :"+err);
                     },
                     success: function(data){
                         if (data.type=="常用連結"){
@@ -403,8 +403,8 @@
                     $.ajax({
                         url:    '/documents/delete/'+ id,
                         type:   'GET',
-                        error: function(e){
-                            console.log("ERR  :"+e);
+                        error: function(err){
+                            console.log("ERR  :"+err);
                         },
                         success: function(data){
                             $('#'+id).remove();
@@ -415,7 +415,6 @@
 
             <%/*在新增modal裡更改類別為常用連結時會把有有ckediter的textarea隱藏起來並顯示常用連結的textare，反之亦然*/%>
             $("select").change(function() {
-                console.log("select"+$(this).find(':selected').text());
                 if ($(this).find(':selected').text()=="常用連結"){
                     $('#commonly_used_link_label').css({"display":"inline-block"});
                     $('#not_commonly_used_link_label').css({"display":"none"});
@@ -436,7 +435,6 @@
 
             <%/*修改modal裡更改類別為常用連結時會把有有ckediter的textarea隱藏起來並顯示常用連結的textare，反之亦然*/%>
             $("#edit_type").change(function() {
-                console.log("select"+$(this).find(':selected').text());
                 if ($(this).find(':selected').text()=="常用連結"){
                     $('#commonly_used_link_label_in_edit_data').css({"display":"inline-block"});
                     $('#not_commonly_used_link_label_in_edit_data').css({"display":"none"});

@@ -136,12 +136,10 @@ $(document).ready(function() {
         method: 'GET',
         url: '/qna/admin/' + id
       }).done(function(res) {
-        console.log(res);
         $('#admin-answer-form').attr({ 'action': ('/qna/answer/' + id) });
         $('#btn-admin-delete-answer').attr({ 'data-id' : id });
         document.getElementById('admin-answer-title').value = res.title;
         document.getElementById('admin-answer-content').value = res.content;
-        // document.getElementById('admin-answer-answer').value = res.answer;
         CKEDITOR.instances['admin-answer-answer'].setData(res.answer);
         document.getElementById('admin-answer-type').value = res.type;
 
