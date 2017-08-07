@@ -211,6 +211,7 @@ $(document).ready(function() {
       for (var i = 0; i < objs.length; i++) {
         objs[i].innerHTML = parseInt(objs[i].innerHTML) + 1;
       }
+      $('img').attr("style", "max-width : 100%; max-height : 100%;");
     }).fail(function(err) {
       alert('發生不知明錯誤');
     });
