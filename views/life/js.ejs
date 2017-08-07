@@ -1,5 +1,7 @@
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="/javascript/ckeditor/ckeditor.js"></script>
+<% if(user&&user.local.accountType==='admin'){%>
+  <script src="/javascript/ckeditor/ckeditor.js"></script>
+<%}%>
 
 <%# <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>%>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -43,11 +45,13 @@ $(document).ready(function(){
       }
   });
 });
-CKEDITOR.replace('introduction',{
-  filebrowserUploadUrl: '/uploader',
-});
-CKEDITOR.editorConfig = function (config){
-    config.enterMode = CKEDITOR.ENTER_BR;
-    config.autoParagraph = false;
-};
+<% if(user&&user.local.accountType==='admin'){%>
+  CKEDITOR.replace('introduction',{
+    filebrowserUploadUrl: '/uploader',
+  });
+  CKEDITOR.editorConfig = function (config){
+      config.enterMode = CKEDITOR.ENTER_BR;
+      config.autoParagraph = false;
+  };
+<%}%>
 </script>
