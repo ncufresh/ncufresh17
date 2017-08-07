@@ -3,6 +3,22 @@ var router = express.Router();
 var sanitize = require('../lib/sanitize');
 var Qna = require('../models/qna');
 
+// 刪除所有瀏覽次數
+// router.get('/deleteAllQuestionView', isAdmin, function(req, res, next) {
+//   Qna.find().exec(function(err, q) {
+//     if (err) return next(err);
+//     for (var i in q) {
+//       console.log(i + " = " + q[i].view);
+//       q[i].view = 0;
+//       q[i].save(function(err) {
+//         if (err) return next(err);
+//         console.log('Successfully delete all questions' view);
+//         res.send('Success');
+//       });
+//     }
+//   });
+// });
+
 // 讀取頁面
 router.get('/', function(req, res, next) {
   // 用觀看次數排序
