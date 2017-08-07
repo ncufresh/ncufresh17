@@ -236,7 +236,7 @@
                     </div>
                   <%}%>
                 </div>
-                <div style="background-color:#9ec8e2;position:relative;padding-bottom:1vw;z-index:1"><%- life[i].introduction %></div>
+                <div style="background-color:#9ec8e2;position:relative;padding-bottom:1vw;padding-left:1vw;padding-top:1vw"><%- life[i].introduction %></div>
                 <table id="switch<%=life[i].id%>" class="switch" style="width:100%;height:10vw;display:none">
                   <tr>
                     <%if(i-1>=0){%>
@@ -256,7 +256,7 @@
             <%counter++; }%>
           <%}%>
           <div class="fpvideo">
-            <iframe width="100%" height="auto" src="https://www.youtube.com/embed/9TwwiLAk4GM" frameborder="0" allowfullscreen></iframe>
+            <iframe width="100%" height="auto" src="https://www.youtube.com/embed/25IgFFxFIZg" frameborder="0" allowfullscreen></iframe>
           </div>
         </div>
         <div class="col-xs-2" onclick="self.location.href='/life'" style="cursor:pointer"><img style="width:10vw" src="/life/return.png"></img></div>
@@ -371,8 +371,8 @@
               }
 
               showDemoPics<%-count%>(currentDemoPic<%-count%>);
-            <%}%>
-          <%count++; }%>
+            <%count++;}%>
+          <%}%>
 
           <%var XDDD=0; for(var i in life){%>
             <% if ( life[i].type == "others"){ %>
@@ -417,8 +417,8 @@
               }
 
               showPics<%-XDDD%>(currentPic<%-XDDD%>);
-            <%}%>  
-          <%XDDD++; }%>
+            <%XDDD++;}%>
+          <%}%>
         </script>
 </body>
 </html>
