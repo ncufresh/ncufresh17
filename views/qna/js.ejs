@@ -5,6 +5,7 @@
 $(document).ready(function() {
 
   $('.nav-toggle-btn').on('click', function(e) {
+    $(this).children('i').toggleClass('fa-chevron-circle-right').toggleClass('fa-chevron-circle-left');
     $('#sideNav').toggleClass('active-nav');
     e.preventDefault();
   });
@@ -86,7 +87,6 @@ $(document).ready(function() {
     }
     window.location.hash = hash;
   });
-
 
   <%# 當發問成功會轉址到 /qna/?post=success 時，顯示發問成功的 modal %>
   <% if (user) { %>
