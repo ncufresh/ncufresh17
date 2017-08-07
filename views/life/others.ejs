@@ -105,7 +105,7 @@
   <header>
     <% include ../layouts/navbar %>
   </header>
-  <main style="background-color:#ebf2d1">
+  <main style="background-color:#ebf2d1;height:80vw">
     <% var hahaha=0; for (var i in life){ %>
     <div class="modal fade" id="imgbox-lg<%-life[i]._id%>" role="dialog">
       <div class="modal-dialog" style="width:90vw;height:100vh" role="document">
@@ -236,7 +236,7 @@
                     </div>
                   <%}%>
                 </div>
-                <div style="background-color:#9ec8e2;position:relative;padding-bottom:1vw;z-index:1"><%- life[i].introduction %></div>
+                <div style="background-color:#9ec8e2;position:relative;padding-bottom:1vw;padding-left:1vw;padding-top:1vw"><%- life[i].introduction %></div>
                 <table id="switch<%=life[i].id%>" class="switch" style="width:100%;height:10vw;display:none">
                   <tr>
                     <%if(i-1>=0){%>
@@ -256,7 +256,7 @@
             <%counter++; }%>
           <%}%>
           <div class="fpvideo">
-            <iframe width="100%" height="auto" src="https://www.youtube.com/embed/9TwwiLAk4GM" frameborder="0" allowfullscreen></iframe>
+            <iframe width="100%" height="auto" src="https://www.youtube.com/embed/25IgFFxFIZg" frameborder="0" allowfullscreen></iframe>
           </div>
         </div>
         <div class="col-xs-2" onclick="self.location.href='/life'" style="cursor:pointer"><img style="width:10vw" src="/life/return.png"></img></div>
@@ -329,92 +329,96 @@
             });
           })
           <%var count=0; for(var i in life){%>
-            var currentDemoPic<%-count%> = 1;
-            var z<%-count%> = new Array();
-            var bar<%-count%> = new Array();
-            if(document.getElementById("DisplaySlide<%=life[i].fileName1%>")!=null){
-              z<%-count%>.push(document.getElementById("DisplaySlide<%=life[i].fileName1%>"));
-            }
-            if(document.getElementById("DisplaySlide<%=life[i].fileName2%>")!=null){
-              z<%-count%>.push(document.getElementById("DisplaySlide<%=life[i].fileName2%>"));
-            }
-            if(document.getElementById("DisplaySlide<%=life[i].fileName3%>")!=null){
-              z<%-count%>.push(document.getElementById("DisplaySlide<%=life[i].fileName3%>"));
-            }
-            if(document.getElementById("Demo<%=life[i].fileName1%>")!=null){
-              bar<%-count%>.push(document.getElementById("Demo<%=life[i].fileName1%>"));
-            }
-            if(document.getElementById("Demo<%=life[i].fileName2%>")!=null){
-              bar<%-count%>.push(document.getElementById("Demo<%=life[i].fileName2%>"));
-            }
-            if(document.getElementById("Demo<%=life[i].fileName3%>")!=null){
-              bar<%-count%>.push(document.getElementById("Demo<%=life[i].fileName3%>"));
-            }
-
-            function showDemoPics<%-count%>(n) {
-              var k;
-              // var x = document.getElementById("ModalSlide<%=life[i].id%>");
-              // var dots = document.getElementById("DemoModal<%=life[i].id%>");
-              for (k = 0; k < z<%-count%>.length; k++) {
-                 z<%-count%>[k].style.display = "none";
+            <% if ( life[i].type == "others"){ %>
+              var currentDemoPic<%-count%> = 1;
+              var z<%-count%> = new Array();
+              var bar<%-count%> = new Array();
+              if(document.getElementById("DisplaySlide<%=life[i].fileName1%>")!=null){
+                z<%-count%>.push(document.getElementById("DisplaySlide<%=life[i].fileName1%>"));
               }
-              for (k = 0; k < bar<%-count%>.length; k++) {
-                 bar<%-count%>[k].style.opacity = "0.3";
+              if(document.getElementById("DisplaySlide<%=life[i].fileName2%>")!=null){
+                z<%-count%>.push(document.getElementById("DisplaySlide<%=life[i].fileName2%>"));
               }
-              z<%-count%>[currentDemoPic<%-count%>-1].style.display = "block";
-              bar<%-count%>[currentDemoPic<%-count%>-1].style.opacity = "1.0";
-            }
-            function switchDemoPic<%-count%>(n) {
-              currentDemoPic<%-count%> = n;
-              showDemoPics<%-count%>(n);
-            }
+              if(document.getElementById("DisplaySlide<%=life[i].fileName3%>")!=null){
+                z<%-count%>.push(document.getElementById("DisplaySlide<%=life[i].fileName3%>"));
+              }
+              if(document.getElementById("Demo<%=life[i].fileName1%>")!=null){
+                bar<%-count%>.push(document.getElementById("Demo<%=life[i].fileName1%>"));
+              }
+              if(document.getElementById("Demo<%=life[i].fileName2%>")!=null){
+                bar<%-count%>.push(document.getElementById("Demo<%=life[i].fileName2%>"));
+              }
+              if(document.getElementById("Demo<%=life[i].fileName3%>")!=null){
+                bar<%-count%>.push(document.getElementById("Demo<%=life[i].fileName3%>"));
+              }
 
-            showDemoPics<%-count%>(currentDemoPic<%-count%>);
-          <%count++; }%>
+              function showDemoPics<%-count%>(n) {
+                var k;
+                // var x = document.getElementById("ModalSlide<%=life[i].id%>");
+                // var dots = document.getElementById("DemoModal<%=life[i].id%>");
+                for (k = 0; k < z<%-count%>.length; k++) {
+                   z<%-count%>[k].style.display = "none";
+                }
+                for (k = 0; k < bar<%-count%>.length; k++) {
+                   bar<%-count%>[k].style.opacity = "0.3";
+                }
+                z<%-count%>[currentDemoPic<%-count%>-1].style.display = "block";
+                bar<%-count%>[currentDemoPic<%-count%>-1].style.opacity = "1.0";
+              }
+              function switchDemoPic<%-count%>(n) {
+                currentDemoPic<%-count%> = n;
+                showDemoPics<%-count%>(n);
+              }
+
+              showDemoPics<%-count%>(currentDemoPic<%-count%>);
+            <%count++;}%>
+          <%}%>
 
           <%var XDDD=0; for(var i in life){%>
-            var currentPic<%-XDDD%> = 1;
-            var x<%-XDDD%> = new Array();
-            var dots<%-XDDD%> = new Array();
-            if(document.getElementById("ModalSlide<%=life[i].fileName1%>")!=null){
-              x<%-XDDD%>.push(document.getElementById("ModalSlide<%=life[i].fileName1%>"));
-            }
-            if(document.getElementById("ModalSlide<%=life[i].fileName2%>")!=null){
-              x<%-XDDD%>.push(document.getElementById("ModalSlide<%=life[i].fileName2%>"));
-            }
-            if(document.getElementById("ModalSlide<%=life[i].fileName3%>")!=null){
-              x<%-XDDD%>.push(document.getElementById("ModalSlide<%=life[i].fileName3%>"));
-            }
-            if(document.getElementById("DemoModal<%=life[i].fileName1%>")!=null){
-              dots<%-XDDD%>.push(document.getElementById("DemoModal<%=life[i].fileName1%>"));
-            }
-            if(document.getElementById("DemoModal<%=life[i].fileName2%>")!=null){
-              dots<%-XDDD%>.push(document.getElementById("DemoModal<%=life[i].fileName2%>"));
-            }
-            if(document.getElementById("DemoModal<%=life[i].fileName3%>")!=null){
-              dots<%-XDDD%>.push(document.getElementById("DemoModal<%=life[i].fileName3%>"));
-            }
-
-            function showPics<%-XDDD%>(n) {
-              var j;
-              // var x = document.getElementById("ModalSlide<%=life[i].id%>");
-              // var dots = document.getElementById("DemoModal<%=life[i].id%>");
-              for (j = 0; j < x<%-XDDD%>.length; j++) {
-                 x<%-XDDD%>[j].style.display = "none";
+            <% if ( life[i].type == "others"){ %>
+              var currentPic<%-XDDD%> = 1;
+              var x<%-XDDD%> = new Array();
+              var dots<%-XDDD%> = new Array();
+              if(document.getElementById("ModalSlide<%=life[i].fileName1%>")!=null){
+                x<%-XDDD%>.push(document.getElementById("ModalSlide<%=life[i].fileName1%>"));
               }
-              for (j = 0; j < dots<%-XDDD%>.length; j++) {
-                 dots<%-XDDD%>[j].style.opacity = "0.3";
+              if(document.getElementById("ModalSlide<%=life[i].fileName2%>")!=null){
+                x<%-XDDD%>.push(document.getElementById("ModalSlide<%=life[i].fileName2%>"));
               }
-              x<%-XDDD%>[currentPic<%-XDDD%>-1].style.display = "block";
-              dots<%-XDDD%>[currentPic<%-XDDD%>-1].style.opacity = "1.0";
-            }
-            function switchPic<%-XDDD%>(n) {
-              currentPic<%-XDDD%> = n;
-              showPics<%-XDDD%>(n);
-            }
+              if(document.getElementById("ModalSlide<%=life[i].fileName3%>")!=null){
+                x<%-XDDD%>.push(document.getElementById("ModalSlide<%=life[i].fileName3%>"));
+              }
+              if(document.getElementById("DemoModal<%=life[i].fileName1%>")!=null){
+                dots<%-XDDD%>.push(document.getElementById("DemoModal<%=life[i].fileName1%>"));
+              }
+              if(document.getElementById("DemoModal<%=life[i].fileName2%>")!=null){
+                dots<%-XDDD%>.push(document.getElementById("DemoModal<%=life[i].fileName2%>"));
+              }
+              if(document.getElementById("DemoModal<%=life[i].fileName3%>")!=null){
+                dots<%-XDDD%>.push(document.getElementById("DemoModal<%=life[i].fileName3%>"));
+              }
 
-            showPics<%-XDDD%>(currentPic<%-XDDD%>);
-          <%XDDD++; }%>
+              function showPics<%-XDDD%>(n) {
+                var j;
+                // var x = document.getElementById("ModalSlide<%=life[i].id%>");
+                // var dots = document.getElementById("DemoModal<%=life[i].id%>");
+                for (j = 0; j < x<%-XDDD%>.length; j++) {
+                   x<%-XDDD%>[j].style.display = "none";
+                }
+                for (j = 0; j < dots<%-XDDD%>.length; j++) {
+                   dots<%-XDDD%>[j].style.opacity = "0.3";
+                }
+                x<%-XDDD%>[currentPic<%-XDDD%>-1].style.display = "block";
+                dots<%-XDDD%>[currentPic<%-XDDD%>-1].style.opacity = "1.0";
+              }
+              function switchPic<%-XDDD%>(n) {
+                currentPic<%-XDDD%> = n;
+                showPics<%-XDDD%>(n);
+              }
+
+              showPics<%-XDDD%>(currentPic<%-XDDD%>);
+            <%XDDD++;}%>
+          <%}%>
         </script>
 </body>
 </html>

@@ -14,36 +14,32 @@
     position: fixed;
     transform: translate(-200px);
     transition: transform 1s ease;
-    width: 200px;
+    width: 185px;
     z-index: 10;
   }
 
   .nav-toggle-btn {
     display: block;
-    left: 200px;
-    margin-top: 18%;
+    left: 185px;
+    opacity: 0.5;
     position: absolute;
     z-index: 10;
   }
 
   #sideNav.active-nav {
-    transform: translate(0);
+    transform: translate(-15px);
   }
 
   #navi {
     background-color: rgba(255, 255, 255, 0);
   }
-  
-  #navi li a {
-    background-size: contain;
-    display: block;
-    height: auto;
-    padding-left: 0;
-    width: 100%;
+
+  #navi li img {
+    /* max-height: 12vh; */
+    max-width: 90%;
   }
 
-  #navi li a img {
-    max-width: 90%;
-    max-height: 12vh;
+  footer {
+    z-index: 10;
   }
 </style>

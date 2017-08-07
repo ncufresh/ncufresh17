@@ -7,6 +7,8 @@ var Qna = require('../models/qna');
 router.get('/', function(req, res, next) {
   // 用觀看次數排序
   Qna.find().sort({ view: 'desc' }).exec(function(err, qna) {
+    if (err)
+      return next(err);
 
     // Array：用來將資料庫 type 欄位的數字轉換成中文文字
     // ex: typeToChineseName[ 1 ] === "校園生活"
@@ -146,7 +148,7 @@ router.post('/deleteByAdmin/:id', isAdmin, function(req, res, next) {
   });
 });
 
-// 使用者刪除問題
+// 使用者刪除問題 WIP
 router.post('/deleteByUser/:id', isLoggedIn, function(req, res, next) {
   Qna.findById(req.params.id, function(err, qna) {
     if (err)

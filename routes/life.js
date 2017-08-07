@@ -46,7 +46,7 @@ router.get('/life/others/:id',isAdmin,function(req,res,next){
   });
 });
 router.get('/food', function(req, res, next) {
-	life.find({}).exec(function(err,life){
+	life.find({type:"food"}).exec(function(err,life){
 	var url_parts = url.parse(req.url, true);
 	var query = url_parts.query;
   res.render('life/food', {
@@ -57,7 +57,7 @@ router.get('/food', function(req, res, next) {
 });
 });
 router.get('/dorm', function(req, res, next) {
-	life.find({}).exec(function(err,life){
+	life.find({type:"dorm"}).exec(function(err,life){
 	var url_parts = url.parse(req.url, true);
 	var query = url_parts.query;
   res.render('life/dorm', {
@@ -68,7 +68,7 @@ router.get('/dorm', function(req, res, next) {
 });
 });
 router.get('/traffic', function(req, res, next) {
-	life.find({}).exec(function(err,life){
+	life.find({type:"traffic"}).exec(function(err,life){
 	var url_parts = url.parse(req.url, true);
 	var query = url_parts.query;
   res.render('life/traffic', {
@@ -79,7 +79,7 @@ router.get('/traffic', function(req, res, next) {
 });
 });
 router.get('/study', function(req, res, next) {
-	life.find({}).exec(function(err,life){
+	life.find({type:"study"}).exec(function(err,life){
 	var url_parts = url.parse(req.url, true);
 	var query = url_parts.query;
   res.render('life/study', {
@@ -90,7 +90,7 @@ router.get('/study', function(req, res, next) {
 });
 });
 router.get('/entertainment', function(req, res, next) {
-	life.find({}).exec(function(err,life){
+	life.find({type:"entertainment"}).exec(function(err,life){
 	var url_parts = url.parse(req.url, true);
 	var query = url_parts.query;
   res.render('life/entertainment', {
@@ -101,7 +101,7 @@ router.get('/entertainment', function(req, res, next) {
 });
 });
 router.get('/others', function(req, res, next) {
-	life.find({}).exec(function(err,life){
+	life.find({type:"others"}).exec(function(err,life){
 	var url_parts = url.parse(req.url, true);
 	var query = url_parts.query;
   res.render('life/others', {
