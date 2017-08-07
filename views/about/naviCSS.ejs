@@ -1,5 +1,28 @@
 <style>
 
+    #sideNav {
+        position: fixed;
+        z-index: 1000;
+        width: 200px;
+        background-color: rgba(255, 255, 255, 0);
+        transform: translate(-200px, 0);
+        transition: transform 0.4s ease;
+    }
+
+    .nav-toggle-btn {
+        display: block;
+        margin-top: 100px;
+        position: absolute;
+        left: 200px;
+        width: 40px;
+        height: 40px;
+        background-color: #666;
+    }
+
+    .active-nav {
+        transform: translate(200px, 0);
+    }
+
     #navi {
         overflow: auto;
         background-color: rgba(255, 255, 255, 0);
