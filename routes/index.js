@@ -421,6 +421,16 @@ module.exports = function(passport) {
     });
   });
 
+  //Coming Soon
+  router.get('/comingsoon', function(req, res, next) {
+
+        res.render('index/comingsoon',{
+          title: 'Coming Soon',
+          user: req.user,
+        });
+
+  });
+
   //Todo test
   router.get('/todo', isAdmin, function(req, res, next) {
     async.parallel({
