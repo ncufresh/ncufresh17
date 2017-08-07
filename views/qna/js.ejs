@@ -3,6 +3,8 @@
 <% } %>
 <script>
 $(document).ready(function() {
+
+  <%# 切換分頁 %>
   $("li a[href='#hot'], li a[href='#all'], li a[href='#school'], li a[href='#student'], li a[href='#dorm'], li a[href='#other']").on('click', function(event) {
     // Prevent default anchor click behavior
     event.preventDefault();
