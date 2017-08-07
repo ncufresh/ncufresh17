@@ -190,7 +190,7 @@
       #topBtn {
         display: none; /* Hidden by default */
         position: fixed; /* Fixed/sticky position */
-        width: 7%;
+        width: 80px;
         bottom: 20px; /* Place the button at the bottom of the page */
         right: 30px; /* Place the button 30px from the right */
         z-index: 99; /* Make sure it does not overlap */
@@ -254,7 +254,7 @@
         top: 35%;
         width: 50%;
       }
-      @media (max-width: 991px) {
+      @media (max-width: 500px) {
         h1{
           font-size: 50px;
         }
@@ -271,14 +271,27 @@
           font-size: 30px !important;
         }
         .dj-wordd{
+          top:25%;
           left: 15%;
           width: 80%;
         }
         .dj-word{
-          position: absolute;
           left: 35%;
           top: 50%;
           width: 40%;
+        }
+      }
+
+      @media (max-width: 993px) and (min-width: 502px){
+        .dj-wordd{
+          top:15%;
+          left: 25%;
+          width: 50%;
+        }
+        .dj-word{
+          left: 40%;
+          top: 50%;
+          width: 20%;
         }
       }
 
