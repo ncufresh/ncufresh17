@@ -128,6 +128,7 @@ router.post('/answer/:id', isAdmin, function(req, res, next) {
     if (err)
       return next(err);
     qna.answer = req.body.answer;
+    qna.type = req.body.type;
     qna.save(function(err) {
       if (err)
         return next(err);
