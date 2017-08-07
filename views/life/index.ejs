@@ -18,13 +18,13 @@
     <header>
         <% include ../layouts/navbar %>
     </header>
-    <main style="background-image:url(Bubble.png);background-color:#E7F4F7;height:45vw;">
+    <main style="background-image:url(Bubble.png);background-color:#E7F4F7">
       <div class="container-fluid">
-          <div>
-              <div class="text-center" style="font-size:3vw">中大生活</div>
-              <% if(user&&user.local.accountType==='admin'){%>
-                <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#add_life" style="width:100px;height:30px;text-align:center;">新增</button>
-              <%}%>
+        <div>
+          <div class="text-center" style="font-size:3vw">中大生活</div>
+          <% if(user&&user.local.accountType==='admin'){%>
+            <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#add_life" style="width:100px;height:30px;text-align:center;">新增</button>
+          <%}%>
           </div>
             <!-- Add/edit Modal -->
             <div class="modal fade" id="add_life" role="dialog">
@@ -117,24 +117,24 @@
           </div>
           <div class="container">
             <div class="col-xs-2 col-xs-offset-2">
-              <img style="position:relative;left:-2vw" onclick="self.location.href='/life/food'" class="mainbtn" style="" src="食.png" alt="食"/>
+              <img style="position:relative;left:-4vw" onclick="self.location.href='/life/food'" class="mainbtn" style="" src="食.png" alt="食"/>
             </div>
             <div class="col-xs-2">
               <img onclick="self.location.href='/life/dorm'" class="mainbtn" style="" src="住.png" alt="住"/>
             </div>
             <div class ="col-xs-2">
-              <img style="position:relative;left:2vw" onclick="self.location.href='/life/traffic'" class="mainbtn" style="" src="行.png" alt="行"/>
+              <img style="position:relative;left:4vw" onclick="self.location.href='/life/traffic'" class="mainbtn" style="" src="行.png" alt="行"/>
             </div>
           </div>
           <div class="container">
             <div class="col-xs-2 col-xs-offset-3">
-              <img style="position:relative;left:-2vw" onclick="self.location.href='/life/study'" class="mainbtn" style="" src="育.png" alt="育"/>
+              <img style="position:relative;left:-4vw" onclick="self.location.href='/life/study'" class="mainbtn" style="" src="育.png" alt="育"/>
             </div>
             <div class="col-xs-2">
               <img onclick="self.location.href='/life/entertainment'" class="mainbtn" style="" src="樂.png" alt="樂"/>
             </div>
             <div class="col-xs-2">
-              <img style="position:relative;left:2vw" onclick="self.location.href='/life/others'" class="mainbtn" style="" src="其他.png" alt="其他"/>
+              <img style="position:relative;left:4vw" onclick="self.location.href='/life/others'" class="mainbtn" style="" src="其他.png" alt="其他"/>
             </div>
           </div>
         </div>
