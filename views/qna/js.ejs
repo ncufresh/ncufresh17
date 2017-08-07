@@ -75,6 +75,9 @@ $(document).ready(function() {
     $('#title-other').show();
   } else {
     $('div.qa-hot').hide().fadeIn(500);
+    if (hash === "#post") {
+      $('#post').modal('show');
+    }
   }
 
   <%# 當發問成功會轉址到 /qna/?post=success 時，顯示發問成功的 modal %>
