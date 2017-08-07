@@ -13,7 +13,10 @@ var session = require('express-session');
 var flash = require('connect-flash');
 var passport = require('passport');
 
+var helmet = require('helmet');
+
 var app = express();
+app.use(helmet());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
