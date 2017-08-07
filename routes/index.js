@@ -424,10 +424,10 @@ module.exports = function(passport) {
   //Coming Soon
   router.get('/comingsoon', function(req, res, next) {
 
-        res.render('index/comingsoon',{
-          title: 'Coming Soon',
-          user: req.user,
-        });
+    res.render('index/comingsoon', {
+      title: 'Coming Soon ｜ 新生知訊網',
+      user: req.user,
+    });
 
   });
 
