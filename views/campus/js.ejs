@@ -444,6 +444,7 @@ $(document).ready(function(){
 						console.log(data);
 						$("#detail-name").text(data.name);
 						$("#detail-content").append("<div style='height: 3.52vw;'></div>"+data.content+"<br>");
+                        $("#detail-content p a").attr("target","_blank");
 						$("#detail_modal").modal("show");
 					}
 				});
@@ -459,12 +460,12 @@ $(document).ready(function(){
         $("#detail-content").empty();
         $("#img-list").empty();
     });
-     $("#detail_modal").on('shown.bs.modal', function () {
+    $("#detail_modal").on('shown.bs.modal', function () {
         $("html").css({
             "overflow":"hidden"
         });
-     });
-})
+    });
+});
 </script>
 
 <style>

@@ -118,7 +118,9 @@ router.get('/get_img/:id', function (req, res, next) {
 });
 
 router.get('/delete/:id',isAdmin, function (req, res, next) {
-	building.findById(req.params.id).remove().exec();
+	building.findById(req.params.id).remove().exec(function(err){
+		if(err) return next(err);
+	});
 	res.redirect('/campus/newData');
 });
 
@@ -126,9 +128,11 @@ router.get('/delete_img/:id',isAdmin, function (req, res, next) {
 	img_list.findById(req.params.id, function (err, data) {
 		if(err)return next(err);
 		fs.unlink('./public/campus/' + data.fileName, function (e) {
-			if (e) console.log(e);
+			if (e) return next(e);
 			else {
-				img_list.findById(req.params.id).remove().exec();
+				img_list.findById(req.params.id).remove().exec(function(err){
+					if(err) return next(err);
+				});
 			}
 			res.redirect('/campus/newData');
 		});
@@ -140,14 +144,18 @@ router.get('/delete_mapObj/:id',isAdmin, function (req, res, next) {
 	map_obj.findById(req.params.id, function (err, data) {
 		if(err)return next(err);
 		if(data.build_type==="SOS"||data.build_type==="AED"){
-			map_obj.findById(req.params.id).remove().exec();
+			map_obj.findById(req.params.id).remove().exec(function(err){
+				if(err) return next(err);
+			});
 			res.redirect('/campus/editMap');
 		}
 		else{
 			fs.unlink('./public/campus/' + data.fileName, function (e) {
-				if (e) console.log(e);
+				if (e) return next(e);
 				else {
-					map_obj.findById(req.params.id).remove().exec();
+					map_obj.findById(req.params.id).remove().exec(function(err){
+						if(err) return next(err);
+					});
 				}
 				res.redirect('/campus/editMap');
 			});
@@ -259,7 +267,7 @@ router.post('/newMapObj',isAdmin, function (req, res, next) {
 						AED: build.AED
 					}
 				},function(e){
-					if(e) console.log(e);
+					if(e) return next(e);
 				});
 				if(data.SOS===true){
 					map_obj.update({_id:req.body.mapObj_id},{
@@ -268,7 +276,7 @@ router.post('/newMapObj',isAdmin, function (req, res, next) {
 							SOSy: req.body.SOSy,
 						}
 					},function(e){
-						if(e) console.log(e);
+						if(e) return next(e);
 					});
 				}
 				if(data.AED===true){
@@ -278,7 +286,7 @@ router.post('/newMapObj',isAdmin, function (req, res, next) {
 							AEDy: req.body.AEDy,
 						}
 					},function(e){
-						if(e) console.log(e);
+						if(e) return next(e);
 					});
 				}
 			})
@@ -328,7 +336,8 @@ router.post('/imgUpload',isAdmin, function (req, res, next) {
 			});
 			a.save();
 			readStream.on("end", function () {
-				fs.unlink(tmpPath, function () {
+				fs.unlink(tmpPath, function (err) {
+					if(err)next(err);
 					res.send(a);
 				});
 			}).pipe(writeStream);
