@@ -35,9 +35,9 @@
             var conText = $("#con"+index).val();
             var ansText = $("#ans"+index).val();
 
-            $('#tt').html($('<b> Title: ' + titleText + '</b>'));
-            $('#qesField').html($('<b> Detail: ' + conText + '</b>'));
-            $('#ansField').html($('<b> Answer: ' + ansText + '</b>'));
+            $('#title').html($('<b> 標題: ' + titleText + '</b>'));
+            $('#qesField').html($('<b> 問題: </b> <p style="margin-top:1%;">' + conText + '</p>'));
+            $('#ansField').html($('<b> 答案: </b> <p style="margin-top:1%;">' + ansText + '</p>'));
 
         });
     });
