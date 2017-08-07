@@ -15,7 +15,7 @@ main {
     -o-background-size: cover;
     -moz-background-size: cover;
     -webkit-background-size: cover;
-    margin-top: 80px;
+    margin-top: 60px;
     display: none;
 
 }
@@ -57,20 +57,21 @@ footer {
 
 .navbar{
   background-color: #4dc0c7;
-  height: 80px;
+  height: 60px;
 }
 .navbar-brand{
   padding: 0px;
   font-size: x-large;
 }
+.navbar-collapse{
+  margin-top: 0px !important;
+}
 #navbar{
   font-size: 18px !important;
-  margin-top: 10px;
+  margin-top: 5px;
   background-color: #4dc0c7;
 }
-.navbar-header{
-  padding-top: 5px;
-}
+
 @media (max-width: 991px) and (min-width: 770px) {
   .navbar-header {
       float: none;
