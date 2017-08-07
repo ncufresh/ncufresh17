@@ -1,7 +1,35 @@
 <style>
+  main {
+    background-image: url('images/bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
   table {
     background-color: white;
   }
+
+  #sideNav {
+    background-color: rgba(77, 192, 199, 0.2);
+    position: fixed;
+    transform: translate(-200px);
+    transition: transform 1s ease;
+    width: 200px;
+    z-index: 10;
+  }
+
+  .nav-toggle-btn {
+    display: block;
+    left: 200px;
+    margin-top: 18%;
+    position: absolute;
+    z-index: 10;
+  }
+
+  #sideNav.active-nav {
+    transform: translate(0);
+  }
+
   #navi {
     background-color: rgba(255, 255, 255, 0);
   }

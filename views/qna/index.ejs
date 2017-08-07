@@ -9,8 +9,8 @@
     <% include css.ejs %>
   </header>
 
-  <main style="background-image: url('images/bg.png'); background-size: cover; background-repeat: no-repeat;">
-    <div class="container-fluid">
+  <main>
+    <div class="container-fluid" style="padding-left:0">
       <%# 未回答問題 %>
         <% if (user && user.local.accountType==='admin') { %>
           <div class="row">
@@ -39,19 +39,25 @@
         <% } %>
       <%# /未回答問題 %>
       <div class="row">
-        <div class="col-md-2" style="padding-left:0">
+        <div class="col-md-2">
           <%# 側導覽列 %>
-            <ul id="navi" style="max-height: 75vh; margin-top: 20px;">
-              <li><a href="#hot" type="button"><img src="images/btn_hot.png" alt="熱門問題按鈕"></a></li>
-              <li><a href="#all" type="button"><img src="images/btn_all.png" alt="所有問題按鈕"></a></li>
-              <li><a href="#school" type="button"><img src="images/btn_school.png" alt="校園生活按鈕"></a></li>
-              <li><a href="#student" type="button"><img src="images/btn_student.png" alt="學生事務按鈕"></a></li>
-              <li><a href="#dorm" type="button"><img src="images/btn_dorm.png" alt="宿舍生活按鈕"></a></li>
-              <li><a href="#other" type="button"><img src="images/btn_other.png" alt="其他按鈕"></a></li>
-              <li><a type="button" data-toggle="modal" data-target="#post"><img src="images/btn_post.png" alt="我要發問按鈕"></a></li>
-            </ul>
+            <nav id="sideNav">
+              <div class="nav-toggle-btn">
+                <i class="fa fa-5x fa-caret-square-o-right" aria-hidden="true"></i>
+              </div>
+              <ul id="navi" style="height:100%; margin-top: 5%;">
+                <a href="#"><img src="images/logo.png" alt="Q&A LOGO" style="width: 90%; margin: 2%;"></a>
+                <li><a href="#hot" type="button"><img src="images/btn_hot.png" alt="熱門問題按鈕"></a></li>
+                <li><a href="#all" type="button"><img src="images/btn_all.png" alt="所有問題按鈕"></a></li>
+                <li><a href="#school" type="button"><img src="images/btn_school.png" alt="校園生活按鈕"></a></li>
+                <li><a href="#student" type="button"><img src="images/btn_student.png" alt="學生事務按鈕"></a></li>
+                <li><a href="#dorm" type="button"><img src="images/btn_dorm.png" alt="宿舍生活按鈕"></a></li>
+                <li><a href="#other" type="button"><img src="images/btn_other.png" alt="其他按鈕"></a></li>
+                <li><a type="button" data-toggle="modal" data-target="#post"><img src="images/btn_post.png" alt="我要發問按鈕"></a></li>
+              </ul>
+            </nav>
           <%# /側導覽列 %>
-        </div><%# ./col-md-2 %>
+        </div><%# /col-md-2 %>
         <div class="col-md-8">
 
           <%# 熱門問題 Top15 %>
