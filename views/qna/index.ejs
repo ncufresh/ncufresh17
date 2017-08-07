@@ -11,8 +11,8 @@
 
   <main>
     <div class="container-fluid" style="padding-left:0">
-      <%# 未回答問題 %>
-        <% if (user && user.local.accountType==='admin') { %>
+      <% if (user && user.local.accountType==='admin') { %>
+        <%# 未回答問題 %>
           <div class="row">
             <div class="col-xs-12">
               <h1>未回答問題<small>點擊可以回答</small></h1>
@@ -36,14 +36,14 @@
                 </table>
             </div>
           </div>
-        <% } %>
-      <%# /未回答問題 %>
+        <%# /未回答問題 %>
+      <% } %>
       <div class="row">
         <div class="col-md-2">
           <%# 側導覽列 %>
             <nav id="sideNav">
-              <div class="nav-toggle-btn">
-                <i class="fa fa-5x fa-caret-square-o-right" aria-hidden="true"></i>
+              <div class="nav-toggle-btn" style="margin-top: 102px;">
+                <i class="fa fa-4x fa-caret-square-o-right" aria-hidden="true"></i>
               </div>
               <ul id="navi" style="height:100%; margin-top: 5%;">
                 <a href="#"><img src="images/logo.png" alt="Q&A LOGO" style="width: 90%; margin: 2%;"></a>
@@ -62,7 +62,9 @@
 
           <%# 熱門問題 Top15 %>
             <div class="qa-hot">
-              <p class="text-center"><img src="images/title_hot.png" alt="熱門問題" style="width: 50%;"></p>
+              <div class="row text-center">
+                <img src="images/title_hot.png" alt="熱門問題" style="width: 50%;">
+              </div>
               <table class="table table-hover">
                 <tr>
                   <th>類別</th>
@@ -89,33 +91,41 @@
           <%# /熱門問題 Top15 %>
           <%# 所有問題 %>
             <div class="qa-all" style="display: none;">
-              <p class="text-center"><img src="images/title_all.png" alt="所有問題" style="width: 50%;"></p>
-              <table class="table table-hover">
-                <tr>
-                  <td>類別</td>
-                  <td>日期</td>
-                  <td>標題</td>
-                  <td>瀏覽次數</td>
-                  <% if( user && user.local.accountType === 'admin' ) { %>
-                    <td>管理員選項</td>
-                  <% } %>
-                </tr>
-                <% qna.forEach( function (q) { %>
-                  <% if(q.answer) { %>
-                    <tr id="<%= q._id %>-all" class="clickable <%= q._id %> qa-<%= typeToEnglishName[q.type] %>"><%# 在 routes/qna.js 裡面 %>
-                      <td><%= typeToChineseName[q.type] %><%# 在 routes/qna.js 裡面 %></td>
-                      <td><%= renderTime(q.updated) %></td>
-                      <td class="title"><%= q.title %></td>
-                      <td class="view"><%= q.view %></td>
-                      <% if( user && user.local.accountType === 'admin' ) { %>
-                        <td><button id="<%= q._id %>-admin-btn" class="btn btn-success btn-sm btn-admin-update-answer" style="z-index: 99">修改回答</button></td>
-                        <input class="content" type="hidden" value="<%- q.content %>" />
-                        <input class="type" type="hidden" value="<%= q.type %>" />
-                      <% } %>
-                    </tr>
-                  <% } %>
-                <% }); %>
-              </table>
+              <div class="text-center">
+                <img id="title-all" src="images/title_all.png" alt="所有問題標題" style="width: 50%;">
+                <img id="title-school" src="images/title_school.png" alt="校園生活標題" style="width: 50%;">
+                <img id="title-student" src="images/title_student.png" alt="學生事務標題" style="width: 50%;">
+                <img id="title-dorm" src="images/title_dorm.png" alt="宿舍生活標題" style="width: 50%;">
+                <img id="title-other" src="images/title_other.png" alt="其他問題標題" style="width: 50%;">
+              </div>
+              <div>
+                <table class="table table-hover">
+                  <tr>
+                    <th>類別</th>
+                    <th>日期</th>
+                    <th>標題</th>
+                    <th>瀏覽次數</th>
+                    <% if( user && user.local.accountType === 'admin' ) { %>
+                      <th>管理員選項</th>
+                    <% } %>
+                  </tr>
+                  <% qna.forEach( function (q) { %>
+                    <% if(q.answer) { %>
+                      <tr id="<%= q._id %>-all" class="clickable <%= q._id %> qa-<%= typeToEnglishName[q.type] %>"><%# 在 routes/qna.js 裡面 %>
+                        <td><%= typeToChineseName[q.type] %><%# 在 routes/qna.js 裡面 %></td>
+                        <td><%= renderTime(q.updated) %></td>
+                        <td class="title"><%= q.title %></td>
+                        <td class="view"><%= q.view %></td>
+                        <% if( user && user.local.accountType === 'admin' ) { %>
+                          <td><button id="<%= q._id %>-admin-btn" class="btn btn-success btn-sm btn-admin-update-answer" style="z-index: 99">修改回答</button></td>
+                          <input class="content" type="hidden" value="<%- q.content %>" />
+                          <input class="type" type="hidden" value="<%= q.type %>" />
+                        <% } %>
+                      </tr>
+                    <% } %>
+                  <% }); %>
+                </table>
+              </div>
             </div>
           <%# /所有問題 %>
         </div><%# ./col-md-8 %>
