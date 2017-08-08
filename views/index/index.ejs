@@ -510,71 +510,73 @@
     <footer>
         <% include ../layouts/footer %>
     </footer>
-        <%# include js %>
-        <% include ../layouts/js %>
-        <script type="text/javascript" src="javascript/main/modernizr.custom.17475.js"></script>
-        <script type="text/javascript" src="javascript/main/jquery.elastislide.js"></script>
-        <script type="text/javascript" src="javascript/main/modernizr.js"></script>
-        <script type="text/javascript" src="javascript/main/timeline.js"></script>
-        <script type="text/javascript">
-    			$( '#carousel' ).elastislide( {
-    				minItems : 2
-    			} );
-          var slideIndex = 2;
-          var slidesNum = $("#newsimgsNum").val();
-          var ramSlideNum = Math.floor((Math.random() * slidesNum) + 1);
-          showSlides(ramSlideNum);
+    <%# include js %>
+    <% include ../layouts/js %>
+    <script type="text/javascript" src="javascript/main/modernizr.custom.17475.js"></script>
+    <script type="text/javascript" src="javascript/main/jquery.elastislide.js"></script>
+    <script type="text/javascript" src="javascript/main/modernizr.js"></script>
+    <script type="text/javascript" src="javascript/main/timeline.js"></script>
+    <script type="text/javascript">
+      $( '#carousel' ).elastislide( {
+        minItems : 2
+      } );
+      var slideIndex = 2;
+      var slidesNum = $("#newsimgsNum").val();
+      var ramSlideNum = Math.floor((Math.random() * slidesNum) + 1);
+      showSlides(ramSlideNum);
 
-          function plusSlides(n) {
-            showSlides(ramSlideNum += n);
-          }
+      function plusSlides(n) {
+        showSlides(ramSlideNum += n);
+      }
 
-          function currentSlide(n) {
-            showSlides(ramSlideNum = n);
-          }
+      function currentSlide(n) {
+        showSlides(ramSlideNum = n);
+      }
 
-          function showSlides(n) {
-            var i;
-            var slides = document.getElementsByClassName("mySlides");
-            var dots = document.getElementsByClassName("dot");
-            if (n > slides.length) {ramSlideNum = 1}
-            if (n < 1) {ramSlideNum = slides.length}
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            for (i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" active", "");
-            }
-            slides[ramSlideNum-1].style.display = "block";
-            dots[ramSlideNum-1].className += " active";
-          }
-          function timeout_slide(){
-            plusSlides(-1);
-            setTimeout(timeout_slide, 3000);
-          }
-          window.onscroll = function() {scrollFunction()};
+      function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {ramSlideNum = 1}
+        if (n < 1) {ramSlideNum = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[ramSlideNum-1].style.display = "block";
+        dots[ramSlideNum-1].className += " active";
+      }
+      function timeout_slide(){
+        plusSlides(-1);
+        setTimeout(timeout_slide, 3000);
+      }
+      window.onscroll = function() {scrollFunction()};
 
-          function scrollFunction() {
-              if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                  document.getElementById("topBtn").style.display = "block";
-              } else {
-                  document.getElementById("topBtn").style.display = "none";
-              }
+      function scrollFunction() {
+          if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+              document.getElementById("topBtn").style.display = "block";
+          } else {
+              document.getElementById("topBtn").style.display = "none";
           }
+      }
 
-          // When the user clicks on the button, scroll to the top of the document
-          function topFunction() {
-            $('html,body').animate({
-                 scrollTop: 0,
-            }, 1000);
-              // document.body.scrollTop = 0; // For Chrome, Safari and Opera
-              // document.documentElement.scrollTop = 0; // For IE and Firefox
-          }
-          $(function(){
-            $('[data-toggle="tooltip"]').tooltip();
-            timeout_slide();
-          })
-    		</script>
-
+      // When the user clicks on the button, scroll to the top of the document
+      function topFunction() {
+        $('html,body').animate({
+              scrollTop: 0,
+        }, 1000);
+          // document.body.scrollTop = 0; // For Chrome, Safari and Opera
+          // document.documentElement.scrollTop = 0; // For IE and Firefox
+      }
+      $(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+        timeout_slide();
+      })
+    </script>
+    <script>
+      $('.modal-content').find('img').removeAttr('style').css({'max-width':'100%','max-height':'100%'});
+    </script>
 </body>
 </html>
