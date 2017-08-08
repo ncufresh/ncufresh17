@@ -65,3 +65,5 @@ typings/
 
 # dotenv environment variables file
 .env
+.env.production.jonz94
+.env.production.evan11401
